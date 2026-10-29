@@ -10,6 +10,10 @@ name: Emulator smoke test
 # It is manual on purpose: it costs ~40 minutes and never gates a release.
 
 on:
+  # `smoke-N` tags are the trigger that works without the actions:write scope.
+  push:
+    tags:
+      - 'smoke-*'
   workflow_dispatch:
     inputs:
       api_level:
@@ -237,7 +241,9 @@ jobs:
             exit 0
           fi
           git commit -q -m "Record the emulator smoke test [skip ci]"
-          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "::warning title=evidence::could not push the evidence commit"
+          BRANCH="$GITHUB_REF_NAME"
+          case "$GITHUB_REF" in refs/tags/*) BRANCH=main;; esac
+          git push origin "HEAD:$BRANCH" || echo "::warning title=evidence::could not push the evidence commit"
 
       - name: Summarise
         if: always()

@@ -1117,9 +1117,29 @@ class MainActivity : Activity() {
         }
     }
 
+    /**
+     * A phone camera produces 12–50 megapixel files. Decoding one at full size would allocate
+     * hundreds of megabytes and the process would be killed, so the image is subsampled until it
+     * fits both the core's 8192 px limit and a sane pixel budget.
+     */
+    private fun decodeBounded(uri: Uri): Bitmap? {
+        val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
+        contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, bounds) }
+        if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return null
+        var sample = 1
+        while (bounds.outWidth / sample > 8192 ||
+            bounds.outHeight / sample > 8192 ||
+            (bounds.outWidth.toLong() / sample) * (bounds.outHeight / sample) > 24_000_000L
+        ) {
+            sample *= 2
+        }
+        val options = BitmapFactory.Options().apply { inSampleSize = sample }
+        return contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it, null, options) }
+    }
+
     private fun loadImage(uri: Uri) {
         try {
-            val bmp = contentResolver.openInputStream(uri)?.use { BitmapFactory.decodeStream(it) }
+            val bmp = decodeBounded(uri)
             if (bmp == null) {
                 toast("That file could not be decoded as an image.")
                 return
@@ -1189,6 +1209,12 @@ class MainActivity : Activity() {
             val w = editor.documentWidth()
             val h = editor.documentHeight()
             if (w <= 0 || h <= 0) return
+            // Export holds the whole document twice (core pixels plus a bitmap); refuse the sizes
+            // that would be killed by the memory limit instead of dying silently.
+            if (w.toLong() * h > 30_000_000L) {
+                toast("This document is too large to export on this device ($w × $h).")
+                return
+            }
             val buf = IntArray(w * h)
             if (!NativeCore.exportPixels(handle, buf)) {
                 toast("Export failed: ${NativeCore.lastError()}")

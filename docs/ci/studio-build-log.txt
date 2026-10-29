@@ -1,0 +1,180 @@
+Build logs for commit a7447402d8e4e08bf0064bdf5e3b9c3bc0f6c1d8, run 40888790292.
+
+===== cargo =====
+[1m[92m    Updating[0m crates.io index
+[1m[92m     Locking[0m 30 packages to highest compatible versions
+[1m[92m      Adding[0m jni v0.21.1 [1m[33m(available: v0.22.4)[0m
+[1m[92m   Compiling[0m rea-core v0.1.0 (/home/runner/work/rea-image-studio./rea-image-studio./studio/core)
+[1m[33mwarning[0m[1m: function `Java_com_rea_studio_NativeCore_selectionBounds` is never used[0m
+   [1m[94m--> [0msrc/jni_bridge.rs:185:24
+    [1m[94m|[0m
+[1m[94m185[0m [1m[94m|[0m pub extern "system" fn Java_com_rea_studio_NativeCore_selectionBounds(mut env: JNIEnv, _c: JClass, handle: jlong) -> jstring {
+    [1m[94m|[0m                        [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+[1m[33mwarning[0m[1m: function `Java_com_rea_studio_NativeCore_selectionBounds` should have a snake case name[0m
+   [1m[94m--> [0msrc/jni_bridge.rs:185:24
+    [1m[94m|[0m
+[1m[94m185[0m [1m[94m|[0m pub extern "system" fn Java_com_rea_studio_NativeCore_selectionBounds(mut env: JNIEnv, _c: JClass, handle: jlong) -> jstring {
+    [1m[94m|[0m                        [1m[33m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^[0m [1m[33mhelp: convert the identifier to snake case: `java_com_rea_studio_native_core_selection_bounds`[0m
+    [1m[94m|[0m
+    [1m[94m= [0m[1mnote[0m: `#[warn(non_snake_case)]` (part of `#[warn(nonstandard_style)]`) on by default
+
+[1m[33mwarning[0m: `rea-core` (lib) generated 2 warnings
+[1m[92m    Finished[0m `release` profile [optimized] target(s) in 3.50s
+
+===== gradle =====
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+Checking the license for package Android SDK Build-Tools 34 in /home/runner/android-sdk/licenses
+License for package Android SDK Build-Tools 34 accepted.
+Preparing "Install Android SDK Build-Tools 34 v.34.0.0".
+"Install Android SDK Build-Tools 34 v.34.0.0" ready.
+Installing Android SDK Build-Tools 34 in /home/runner/android-sdk/build-tools/34.0.0
+"Install Android SDK Build-Tools 34 v.34.0.0" complete.
+"Install Android SDK Build-Tools 34 v.34.0.0" finished.
+Checking the license for package Android SDK Platform-Tools in /home/runner/android-sdk/licenses
+License for package Android SDK Platform-Tools accepted.
+Preparing "Install Android SDK Platform-Tools v.37.0.1".
+"Install Android SDK Platform-Tools v.37.0.1" ready.
+Installing Android SDK Platform-Tools in /home/runner/android-sdk/platform-tools
+"Install Android SDK Platform-Tools v.37.0.1" complete.
+"Install Android SDK Platform-Tools v.37.0.1" finished.
+> Task :app:preBuild UP-TO-DATE
+> Task :app:preDebugBuild UP-TO-DATE
+> Task :app:mergeDebugNativeDebugMetadata NO-SOURCE
+> Task :app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :app:generateDebugResValues
+> Task :app:checkDebugAarMetadata
+> Task :app:mapDebugSourceSetPaths
+> Task :app:generateDebugResources
+> Task :app:packageDebugResources
+> Task :app:mergeDebugResources
+> Task :app:createDebugCompatibleScreenManifests
+> Task :app:extractDeepLinksDebug
+> Task :app:parseDebugLocalResources
+> Task :app:processDebugMainManifest
+> Task :app:processDebugManifest
+> Task :app:javaPreCompileDebug
+> Task :app:mergeDebugShaders
+> Task :app:compileDebugShaders NO-SOURCE
+> Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:mergeDebugAssets
+> Task :app:compressDebugAssets
+> Task :app:desugarDebugFileDependencies
+> Task :app:checkDebugDuplicateClasses
+> Task :app:mergeDebugJniLibFolders
+> Task :app:processDebugManifestForPackage
+> Task :app:mergeLibDexDebug
+> Task :app:mergeDebugNativeLibs
+> Task :app:processDebugResources
+> Task :app:mergeExtDexDebug
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+
+> Task :app:stripDebugDebugSymbols
+Unable to strip the following libraries, packaging them as they are: librea_core.so.
+
+> Task :app:writeDebugSigningConfigVersions
+
+> Task :app:compileDebugKotlin FAILED
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:763:55 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:764:53 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:772:53 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:773:53 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:774:47 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:775:54 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:776:54 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:784:47 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:785:49 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:793:48 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:794:55 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:795:54 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:800:72 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:808:78 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:815:67 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:820:71 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:825:69 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:830:74 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:940:76 Too many arguments for 'constructor<out A, out B, out C>(first: A, second: B, third: C): Triple<A, B, C>'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:947:27 3 type arguments expected for class 'Triple'.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:955:44 Function 'component1()' is ambiguous for this expression: 
+fun <T> Array<out T>.component1(): T
+fun BooleanArray.component1(): Boolean
+fun ByteArray.component1(): Byte
+fun CharArray.component1(): Char
+fun DoubleArray.component1(): Double
+fun FloatArray.component1(): Float
+fun IntArray.component1(): Int
+fun LongArray.component1(): Long
+fun ShortArray.component1(): Short
+fun <T> List<T>.component1(): T
+fun <K, V> Map.Entry<K, V>.component1(): K
+fun UByteArray.component1(): UByte
+fun UIntArray.component1(): UInt
+fun ULongArray.component1(): ULong
+fun UShortArray.component1(): UShort.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:955:44 Function 'component2()' is ambiguous for this expression: 
+fun <T> Array<out T>.component2(): T
+fun BooleanArray.component2(): Boolean
+fun ByteArray.component2(): Byte
+fun CharArray.component2(): Char
+fun DoubleArray.component2(): Double
+fun FloatArray.component2(): Float
+fun IntArray.component2(): Int
+fun LongArray.component2(): Long
+fun ShortArray.component2(): Short
+fun <T> List<T>.component2(): T
+fun <K, V> Map.Entry<K, V>.component2(): V
+fun UByteArray.component2(): UByte
+fun UIntArray.component2(): UInt
+fun ULongArray.component2(): ULong
+fun UShortArray.component2(): UShort.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:955:44 Function 'component3()' is ambiguous for this expression: 
+fun <T> Array<out T>.component3(): T
+fun BooleanArray.component3(): Boolean
+fun ByteArray.component3(): Byte
+fun CharArray.component3(): Char
+fun DoubleArray.component3(): Double
+fun FloatArray.component3(): Float
+fun IntArray.component3(): Int
+fun LongArray.component3(): Long
+fun ShortArray.component3(): Short
+fun <T> List<T>.component3(): T
+fun UByteArray.component3(): UByte
+fun UIntArray.component3(): UInt
+fun ULongArray.component3(): ULong
+fun UShortArray.component3(): UShort.
+e: file:///home/runner/work/rea-image-studio./rea-image-studio./studio/app/src/main/kotlin/com/rea/studio/MainActivity.kt:955:44 Function 'component4()' is ambiguous for this expression: 
+fun <T> Array<out T>.component4(): T
+fun BooleanArray.component4(): Boolean
+fun ByteArray.component4(): Byte
+fun CharArray.component4(): Char
+fun DoubleArray.component4(): Double
+fun FloatArray.component4(): Float
+fun IntArray.component4(): Int
+fun LongArray.component4(): Long
+fun ShortArray.component4(): Short
+fun <T> List<T>.component4(): T
+fun UByteArray.component4(): UByte
+fun UIntArray.component4(): UInt
+fun ULongArray.component4(): ULong
+fun UShortArray.component4(): UShort.
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build_apk-1793283056682.json
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+Execution failed for task ':app:compileDebugKotlin'.
+> A failure occurred while executing org.jetbrains.kotlin.compilerRunner.GradleCompilerRunnerWithWorkers$GradleKotlinCompilerWorkAction
+   > Compilation error. See log for more details
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --info or --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 51s
+28 actionable tasks: 28 executed

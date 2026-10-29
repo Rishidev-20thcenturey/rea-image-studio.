@@ -191,15 +191,24 @@ jobs:
 
           note ""
           note "== dex =="
-          DEX="$RUNNER_TEMP/classes.dex"
-          unzip -p "$APK" classes.dex > "$DEX" 2>/dev/null || true
-          if [ -s "$DEX" ]; then
-            note "classes.dex: $(stat -c%s "$DEX") bytes"
-            grep -aq "Lcom/rea/studio/MainActivity;" "$DEX" && note "found com/rea/studio/MainActivity" || bad "MainActivity is not in classes.dex"
-            grep -aq "Lcom/rea/studio/NativeCore;" "$DEX" && note "found com/rea/studio/NativeCore" || bad "NativeCore is not in classes.dex"
-            grep -aq "Lcom/rea/studio/EditorView;" "$DEX" && note "found com/rea/studio/EditorView" || bad "EditorView is not in classes.dex"
+          # A debug APK of this app splits into several dex files, so look in all of them.
+          mkdir -p "$RUNNER_TEMP/dex"
+          unzip -o -q "$APK" '*.dex' -d "$RUNNER_TEMP/dex" || true
+          count_dex=$(ls "$RUNNER_TEMP"/dex/*.dex 2>/dev/null | wc -l)
+          note "dex files: $count_dex"
+          for f in "$RUNNER_TEMP"/dex/*.dex; do
+            [ -f "$f" ] && note "$(basename "$f"): $(stat -c%s "$f") bytes"
+          done
+          if [ "$count_dex" -gt 0 ]; then
+            for cls in MainActivity NativeCore EditorView WidgetsKt MainActivityKt; do
+              if grep -aq "Lcom/rea/studio/$cls;" "$RUNNER_TEMP"/dex/*.dex; then
+                note "found com/rea/studio/$cls"
+              else
+                bad "com/rea/studio/$cls is not in any dex file"
+              fi
+            done
           else
-            bad "the APK has no classes.dex"
+            bad "the APK has no dex file"
           fi
 
           note ""

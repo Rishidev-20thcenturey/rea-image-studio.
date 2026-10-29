@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `4cd5b8c673f222dd669a461a8af4ed46e033726d`, run [40928378433](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40928378433), 2026-10-29T18:12:48Z.
+Commit `f8fbd3f3401415ec358b57901a25cbf677d9816e`, run [40929121174](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40929121174), 2026-10-29T18:18:20Z.
 
 ```
 == badging ==
@@ -91,4 +91,21 @@ library size: 556 KiB
   0x0000000000000001 (NEEDED)       Shared library: [libc.so]
 
 == how the library is packaged ==
+compression: unknown
+offset of local header: 2486324
+(compression method not recognised; alignment not asserted)
+        A: http://schemas.android.com/apk/res/android:extractNativeLibs(0x010104ea)=true
+== dex ==
+dex files: 3
+classes.dex: 2335104 bytes
+classes2.dex: 1812 bytes
+classes3.dex: 149140 bytes
+found com/rea/studio/MainActivity
+found com/rea/studio/NativeCore
+found com/rea/studio/EditorView
+found com/rea/studio/ColorPickerView
+found com/rea/studio/SliderRow
+
+APK size: 2 MiB
+APK sha256: 72f31643b7a82d12b988d3284532d6f3aaddd44f7a6ac03ef841bf48287cd4ab
 ```

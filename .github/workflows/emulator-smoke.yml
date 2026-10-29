@@ -121,42 +121,96 @@ jobs:
           cp android/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/rea-x86_64.apk"
           echo "APK: $(( $(stat -c%s "$RUNNER_TEMP/rea-x86_64.apk") / 1024 / 1024 )) MiB"
 
+      # Every command here logs to the evidence file before it can fail, and nothing in this step is
+      # allowed to abort it silently: the step log is not readable from where this project is
+      # developed, so the repository has to carry the explanation.
       - name: Boot the emulator
         shell: bash
         env:
           API: ${{ inputs.api_level || '35' }}
           BOOT_TIMEOUT: ${{ inputs.boot_timeout || '600' }}
         run: |
-          set -eo pipefail
-          echo "no" | avdmanager create avd -n rea-smoke -k "system-images;android-$API;google_apis;x86_64" --force
-          # A large tablet screen, because that is the target device.
-          sed -i 's/^hw.lcd.width=.*/hw.lcd.width=1600/; s/^hw.lcd.height=.*/hw.lcd.height=2560/' "$HOME/.android/avd/rea-smoke.avd/config.ini"
-          grep -q "hw.lcd.width" "$HOME/.android/avd/rea-smoke.avd/config.ini" || {
-            echo "hw.lcd.width=1600" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
-            echo "hw.lcd.height=2560" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
-          }
-          echo "hw.lcd.density=320" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
-          nohup emulator -avd rea-smoke -no-window -no-audio -no-boot-anim -no-snapshot \
-            -gpu swiftshader_indirect -memory 4096 -partition-size 4096 > "$RUNNER_TEMP/emulator.log" 2>&1 &
-          for i in $(seq 1 30); do
-            adb devices | grep -q "emulator-.*device$" && break
+          set -uo pipefail
+          mkdir -p docs/ci/emulator
+          LOG="$RUNNER_TEMP/smoke.txt"
+          : > "$LOG"
+          say() { echo "$*" | tee -a "$LOG"; }
+          try() { say "\$ $*"; "$@" >> "$LOG" 2>&1; local s=$?; say "(exit $s)"; return $s; }
+
+          say "== environment =="
+          say "ANDROID_HOME=$ANDROID_HOME"
+          say "java: $(java -version 2>&1 | head -1)"
+          say "emulator: $(command -v emulator || echo MISSING)"
+          say "avdmanager: $(command -v avdmanager || echo MISSING)"
+          say "adb: $(command -v adb || echo MISSING)"
+          say "kvm: $(ls -l /dev/kvm 2>&1)"
+
+          say ""
+          say "== create the AVD =="
+          echo "no" | avdmanager create avd -n rea-smoke \
+            -k "system-images;android-$API;google_apis;x86_64" --abi x86_64 --force >> "$LOG" 2>&1
+          say "avdmanager exit: $?"
+          try avdmanager list avd
+
+          CFG="$(find "$HOME/.android/avd" -name config.ini -print -quit 2>/dev/null || true)"
+          say "avd config: ${CFG:-NOT FOUND}"
+          if [ -n "${CFG:-}" ]; then
+            say "== set a tablet-sized screen =="
+            sed -i 's/^hw\.lcd\.width=.*/hw.lcd.width=1600/; s/^hw\.lcd\.height=.*/hw.lcd.height=2560/; s/^hw\.lcd\.density=.*/hw.lcd.density=320/' "$CFG" 2>>"$LOG"
+            grep -q "^hw.lcd.width" "$CFG" || echo "hw.lcd.width=1600" >> "$CFG"
+            grep -q "^hw.lcd.height" "$CFG" || echo "hw.lcd.height=2560" >> "$CFG"
+            grep -q "^hw.lcd.density" "$CFG" || echo "hw.lcd.density=320" >> "$CFG"
+            grep -E "^hw\.lcd|^image\.sysdir|^abi\.type" "$CFG" | tee -a "$LOG"
+          fi
+
+          say ""
+          say "== start the emulator =="
+          emulator -avd rea-smoke -no-window -no-audio -no-boot-anim -no-snapshot \
+            -gpu swiftshader_indirect -memory 4096 -partition-size 4096 -accel on \
+            > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          say "emulator pid: $!"
+
+          for i in $(seq 1 60); do
+            if adb devices 2>/dev/null | grep -q "emulator-.*device$"; then
+              say "device appeared after ${i} polls"
+              break
+            fi
             sleep 2
           done
-          adb devices
-          tail -n 30 "$RUNNER_TEMP/emulator.log" || true
-          adb wait-for-device
+          try adb devices
+          if ! adb devices 2>/dev/null | grep -q "emulator-.*device$"; then
+            say "== the device never appeared: emulator log (tail) =="
+            tail -n 60 "$RUNNER_TEMP/emulator.log" >> "$LOG" 2>&1 || true
+            say "::error title=Emulator did not start::see docs/ci/emulator/last-smoke.txt"
+            exit 1
+          fi
+
+          say ""
+          say "== wait for boot =="
           deadline=$(( $(date +%s) + BOOT_TIMEOUT ))
-          until [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
-            if [ "$(date +%s)" -gt "$deadline" ]; then
-              echo "::error title=Emulator did not boot::see the emulator log artifact"
-              tail -n 40 "$RUNNER_TEMP/emulator.log" || true
-              exit 1
+          booted=0
+          while [ "$(date +%s)" -lt "$deadline" ]; do
+            if [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; then
+              booted=1
+              break
             fi
             sleep 5
           done
-          adb shell input keyevent 82 || true
-          adb shell wm size
-          adb shell wm density
+          say "boot_completed: $booted"
+          if [ "$booted" != "1" ]; then
+            say "== boot timed out: emulator log (tail) =="
+            tail -n 60 "$RUNNER_TEMP/emulator.log" >> "$LOG" 2>&1 || true
+            say "::error title=Emulator boot timed out::see docs/ci/emulator/last-smoke.txt"
+            exit 1
+          fi
+          adb shell input keyevent 82 >> "$LOG" 2>&1 || true
+          {
+            echo "wm size: $(adb shell wm size 2>&1 | tr -d '\r')"
+            echo "wm density: $(adb shell wm density 2>&1 | tr -d '\r')"
+            echo "abi: $(adb shell getprop ro.product.cpu.abi 2>&1 | tr -d '\r')"
+            echo "release: $(adb shell getprop ro.build.version.release 2>&1 | tr -d '\r')"
+            echo "sdk: $(adb shell getprop ro.build.version.sdk 2>&1 | tr -d '\r')"
+          } | tee -a "$LOG"
 
       # The measured part: install, launch, and look at what the app did.
       - name: Install and launch the app
@@ -166,7 +220,7 @@ jobs:
           set -uo pipefail
           mkdir -p docs/ci/emulator
           OUT="$RUNNER_TEMP/smoke.txt"
-          : > "$OUT"
+          touch "$OUT"
           say() { echo "$*" | tee -a "$OUT"; }
 
           say "== install =="
@@ -248,6 +302,8 @@ jobs:
           # evidence files that are already in the working tree.
           git fetch -q origin "$BRANCH"
           git reset -q --soft "origin/$BRANCH"
+          cp "$RUNNER_TEMP/smoke.txt" docs/ci/emulator/last-smoke.txt 2>/dev/null || true
+          ls -la docs/ci/emulator
           git add docs/ci/emulator
           if git diff --quiet --cached; then
             echo "No new evidence to publish."

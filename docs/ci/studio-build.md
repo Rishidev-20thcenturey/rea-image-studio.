@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `c8cf9626e047393d52ba963e11fcdcf5bb3f1f92`, run [40923829446](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40923829446), 2026-10-29T17:44:22Z.
+Commit `317e8c30a87a67e500ce2f4c24ef3d7653a78b82`, run [40927735900](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40927735900), 2026-10-29T18:08:52Z.
 
 ```
 == badging ==
@@ -90,6 +90,10 @@ library size: 556 KiB
   0x0000000000000001 (NEEDED)       Shared library: [libm.so]
   0x0000000000000001 (NEEDED)       Shared library: [libc.so]
 
+== APK entry alignment for the library ==
+  offset of local header from start of archive:   2486324
+::error title=APK check failed::librea_core.so starts at offset 2486324, which is not 16 KiB aligned
+
 == dex ==
 dex files: 3
 classes.dex: 2335104 bytes
@@ -102,5 +106,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: c59ddec42ba008ff6cf6ccdaeb9307568ae3bf9b55c465fe339215c6a8ad3fe5
+APK sha256: 453fd96508b8ad35e06f6f37db51dc3a5143b757b5a797cfd314641b908d6d8b
 ```

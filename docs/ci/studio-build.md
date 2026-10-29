@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `050edf8ee8881d2626b6be6aee68727ff33d3868`, run [40890263170](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40890263170), 2026-10-29T14:20:59Z.
+Commit `153f8330766a3bb663a81282707860b52b1c3465`, run [40892003122](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40892003122), 2026-10-29T14:31:29Z.
 
 ```
 == badging ==
@@ -14,8 +14,8 @@ native-code: 'arm64-v8a'
 == archive ==
   2335104  1981-01-01 01:01   classes.dex
      1812  1981-01-01 01:01   classes2.dex
-   125484  1981-01-01 01:01   classes3.dex
-   526824  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
+   125496  1981-01-01 01:01   classes3.dex
+   527472  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
      1448  1981-01-01 01:01   resources.arsc
 
 == native exports ==
@@ -76,13 +76,13 @@ Java_com_rea_studio_NativeCore_strokeEnd
 Java_com_rea_studio_NativeCore_strokeTo
 Java_com_rea_studio_NativeCore_undo
 Java_com_rea_studio_NativeCore_undoName
-library size: 514 KiB
+library size: 515 KiB
 
 == dex ==
 dex files: 3
 classes.dex: 2335104 bytes
 classes2.dex: 1812 bytes
-classes3.dex: 125484 bytes
+classes3.dex: 125496 bytes
 found com/rea/studio/MainActivity
 found com/rea/studio/NativeCore
 found com/rea/studio/EditorView
@@ -90,5 +90,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: 8a130750fa16a183d90421b81ec4548da6f65f7db0750b5a42fcc94a366e3961
+APK sha256: cb98d3e8691b3195803ae53124b78c322675512d9fcdbf89f0e774c39134d75a
 ```

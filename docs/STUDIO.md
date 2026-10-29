@@ -83,10 +83,13 @@ workflow listed at the bottom.
 ### What has not been verified, and one attempt to fix that
 
 **The app has never been launched.** The CI runner this project builds on has not produced a booted
-emulator: a hand-rolled `avdmanager` + `adb` boot, then the maintained
-`ReactiveCircus/android-emulator-runner` action with hardware acceleration, then the same action with
-software emulation each timed out waiting for a device. Every attempt, and its log, is recorded in
-[`docs/ci/studio-emulator/`](ci/studio-emulator/). So the honest statement is:
+emulator in four attempts: a hand-rolled `avdmanager` + `adb` boot, the maintained
+`ReactiveCircus/android-emulator-runner` action with hardware acceleration at API 34 and again at API
+30 with a longer budget, and finally the same action at API 29 asking for software emulation
+explicitly. The first two timed out waiting for a booted device; the last failed before the device
+appeared. The machine that runs these jobs can build and inspect an APK but will not boot one. Each
+attempt's run is recorded in [`docs/ci/studio-emulator/`](ci/studio-emulator/). So the honest
+statement is:
 
 - The engine's behaviour is covered by 56 host tests: it is the part I can prove.
 - The APK's **contents** are inspected byte for byte in CI (identity, ABI, library, JNI symbols,

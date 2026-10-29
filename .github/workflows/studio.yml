@@ -201,6 +201,26 @@ jobs:
             note ""
             note "== shared objects required =="
             "$READELF" -d "$SO" | grep -E "NEEDED" | tee -a "$REPORT" || true
+
+            # If the library is stored uncompressed (extractNativeLibs=false) the loader mmaps it
+            # straight out of the APK, so its offset in the archive must respect the page size too.
+            note ""
+            note "== APK entry alignment for the library =="
+            if command -v zipinfo > /dev/null 2>&1; then
+              OFFSET=$(zipinfo -v "$APK" 2>/dev/null | grep -A3 "lib/arm64-v8a/librea_core.so" \
+                | grep -i "offset of local header" | grep -o "[0-9]\+" | head -1)
+              zipinfo -v "$APK" 2>/dev/null | grep -A3 "lib/arm64-v8a/librea_core.so" \
+                | grep -iE "offset of local header|compression method" | tee -a "$REPORT" || true
+              if [ -n "${OFFSET:-}" ]; then
+                if [ $(( OFFSET % 16384 )) -ne 0 ]; then
+                  bad "librea_core.so starts at offset $OFFSET, which is not 16 KiB aligned"
+                else
+                  note "offset $OFFSET is 16 KiB aligned"
+                fi
+              fi
+            else
+              note "(zipinfo not available; alignment not checked)"
+            fi
           fi
 
           note ""

@@ -62,7 +62,7 @@ jobs:
       - name: Install the Android SDK, emulator and system image
         shell: bash
         env:
-          API: ${{ inputs.api_level || '30' }}
+          API: ${{ inputs.api_level || '29' }}
         run: |
           set -eo pipefail
           SDK="$HOME/android-sdk"
@@ -135,10 +135,10 @@ jobs:
         id: launch
         uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2
         env:
-          API: ${{ inputs.api_level || '30' }}
+          API: ${{ inputs.api_level || '29' }}
           APK: ${{ runner.temp }}/rea-studio-x86_64.apk
         with:
-          api-level: ${{ inputs.api_level || '30' }}
+          api-level: ${{ inputs.api_level || '29' }}
           target: google_apis
           arch: x86_64
           force-avd-creation: false
@@ -146,8 +146,10 @@ jobs:
           # Two earlier attempts gave up after ten minutes without a booted device. Either the
           # runner has no usable acceleration and the guest is running interpreted, or it is broken;
           # half an hour distinguishes the two.
-          emulator-boot-timeout: 1800
-          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -gpu swiftshader_indirect
+          emulator-boot-timeout: 1500
+          # Acceleration has failed twice on this runner, so this attempt asks for software
+          # emulation explicitly: slower, but it does not depend on KVM behaving.
+          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -gpu swiftshader_indirect -accel off
           script: |
             set -uo pipefail
             mkdir -p docs/ci/studio-emulator

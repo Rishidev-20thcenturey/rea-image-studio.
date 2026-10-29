@@ -188,6 +188,10 @@ jobs:
           mkdir -p docs/ci/studio-emulator
           cp "$RUNNER_TEMP/smoke.txt" docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || true
           cp "$RUNNER_TEMP/emulator.log" docs/ci/studio-emulator/emulator.log 2>/dev/null || true
+          for shot in 01-launch 02-painted 03-menu 04-layers; do
+            cp "$RUNNER_TEMP/$shot.png" "docs/ci/studio-emulator/$shot.png" 2>/dev/null || true
+          done
+          cp "$RUNNER_TEMP/logcat.txt" docs/ci/studio-emulator/logcat.txt 2>/dev/null || true
           # The reason, if the device log caught one.
           if [ -s "$RUNNER_TEMP/studio-emulator/full-logcat.txt" ]; then
             grep -iE "FATAL|AndroidRuntime|UnsatisfiedLink|dlopen|cannot locate|com.rea.studio|DEBUG|libc" \
@@ -212,7 +216,7 @@ jobs:
               tail -80 docs/ci/studio-emulator/device-log.txt
               echo '```'
             fi
-            for shot in 01-launch 02-painted 03-menu; do
+            for shot in 01-launch 02-painted 03-menu 04-layers; do
               [ -s "docs/ci/studio-emulator/$shot.png" ] && echo "" && echo "![$shot]($shot.png)"
             done
           } > docs/ci/studio-emulator/README.md

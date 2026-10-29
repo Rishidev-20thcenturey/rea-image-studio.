@@ -39,7 +39,16 @@ for i in 1 2 3 4 5 6 7 8 9 10 11 12; do
 done
 say "sdk: $(adb shell getprop ro.build.version.sdk 2>&1 | tr -d '\r')"
 say "abi: $(adb shell getprop ro.product.cpu.abi 2>&1 | tr -d '\r')"
-say "size: $(adb shell wm size 2>&1 | tr -d '\r')"
+# The stock AVD is 320x640, which is not a screen anyone edits a photo on, and touch coordinates
+# have to be inside it. Ask for a tablet-sized display first, then read back what was granted.
+adb shell wm size 1280x800 >> "$OUT" 2>&1
+adb shell wm density 240 >> "$OUT" 2>&1
+SIZE_LINE="$(adb shell wm size 2>&1 | tr -d '\r' | grep -o '[0-9]*x[0-9]*' | tail -1)"
+SCREEN_W="${SIZE_LINE%x*}"
+SCREEN_H="${SIZE_LINE#*x}"
+case "$SCREEN_W" in ''|*[!0-9]*) SCREEN_W=1080 ;; esac
+case "$SCREEN_H" in ''|*[!0-9]*) SCREEN_H=1920 ;; esac
+say "size: ${SCREEN_W}x${SCREEN_H}"
 say "page size: $(adb shell getconf PAGE_SIZE 2>&1 | tr -d '\r')"
 say "apk: $(stat -c%s "$APK" 2>/dev/null || echo missing) bytes"
 
@@ -65,19 +74,39 @@ shot 01-launch
 # Real touch events on the canvas. The tool rail sits on the left edge, so keep clear of it.
 say ""
 say "== draw three strokes =="
-adb shell input swipe 500 900 1300 1300 600 >> "$OUT" 2>&1
-adb shell input swipe 1300 1300 700 1700 600 >> "$OUT" 2>&1
-adb shell input swipe 900 700 1100 1900 600 >> "$OUT" 2>&1
+# Fractions of the screen: the rail is at the far left and the top bar along the top, so the strokes
+# stay on the canvas in the middle.
+adb shell input swipe "$((SCREEN_W * 3 / 10))" "$((SCREEN_H * 4 / 10))" \
+    "$((SCREEN_W * 7 / 10))" "$((SCREEN_H * 6 / 10))" 600 >> "$OUT" 2>&1
+adb shell input swipe "$((SCREEN_W * 7 / 10))" "$((SCREEN_H * 6 / 10))" \
+    "$((SCREEN_W * 4 / 10))" "$((SCREEN_H * 7 / 10))" 600 >> "$OUT" 2>&1
+adb shell input swipe "$((SCREEN_W * 5 / 10))" "$((SCREEN_H * 3 / 10))" \
+    "$((SCREEN_W * 6 / 10))" "$((SCREEN_H * 8 / 10))" 600 >> "$OUT" 2>&1
 sleep 3
 shot 02-painted
 
 say ""
-say "== undo, then the menu =="
-adb shell input tap 660 120 >> "$OUT" 2>&1
+say "== switch to the eraser from the rail, then undo =="
+adb shell input tap 30 "$((SCREEN_H / 2 + 60))" >> "$OUT" 2>&1
 sleep 2
+shot 03-tool
+# Undo lives at the right end of the top bar.
+adb shell input tap "$((SCREEN_W - 150))" 40 >> "$OUT" 2>&1
+sleep 3
+
+say ""
+say "== open the layer panel =="
+adb shell input tap "$((SCREEN_W - 60))" 40 >> "$OUT" 2>&1
+sleep 4
+shot 04-layers
+adb shell input keyevent 4 >> "$OUT" 2>&1
+sleep 2
+
+say ""
+say "== open the menu =="
 adb shell input tap 40 40 >> "$OUT" 2>&1
 sleep 4
-shot 03-menu
+shot 05-menu
 adb shell input keyevent 4 >> "$OUT" 2>&1
 sleep 2
 

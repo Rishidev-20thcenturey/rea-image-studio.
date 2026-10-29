@@ -205,21 +205,40 @@ jobs:
             # If the library is stored uncompressed (extractNativeLibs=false) the loader mmaps it
             # straight out of the APK, so its offset in the archive must respect the page size too.
             note ""
-            note "== APK entry alignment for the library =="
+            note "== how the library is packaged =="
+            # Two ways it can be loaded, with different requirements:
+            #  * stored and mapped out of the APK: the entry offset must match the page size;
+            #  * deflated and extracted at install: no offset constraint at all.
+            # The build asks for the second, which is the one that works on 16 KiB-page devices.
             if command -v zipinfo > /dev/null 2>&1; then
-              OFFSET=$(zipinfo -v "$APK" 2>/dev/null | grep -A3 "lib/arm64-v8a/librea_core.so" \
-                | grep -i "offset of local header" | grep -o "[0-9]\+" | head -1)
-              zipinfo -v "$APK" 2>/dev/null | grep -A3 "lib/arm64-v8a/librea_core.so" \
-                | grep -iE "offset of local header|compression method" | tee -a "$REPORT" || true
-              if [ -n "${OFFSET:-}" ]; then
-                if [ $(( OFFSET % 16384 )) -ne 0 ]; then
-                  bad "librea_core.so starts at offset $OFFSET, which is not 16 KiB aligned"
-                else
-                  note "offset $OFFSET is 16 KiB aligned"
-                fi
+              INFO=$(zipinfo -v "$APK" 2>/dev/null | grep -A6 "lib/arm64-v8a/librea_core.so")
+              METHOD=$(echo "$INFO" | grep -i "compression method" | head -1)
+              OFFSET=$(echo "$INFO" | grep -i "offset of local header" | grep -o "[0-9]\+" | head -1)
+              note "$METHOD"
+              note "offset of local header: ${OFFSET:-unknown}"
+              case "$METHOD" in
+                *deflat*|*Deflat*)
+                  note "deflated: the library is extracted at install, so archive alignment is irrelevant"
+                  ;;
+                *store*|*Store*)
+                  if [ -z "${OFFSET:-}" ] || [ $(( OFFSET % 16384 )) -ne 0 ]; then
+                    bad "the library is stored uncompressed at offset ${OFFSET:-unknown}, which is not 16 KiB aligned; it will fail to load on a 16 KiB-page device"
+                  else
+                    note "stored, and 16 KiB aligned"
+                  fi
+                  ;;
+                *)
+                  note "(compression method not recognised; alignment not asserted)"
+                  ;;
+              esac
+              # Independent of alignment: is the extraction flag actually set?
+              if "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump xmltree --file AndroidManifest.xml "$APK" 2>/dev/null \
+                  | grep -qi "extractNativeLibs"; then
+                "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump xmltree --file AndroidManifest.xml "$APK" 2>/dev/null \
+                  | grep -i "extractNativeLibs" | head -2 | tee -a "$REPORT" || true
               fi
             else
-              note "(zipinfo not available; alignment not checked)"
+              note "(zipinfo not available; packaging not checked)"
             fi
           fi
 

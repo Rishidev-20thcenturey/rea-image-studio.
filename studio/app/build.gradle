@@ -25,6 +25,17 @@ android {
         }
     }
 
+    packaging {
+        jniLibs {
+            // Extract the library at install instead of mapping it straight out of the APK. When it
+            // is mapped, the loader checks both the ELF's page alignment and the entry's offset in
+            // the archive; AGP aligned that entry to 4 KiB, so on a device with 16 KiB memory pages
+            // (Android 15+ on some SoCs) the load failed and the app died before drawing a frame.
+            // Extracting sidesteps the constraint entirely and works on every device and API level.
+            useLegacyPackaging = true
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false

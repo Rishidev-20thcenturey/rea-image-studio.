@@ -83,6 +83,10 @@ jobs:
           echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
           echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
           echo "PATH=$SDK/cmdline-tools/latest/bin:$SDK/platform-tools:$SDK/emulator:$PATH" >> "$GITHUB_ENV"
+          # Pin the AVD home: on this runner avdmanager resolves it to ~/.config/.android/avd while
+          # the emulator only searches ~/.android/avd, and the two never meet.
+          mkdir -p "$HOME/.android/avd"
+          echo "ANDROID_AVD_HOME=$HOME/.android/avd" >> "$GITHUB_ENV"
 
       - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
         with:
@@ -152,7 +156,7 @@ jobs:
           say "avdmanager exit: $?"
           try avdmanager list avd
 
-          CFG="$(find "$HOME/.android/avd" -name config.ini -print -quit 2>/dev/null || true)"
+          CFG="$(find "${ANDROID_AVD_HOME:-$HOME/.android/avd}" "$HOME/.config/.android/avd" -name config.ini -print -quit 2>/dev/null || true)"
           say "avd config: ${CFG:-NOT FOUND}"
           if [ -n "${CFG:-}" ]; then
             say "== set a tablet-sized screen =="

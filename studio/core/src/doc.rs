@@ -1366,9 +1366,10 @@ mod tests {
 
     #[test]
     fn history_is_trimmed_by_pixel_memory_and_not_only_by_step_count() {
-        // 1024x1024 RGBA is 4 MiB per snapshot, so the 192 MiB cap must bite well before the
-        // forty-step limit does.
-        let mut d = Document::new(1024, 1024);
+        // 2048x2048 RGBA is 16 MiB per snapshot, so the 192 MiB cap must bite well before the
+        // forty-step limit does. The buffers are shared until they are written to, so this costs
+        // one allocation, not forty.
+        let mut d = Document::new(2048, 2048);
         for i in 0..HISTORY_LIMIT {
             d.push_undo(&format!("step {i}"));
         }

@@ -305,9 +305,18 @@ jobs:
           } > docs/ci/studio-emulator/README.md
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # A tag run has a detached HEAD, so commit the evidence on the branch that carries the
+          # tag. Never move main from here.
           BRANCH="$GITHUB_REF_NAME"
-          case "$GITHUB_REF" in refs/tags/*) BRANCH="${GITHUB_EVENT_BRANCH:-main}";; esac
-          [ "$BRANCH" = "main" ] && BRANCH=main
+          if [ "${GITHUB_REF#refs/tags/}" != "$GITHUB_REF" ]; then
+            git fetch -q origin --tags '+refs/heads/*:refs/remotes/origin/*'
+            BRANCH=$(git for-each-ref --contains "$GITHUB_SHA" --format='%(refname:short)' refs/remotes/origin \
+              | sed 's#^origin/##' | grep -v '^main$' | head -1)
+            if [ -z "$BRANCH" ]; then
+              echo "::warning title=evidence::no branch carries this commit; the evidence stays in the artifact"
+              exit 0
+            fi
+          fi
           git fetch -q origin "$BRANCH"
           git reset -q --soft "origin/$BRANCH"
           git add docs/ci/studio-emulator

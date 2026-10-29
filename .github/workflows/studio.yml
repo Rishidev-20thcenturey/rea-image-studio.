@@ -164,8 +164,8 @@ jobs:
             || bad "applicationId is not com.rea.studio"
           grep -q "launchable-activity: name='com.rea.studio.MainActivity'" "$RUNNER_TEMP/badging.txt" \
             || bad "the launcher activity is not com.rea.studio.MainActivity"
-          grep -q "application-label:'REA Image Studio'" "$RUNNER_TEMP/badging.txt" \
-            || bad "the application label is not REA Image Studio"
+          grep -q "application-label:'REA Studio'" "$RUNNER_TEMP/badging.txt" \
+            || bad "the application label is not REA Studio"
           grep -q "native-code: 'arm64-v8a'" "$RUNNER_TEMP/badging.txt" \
             || bad "the APK does not declare arm64-v8a"
 

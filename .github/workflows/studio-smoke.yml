@@ -131,6 +131,30 @@ jobs:
       # The boot used to be hand-rolled (avdmanager + emulator + adb polling), which failed to
       # reach a booted device twice in a row. This action does the same work with the boot
       # detection the ecosystem has already hardened, and runs the touch sequence inside it.
+      # Start collecting the device log in the background *before* the emulator action runs, so that
+      # a failure inside it (boot timeout, launch crash) still leaves the reason in the repository.
+      - name: Collect the device log in the background
+        shell: bash
+        run: |
+          set -uo pipefail
+          MK="$RUNNER_TEMP/studio-emulator"
+          mkdir -p "$MK"
+          cat > "$MK/logcat.sh" <<'SH'
+          #!/bin/bash
+          # Wait for a device, then stream logcat until the job is killed.
+          for i in $(seq 1 240); do
+            if adb devices 2>/dev/null | grep -q 'emulator-.*device$'; then
+              adb logcat -c 2>/dev/null || true
+              exec adb logcat -v threadtime
+            fi
+            sleep 5
+          done
+          echo "no device appeared for logcat"
+          SH
+          chmod +x "$MK/logcat.sh"
+          nohup "$MK/logcat.sh" > "$MK/full-logcat.txt" 2>&1 &
+          echo "logcat collector pid $!"
+
       - name: Run the app on an emulator
         id: launch
         uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2
@@ -240,6 +264,12 @@ jobs:
           mkdir -p docs/ci/studio-emulator
           cp "$RUNNER_TEMP/smoke.txt" docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || true
           cp "$RUNNER_TEMP/emulator.log" docs/ci/studio-emulator/emulator.log 2>/dev/null || true
+          # The reason, if the device log caught one.
+          if [ -s "$RUNNER_TEMP/studio-emulator/full-logcat.txt" ]; then
+            grep -iE "FATAL|AndroidRuntime|UnsatisfiedLink|dlopen|cannot locate|com.rea.studio|DEBUG|libc" \
+              "$RUNNER_TEMP/studio-emulator/full-logcat.txt" | tail -300 \
+              > docs/ci/studio-emulator/device-log.txt || true
+          fi
           {
             echo "<!-- Written by .github/workflows/studio-smoke.yml. Do not edit by hand. -->"
             echo "# Studio app: emulator smoke test"
@@ -250,6 +280,14 @@ jobs:
             echo '```'
             cat docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || echo "(the smoke test did not reach the install step)"
             echo '```'
+            if [ -s docs/ci/studio-emulator/device-log.txt ]; then
+              echo ""
+              echo "## Device log (filtered)"
+              echo ""
+              echo '```'
+              tail -80 docs/ci/studio-emulator/device-log.txt
+              echo '```'
+            fi
             for shot in 01-launch 02-painted 03-menu 04-layers; do
               [ -s "docs/ci/studio-emulator/$shot.png" ] && echo "" && echo "![$shot]($shot.png)"
             done

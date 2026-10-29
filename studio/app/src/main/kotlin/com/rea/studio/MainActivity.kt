@@ -78,10 +78,32 @@ class MainActivity : Activity() {
 
     override fun onCreate(state: Bundle?) {
         super.onCreate(state)
+        // Every startup step is recorded, so a crash on a device leaves a trail the next launch can
+        // show. This runs first because everything after it is what can fail.
+        Diag.beginBoot()
+        // And if the interface cannot be built at all, the failure becomes a readable screen rather
+        // than a "keeps stopping" dialog with nothing behind it.
+        try {
+            buildInterface()
+        } catch (t: Throwable) {
+            Diag.recordThrowable(t)
+            showFatal(t)
+        }
+    }
+
+    private fun buildInterface() {
+        Diag.step("onCreate")
+        if (!NativeCore.load()) {
+            Diag.step("native library failed: ${NativeCore.loadError}")
+        } else {
+            Diag.step("native library loaded: ${runCatching { NativeCore.nativeVersion() }.getOrDefault("?")}")
+        }
         goImmersive()
+        Diag.step("immersive mode set")
         val root = FrameLayout(this)
         root.setBackgroundColor(0xFF0E1014.toInt())
 
+        Diag.step("building the canvas")
         editor = EditorView(this)
         editor.onEdit = { refreshAll() }
         editor.onRequestText = { x, y -> askForText(x, y) }
@@ -95,9 +117,21 @@ class MainActivity : Activity() {
         buildStatus(root)
 
         setContentView(root)
+        Diag.step("interface laid out")
         // Start on the brush with its rail button lit, so the first stroke does what the screen says.
         selectTool(Tool.BRUSH)
+        if (NativeCore.loadError != null) {
+            // Nothing that needs pixels can run, so show why instead of throwing from every call.
+            Diag.step("no document: the native library is unavailable")
+            Diag.markBootComplete()
+            showDiagnostics()
+            return
+        }
         newDocument(2048, 1536)
+        Diag.step("document created")
+        Diag.markBootComplete()
+        // The previous launch never finished: say why, now that there is a screen to say it on.
+        if (Diag.previousBootFailed()) showDiagnostics()
     }
 
     /** Edge to edge, system bars hidden with a swipe to reveal: the canvas owns the screen. */
@@ -127,6 +161,40 @@ class MainActivity : Activity() {
                     or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
                 )
         }
+    }
+
+    /**
+     * Shown when building the interface threw. It says what happened, in text the user can copy —
+     * this is the difference between a report I can act on and a screenshot of "keeps stopping".
+     */
+    private fun showFatal(t: Throwable) {
+        val body = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(d(16f), d(8f), d(16f), d(8f))
+        }
+        val text = buildString {
+            append(t.toString()).append("\n\n")
+            for (frame in t.stackTrace.take(24)) append("    at ").append(frame).append('\n')
+            append("\n").append(Diag.previousBootLog())
+        }
+        body.addView(TextView(this).apply {
+            this.text = text
+            setTextColor(0xFFD6DBE3.toInt())
+            textSize = 10.5f
+            typeface = android.graphics.Typeface.MONOSPACE
+            setTextIsSelectable(true)
+        })
+        AlertDialog.Builder(this)
+            .setTitle("This build could not start")
+            .setMessage("REA Studio failed while building its interface. The details below are what I need to fix it.")
+            .setView(ScrollView(this).apply { addView(body) })
+            .setPositiveButton("Close") { _, _ -> finish() }
+            .setNeutralButton("Copy") { _, _ ->
+                val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                clipboard.setPrimaryClip(android.content.ClipData.newPlainText("REA failure", text))
+                toast("Copied")
+            }
+            .show()
     }
 
     // --- chrome ------------------------------------------------------------------------------
@@ -552,6 +620,7 @@ class MainActivity : Activity() {
     // --- documents ---------------------------------------------------------------------------
 
     private fun newDocument(w: Int, h: Int) {
+        if (NativeCore.loadError != null) return
         closeCurrent()
         handle = NativeCore.createDocument(w, h)
         if (handle == 0L) {
@@ -862,6 +931,7 @@ class MainActivity : Activity() {
         item("Actual size (100%)") {
             editor.zoomTo(1f); refreshAll()
         }
+        item("Diagnostics…") { showDiagnostics() }
         item("About REA Image Studio") { showAbout() }
 
         scroll.addView(list)
@@ -886,6 +956,99 @@ class MainActivity : Activity() {
                     "Rendering is on the CPU: large documents are slower than a GPU editor would be."
             )
             .setPositiveButton("Close", null)
+            .show()
+    }
+
+    /**
+     * Everything the app knows about its own health, on one screen: whether the previous launch
+     * died and where, any recorded exception, and the result of running the core's own end-to-end
+     * check on this device. It exists so a failure is something the user can read out loud.
+     */
+    private fun showDiagnostics() {
+        val body = LinearLayout(this).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(d(16f), d(8f), d(16f), d(8f))
+        }
+
+        fun section(title: String, text: String) {
+            if (text.isBlank()) return
+            body.addView(TextView(this).apply {
+                this.text = title
+                setTextColor(0xFF8FBBFF.toInt())
+                textSize = 12f
+                setPadding(0, d(10f), 0, d(2f))
+            })
+            body.addView(TextView(this).apply {
+                this.text = text.trim()
+                setTextColor(0xFFD6DBE3.toInt())
+                textSize = 10.5f
+                typeface = android.graphics.Typeface.MONOSPACE
+                setTextIsSelectable(true)
+            })
+        }
+
+        section("Previous launch", Diag.previousBootLog())
+        section("Recorded exception", Diag.crashText())
+
+        val selfTestOut = TextView(this).apply {
+            text = "running…"
+            setTextColor(0xFFD6DBE3.toInt())
+            textSize = 10.5f
+            typeface = android.graphics.Typeface.MONOSPACE
+            setTextIsSelectable(true)
+        }
+        body.addView(TextView(this).apply {
+            text = "Core self-test on this device"
+            setTextColor(0xFF8FBBFF.toInt())
+            textSize = 12f
+            setPadding(0, d(10f), 0, d(2f))
+        })
+        body.addView(selfTestOut)
+
+        if (NativeCore.loadError != null) {
+            section("Native library", "load failed: ${NativeCore.loadError}")
+        } else {
+            // Run it off the UI thread: it writes a file, and a slow device would drop frames.
+            Thread {
+                val result = runCatching { NativeCore.selfTest(cacheDir.absolutePath) }
+                    .getOrElse { "self-test threw: $it" }
+                runOnUiThread {
+                    selfTestOut.text = result.trim()
+                    selfTestOut.setTextColor(
+                        if (result.contains("FAIL") || result.contains("threw"))
+                            0xFFFF9C8A.toInt() else 0xFF9BE3A0.toInt()
+                    )
+                }
+            }.start()
+        }
+
+        section("Diagnostics folder", Diag.directory())
+
+        AlertDialog.Builder(this)
+            .setTitle("Diagnostics")
+            .setView(ScrollView(this).apply { addView(body) })
+            .setPositiveButton("Close", null)
+            .setNegativeButton("Clear") { _, _ ->
+                Diag.clearReports()
+                toast("Reports cleared")
+            }
+            .setNeutralButton("Copy all") { _, _ ->
+                val all = buildString {
+                    append("REA Image Studio diagnostics\n")
+                    append("device: ").append(android.os.Build.MANUFACTURER).append(' ')
+                    append(android.os.Build.MODEL).append(", Android ")
+                    append(android.os.Build.VERSION.RELEASE).append(" (API ")
+                    append(android.os.Build.VERSION.SDK_INT).append(")\n")
+                    append("abis: ").append(android.os.Build.SUPPORTED_ABIS.joinToString()).append('\n')
+                    append("native: ").append(NativeCore.loadError ?: "loaded").append('\n')
+                    append("\n--- previous launch ---\n").append(Diag.previousBootLog())
+                    append("\n--- exception ---\n").append(Diag.crashText())
+                    append("\n--- self-test ---\n").append(selfTestOut.text)
+                }
+                val clipboard = getSystemService(CLIPBOARD_SERVICE) as android.content.ClipboardManager
+                clipboard.setPrimaryClip(android.content.ClipData.newPlainText("REA diagnostics", all))
+                toast("Diagnostics copied")
+            }
             .show()
     }
 

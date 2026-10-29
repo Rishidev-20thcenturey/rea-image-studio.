@@ -8,9 +8,29 @@ package com.rea.studio
  * [lastError] then carries the reason to show the user.
  */
 object NativeCore {
-    init {
-        System.loadLibrary("rea_core")
+
+    /**
+     * Why the library could not be loaded, or `null` when it loaded.
+     *
+     * Loading is explicit rather than an `init` block: if `librea_core.so` is missing from the APK
+     * or was built for a different ABI, the failure must become a message the user can send me, not
+     * an `UnsatisfiedLinkError` thrown from a static initialiser on a screen that never appears.
+     */
+    var loadError: String? = null
+        private set
+
+    fun load(): Boolean {
+        if (loadError != null) return false
+        return try {
+            System.loadLibrary("rea_core")
+            true
+        } catch (t: Throwable) {
+            loadError = t.toString()
+            false
+        }
     }
+
+    external fun selfTest(scratch: String): String
 
     external fun nativeVersion(): String
     external fun lastError(): String

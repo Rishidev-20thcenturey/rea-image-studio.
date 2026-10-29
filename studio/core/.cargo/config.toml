@@ -1,0 +1,9 @@
+# Android 15+ devices exist with 16 KiB memory pages, and the loader refuses an ELF whose LOAD
+# segments assume 4 KiB. Linking for the larger page size is also valid on 4 KiB devices, so this
+# is safe everywhere; without it the library can fail to load on a new device and the app dies
+# before it draws a single frame.
+[target.aarch64-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]
+
+[target.x86_64-linux-android]
+rustflags = ["-C", "link-arg=-Wl,-z,max-page-size=16384"]

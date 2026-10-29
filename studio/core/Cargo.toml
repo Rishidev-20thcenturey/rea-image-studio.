@@ -22,7 +22,10 @@ jni = "0.21"
 opt-level = 3
 lto = false
 codegen-units = 16
-panic = "abort"
+# Unwinding, not abort, because the JNI bridge wraps every entry point in `catch_unwind`: a panic in
+# the core then becomes a failed call the UI can report, instead of a SIGABRT that kills the app
+# with no trace on a device the developer cannot attach a debugger to. The cost is a few KiB.
+panic = "unwind"
 
 # Standalone workspace: this crate is deliberately outside the workspace at the repository root,
 # which holds the upstream PhotoCraft fork.

@@ -77,6 +77,10 @@ say "== first frame =="
 shot 01-launch
 
 # Make sure the activity, not a system dialog, has focus before any touch is sent.
+# A system dialog that holds focus swallows every injected touch. Close whatever is on top first.
+adb shell am broadcast -a android.intent.action.CLOSE_SYSTEM_DIALOGS >> "$OUT" 2>&1
+adb shell input keyevent 4 >> "$OUT" 2>&1
+sleep 2
 ensure_focus() {
     FOCUS=$(adb shell dumpsys window 2>/dev/null | grep -m1 mCurrentFocus)
     say "focus: $FOCUS"
@@ -131,7 +135,18 @@ adb shell input keyevent 4 >> "$OUT" 2>&1
 sleep 2
 
 say ""
-say "== the app's own boot log =="
+say "== the interface's own end-to-end check =="
+# Injected touches are unreliable here (the emulator's system UI holds focus), so the app is asked
+# to drive its own view: real MotionEvents dispatched into the canvas, then pixels read back out of
+# the core. The result is written to files/diag/ui-selftest.txt.
+adb shell am force-stop "$PKG" >> "$OUT" 2>&1
+adb shell am start -n "$PKG/.MainActivity" --ez rea.selftest true >> "$OUT" 2>&1
+sleep 20
+adb shell run-as "$PKG" cat files/diag/ui-selftest.txt >> "$OUT" 2>&1
+shot 06-selftest
+
+say ""
+say "== the app's own boot log ==="
 adb shell run-as "$PKG" cat files/diag/boot.log >> "$OUT" 2>&1
 if adb shell run-as "$PKG" cat files/diag/crash.txt >> "$OUT" 2>&1; then
     say "(a recorded exception is printed above)"

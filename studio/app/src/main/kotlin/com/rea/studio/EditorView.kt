@@ -469,5 +469,43 @@ class EditorView(context: Context) : View(context) {
         lastDocY = downY
     }
 
+    /**
+     * Drive the view the way a finger does and report whether the document changed.
+     *
+     * The events are the ones `MotionEvent` produces for a drag: down, several moves, up. If they
+     * reach the brush, the core paints and the pixels come back non-transparent. Used by the
+     * diagnostics screen and by the CI probe, which cannot rely on injected touches.
+     */
+    fun uiSelfTest(): Boolean {
+        if (handle == 0L || width == 0 || height == 0) return false
+        tool = Tool.BRUSH
+        brushSize = 24f
+        color = 0xFF000000.toInt()
+        // A diagonal stroke across the middle of the canvas, in view coordinates.
+        val x0 = width * 0.3f
+        val y0 = height * 0.3f
+        val x1 = width * 0.7f
+        val y1 = height * 0.7f
+        val down = android.os.SystemClock.uptimeMillis()
+        fun send(action: Int, x: Float, y: Float, t: Long) {
+            val e = MotionEvent.obtain(down, down + t, action, x, y, 0)
+            dispatchTouchEvent(e)
+            e.recycle()
+        }
+        send(MotionEvent.ACTION_DOWN, x0, y0, 0)
+        for (step in 1..8) {
+            val f = step / 8f
+            send(MotionEvent.ACTION_MOVE, x0 + (x1 - x0) * f, y0 + (y1 - y0) * f, step * 16L)
+        }
+        send(MotionEvent.ACTION_UP, x1, y1, 160L)
+
+        val w = docW
+        val h = docH
+        val buf = IntArray(w * h)
+        if (!NativeCore.exportPixels(handle, buf)) return false
+        val painted = buf.count { (it ushr 24) != 0 }
+        return painted > 0
+    }
+
     fun hasActiveSelection(): Boolean = hasSelection
 }

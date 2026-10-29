@@ -132,6 +132,10 @@ class MainActivity : Activity() {
         Diag.markBootComplete()
         // The previous launch never finished: say why, now that there is a screen to say it on.
         if (Diag.previousBootFailed()) showDiagnostics()
+        // `am start -n com.rea.studio/.MainActivity --ez rea.selftest true` runs the interface's own
+        // end-to-end check and writes the result to files/diag/ui-selftest.txt. It exists because a
+        // CI emulator cannot be trusted to deliver injected touches to the right window.
+        if (intent?.getBooleanExtra("rea.selftest", false) == true) runUiSelfTest()
     }
 
     /** Edge to edge, system bars hidden with a swipe to reveal: the canvas owns the screen. */
@@ -1058,6 +1062,38 @@ class MainActivity : Activity() {
                 toast("Diagnostics copied")
             }
             .show()
+    }
+
+    /**
+     * Exercise the path a finger takes: synthesize the same MotionEvents a touchscreen produces,
+     * dispatch them into the canvas, and then read the document's pixels back out of the core.
+     *
+     * This covers what a host unit test cannot — the view's coordinate mapping, its touch handling,
+     * the JNI calls it makes — and it does not depend on the emulator's input routing, which is
+     * exactly what kept failing in CI.
+     */
+    private fun runUiSelfTest() {
+        val report = StringBuilder()
+        editor.post {
+            try {
+                newDocument(320, 320)
+                val drawn = editor.uiSelfTest()
+                report.append(if (drawn) "[ok] touch -> paint -> pixels" else "[FAIL] touch -> paint -> pixels")
+                report.append("\n")
+                report.append("document: ").append(editor.documentWidth()).append('x')
+                report.append(editor.documentHeight()).append("\n")
+                report.append("canvas: ").append(editor.width).append('x').append(editor.height).append("\n")
+                report.append("zoom: ").append(editor.currentZoom()).append("\n")
+                if (NativeCore.loadError == null) {
+                    report.append("\n--- core self-test ---\n")
+                    report.append(NativeCore.selfTest(cacheDir.absolutePath))
+                }
+            } catch (t: Throwable) {
+                report.append("[FAIL] ui self-test threw: ").append(t).append('\n')
+            }
+            Diag.writeReport("ui-selftest.txt", report.toString())
+            Diag.step("ui self-test finished")
+        }
     }
 
     // --- dialogs -----------------------------------------------------------------------------

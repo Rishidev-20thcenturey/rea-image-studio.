@@ -79,6 +79,11 @@ object Diag {
         }
     }
 
+    /** Write a named report into the diagnostics folder (used by the UI self-test). */
+    fun writeReport(name: String, text: String) {
+        runCatching { file(name)?.writeText(text) }
+    }
+
     fun recordThrowable(t: Throwable) {
         runCatching {
             val text = buildString {

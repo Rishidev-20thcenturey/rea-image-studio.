@@ -97,7 +97,8 @@ jobs:
           cargo build --release --target aarch64-linux-android 2>&1 | tee "$RUNNER_TEMP/cargo.log"
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            echo "::error title=core build failed::$(sed 's/\x1b\[[0-9;]*m//g' "$RUNNER_TEMP/cargo.log" | grep -E '^(error|warning: unused)' | head -20 | tr '\n' ' ')"
+            msg=$(sed 's/\x1b\[[0-9;]*m//g' "$RUNNER_TEMP/cargo.log" | grep -E '^(error|warning: unused)' | head -20 | tr '\n' ' ' | sed 's/%/%25/g')
+            echo "::error title=core build failed::$msg"
             tail -40 "$RUNNER_TEMP/cargo.log"
             exit "$status"
           fi
@@ -130,7 +131,8 @@ jobs:
           gradle -p studio :app:assembleDebug --no-daemon --console=plain 2>&1 | tee "$RUNNER_TEMP/gradle.log"
           status=${PIPESTATUS[0]}
           if [ "$status" -ne 0 ]; then
-            echo "::error title=gradle build failed::$(grep -E '^(e: |error:|FAILURE|\* What went wrong|Caused by)' -A2 "$RUNNER_TEMP/gradle.log" | head -40 | tr '\n' ' ')"
+            msg=$(grep -E '^(e: |error:|FAILURE|\* What went wrong|Caused by)' -A2 "$RUNNER_TEMP/gradle.log" | head -40 | tr '\n' ' ' | sed 's/%/%25/g')
+            echo "::error title=gradle build failed::$msg"
             tail -60 "$RUNNER_TEMP/gradle.log"
             exit "$status"
           fi
@@ -237,6 +239,35 @@ jobs:
           fi
           git commit -q -m "Record the studio build evidence for $GITHUB_SHA"
           git push origin "HEAD:$BRANCH" || echo "::warning title=report::could not push the report"
+
+      - name: Publish the build log when something failed
+        # Same reasoning as the report: a file in the repository is readable from anywhere.
+        if: failure() && github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci
+          {
+            echo "Build logs for commit $GITHUB_SHA, run $GITHUB_RUN_ID."
+            echo ""
+            echo "===== cargo ====="
+            tail -120 "$RUNNER_TEMP/cargo.log" 2>/dev/null || echo "(no cargo log)"
+            echo ""
+            echo "===== gradle ====="
+            tail -400 "$RUNNER_TEMP/gradle.log" 2>/dev/null || echo "(no gradle log)"
+          } > docs/ci/studio-build-log.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="$GITHUB_REF_NAME"
+          git fetch -q origin "$BRANCH"
+          git reset -q --soft "origin/$BRANCH"
+          git add docs/ci/studio-build-log.txt
+          if git diff --quiet --cached; then
+            echo "Log unchanged."
+            exit 0
+          fi
+          git commit -q -m "Record the studio build log for $GITHUB_SHA"
+          git push origin "HEAD:$BRANCH" || echo "::warning title=log::could not push the build log"
 
       - name: Upload the report
         if: always()

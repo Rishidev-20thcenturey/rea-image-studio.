@@ -99,6 +99,7 @@ class MainActivity : Activity() {
     }
 
     /** Edge to edge, system bars hidden with a swipe to reveal: the canvas owns the screen. */
+    @Suppress("DEPRECATION")
     private fun goImmersive() {
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
@@ -115,7 +116,6 @@ class MainActivity : Activity() {
                     WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
             }
         } else {
-            @Suppress("DEPRECATION")
             window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                     or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION

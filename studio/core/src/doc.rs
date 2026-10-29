@@ -836,7 +836,7 @@ impl Document {
         for l in self.layers.iter() {
             write_block(&mut out, &l.px)?;
             match &l.mask {
-                None => out.extend_from_slice(&0u32.to_le_bytes()),
+                None => write_absent_block(&mut out),
                 Some(m) => write_block(&mut out, m)?,
             }
         }
@@ -994,6 +994,12 @@ fn rle_decode(data: &[u8], pixels: usize) -> io::Result<Vec<u8>> {
     }
     out.resize(pixels * 4, 0);
     Ok(out)
+}
+
+/// A block header with no body, for a layer that has no mask.
+fn write_absent_block(out: &mut Vec<u8>) {
+    out.extend_from_slice(&0u32.to_le_bytes());
+    out.extend_from_slice(&0u32.to_le_bytes());
 }
 
 /// A length-prefixed RLE block. A zero length means "absent" (no mask).
@@ -1249,7 +1255,7 @@ mod tests {
         for l in d.layers.iter() {
             write_block(&mut buf, &l.px).unwrap();
             match &l.mask {
-                None => buf.extend_from_slice(&0u32.to_le_bytes()),
+                None => write_absent_block(&mut buf),
                 Some(m) => write_block(&mut buf, m).unwrap(),
             }
         }

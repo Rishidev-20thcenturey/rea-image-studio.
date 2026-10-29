@@ -304,6 +304,9 @@ class ColorPickerView(context: Context) : View(context) {
     }
 }
 
+/** A slider's definition: its label, its range and where it starts. */
+data class SliderSpec(val label: String, val from: Float, val to: Float, val initial: Float)
+
 /** One labelled slider row, used by the tool options and every adjustment dialog. */
 class SliderRow(
     context: Context,

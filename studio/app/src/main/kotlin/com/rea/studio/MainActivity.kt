@@ -760,8 +760,8 @@ class MainActivity : Activity() {
             sliderDialog(
                 "Brightness / Contrast",
                 listOf(
-                    Triple("Brightness", -100f, 100f, 0f),
-                    Triple("Contrast", -100f, 100f, 0f)
+                    SliderSpec("Brightness", -100f, 100f, 0f),
+                    SliderSpec("Contrast", -100f, 100f, 0f)
                 )
             ) { v -> NativeCore.adjust(handle, 0, v) }
         }
@@ -769,11 +769,11 @@ class MainActivity : Activity() {
             sliderDialog(
                 "Levels",
                 listOf(
-                    Triple("Black point", 0f, 254f, 0f),
-                    Triple("White point", 1f, 255f, 255f),
-                    Triple("Gamma", 0.1f, 3f, 1f),
-                    Triple("Output black", 0f, 255f, 0f),
-                    Triple("Output white", 0f, 255f, 255f)
+                    SliderSpec("Black point", 0f, 254f, 0f),
+                    SliderSpec("White point", 1f, 255f, 255f),
+                    SliderSpec("Gamma", 0.1f, 3f, 1f),
+                    SliderSpec("Output black", 0f, 255f, 0f),
+                    SliderSpec("Output white", 0f, 255f, 255f)
                 )
             ) { v -> NativeCore.adjust(handle, 1, v) }
         }
@@ -781,8 +781,8 @@ class MainActivity : Activity() {
             sliderDialog(
                 "Curves (gamma and lift)",
                 listOf(
-                    Triple("Gamma", 0.1f, 3f, 1f),
-                    Triple("Lift", -100f, 100f, 0f)
+                    SliderSpec("Gamma", 0.1f, 3f, 1f),
+                    SliderSpec("Lift", -100f, 100f, 0f)
                 )
             ) { v -> NativeCore.adjust(handle, 2, v) }
         }
@@ -790,14 +790,14 @@ class MainActivity : Activity() {
             sliderDialog(
                 "Hue / Saturation",
                 listOf(
-                    Triple("Hue", -180f, 180f, 0f),
-                    Triple("Saturation", -100f, 100f, 0f),
-                    Triple("Lightness", -100f, 100f, 0f)
+                    SliderSpec("Hue", -180f, 180f, 0f),
+                    SliderSpec("Saturation", -100f, 100f, 0f),
+                    SliderSpec("Lightness", -100f, 100f, 0f)
                 )
             ) { v -> NativeCore.adjust(handle, 3, v) }
         }
         item("Threshold…") {
-            sliderDialog("Threshold", listOf(Triple("Level", 0f, 255f, 128f))) { v ->
+            sliderDialog("Threshold", listOf(SliderSpec("Level", 0f, 255f, 128f))) { v ->
                 NativeCore.adjust(handle, 4, v)
             }
         }
@@ -805,29 +805,29 @@ class MainActivity : Activity() {
         item("Invert") { NativeCore.adjust(handle, 5, FloatArray(0)); editor.invalidateDocument(); refreshAll() }
         item("Desaturate") { NativeCore.adjust(handle, 6, FloatArray(0)); editor.invalidateDocument(); refreshAll() }
         item("Temperature…") {
-            sliderDialog("Temperature", listOf(Triple("Warmth", -100f, 100f, 0f))) { v ->
+            sliderDialog("Temperature", listOf(SliderSpec("Warmth", -100f, 100f, 0f))) { v ->
                 NativeCore.adjust(handle, 8, v)
             }
         }
 
         header("Filter")
         item("Gaussian blur…") {
-            sliderDialog("Blur", listOf(Triple("Radius", 1f, 60f, 4f))) { v ->
+            sliderDialog("Blur", listOf(SliderSpec("Radius", 1f, 60f, 4f))) { v ->
                 NativeCore.filter(handle, 0, v)
             }
         }
         item("Sharpen…") {
-            sliderDialog("Sharpen", listOf(Triple("Amount", 0f, 200f, 60f))) { v ->
+            sliderDialog("Sharpen", listOf(SliderSpec("Amount", 0f, 200f, 60f))) { v ->
                 NativeCore.filter(handle, 1, v)
             }
         }
         item("Noise…") {
-            sliderDialog("Noise", listOf(Triple("Amount", 0f, 100f, 12f))) { v ->
+            sliderDialog("Noise", listOf(SliderSpec("Amount", 0f, 100f, 12f))) { v ->
                 NativeCore.filter(handle, 2, floatArrayOf(v[0], (System.nanoTime() % 1000).toFloat()))
             }
         }
         item("Pixelate…") {
-            sliderDialog("Pixelate", listOf(Triple("Cell size", 2f, 64f, 12f))) { v ->
+            sliderDialog("Pixelate", listOf(SliderSpec("Cell size", 2f, 64f, 12f))) { v ->
                 NativeCore.filter(handle, 3, v)
             }
         }
@@ -937,14 +937,14 @@ class MainActivity : Activity() {
     }
 
     private fun featherDialog() {
-        sliderDialog("Feather selection", listOf(Triple("Radius", 0f, 60f, 4f))) { v ->
+        sliderDialog("Feather selection", listOf(SliderSpec("Radius", 0f, 60f, 4f))) { v ->
             NativeCore.featherSelection(handle, v[0])
         }
     }
 
     private fun sliderDialog(
         title: String,
-        specs: List<Triple<String, Float, Float, Float>>,
+        specs: List<SliderSpec>,
         apply: (FloatArray) -> Unit
     ) {
         val body = LinearLayout(this).apply {
@@ -952,8 +952,8 @@ class MainActivity : Activity() {
             setPadding(d(16f), d(8f), d(16f), d(8f))
         }
         val rows = ArrayList<SliderRow>()
-        for ((label, from, to, initial) in specs) {
-            val row = SliderRow(this, label, from, to, initial)
+        for (spec in specs) {
+            val row = SliderRow(this, spec.label, spec.from, spec.to, spec.initial)
             rows.add(row)
             body.addView(row)
         }

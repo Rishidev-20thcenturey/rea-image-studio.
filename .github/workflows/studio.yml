@@ -185,7 +185,7 @@ jobs:
             count=$(grep -c 'Java_com_rea_studio_NativeCore_' "$RUNNER_TEMP/syms.txt" || true)
             note "JNI entry points: $count"
             grep -o 'Java_com_rea_studio_NativeCore_[A-Za-z]*' "$RUNNER_TEMP/syms.txt" | sort -u | head -80 | tee -a "$REPORT" || true
-            [ "${count:-0}" -ge 50 ] || bad "expected at least 50 JNI entry points, found ${count:-0}"
+            [ "${count:-0}" -ge 55 ] || bad "expected at least 55 JNI entry points, found ${count:-0}"
             note "library size: $(( $(stat -c%s "$SO") / 1024 )) KiB"
           fi
 

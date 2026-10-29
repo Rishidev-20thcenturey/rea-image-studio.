@@ -182,6 +182,9 @@ pub extern "system" fn Java_com_rea_studio_NativeCore_hasSelection(_env: JNIEnv,
     }
 }
 
+/// `#[no_mangle]` is what makes the symbol reachable from JNI; without it the function is a
+/// mangled, private symbol and `System.loadLibrary` lookups fail at runtime.
+#[no_mangle]
 pub extern "system" fn Java_com_rea_studio_NativeCore_selectionBounds(mut env: JNIEnv, _c: JClass, handle: jlong) -> jstring {
     let m = docs();
     let s = m

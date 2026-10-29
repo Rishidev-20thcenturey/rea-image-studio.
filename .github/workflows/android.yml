@@ -17,6 +17,7 @@ on:
     paths-ignore:
       - 'studio/**'
       - 'docs/**'
+      - '.github/workflows/studio.yml'
     tags:
       - 'v*'
   workflow_dispatch:

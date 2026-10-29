@@ -176,7 +176,9 @@ jobs:
           # The whole probe lives in a POSIX-sh script that `sh -n` checks in this repository,
           # rather than in YAML: the action runs its script with dash, and an inline multi-line
           # script there has cost three runs already.
-          script: sh studio/ci/device-smoke.sh
+          # Absolute path and an explicit cd: the action does not run its script from the
+          # repository root, which is why the previous two attempts died before writing anything.
+          script: cd "$GITHUB_WORKSPACE" && sh "$GITHUB_WORKSPACE/studio/ci/device-smoke.sh"
 
       - name: Publish the smoke-test evidence
         if: always() && (startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/'))

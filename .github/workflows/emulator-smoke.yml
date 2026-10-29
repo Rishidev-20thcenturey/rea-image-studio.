@@ -1,0 +1,262 @@
+name: Emulator smoke test
+
+# The one thing static inspection cannot answer: does the app actually start?
+#
+# This builds an x86_64 build of the library (the shipped APK is arm64), boots an x86_64 Android
+# emulator on the runner's KVM device, installs the APK, launches the activity, and records what
+# happened: the process state, the activity state, logcat, the app's own diagnostic log, and a
+# screenshot. The evidence is committed to docs/ci/emulator/ so it can be read without the job log.
+#
+# It is manual on purpose: it costs ~40 minutes and never gates a release.
+
+on:
+  workflow_dispatch:
+    inputs:
+      api_level:
+        description: 'Android API level of the system image'
+        required: false
+        default: '35'
+      boot_timeout:
+        description: 'Seconds to wait for the emulator to finish booting'
+        required: false
+        default: '600'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: emulator-smoke
+  cancel-in-progress: true
+
+env:
+  NDK_VERSION: 27.2.12479018
+  CMDLINE_TOOLS_URL: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+
+jobs:
+  smoke:
+    name: Launch the app on an emulator
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      # Without KVM an x86_64 system image either refuses to start or boots too slowly to finish
+      # inside the job's budget. Fail here, loudly, instead of hanging for an hour.
+      - name: Require a KVM device
+        shell: bash
+        run: |
+          if [ ! -e /dev/kvm ]; then
+            echo "::error title=No KVM::this runner cannot virtualise, so the emulator cannot boot"
+            exit 1
+          fi
+          ls -l /dev/kvm
+
+      - name: Install the Android SDK, emulator and system image
+        shell: bash
+        env:
+          API: ${{ inputs.api_level || '35' }}
+        run: |
+          set -eo pipefail
+          SDK="$HOME/android-sdk"
+          if [ ! -x "$SDK/cmdline-tools/latest/bin/sdkmanager" ]; then
+            mkdir -p "$SDK/cmdline-tools"
+            curl -fsSL -o "$RUNNER_TEMP/cmdline-tools.zip" "$CMDLINE_TOOLS_URL"
+            unzip -q "$RUNNER_TEMP/cmdline-tools.zip" -d "$RUNNER_TEMP/cmdline-tools"
+            mv "$RUNNER_TEMP/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+          fi
+          SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --sdk_root="$SDK" --licenses > /dev/null 2>&1 || true
+          "$SDKMANAGER" --sdk_root="$SDK" \
+            "platform-tools" "platforms;android-$API" "build-tools;35.0.0" \
+            "ndk;${NDK_VERSION}" "emulator" "system-images;android-$API;google_apis;x86_64"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+          echo "PATH=$SDK/platform-tools:$SDK/emulator:$PATH" >> "$GITHUB_ENV"
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: x86_64-linux-android
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          key: android-x86_64
+          cache-on-failure: true
+
+      - name: Build the x86_64 library
+        shell: bash
+        run: |
+          set -eo pipefail
+          BIN="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          export CARGO_TARGET_X86_64_LINUX_ANDROID_LINKER="$BIN/x86_64-linux-android29-clang"
+          export CC_x86_64_linux_android="$BIN/x86_64-linux-android29-clang"
+          export CXX_x86_64_linux_android="$BIN/x86_64-linux-android29-clang++"
+          export AR_x86_64_linux_android="$BIN/llvm-ar"
+          cargo build -p photocraft-android --lib --target x86_64-linux-android --profile android --keep-going
+          SO=target/x86_64-linux-android/android/libphotocraft_android.so
+          "$BIN/llvm-strip" --strip-unneeded "$SO"
+          mkdir -p android/app/src/main/jniLibs/x86_64
+          cp "$SO" android/app/src/main/jniLibs/x86_64/
+          echo "library: $(( $(stat -c%s "$SO") / 1024 / 1024 )) MiB"
+
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Build an x86_64 test APK
+        shell: bash
+        run: |
+          set -eo pipefail
+          gradle -p android :app:assembleDebug --no-daemon -PreaAbis=x86_64
+          cp android/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/rea-x86_64.apk"
+          echo "APK: $(( $(stat -c%s "$RUNNER_TEMP/rea-x86_64.apk") / 1024 / 1024 )) MiB"
+
+      - name: Boot the emulator
+        shell: bash
+        env:
+          API: ${{ inputs.api_level || '35' }}
+          BOOT_TIMEOUT: ${{ inputs.boot_timeout || '600' }}
+        run: |
+          set -eo pipefail
+          echo "no" | avdmanager create avd -n rea-smoke -k "system-images;android-$API;google_apis;x86_64" --force
+          # A large tablet screen, because that is the target device.
+          sed -i 's/^hw.lcd.width=.*/hw.lcd.width=1600/; s/^hw.lcd.height=.*/hw.lcd.height=2560/' "$HOME/.android/avd/rea-smoke.avd/config.ini"
+          grep -q "hw.lcd.width" "$HOME/.android/avd/rea-smoke.avd/config.ini" || {
+            echo "hw.lcd.width=1600" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
+            echo "hw.lcd.height=2560" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
+          }
+          echo "hw.lcd.density=320" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
+          nohup emulator -avd rea-smoke -no-window -no-audio -no-boot-anim -no-snapshot \
+            -gpu swiftshader_indirect -memory 4096 -partition-size 4096 > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          adb wait-for-device
+          deadline=$(( $(date +%s) + BOOT_TIMEOUT ))
+          until [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+            if [ "$(date +%s)" -gt "$deadline" ]; then
+              echo "::error title=Emulator did not boot::see the emulator log artifact"
+              tail -n 40 "$RUNNER_TEMP/emulator.log" || true
+              exit 1
+            fi
+            sleep 5
+          done
+          adb shell input keyevent 82 || true
+          adb shell wm size
+          adb shell wm density
+
+      # The measured part: install, launch, and look at what the app did.
+      - name: Install and launch the app
+        id: launch
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci/emulator
+          OUT="$RUNNER_TEMP/smoke.txt"
+          : > "$OUT"
+          say() { echo "$*" | tee -a "$OUT"; }
+
+          say "== install =="
+          adb install -r "$RUNNER_TEMP/rea-x86_64.apk" 2>&1 | tee -a "$OUT" || say "install failed"
+
+          say ""
+          say "== launch =="
+          adb logcat -c || true
+          adb shell am start -W -n com.rea.imagestudio/.MainActivity 2>&1 | tee -a "$OUT" || true
+
+          # Give the Rust shell time to create its surface and draw the first frame.
+          sleep 60
+
+          say ""
+          say "== process =="
+          adb shell ps -A 2>/dev/null | grep -i "imagestudio" | tee -a "$OUT" || say "the app process is NOT running"
+          if adb shell ps -A 2>/dev/null | grep -qi "imagestudio"; then
+            echo "running=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "running=false" >> "$GITHUB_OUTPUT"
+            say "::error title=The app is not running::the process died after launch"
+          fi
+
+          say ""
+          say "== activity state =="
+          adb shell dumpsys activity activities 2>/dev/null | grep -iE "imagestudio|mResumedActivity|topResumedActivity" | head -10 | tee -a "$OUT" || true
+
+          say ""
+          say "== crash / ANR / panic in logcat =="
+          adb logcat -d 2>/dev/null \
+            | grep -iE "FATAL EXCEPTION|AndroidRuntime|ANR in|PANIC|panicked|imagestudio" \
+            | head -60 | tee -a "$OUT" || say "(nothing matching)"
+
+          say ""
+          say "== the app's own diagnostic log =="
+          adb shell ls -la /sdcard/Download/REAImageStudio/ 2>&1 | tee -a "$OUT" || true
+          adb shell "run-as com.rea.imagestudio cat files/last-log.txt 2>/dev/null || cat /sdcard/Download/REAImageStudio/*log*.txt 2>/dev/null" \
+            | head -60 | tee -a "$OUT" || true
+
+          # Full logcat, trimmed, for the record.
+          adb logcat -d 2>/dev/null | tail -n 400 > docs/ci/emulator/logcat.txt || true
+
+          say ""
+          say "== screenshot =="
+          adb exec-out screencap -p > docs/ci/emulator/screenshot.png 2>/dev/null || say "screenshot failed"
+          if [ -s docs/ci/emulator/screenshot.png ]; then
+            say "screenshot bytes: $(stat -c%s docs/ci/emulator/screenshot.png)"
+            cp docs/ci/emulator/screenshot.png "$RUNNER_TEMP/screenshot.png"
+          else
+            say "no screenshot was produced"
+          fi
+
+          cp "$OUT" docs/ci/emulator/last-smoke.txt
+
+      - name: Publish the smoke-test evidence
+        if: always()
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci/emulator
+          {
+            echo "<!-- Written by .github/workflows/emulator-smoke.yml. Do not edit by hand. -->"
+            echo "# Emulator smoke test"
+            echo ""
+            echo "Run [$GITHUB_RUN_ID](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID), commit \`$GITHUB_SHA\`, $(date -u +%Y-%m-%dT%H:%M:%SZ)."
+            echo "x86_64 build on an Android API ${{ inputs.api_level || '35' }} emulator; the shipped APK is the same code built for arm64-v8a."
+            echo ""
+            echo '```'
+            cat docs/ci/emulator/last-smoke.txt 2>/dev/null || echo "(the smoke test did not reach the install step)"
+            echo '```'
+            [ -f docs/ci/emulator/screenshot.png ] && echo "" && echo "![emulator screenshot](screenshot.png)"
+          } > docs/ci/emulator/README.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ci/emulator
+          if git diff --quiet --cached; then
+            echo "No new evidence to publish."
+            exit 0
+          fi
+          git commit -q -m "Record the emulator smoke test [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "::warning title=evidence::could not push the evidence commit"
+
+      - name: Summarise
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Emulator smoke test"
+            echo ""
+            echo "Process running after launch: **${{ steps.launch.outputs.running }}**"
+            echo ""
+            cat docs/ci/emulator/last-smoke.txt 2>/dev/null | head -40 || echo "(no smoke report)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the evidence and the emulator log
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: emulator-smoke
+          path: |
+            docs/ci/emulator/
+            ${{ runner.temp }}/emulator.log
+          if-no-files-found: warn

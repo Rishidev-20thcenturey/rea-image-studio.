@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/android.yml. Do not edit by hand. -->
 # Last build evidence
 
-Commit `7987d933e33ee08ae6c7be25cb3be49cacbd097a`, run [40868369276](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40868369276), 2026-10-29T11:55:39Z.
+Commit `0147877090b87538ef4d24543b9ca7a6e9d5bbd2`, run [40868477335](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40868477335), 2026-10-29T12:00:48Z.
 
 ```
 == badging ==
@@ -52,5 +52,5 @@ found com/rea/imagestudio/MainActivity in classes2.dex
 found photocraftCall in classes2.dex
 
 APK size: 68 MiB
-APK sha256: 9b7df696c8a9e8fc8c5a4d413588ce91362f8fa8522d3535feca43948eed25dc
+APK sha256: c174f60fe20c10b84115f4b719f4a55f73abdb81b181ebbfef3881b8f58327e2
 ```

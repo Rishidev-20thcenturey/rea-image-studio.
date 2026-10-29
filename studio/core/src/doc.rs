@@ -15,6 +15,11 @@ use crate::blend::{composite_px, BlendMode};
 /// How many undo steps are kept. Each one is cheap until the layer is touched again.
 pub const HISTORY_LIMIT: usize = 40;
 
+/// A cap on how much pixel memory the undo stack may claim, in bytes. `HISTORY_LIMIT` alone is not
+/// enough: a snapshot shares the layer buffers until something writes to them, so forty steps on a
+/// 2048x1536 document would otherwise pin half a gigabyte once each stroke has copied its layer.
+pub const HISTORY_BYTES_LIMIT: usize = 192 * 1024 * 1024;
+
 /// The file format's magic line. Bumping it invalidates older files on purpose.
 const MAGIC: &[u8] = b"REASTUDIO1\n";
 
@@ -212,6 +217,22 @@ pub struct Snapshot {
     pub layers: Vec<Layer>,
     pub active: usize,
     pub sel: Option<Arc<Vec<u8>>>,
+}
+
+/// How much pixel memory a snapshot claims. Shared buffers are counted once per snapshot, which
+/// overestimates when nothing has been written yet — the safe direction for a memory cap.
+pub fn snapshot_bytes(s: &Snapshot) -> usize {
+    s.layers
+        .iter()
+        .map(|l| {
+            l.px.len()
+                + l
+                    .mask
+                    .as_ref()
+                    .map(|m| m.len())
+                    .unwrap_or(0)
+        })
+        .sum()
 }
 
 /// A brush stroke in progress, so `pointerDown`/`pointerMove`/`pointerUp` can span JNI calls.
@@ -751,6 +772,13 @@ impl Document {
         self.undo.push(snap);
         if self.undo.len() > HISTORY_LIMIT {
             self.undo.remove(0);
+        }
+        // Trim by size as well as by count, oldest first, but always keep a few steps so undo is
+        // never useless on a very large document.
+        let mut total: usize = self.undo.iter().map(snapshot_bytes).sum();
+        while self.undo.len() > 3 && total > HISTORY_BYTES_LIMIT {
+            let dropped = self.undo.remove(0);
+            total -= snapshot_bytes(&dropped);
         }
         self.redo.clear();
     }
@@ -1334,6 +1362,25 @@ mod tests {
         let d = Document::new(20, 10);
         assert_eq!(d.selection_at(0, 0), 255);
         assert_eq!(d.selection_bounds(), Rect::new(0, 0, 20, 10));
+    }
+
+    #[test]
+    fn history_is_trimmed_by_pixel_memory_and_not_only_by_step_count() {
+        // 1024x1024 RGBA is 4 MiB per snapshot, so the 192 MiB cap must bite well before the
+        // forty-step limit does.
+        let mut d = Document::new(1024, 1024);
+        for i in 0..HISTORY_LIMIT {
+            d.push_undo(&format!("step {i}"));
+        }
+        let bytes: usize = d.undo.iter().map(snapshot_bytes).sum();
+        assert!(
+            bytes <= HISTORY_BYTES_LIMIT,
+            "the undo stack holds {bytes} bytes, over the {HISTORY_BYTES_LIMIT} byte cap"
+        );
+        assert!(d.undo.len() >= 3, "undo must keep a few steps on a large document");
+        assert!(d.undo.len() < HISTORY_LIMIT, "the cap should have trimmed something");
+        // The newest step is still there, so undo goes back from where the user is.
+        assert_eq!(d.undo.last().map(|s| s.name.as_str()), Some("step 39"));
     }
 
     #[test]

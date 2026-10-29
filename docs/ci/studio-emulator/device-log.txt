@@ -1,300 +1,300 @@
-10-29 17:31:58.288  4527  4527 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:31:58.288  4527  4527 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:31:58.288  4527  4527 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:31:58.288  4527  4527 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:31:58.288  4527  4527 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:31:58.288  4527  4527 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:31:58.420  4884  5059 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:32:02.851  4990  4990 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:32:02.932  4990  4990 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:32:02.932  4990  4990 I AndroidRuntime: Using default boot image
-10-29 17:32:02.933  4990  4990 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:32:02.933  4990  4990 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:32:02.954  4990  4990 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:32:03.367  4723  5011 W earchbox:searc: Long monitor contention with owner NonUserFacing3 (4867) at void android.database.sqlite.SQLiteDebug$NoPreloadHolder.<clinit>()(SQLiteDebug.java:48) waiters=0 in android.database.sqlite.SQLiteDatabase com.google.android.libraries.p.b.i.p.b() for 16.671s
-10-29 17:32:11.391  4750  4772 I BugleRcsEngine: [82] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:32:17.986  4750  4772 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:17.986  4750  4772 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:32:17.986  4750  4772 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:17.986  4750  4772 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:32:17.986  4750  4772 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:17.986  4750  4772 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:18.544  4140  5103 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:32:19.629  4990  4990 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:32:20.980  4140  5103 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:32:21.668  4990  4990 D AndroidRuntime: Shutting down VM
-10-29 17:32:22.458  4038  4060 I com.rea.studio: NativeAlloc concurrent copying GC freed 1135(135KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 3300KB/6601KB, paused 81us total 887.006ms
-10-29 17:32:29.123  4750  4772 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:29.123  4750  4772 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:32:29.123  4750  4772 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:29.123  4750  4772 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:32:29.123  4750  4772 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:29.123  4750  4772 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:34.274  4723  5198 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:32:44.593  5165  5196 W cr_VariationsSeedFetch: 	at libcore.io.IoBridge.connectErrno(IoBridge.java:191)
-10-29 17:32:44.593  5165  5196 W cr_VariationsSeedFetch: 	at libcore.io.IoBridge.connect(IoBridge.java:135)
-10-29 17:32:47.092  4750  4826 I BugleRcsEngine: [103] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:32:47.348  1955  2891 W system_server: Long monitor contention with owner android.bg (1983) at void libcore.io.Linux.rename(java.lang.String, java.lang.String)(Linux.java:-2) waiters=0 in boolean com.android.server.appwidget.AppWidgetServiceImpl.isBoundWidgetPackage(java.lang.String, int) for 2.456s
-10-29 17:32:49.100  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:49.100  4750  4826 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:32:49.100  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:49.100  4750  4826 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:32:49.100  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:49.100  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:50.442  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:50.442  4750  4826 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:32:50.442  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:50.442  4750  4826 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:32:50.442  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:50.442  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:50.771  4750  4826 E BugleRcsEngine: 	libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:51.041  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
-10-29 17:32:51.041  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
-10-29 17:32:51.091  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
-10-29 17:32:51.091  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
-10-29 17:32:51.093  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
-10-29 17:32:51.093  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
-10-29 17:32:51.094  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:247)
-10-29 17:32:51.094  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:51.094  3599  3599 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:51.123  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:250)
-10-29 17:32:51.123  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:51.123  3599  3599 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:51.124  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:172)
-10-29 17:32:51.124  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:108)
-10-29 17:32:51.124  3599  3599 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:485)
-10-29 17:32:51.125  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.write(BlockGuardOs.java:415)
-10-29 17:32:51.125  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.write(ForwardingOs.java:241)
-10-29 17:32:51.125  3599  3599 D StrictMode: 	at libcore.io.IoBridge.write(IoBridge.java:539)
-10-29 17:32:51.418  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:76)
-10-29 17:32:51.418  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:86)
-10-29 17:32:51.420  3599  3599 D StrictMode: 	at libcore.io.BlockGuardOs.stat(BlockGuardOs.java:387)
-10-29 17:32:51.420  3599  3599 D StrictMode: 	at libcore.io.ForwardingOs.stat(ForwardingOs.java:222)
-10-29 17:32:52.871  4750  4826 I BugleRcsEngine: [103] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:32:56.565  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:56.565  4750  4826 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:32:56.565  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:56.565  4750  4826 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:32:56.565  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:56.565  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:57.448  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:32:57.448  4750  4826 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:32:57.448  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:57.448  4750  4826 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:32:57.448  4750  4826 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:32:57.448  4750  4826 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:32:59.985  1955  2285 W system_server: Long monitor contention with owner Binder:1955_17 (3755) at android.app.ContentProviderHolder com.android.server.am.ActivityManagerService.getContentProviderImpl(android.app.IApplicationThread, java.lang.String, android.os.IBinder, int, java.lang.String, java.lang.String, boolean, int)(ActivityManagerService.java:6714) waiters=9 in android.os.Debug$MemoryInfo[] com.android.server.am.ActivityManagerService.getProcessMemoryInfo(int[]) for 474ms
-10-29 17:33:00.460  5251  5251 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:33:17.757  5251  5251 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:33:19.518  1955  1984 I system_server: libdebuggerd_client: started dumping process 4723
-10-29 17:33:19.538  1795  1795 I /system/bin/tombstoned: registered intercept for pid 4723 and type kDebuggerdJavaBacktrace
-10-29 17:33:19.674  5251  5251 D AndroidRuntime: Shutting down VM
-10-29 17:33:29.549  1795  1795 I /system/bin/tombstoned: intercept for pid 4723 and type kDebuggerdJavaBacktrace terminated: due to timeout
-10-29 17:33:29.551  1955  1984 E system_server: libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
-10-29 17:33:29.555  1955  1984 I system_server: libdebuggerd_client: started dumping process 4723
-10-29 17:33:29.622  4723  4723 I libc    : Requested dump for tid 4723 (earchbox:search)
-10-29 17:33:29.634  1795  1795 I /system/bin/tombstoned: registered intercept for pid 4723 and type kDebuggerdNativeBacktrace
-10-29 17:33:31.598  1955  1984 E system_server: libdebuggerd_client: failed to read status response from tombstoned: Try again
-10-29 17:33:31.600  1795  1795 I /system/bin/tombstoned: intercept for pid 4723 and type kDebuggerdNativeBacktrace terminated: due to input
-10-29 17:33:32.168  1955  1984 E ActivityManager:   5.5% 4038/com.rea.studio: 1.3% user + 4.2% kernel / faults: 201 minor 2 major
-10-29 17:33:38.004  2604  5045 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 17:33:41.470  4750  4817 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
-10-29 17:33:41.471  4750  4817 I FA      : To enable faster debug mode event logging run:
-10-29 17:33:41.471  4750  4817 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
-10-29 17:33:43.623  1955  1984 E system_server: libdebugged_client: failed to get process info: failed to open /proc/0
-10-29 17:33:43.637  1955  1984 I system_server: libdebuggerd_client: started dumping process 0
-10-29 17:33:43.656  1955  1984 E system_server: libdebuggerd_client: unexpected registration response: 1
-10-29 17:33:49.380  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:51.329  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:52.180  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:52.802  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:54.195  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:56.957  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:57.848  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:58.778  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:33:59.196  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:34:07.221  2604  4455 W gle.android.gm: Long monitor contention with owner highpool[0] (3007) at void libcore.io.Linux.rename(java.lang.String, java.lang.String)(Linux.java:-2) waiters=0 in long acwx.p(java.lang.String) for 373ms
-10-29 17:34:07.222  2604  4307 W gle.android.gm: Long monitor contention with owner highpool[0] (3007) at void libcore.io.Linux.rename(java.lang.String, java.lang.String)(Linux.java:-2) waiters=1 in long acwx.p(java.lang.String) for 325ms
-10-29 17:34:12.039  5502  5502 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:34:12.443  5502  5502 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:34:12.567  5502  5502 I AndroidRuntime: Using default boot image
-10-29 17:34:12.568  5502  5502 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:34:12.587  5502  5502 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:34:12.592  5502  5502 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:34:17.840  4140  5533 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:34:18.390  4140  5533 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:34:28.791  5571  5571 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:34:42.061  1955  1984 I system_server: libdebuggerd_client: started dumping process 5571
-10-29 17:34:42.063  1795  1795 I /system/bin/tombstoned: registered intercept for pid 5571 and type kDebuggerdJavaBacktrace
-10-29 17:34:42.417  5502  5502 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:34:43.094  5502  5502 D AndroidRuntime: Shutting down VM
-10-29 17:34:47.151  1795  1795 I /system/bin/tombstoned: found intercept fd 512 for pid 5571 and type kDebuggerdJavaBacktrace
-10-29 17:34:47.658  1955  1984 I system_server: libdebuggerd_client: done dumping process 5571
-10-29 17:34:48.518  1955  1984 E ActivityManager:   2.2% 4038/com.rea.studio: 0.4% user + 1.8% kernel / faults: 4139 minor 3 major
-10-29 17:34:48.699  4884  5063 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
-10-29 17:34:48.700  4884  5063 I FA      : To enable faster debug mode event logging run:
-10-29 17:34:48.700  4884  5063 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.youtube
-10-29 17:35:03.859  5726  5726 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:35:04.096  5726  5726 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:35:04.170  5726  5726 I AndroidRuntime: Using default boot image
-10-29 17:35:04.171  5726  5726 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:35:04.171  5726  5726 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:35:04.173  5726  5726 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:35:05.520  1955  3756 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:05.642  5743  5743 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:35:21.529  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:22.301  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:22.987  5726  5726 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:35:23.053  1955  1955 V SettingsProvider: Notifying for 0: content://settings/global/angle_debug_package
-10-29 17:35:23.622  4038  4078 I com.rea.studio: Waiting for a blocking GC ProfileSaver
-10-29 17:35:23.648  5726  5726 D AndroidRuntime: Shutting down VM
-10-29 17:35:24.759  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:25.249  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:25.318  4038  4060 I com.rea.studio: NativeAlloc concurrent copying GC freed 1456(102KB) AllocSpace objects, 2(32KB) LOS objects, 49% free, 3446KB/6892KB, paused 10.545ms total 1.709s
-10-29 17:35:25.318  4038  4078 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ProfileSaver for 1.696s
-10-29 17:35:26.966  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:29.617  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:29.941  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:30.818  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:32.824  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:34.512  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:35.697  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:36.905  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:38.055  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:40.952  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:42.092  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:43.222  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:44.445  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:45.398  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:46.487  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:48.422  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:49.759  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:51.025  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:53.530  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:56.288  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:56.852  5921  5983 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 17:35:56.877  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:35:57.237  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:36:04.085  5968  5968 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:36:04.410  5968  5968 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:36:04.411  5968  5968 I AndroidRuntime: Using default boot image
-10-29 17:36:04.411  5968  5968 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:36:04.412  5968  5968 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:36:04.413  5968  5968 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:36:05.325  4140  5987 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:36:06.039  4140  5987 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:36:06.332  2604  5920 I PeopleInitIntentOp: Not initializing debuggability [CONTEXT service_id=5 ]
-10-29 17:36:15.159  5968  5968 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:36:17.499  5968  5968 D AndroidRuntime: Shutting down VM
-10-29 17:36:17.770  1955  2760 E InputDispatcher: Window handle Window{23e1297 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:36:17.950  1955  3759 E InputDispatcher: Window handle Window{23e1297 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:36:18.039  1955  3202 E InputDispatcher: Window handle Window{23e1297 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:36:18.401  1955  3759 E InputDispatcher: Window handle Window{23e1297 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:36:18.430  1955  3759 E InputDispatcher: Window handle Window{23e1297 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:36:33.442  6055  6055 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:36:33.479  6055  6055 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:36:33.492  6055  6055 I AndroidRuntime: Using default boot image
-10-29 17:36:33.493  6055  6055 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:36:33.493  6055  6055 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:36:33.495  6055  6055 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:36:38.520  6055  6055 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:36:39.136  6055  6055 D AndroidRuntime: Shutting down VM
-10-29 17:36:43.519  4038  4054 I com.rea.studio: JIT allocated 71KB for compiled code of void android.view.View.<init>(android.content.Context, android.util.AttributeSet, int, int)
-10-29 17:36:44.784  6156  6156 I GAv4    : Google Analytics 11.0.11 is starting up. To enable debug logging on a device run:
-10-29 17:36:44.784  6156  6156 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
-10-29 17:37:09.122  6238  6238 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:37:09.392  6238  6238 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:37:09.393  6238  6238 I AndroidRuntime: Using default boot image
-10-29 17:37:09.393  6238  6238 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:37:09.394  6238  6238 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:37:09.503  6238  6238 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:37:21.142  6238  6238 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:37:22.258  6238  6238 D AndroidRuntime: Shutting down VM
-10-29 17:37:22.476  1955  2045 E InputDispatcher: Window handle Window{820e573 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:37:22.538  1955  2525 E InputDispatcher: Window handle Window{820e573 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:37:22.663  1955  2919 E InputDispatcher: Window handle Window{820e573 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:37:22.664  1955  3763 E InputDispatcher: Window handle Window{820e573 u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 17:37:23.950  4750  5256 I BugleRcsEngine: [141] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:37:25.839  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:37:25.839  4750  5256 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:37:25.839  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:25.839  4750  5256 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:37:25.839  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:25.839  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:37:27.735  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:37:27.735  4750  5256 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:37:27.735  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:27.735  4750  5256 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:37:27.735  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:27.735  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:37:28.107  4750  5256 E BugleRcsEngine: 	libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:37:28.884  4750  5256 I BugleRcsEngine: [141] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:37:33.834  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:37:33.834  4750  5256 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:37:33.834  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:33.834  4750  5256 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:37:33.834  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:33.834  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:37:35.675  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:37:35.675  4750  5256 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:37:35.675  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:35.675  4750  5256 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:37:35.675  4750  5256 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:37:35.675  4750  5256 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:37:36.981  1955  1984 I system_server: libdebuggerd_client: started dumping process 5463
-10-29 17:37:37.064  1795  1795 I /system/bin/tombstoned: registered intercept for pid 5463 and type kDebuggerdJavaBacktrace
-10-29 17:37:40.409  1795  1795 I /system/bin/tombstoned: found intercept fd 512 for pid 5463 and type kDebuggerdJavaBacktrace
-10-29 17:37:40.415  1955  1984 I system_server: libdebuggerd_client: done dumping process 5463
-10-29 17:37:42.843  5743  5801 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 17:37:57.715  6441  6441 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:38:08.625  1955  1984 I system_server: libdebuggerd_client: started dumping process 6441
-10-29 17:38:08.660  1795  1795 I /system/bin/tombstoned: registered intercept for pid 6441 and type kDebuggerdJavaBacktrace
-10-29 17:38:11.223  1795  1795 I /system/bin/tombstoned: found intercept fd 512 for pid 6441 and type kDebuggerdJavaBacktrace
-10-29 17:38:11.229  1955  1984 I system_server: libdebuggerd_client: done dumping process 6441
-10-29 17:38:18.109  1955  1984 I system_server: libdebuggerd_client: started dumping process 2604
-10-29 17:38:18.122  1795  1795 I /system/bin/tombstoned: registered intercept for pid 2604 and type kDebuggerdJavaBacktrace
-10-29 17:38:20.648  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:21.093  1795  1795 I /system/bin/tombstoned: found intercept fd 512 for pid 2604 and type kDebuggerdJavaBacktrace
-10-29 17:38:21.331  1955  1984 I system_server: libdebuggerd_client: done dumping process 2604
-10-29 17:38:21.872  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:23.781  6522  6522 I GAv4    : Google Analytics 17.4.49 is starting up. To enable debug logging on a device run:
-10-29 17:38:23.781  6522  6522 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
-10-29 17:38:25.846  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:27.102  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:28.914  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:29.804  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:32.179  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:32.709  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:35.383  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:36.879  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:37.977  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:38.377  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:38.584  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:39.662  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:41.812  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:42.230  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:42.419  6595  6595 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:38:43.119  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:43.713  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:44.464  4140  6643 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:38:44.710  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:45.442  4140  6643 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:38:46.190  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:46.545  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:47.020  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:47.549  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:47.973  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:38:59.900  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:00.893  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:01.467  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:03.590  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:04.150  1955  1984 I system_server: libdebuggerd_client: started dumping process 6595
-10-29 17:39:04.239  1795  1795 I /system/bin/tombstoned: registered intercept for pid 6595 and type kDebuggerdJavaBacktrace
-10-29 17:39:04.249  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:04.303  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:04.942  1955  1983 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:39:09.321  1795  1795 I /system/bin/tombstoned: found intercept fd 512 for pid 6595 and type kDebuggerdJavaBacktrace
-10-29 17:39:09.381  1955  1984 I system_server: libdebuggerd_client: done dumping process 6595
-10-29 17:39:20.464  1955  2091 E SupplicantStaIfaceHal: ISupplicantStaIface.setPowerSave failed: {.code = FAILURE_UNKNOWN, .debugMessage = }
-10-29 17:39:21.450  6788  6788 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:39:21.914  1955  2091 E SupplicantStaIfaceHal: ISupplicantStaIface.setPowerSave failed: {.code = FAILURE_UNKNOWN, .debugMessage = }
+10-29 17:57:48.898  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:57:49.015  5466  5487 E BugleRcsEngine: 	libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:49.459  5681  5827 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 17:57:49.966  5466  5487 I BugleRcsEngine: [86] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
+10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
+10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:57:50.975  5466  5487 E BugleRcsEngine: 	libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:51.525  5466  5487 I BugleRcsEngine: [86] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
+10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
+10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:57:56.316  5466  5487 I BugleRcsEngine: [86] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-29 17:57:58.518  5776  5776 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 17:57:58.789  5776  5776 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 17:57:58.790  5776  5776 I AndroidRuntime: Using default boot image
+10-29 17:57:58.790  5776  5776 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 17:57:58.790  5776  5776 I AndroidRuntime: Leaving lock profiling enabled
+10-29 17:57:58.955  5776  5776 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
+10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
+10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 17:58:06.563  5681  5784 W android.youtub: Long monitor contention with owner yt-background1-14 (5799) at int libcore.io.Linux.readBytes(java.io.FileDescriptor, java.lang.Object, int, int)(Linux.java:-2) waiters=0 in java.lang.Object dov.a() for 7.397s
+10-29 17:58:06.564  5681  5753 W android.youtub: Long monitor contention with owner yt-background1-14 (5799) at int libcore.io.Linux.readBytes(java.io.FileDescriptor, java.lang.Object, int, int)(Linux.java:-2) waiters=1 in java.lang.Object dov.a() for 7.340s
+10-29 17:58:06.567  5681  5725 W android.youtub: Long monitor contention with owner yt-background1-14 (5799) at int libcore.io.Linux.readBytes(java.io.FileDescriptor, java.lang.Object, int, int)(Linux.java:-2) waiters=2 in java.lang.Object dov.a() for 7.227s
+10-29 17:58:08.219  1949  1978 I system_server: libdebuggerd_client: started dumping process 5648
+10-29 17:58:08.228  1784  1784 I /system/bin/tombstoned: registered intercept for pid 5648 and type kDebuggerdJavaBacktrace
+10-29 17:58:09.157  5776  5776 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 17:58:10.159  5776  5776 D AndroidRuntime: Shutting down VM
+10-29 17:58:14.799  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 5648 and type kDebuggerdJavaBacktrace
+10-29 17:58:14.886  1949  1978 I system_server: libdebuggerd_client: done dumping process 5648
+10-29 17:58:18.030  4461  5892 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 17:58:19.183  4461  5892 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 17:58:27.709  5906  5906 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 17:58:28.108  5906  5906 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 17:58:28.109  5906  5906 I AndroidRuntime: Using default boot image
+10-29 17:58:28.109  5906  5906 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 17:58:28.110  5906  5906 I AndroidRuntime: Leaving lock profiling enabled
+10-29 17:58:28.111  5906  5906 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 17:58:32.324  5937  5937 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 17:58:38.048  5466  5553 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-29 17:58:38.050  5466  5553 I FA      : To enable faster debug mode event logging run:
+10-29 17:58:38.050  5466  5553 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
+10-29 17:58:40.141  5906  5906 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 17:58:43.277  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:43.446  5906  5906 D AndroidRuntime: Shutting down VM
+10-29 17:58:45.423  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:46.346  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:47.363  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:47.986  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:48.018  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:48.036  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:48.139  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:48.157  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:50.682  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:53.298  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:56.195  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:57.425  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:58:57.596  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:02.748  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:04.730  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:07.623  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:08.357  6015  6015 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 17:59:08.753  6015  6015 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 17:59:08.754  6015  6015 I AndroidRuntime: Using default boot image
+10-29 17:59:08.755  6015  6015 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 17:59:08.755  6015  6015 I AndroidRuntime: Leaving lock profiling enabled
+10-29 17:59:08.756  6015  6015 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 17:59:09.073  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:09.773  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:10.275  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 17:59:18.124  6015  6015 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 17:59:20.927  6015  6015 D AndroidRuntime: Shutting down VM
+10-29 17:59:38.334  1949  1978 I system_server: libdebuggerd_client: started dumping process 5937
+10-29 17:59:38.339  1784  1784 I /system/bin/tombstoned: registered intercept for pid 5937 and type kDebuggerdJavaBacktrace
+10-29 17:59:41.429  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 5937 and type kDebuggerdJavaBacktrace
+10-29 17:59:41.435  1949  1978 I system_server: libdebuggerd_client: done dumping process 5937
+10-29 17:59:41.608  1949  1978 E ActivityManager:   0.3% 3829/com.rea.studio: 0% user + 0.2% kernel / faults: 2697 minor
+10-29 17:59:50.590  6094  6094 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 17:59:50.658  6094  6094 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 17:59:50.659  6094  6094 I AndroidRuntime: Using default boot image
+10-29 17:59:50.659  6094  6094 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 17:59:50.659  6094  6094 I AndroidRuntime: Leaving lock profiling enabled
+10-29 17:59:50.661  6094  6094 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 17:59:50.973  5727  6113 I ChmraDebugLogger: [39] null
+10-29 18:00:00.436  6096  6096 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:00:02.116  6094  6094 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 18:00:02.711  6094  6094 D AndroidRuntime: Shutting down VM
+10-29 18:00:32.778  6200  6200 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 18:00:32.990  6200  6200 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 18:00:32.990  6200  6200 I AndroidRuntime: Using default boot image
+10-29 18:00:32.991  6200  6200 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 18:00:32.991  6200  6200 I AndroidRuntime: Leaving lock profiling enabled
+10-29 18:00:33.075  6200  6200 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 18:00:43.200  6200  6200 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 18:00:43.784  6200  6200 D AndroidRuntime: Shutting down VM
+10-29 18:00:44.206  3829  3866 I com.rea.studio: Waiting for a blocking GC ProfileSaver
+10-29 18:00:46.445  3829  3853 I com.rea.studio: NativeAlloc concurrent copying GC freed 2261(177KB) AllocSpace objects, 2(32KB) LOS objects, 49% free, 3368KB/6736KB, paused 81us total 2.501s
+10-29 18:00:46.446  3829  3866 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ProfileSaver for 2.239s
+10-29 18:01:00.491  6234  6234 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 18:01:01.034  6234  6234 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 18:01:01.035  6234  6234 I AndroidRuntime: Using default boot image
+10-29 18:01:01.035  6234  6234 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 18:01:01.035  6234  6234 I AndroidRuntime: Leaving lock profiling enabled
+10-29 18:01:01.111  6234  6234 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 18:01:12.756  6234  6234 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 18:01:13.803  6234  6234 D AndroidRuntime: Shutting down VM
+10-29 18:01:20.155  5533  5636 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
+10-29 18:01:46.687  6358  6358 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 18:01:47.055  4461  6364 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:01:47.067  6358  6358 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 18:01:47.068  6358  6358 I AndroidRuntime: Using default boot image
+10-29 18:01:47.068  6358  6358 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 18:01:47.068  6358  6358 I AndroidRuntime: Leaving lock profiling enabled
+10-29 18:01:47.070  6358  6358 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 18:01:47.381  4461  6364 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:01:56.201  6358  6358 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 18:01:57.377  6358  6358 D AndroidRuntime: Shutting down VM
+10-29 18:01:57.378  1949  2347 E InputDispatcher: Window handle Window{87b0e4c u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
+10-29 18:01:57.399  1949  3199 E InputDispatcher: Window handle Window{87b0e4c u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
+10-29 18:02:04.329  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:06.096  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:06.697  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:07.405  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:08.566  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:09.246  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:09.736  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:10.363  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:10.439  6393  6393 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 18:02:10.640  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:10.875  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:11.475  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:11.709  1949  1978 I system_server: libdebuggerd_client: started dumping process 5727
+10-29 18:02:11.825  1784  1784 I /system/bin/tombstoned: registered intercept for pid 5727 and type kDebuggerdJavaBacktrace
+10-29 18:02:12.345  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:12.519  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:13.535  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:14.716  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:15.585  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 5727 and type kDebuggerdJavaBacktrace
+10-29 18:02:15.668  1949  1978 I system_server: libdebuggerd_client: done dumping process 5727
+10-29 18:02:15.710  1949  1978 E ActivityManager:   3.1% 3829/com.rea.studio: 0.3% user + 2.8% kernel / faults: 9113 minor 4 major
+10-29 18:02:16.038  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:16.104  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:16.378  6393  6393 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 18:02:17.046  6393  6393 D AndroidRuntime: Shutting down VM
+10-29 18:02:18.128  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:19.206  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:20.702  3829  3847 I com.rea.studio: JIT allocated 71KB for compiled code of void android.view.View.<init>(android.content.Context, android.util.AttributeSet, int, int)
+10-29 18:02:21.654  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
+10-29 18:02:21.654  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
+10-29 18:02:21.655  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
+10-29 18:02:21.655  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
+10-29 18:02:21.693  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
+10-29 18:02:21.693  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
+10-29 18:02:21.728  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:247)
+10-29 18:02:21.728  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 18:02:21.728  3401  3401 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 18:02:21.730  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:250)
+10-29 18:02:21.730  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 18:02:21.730  3401  3401 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 18:02:21.731  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:172)
+10-29 18:02:21.731  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:108)
+10-29 18:02:21.731  3401  3401 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:485)
+10-29 18:02:21.732  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.write(BlockGuardOs.java:415)
+10-29 18:02:21.732  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.write(ForwardingOs.java:241)
+10-29 18:02:21.732  3401  3401 D StrictMode: 	at libcore.io.IoBridge.write(IoBridge.java:539)
+10-29 18:02:21.789  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:76)
+10-29 18:02:21.789  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:86)
+10-29 18:02:21.790  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.stat(BlockGuardOs.java:387)
+10-29 18:02:21.790  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.stat(ForwardingOs.java:222)
+10-29 18:02:40.277  6474  6474 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:02:40.443  1949  3615 W system_server: Long monitor contention with owner Binder:1949_13 (3199) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, int)(ActivityManagerService.java:13909) waiters=3 in android.os.Debug$MemoryInfo[] com.android.server.am.ActivityManagerService.getProcessMemoryInfo(int[]) for 615ms
+10-29 18:02:42.669  1949  3615 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:02:45.711  1949  1978 I system_server: libdebuggerd_client: started dumping process 4356
+10-29 18:02:45.764  1784  1784 I /system/bin/tombstoned: registered intercept for pid 4356 and type kDebuggerdJavaBacktrace
+10-29 18:02:48.738  6500  6500 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 18:02:48.780  6500  6500 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 18:02:48.781  6500  6500 I AndroidRuntime: Using default boot image
+10-29 18:02:48.781  6500  6500 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 18:02:48.781  6500  6500 I AndroidRuntime: Leaving lock profiling enabled
+10-29 18:02:48.824  6500  6500 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 18:02:55.773  1784  1784 I /system/bin/tombstoned: intercept for pid 4356 and type kDebuggerdJavaBacktrace terminated: due to timeout
+10-29 18:02:55.774  1949  1978 E system_server: libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
+10-29 18:02:55.784  1949  1978 I system_server: libdebuggerd_client: started dumping process 4356
+10-29 18:02:55.785  1784  1784 I /system/bin/tombstoned: registered intercept for pid 4356 and type kDebuggerdNativeBacktrace
+10-29 18:02:56.904  4356  4356 I libc    : Requested dump for tid 4356 (earchbox:search)
+10-29 18:02:57.643  6500  6500 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 18:02:57.850  1949  1978 E system_server: libdebuggerd_client: failed to read status response from tombstoned: Try again
+10-29 18:02:57.854  1784  1784 I /system/bin/tombstoned: intercept for pid 4356 and type kDebuggerdNativeBacktrace terminated: due to input
+10-29 18:02:58.188  6500  6500 D AndroidRuntime: Shutting down VM
+10-29 18:02:58.321  1949  2738 E InputDispatcher: Window handle Window{5e3ebce u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
+10-29 18:02:58.474  1949  2738 E InputDispatcher: Window handle Window{5e3ebce u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
+10-29 18:02:59.058  1949  1978 E ActivityManager:   0.7% 3829/com.rea.studio: 0.5% user + 0.2% kernel / faults: 5 minor
+10-29 18:03:07.800  1949  3642 I ActivityManager: Force stopping com.rea.studio appid=10146 user=0: from pid 6615
+10-29 18:03:07.802  1949  3642 I ActivityManager: Killing 3829:com.rea.studio/u0a146 (adj 0): stop com.rea.studio
+10-29 18:03:07.806  1949  3642 W ActivityTaskManager: Force removing ActivityRecord{3be7844 u0 com.rea.studio/.MainActivity t6 f}: app died, no saved state
+10-29 18:03:12.872  1949  3451 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity (has extras)} from uid 2000
+10-29 18:03:15.208  6657  6657 I com.rea.studio: Late-enabling -Xcheck:jni
+10-29 18:03:15.664  6657  6657 E com.rea.studio: Unknown bits set in runtime_flags: 0x8000
+10-29 18:03:15.701  6657  6657 W com.rea.studio: Unexpected CPU variant for X86 using defaults: x86_64
+10-29 18:03:17.166  1949  1979 I ActivityManager: Start proc 6657:com.rea.studio/u0a146 for activity {com.rea.studio/com.rea.studio.MainActivity}
+10-29 18:03:17.214  1949  1978 I system_server: libdebuggerd_client: started dumping process 6474
+10-29 18:03:17.223  1784  1784 I /system/bin/tombstoned: registered intercept for pid 6474 and type kDebuggerdJavaBacktrace
+10-29 18:03:18.986  6657  6657 I com.rea.studio: Waiting for a blocking GC ClassLinker
+10-29 18:03:19.082  6657  6657 I com.rea.studio: WaitForGcToComplete blocked ClassLinker on HeapTrim for 95.908ms
+10-29 18:03:19.977  6657  6695 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
+10-29 18:03:19.970  6657  6657 W RenderThread: type=1400 audit(0.0:76): avc: denied { write } for name="property_service" dev="tmpfs" ino=845 scontext=u:r:untrusted_app:s0:c146,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=0 app=com.rea.studio
+10-29 18:03:24.548  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:24.664  6657  6689 I com.rea.studio: Waiting for a blocking GC ProfileSaver
+10-29 18:03:24.941  6657  6670 I com.rea.studio: NativeAlloc concurrent copying GC freed 3555(368KB) AllocSpace objects, 0(0B) LOS objects, 54% free, 1299KB/2835KB, paused 216us total 1.471s
+10-29 18:03:24.941  6657  6689 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ClassLinker for 309.382ms
+10-29 18:03:24.958  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 6474 and type kDebuggerdJavaBacktrace
+10-29 18:03:24.975  1949  1978 I system_server: libdebuggerd_client: done dumping process 6474
+10-29 18:03:26.071  6657  6670 I com.rea.studio: Background young concurrent copying GC freed 3(30KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 3323KB/3323KB, paused 75us total 494.437ms
+10-29 18:03:26.143  1949  1978 E ActivityManager:  +0% 6657/com.rea.studio: 0% user + 0% kernel
+10-29 18:03:26.314  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:28.255  6657  6670 I com.rea.studio: Background concurrent copying GC freed 287(67KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 3336KB/6672KB, paused 77us total 1.898s
+10-29 18:03:29.471  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:30.171  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:31.897  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:32.943  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:33.182  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:34.489  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:35.628  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:37.244  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:37.954  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:38.595  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:39.492  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:40.289  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:42.543  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:43.436  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:03:51.290  6763  6763 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:04:14.165  1949  1978 I system_server: libdebuggerd_client: started dumping process 6763
+10-29 18:04:14.206  1784  1784 I /system/bin/tombstoned: registered intercept for pid 6763 and type kDebuggerdJavaBacktrace
+10-29 18:04:16.260  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 6763 and type kDebuggerdJavaBacktrace
+10-29 18:04:16.340  1949  1978 I system_server: libdebuggerd_client: done dumping process 6763
+10-29 18:04:16.411  1949  1978 E ActivityManager:   4.7% 6657/com.rea.studio: 1.2% user + 3.4% kernel / faults: 1824 minor
+10-29 18:04:22.765  4461  6979 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:04:22.887  4461  6979 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:04:26.776  1949  1949 V SettingsProvider: Notifying for 0: content://settings/global/angle_debug_package
+10-29 18:04:29.663  7001  7001 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:04:42.143  1949  1978 I system_server: libdebuggerd_client: started dumping process 7001
+10-29 18:04:42.155  1784  1784 I /system/bin/tombstoned: registered intercept for pid 7001 and type kDebuggerdJavaBacktrace
+10-29 18:04:44.194  7125  7184 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
+10-29 18:04:44.381  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 7001 and type kDebuggerdJavaBacktrace
+10-29 18:04:44.401  1949  1978 I system_server: libdebuggerd_client: done dumping process 7001
+10-29 18:04:44.568  1949  1978 E ActivityManager:   0.1% 6657/com.rea.studio: 0% user + 0% kernel / faults: 24 minor
+10-29 18:04:49.057  1949  1977 I ActivityTaskManager: Displayed com.rea.studio/.MainActivity: +15s519ms
+10-29 18:04:50.159  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:50.275  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:50.546  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:50.595  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:50.691  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:51.211  7195  7195 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 18:04:51.213  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:51.536  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:51.830  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:52.253  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:52.535  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:53.134  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:54.206  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:54.331  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:54.351  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:55.203  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:55.454  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:55.723  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:04:58.704  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:05:15.091  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:05:15.568  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:05:16.617  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:05:17.013  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:05:17.728  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-29 18:05:18.477  1949  1977 W android.os.Debug: failed to get memory consumption info: -1

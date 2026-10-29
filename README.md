@@ -25,7 +25,7 @@ document covers the fork; [docs/STUDIO.md](docs/STUDIO.md) covers the original a
 **Shipped: [v1.0.0](../../releases/tag/v1.0.0)** — a 68 MiB debug-signed arm64 APK, built and
 packaged by CI.
 
-**The from-scratch app: [app-v0.1.1](../../releases/tag/app-v0.1.1)** — an arm64 debug-signed APK of
+**The from-scratch app: [app-v0.1.2](../../releases/tag/app-v0.1.2)** — an arm64 debug-signed APK of
 `studio/`, built and inspected by CI. Its evidence, feature table and limitations are in
 [docs/STUDIO.md](docs/STUDIO.md).
 

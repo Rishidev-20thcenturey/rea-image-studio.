@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio-smoke.yml. Do not edit by hand. -->
 # Studio app: emulator smoke test
 
-Run [40911856328](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40911856328), commit `bee6087bfcc0df05d60dbd031b09674346b22989`, 2026-10-29T16:34:45Z.
+Run [40913238130](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40913238130), commit `3a35b338cc9bf550960f9c91305ca5f6fa16d6b6`, 2026-10-29T16:39:32Z.
 x86_64 build of the same code the arm64 APK ships.
 
 ```

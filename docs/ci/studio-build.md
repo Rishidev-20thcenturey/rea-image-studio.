@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `35918a7749fc7d661dcd0aab4a8ad0d3f5f04201`, run [40920075995](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40920075995), 2026-10-29T17:20:37Z.
+Commit `c8cf9626e047393d52ba963e11fcdcf5bb3f1f92`, run [40923829446](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40923829446), 2026-10-29T17:44:22Z.
 
 ```
 == badging ==
@@ -14,7 +14,7 @@ native-code: 'arm64-v8a'
 == archive ==
   2335104  1981-01-01 01:01   classes.dex
      1812  1981-01-01 01:01   classes2.dex
-   146024  1981-01-01 01:01   classes3.dex
+   149140  1981-01-01 01:01   classes3.dex
    569520  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
      1440  1981-01-01 01:01   resources.arsc
 
@@ -94,7 +94,7 @@ library size: 556 KiB
 dex files: 3
 classes.dex: 2335104 bytes
 classes2.dex: 1812 bytes
-classes3.dex: 146024 bytes
+classes3.dex: 149140 bytes
 found com/rea/studio/MainActivity
 found com/rea/studio/NativeCore
 found com/rea/studio/EditorView
@@ -102,5 +102,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: 1abd1a8a0e8ecd0416befbcf7502ff32fd301bb2da565fbfc83d5305132236da
+APK sha256: c59ddec42ba008ff6cf6ccdaeb9307568ae3bf9b55c465fe339215c6a8ad3fe5
 ```

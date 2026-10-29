@@ -80,6 +80,23 @@ workflow listed at the bottom.
 
 `cargo test` in `studio/core` runs **56 tests**; all of them pass in CI.
 
+### What has not been verified, and one attempt to fix that
+
+**The app has never been launched.** The CI runner this project builds on has not produced a booted
+emulator: a hand-rolled `avdmanager` + `adb` boot, then the maintained
+`ReactiveCircus/android-emulator-runner` action with hardware acceleration, then the same action with
+software emulation each timed out waiting for a device. Every attempt, and its log, is recorded in
+[`docs/ci/studio-emulator/`](ci/studio-emulator/). So the honest statement is:
+
+- The engine's behaviour is covered by 56 host tests: it is the part I can prove.
+- The APK's **contents** are inspected byte for byte in CI (identity, ABI, library, JNI symbols,
+  classes in dex).
+- The **interface** — touch handling, view transforms, the panels — is the part with no test behind
+  it. It compiles, it is statically consistent with the core's 56 entry points, and it is the first
+  thing to look at on a device.
+
+If you install the APK and something is wrong, that failure is not a surprise this document hid.
+
 ## What it deliberately does not do
 
 Stated plainly, because the alternative is a product that looks more capable than it is:

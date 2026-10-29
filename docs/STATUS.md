@@ -14,6 +14,19 @@ There is also **no Android device or emulator** available, and no KVM to run one
 that says "verified" was verified statically, from the packaged artifact, or by host test — never by
 launching the app.
 
+## The from-scratch app (`studio/`)
+
+The app described in the matrix below is the fork. The original app in [`studio/`](STUDIO.md) has its
+own evidence, written by its own workflows, and its own limitations:
+
+| Claim | Evidence | Status |
+|---|---|---|
+| The core's image operations behave as specified | `cargo test --release` in `studio/core`: 56 tests, all passing ([CI](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/workflows/studio-core.yml)) | ✅ verified |
+| It cross-compiles for `aarch64-linux-android` and `x86_64-linux-android` | NDK clang builds in `studio-core.yml` and `studio-smoke.yml` | ✅ verified |
+| The JNI surface is complete and exported | 56 `Java_com_rea_studio_NativeCore_*` symbols in the packaged library | ✅ verified |
+| The APK is ours and installable in shape | `package: name='com.rea.studio'`, label, `arm64-v8a`, `classes.dex` carries `MainActivity`/`NativeCore`/`EditorView` — see [`docs/ci/studio-build.md`](ci/studio-build.md) | ✅ verified |
+| The app launches, paints, and does not crash | emulator smoke test — the runner never produced a booted device (see [`docs/ci/studio-emulator/`](ci/studio-emulator/)) | ❌ not verified |
+
 ## Verification matrix
 
 First green build: [run 40865238933](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40865238933)

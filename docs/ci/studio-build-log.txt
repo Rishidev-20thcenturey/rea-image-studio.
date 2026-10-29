@@ -1,11 +1,11 @@
-Build logs for commit 317e8c30a87a67e500ce2f4c24ef3d7653a78b82, run 40927735900.
+Build logs for commit 4cd5b8c673f222dd669a461a8af4ed46e033726d, run 40928378433.
 
 ===== cargo =====
 [1m[92m    Updating[0m crates.io index
 [1m[92m     Locking[0m 30 packages to highest compatible versions
 [1m[92m      Adding[0m jni v0.21.1 [1m[33m(available: v0.22.4)[0m
 [1m[92m   Compiling[0m rea-core v0.1.0 (/home/runner/work/rea-image-studio./rea-image-studio./studio/core)
-[1m[92m    Finished[0m `release` profile [optimized] target(s) in 7.57s
+[1m[92m    Finished[0m `release` profile [optimized] target(s) in 7.97s
 
 ===== gradle =====
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -41,25 +41,25 @@ Installing Android SDK Platform-Tools in /home/runner/android-sdk/platform-tools
 > Task :app:processDebugManifest
 > Task :app:javaPreCompileDebug
 > Task :app:mergeDebugShaders
-> Task :app:processDebugManifestForPackage
 > Task :app:compileDebugShaders NO-SOURCE
 > Task :app:generateDebugAssets UP-TO-DATE
 > Task :app:mergeDebugAssets
 > Task :app:compressDebugAssets
 > Task :app:desugarDebugFileDependencies
-> Task :app:processDebugResources
 > Task :app:mergeDebugJniLibFolders
 > Task :app:checkDebugDuplicateClasses
-> Task :app:mergeLibDexDebug
 > Task :app:mergeDebugNativeLibs
-> Task :app:mergeExtDexDebug
-> Task :app:validateSigningDebug
-> Task :app:writeDebugAppMetadata
-> Task :app:writeDebugSigningConfigVersions
+> Task :app:processDebugManifestForPackage
+> Task :app:mergeLibDexDebug
 
 > Task :app:stripDebugDebugSymbols
 Unable to strip the following libraries, packaging them as they are: librea_core.so.
 
+> Task :app:processDebugResources
+> Task :app:mergeExtDexDebug
+> Task :app:validateSigningDebug
+> Task :app:writeDebugAppMetadata
+> Task :app:writeDebugSigningConfigVersions
 > Task :app:compileDebugKotlin
 > Task :app:compileDebugJavaWithJavac NO-SOURCE
 > Task :app:dexBuilderDebug
@@ -70,7 +70,7 @@ Unable to strip the following libraries, packaging them as they are: librea_core
 > Task :app:packageDebug
 > Task :app:createDebugApkListingFileRedirect
 > Task :app:assembleDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build_apk-1793297274455.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build_apk-1793297526354.json
 
-BUILD SUCCESSFUL in 1m 2s
+BUILD SUCCESSFUL in 45s
 35 actionable tasks: 35 executed

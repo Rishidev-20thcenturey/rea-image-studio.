@@ -386,7 +386,8 @@ mod tests {
     #[test]
     fn byte_compositing_round_trips_through_the_float_path() {
         let out = composite_px([0, 0, 0, 255], [255, 255, 255, 255], BlendMode::Normal, 0.5);
-        assert_eq!(out, [127, 127, 127, 255]);
+        // 0.5 of white over black is 127.5, and the byte path rounds half up: 128.
+        assert_eq!(out, [128, 128, 128, 255]);
     }
 
     #[test]

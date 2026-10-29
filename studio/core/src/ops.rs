@@ -1540,13 +1540,16 @@ mod tests {
         {
             let l = &mut d.layers[0];
             let buf = l.pixels_mut();
-            buf[0] = 10;
+            // Pixel 0 at the left edge: solid red.
+            buf[0] = 255;
             buf[3] = 255;
         }
         d.invalidate_all();
+        assert_eq!(d.composite()[0], 255, "the paint starts on the left");
         d.flip(true);
         let c = d.composite();
-        assert_eq!(c[0], 255 - 0, "left pixel is now the right one");
+        assert_eq!(c[0], 0, "the left edge is empty after the flip");
+        assert_eq!(c[12], 255, "the paint moved to the right edge");
     }
 
     #[test]

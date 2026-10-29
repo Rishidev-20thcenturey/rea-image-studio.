@@ -50,23 +50,25 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
-      - name: Report compile errors
+      # The job log is not reachable from where this repository is developed, so the compiler's
+      # output is republished as one annotation with its newlines intact (%0A).
+      - name: Report the failure
         if: failure()
         shell: bash
         run: |
           set -uo pipefail
           LOG="$RUNNER_TEMP/test.log"
           [ -f "$LOG" ] || { echo "no log at $LOG"; exit 0; }
-          n=0
-          while IFS= read -r line; do
-            n=$((n+1))
-            [ "$n" -gt 12 ] && break
-            msg=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r//g')
-            echo "::error title=rustc::$msg"
-          done < <(grep -E "^(error|\s+-->|\s*\|)" "$LOG" | head -40 | tr '\n' '\n')
-          echo "==== first 80 lines mentioning error ===="
-          grep -n -E "^(error|\s+-->)" "$LOG" | head -40 || true
-
+          {
+            echo "--- errors and locations ---"
+            grep -n -E "^(error|warning: unused| *-->)" "$LOG" | head -30 || true
+            echo "--- failures ---"
+            grep -n -A4 -E "^(failures:|test .* FAILED)" "$LOG" | head -40 || true
+            echo "--- tail ---"
+            tail -n 30 "$LOG"
+          } > "$RUNNER_TEMP/report.txt"
+          enc=$(tr '\n' '~' < "$RUNNER_TEMP/report.txt" | sed 's/~/%0A/g; s/%/%25/g')
+          echo "::error title=Core tests::$enc"
 
   android:
     name: Cross-compile for arm64 (JNI bridge)
@@ -122,19 +124,19 @@ jobs:
             exit 1
           fi
 
-      - name: Report compile errors
+      # Same republishing, for the arm64 build.
+      - name: Report the failure
         if: failure()
         shell: bash
         run: |
           set -uo pipefail
           LOG="$RUNNER_TEMP/build.log"
           [ -f "$LOG" ] || { echo "no log at $LOG"; exit 0; }
-          n=0
-          while IFS= read -r line; do
-            n=$((n+1))
-            [ "$n" -gt 12 ] && break
-            msg=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r//g')
-            echo "::error title=rustc::$msg"
-          done < <(grep -E "^(error|\s+-->|\s*\|)" "$LOG" | head -40 | tr '\n' '\n')
-          echo "==== first 80 lines mentioning error ===="
-          grep -n -E "^(error|\s+-->)" "$LOG" | head -40 || true
+          {
+            echo "--- errors and locations ---"
+            grep -n -E "^(error|warning: unused| *-->)" "$LOG" | head -40 || true
+            echo "--- tail ---"
+            tail -n 40 "$LOG"
+          } > "$RUNNER_TEMP/report.txt"
+          enc=$(tr '\n' '~' < "$RUNNER_TEMP/report.txt" | sed 's/~/%%0A/g; s/%%/%%25/g')
+          echo "::error title=arm64 build::$enc"

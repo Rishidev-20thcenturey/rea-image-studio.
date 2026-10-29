@@ -236,11 +236,18 @@ jobs:
             cat "$RUNNER_TEMP/inspection-report.txt" 2>/dev/null || echo "(no report: the build failed before inspection)"
             echo '```'
           } > docs/ci/studio-build.md
+          # Keep the generated evidence, then move to the branch tip with a hard reset. A soft
+          # reset leaves whatever the checkout held in the index, and committing that reverts files
+          # the run never touched.
+          mkdir -p "$RUNNER_TEMP/evidence"
+          cp -r "docs/ci/." "$RUNNER_TEMP/evidence/" 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           BRANCH="$GITHUB_REF_NAME"
           git fetch -q origin "$BRANCH"
-          git reset -q --soft "origin/$BRANCH"
+          git reset -q --hard "origin/$BRANCH"
+          mkdir -p "docs/ci"
+          cp -r "$RUNNER_TEMP/evidence/." "docs/ci/" 2>/dev/null || true
           git add docs/ci/studio-build.md
           if git diff --quiet --cached; then
             echo "Report unchanged."

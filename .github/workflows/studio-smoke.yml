@@ -289,6 +289,8 @@ jobs:
         run: |
           set -uo pipefail
           mkdir -p docs/ci/studio-emulator
+          cp "$RUNNER_TEMP/smoke.txt" docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || true
+          cp "$RUNNER_TEMP/emulator.log" docs/ci/studio-emulator/emulator.log 2>/dev/null || true
           {
             echo "<!-- Written by .github/workflows/studio-smoke.yml. Do not edit by hand. -->"
             echo "# Studio app: emulator smoke test"
@@ -303,6 +305,11 @@ jobs:
               [ -s "docs/ci/studio-emulator/$shot.png" ] && echo "" && echo "![$shot]($shot.png)"
             done
           } > docs/ci/studio-emulator/README.md
+          # Keep the generated evidence, then move to the branch tip with a hard reset. A soft
+          # reset leaves the checkout's stale index in place, and committing that reverts files the
+          # run never touched.
+          mkdir -p "$RUNNER_TEMP/evidence"
+          cp -r docs/ci/studio-emulator/. "$RUNNER_TEMP/evidence/" 2>/dev/null || true
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           # A tag run has a detached HEAD, so commit the evidence on the branch that carries the
@@ -318,7 +325,11 @@ jobs:
             fi
           fi
           git fetch -q origin "$BRANCH"
-          git reset -q --soft "origin/$BRANCH"
+          git reset -q --hard "origin/$BRANCH"
+          mkdir -p docs/ci/studio-emulator
+          cp -r "$RUNNER_TEMP/evidence/." docs/ci/studio-emulator/ 2>/dev/null || true
+          cp "$RUNNER_TEMP/smoke.txt" docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || true
+          cp "$RUNNER_TEMP/emulator.log" docs/ci/studio-emulator/emulator.log 2>/dev/null || true
           git add docs/ci/studio-emulator
           if git diff --quiet --cached; then
             echo "No new evidence to publish."

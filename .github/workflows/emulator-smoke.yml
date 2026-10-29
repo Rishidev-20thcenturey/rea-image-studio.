@@ -82,7 +82,7 @@ jobs:
             "ndk;${NDK_VERSION}" "emulator" "system-images;android-$API;google_apis;x86_64"
           echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
           echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
-          echo "PATH=$SDK/platform-tools:$SDK/emulator:$PATH" >> "$GITHUB_ENV"
+          echo "PATH=$SDK/cmdline-tools/latest/bin:$SDK/platform-tools:$SDK/emulator:$PATH" >> "$GITHUB_ENV"
 
       - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
         with:
@@ -138,6 +138,12 @@ jobs:
           echo "hw.lcd.density=320" >> "$HOME/.android/avd/rea-smoke.avd/config.ini"
           nohup emulator -avd rea-smoke -no-window -no-audio -no-boot-anim -no-snapshot \
             -gpu swiftshader_indirect -memory 4096 -partition-size 4096 > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          for i in $(seq 1 30); do
+            adb devices | grep -q "emulator-.*device$" && break
+            sleep 2
+          done
+          adb devices
+          tail -n 30 "$RUNNER_TEMP/emulator.log" || true
           adb wait-for-device
           deadline=$(( $(date +%s) + BOOT_TIMEOUT ))
           until [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
@@ -235,14 +241,18 @@ jobs:
           } > docs/ci/emulator/README.md
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="$GITHUB_REF_NAME"
+          case "$GITHUB_REF" in refs/tags/*) BRANCH=main;; esac
+          # A tag-triggered run has a detached HEAD; commit on the branch tip instead, keeping the
+          # evidence files that are already in the working tree.
+          git fetch -q origin "$BRANCH"
+          git reset -q --soft "origin/$BRANCH"
           git add docs/ci/emulator
           if git diff --quiet --cached; then
             echo "No new evidence to publish."
             exit 0
           fi
           git commit -q -m "Record the emulator smoke test [skip ci]"
-          BRANCH="$GITHUB_REF_NAME"
-          case "$GITHUB_REF" in refs/tags/*) BRANCH=main;; esac
           git push origin "HEAD:$BRANCH" || echo "::warning title=evidence::could not push the evidence commit"
 
       - name: Summarise

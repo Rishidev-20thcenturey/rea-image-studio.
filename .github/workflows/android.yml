@@ -257,14 +257,17 @@ jobs:
           } > docs/ci/last-build.md
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="$GITHUB_REF_NAME"
+          case "$GITHUB_REF" in refs/tags/*) BRANCH=main;; esac
+          # Commit on the branch tip so the push is a fast-forward, even on a tag-triggered run.
+          git fetch -q origin "$BRANCH"
+          git reset -q --soft "origin/$BRANCH"
           git add docs/ci/last-build.md
           if git diff --quiet --cached; then
             echo "Report unchanged."
             exit 0
           fi
           git commit -q -m "Record the build evidence for $GITHUB_SHA [skip ci]"
-          BRANCH="$GITHUB_REF_NAME"
-          case "$GITHUB_REF" in refs/tags/*) BRANCH=main;; esac
           git push origin "HEAD:$BRANCH" || echo "::warning title=report::could not push the report"
 
       - name: Upload the inspection report

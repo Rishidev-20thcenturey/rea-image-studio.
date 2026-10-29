@@ -338,11 +338,13 @@ class SliderRow(
         name.text = label
         name.setTextColor(0xFFB9C2D0.toInt())
         name.textSize = 12.5f
-        name.width = (context.resources.displayMetrics.density * 74).toInt()
+        name.width = (context.resources.displayMetrics.density * 58).toInt()
+        name.isSingleLine = true
         readout.setTextColor(0xFFE6E9EF.toInt())
         readout.textSize = 12.5f
         readout.gravity = android.view.Gravity.END
-        readout.width = (context.resources.displayMetrics.density * 56).toInt()
+        readout.width = (context.resources.displayMetrics.density * 48).toInt()
+        readout.isSingleLine = true
         bar.max = steps
         bar.progress = (((initial - from) / (to - from)) * steps).toInt().coerceIn(0, steps)
         bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {

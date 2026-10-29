@@ -52,6 +52,11 @@ say "size: ${SCREEN_W}x${SCREEN_H}"
 say "page size: $(adb shell getconf PAGE_SIZE 2>&1 | tr -d '\r')"
 say "apk: $(stat -c%s "$APK" 2>/dev/null || echo missing) bytes"
 
+# A software-emulated device throws "System UI isn't responding" dialogs that swallow touch events.
+# They are an artefact of the emulator, not of the app, but they made the previous run's strokes
+# land on a dialog instead of the canvas.
+adb shell settings put global hide_error_dialogs 1 >> "$OUT" 2>&1
+
 say ""
 say "== install =="
 adb install -r "$APK" >> "$OUT" 2>&1
@@ -70,6 +75,21 @@ sleep 15
 say ""
 say "== first frame =="
 shot 01-launch
+
+# Make sure the activity, not a system dialog, has focus before any touch is sent.
+ensure_focus() {
+    FOCUS=$(adb shell dumpsys window 2>/dev/null | grep -m1 mCurrentFocus)
+    say "focus: $FOCUS"
+    case "$FOCUS" in
+        *"$PKG"*) return 0 ;;
+    esac
+    say "the app did not have focus; dismissing dialogs and restarting it"
+    adb shell input keyevent 4 >> "$OUT" 2>&1
+    adb shell am start -n "$PKG/.MainActivity" >> "$OUT" 2>&1
+    sleep 10
+    say "focus now: $(adb shell dumpsys window 2>/dev/null | grep -m1 mCurrentFocus)"
+}
+ensure_focus
 
 # Real touch events on the canvas. The tool rail sits on the left edge, so keep clear of it.
 say ""

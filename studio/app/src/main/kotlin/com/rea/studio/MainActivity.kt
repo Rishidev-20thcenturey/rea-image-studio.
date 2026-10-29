@@ -289,8 +289,10 @@ class MainActivity : Activity() {
         optionsHost.background = barBackground()
         optionsHost.setPadding(d(10f), d(2f), d(10f), d(2f))
 
-        val lp = FrameLayout.LayoutParams(-2, d(52f), Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL)
-        lp.setMargins(d(90f), 0, d(8f), d(10f))
+        // Full width minus the rail, and the sliders inside share what is left: fixed widths
+        // overflowed a 320dp display and pushed the second control off the edge.
+        val lp = FrameLayout.LayoutParams(-1, d(52f), Gravity.BOTTOM)
+        lp.setMargins(d(62f), 0, d(8f), d(10f))
         root.addView(optionsHost, lp)
         rebuildOptions()
     }
@@ -303,7 +305,7 @@ class MainActivity : Activity() {
             background = barBackground(0xE6)
         }
         val lp = FrameLayout.LayoutParams(-2, -2, Gravity.BOTTOM or Gravity.START)
-        lp.setMargins(d(8f), 0, 0, d(10f))
+        lp.setMargins(d(64f), 0, 0, d(10f))
         root.addView(statusView, lp)
     }
 
@@ -448,9 +450,15 @@ class MainActivity : Activity() {
 
     private fun rebuildOptions() {
         optionsHost.removeAllViews()
-        fun put(row: View, width: Int) {
-            val lp = LinearLayout.LayoutParams(width, -2)
+        fun put(row: View, weight: Float) {
+            val lp = LinearLayout.LayoutParams(0, -2, weight)
             lp.rightMargin = d(6f)
+            optionsHost.addView(row, lp)
+        }
+
+        fun putFixed(row: View) {
+            val lp = LinearLayout.LayoutParams(d(40f), d(40f))
+            lp.rightMargin = d(4f)
             optionsHost.addView(row, lp)
         }
 
@@ -465,7 +473,7 @@ class MainActivity : Activity() {
                     override fun onStartTrackingTouch(sb: SeekBar?) {}
                     override fun onStopTrackingTouch(sb: SeekBar?) {}
                 })
-                put(size, d(200f))
+                put(size, 1.4f)
 
                 val opacity = SliderRow(this, "Opacity", 0f, 1f, editor.opacity)
                 opacity.bar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
@@ -476,12 +484,12 @@ class MainActivity : Activity() {
                     override fun onStartTrackingTouch(sb: SeekBar?) {}
                     override fun onStopTrackingTouch(sb: SeekBar?) {}
                 })
-                put(opacity, d(180f))
+                put(opacity, 1f)
 
                 val more = IconView(this, "more")
                 more.contentDescription = "Brush settings"
                 more.setOnClickListener { brushSettings() }
-                put(more, d(40f))
+                putFixed(more)
             }
 
             Tool.MARQUEE, Tool.OVAL_SELECT, Tool.LASSO -> {
@@ -494,7 +502,7 @@ class MainActivity : Activity() {
                     override fun onStartTrackingTouch(sb: SeekBar?) {}
                     override fun onStopTrackingTouch(sb: SeekBar?) {}
                 })
-                put(feather, d(190f))
+                put(feather, 1f)
 
                 val none = TextView(this).apply {
                     text = "Deselect"
@@ -507,7 +515,7 @@ class MainActivity : Activity() {
                         refreshAll()
                     }
                 }
-                put(none, -2)
+                put(none, 0.5f)
             }
 
             Tool.BUCKET -> {
@@ -520,7 +528,7 @@ class MainActivity : Activity() {
                     override fun onStartTrackingTouch(sb: SeekBar?) {}
                     override fun onStopTrackingTouch(sb: SeekBar?) {}
                 })
-                put(tolerance, d(230f))
+                put(tolerance, 1f)
             }
 
             else -> {
@@ -534,7 +542,7 @@ class MainActivity : Activity() {
                     textSize = 12.5f
                     setPadding(d(8f), 0, d(8f), 0)
                 }
-                put(hint, -2)
+                put(hint, 1f)
             }
         }
     }
@@ -645,7 +653,7 @@ class MainActivity : Activity() {
 
     private fun refreshAll() {
         if (handle == 0L) return
-        titleView.text = if (documentUri != null) docName else "$docName · REA Image Studio"
+        titleView.text = docName
         undoBtn.alpha = if (NativeCore.canUndo(handle)) 1f else 0.35f
         redoBtn.alpha = if (NativeCore.canRedo(handle)) 1f else 0.35f
         val zoom = (editor.currentZoom() * 100f).toInt()

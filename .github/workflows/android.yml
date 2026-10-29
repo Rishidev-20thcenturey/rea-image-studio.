@@ -263,7 +263,9 @@ jobs:
             exit 0
           fi
           git commit -q -m "Record the build evidence for $GITHUB_SHA [skip ci]"
-          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "::warning title=report::could not push the report"
+          BRANCH="$GITHUB_REF_NAME"
+          case "$GITHUB_REF" in refs/tags/*) BRANCH=main;; esac
+          git push origin "HEAD:$BRANCH" || echo "::warning title=report::could not push the report"
 
       - name: Upload the inspection report
         if: always()

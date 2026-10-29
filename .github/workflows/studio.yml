@@ -187,6 +187,20 @@ jobs:
             grep -o 'Java_com_rea_studio_NativeCore_[A-Za-z]*' "$RUNNER_TEMP/syms.txt" | sort -u | head -80 | tee -a "$REPORT" || true
             [ "${count:-0}" -ge 55 ] || bad "expected at least 55 JNI entry points, found ${count:-0}"
             note "library size: $(( $(stat -c%s "$SO") / 1024 )) KiB"
+
+            # A 16 KiB-page device refuses a library whose LOAD segments assume 4 KiB pages, and the
+            # app dies before its first frame. Assert the alignment instead of trusting the flags.
+            "$READELF" -l "$SO" > "$RUNNER_TEMP/loads.txt" 2>&1 || true
+            note ""
+            note "== ELF LOAD alignment (must be 0x4000 for 16 KiB pages) =="
+            grep -E "^  LOAD" "$RUNNER_TEMP/loads.txt" | tee -a "$REPORT" || true
+            if grep -qE "^  LOAD" "$RUNNER_TEMP/loads.txt"; then
+              grep -E "^  LOAD" "$RUNNER_TEMP/loads.txt" | grep -qv "0x4000" \
+                && bad "a LOAD segment is not aligned to 16 KiB; the library will not load on 16 KiB-page devices"
+            fi
+            note ""
+            note "== shared objects required =="
+            "$READELF" -d "$SO" | grep -E "NEEDED" | tee -a "$REPORT" || true
           fi
 
           note ""

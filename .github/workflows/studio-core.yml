@@ -50,6 +50,23 @@ jobs:
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
           exit "$status"
+      - name: Report compile errors
+        if: failure()
+        shell: bash
+        run: |
+          set -uo pipefail
+          LOG="$RUNNER_TEMP/test.log"
+          [ -f "$LOG" ] || { echo "no log at $LOG"; exit 0; }
+          n=0
+          while IFS= read -r line; do
+            n=$((n+1))
+            [ "$n" -gt 12 ] && break
+            msg=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r//g')
+            echo "::error title=rustc::$msg"
+          done < <(grep -E "^(error|\s+-->|\s*\|)" "$LOG" | head -40 | tr '\n' '\n')
+          echo "==== first 80 lines mentioning error ===="
+          grep -n -E "^(error|\s+-->)" "$LOG" | head -40 || true
+
 
   android:
     name: Cross-compile for arm64 (JNI bridge)
@@ -89,7 +106,35 @@ jobs:
           export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER="$BIN/aarch64-linux-android29-clang"
           export AR_aarch64_linux_android="$BIN/llvm-ar"
           cd studio/core
+          set +e
           cargo build --release --target aarch64-linux-android 2>&1 | tee "$RUNNER_TEMP/build.log"
+          st=${PIPESTATUS[0]}
+          set -e
+          if [ "$st" -ne 0 ]; then
+            exit "$st"
+          fi
           SO=target/aarch64-linux-android/release/librea_core.so
           ls -l "$SO"
-          "$BIN/llvm-readelf" --dyn-syms "$SO" | grep -c "Java_com_rea_studio_NativeCore" | xargs -I{} echo "JNI symbols exported: {}"
+          count=$("$BIN/llvm-readelf" --dyn-syms "$SO" | grep -c "Java_com_rea_studio_NativeCore" || true)
+          echo "JNI symbols exported: $count"
+          if [ "$count" -lt 40 ]; then
+            echo "::error title=JNI surface::only $count JNI symbols exported, expected the whole bridge"
+            exit 1
+          fi
+
+      - name: Report compile errors
+        if: failure()
+        shell: bash
+        run: |
+          set -uo pipefail
+          LOG="$RUNNER_TEMP/build.log"
+          [ -f "$LOG" ] || { echo "no log at $LOG"; exit 0; }
+          n=0
+          while IFS= read -r line; do
+            n=$((n+1))
+            [ "$n" -gt 12 ] && break
+            msg=$(printf '%s' "$line" | sed 's/%/%25/g; s/\r//g')
+            echo "::error title=rustc::$msg"
+          done < <(grep -E "^(error|\s+-->|\s*\|)" "$LOG" | head -40 | tr '\n' '\n')
+          echo "==== first 80 lines mentioning error ===="
+          grep -n -E "^(error|\s+-->)" "$LOG" | head -40 || true

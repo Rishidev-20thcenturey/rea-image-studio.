@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `f8fbd3f3401415ec358b57901a25cbf677d9816e`, run [40929121174](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40929121174), 2026-10-29T18:18:20Z.
+Commit `a11a3c4d2e5f33277a6b0349e3f25d0699ebe905`, run [40929790604](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40929790604), 2026-10-29T18:22:11Z.
 
 ```
 == badging ==
@@ -93,7 +93,7 @@ library size: 556 KiB
 == how the library is packaged ==
 compression: unknown
 offset of local header: 2486324
-(compression method not recognised; alignment not asserted)
+extractNativeLibs=true: the library is unpacked at install, so the archive offset does not matter
         A: http://schemas.android.com/apk/res/android:extractNativeLibs(0x010104ea)=true
 == dex ==
 dex files: 3
@@ -107,5 +107,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: 72f31643b7a82d12b988d3284532d6f3aaddd44f7a6ac03ef841bf48287cd4ab
+APK sha256: d21cfbbb0a754131c54b5f5b2b09018402aa4f5b50d6134ed7f82dfc6dd5ac7f
 ```

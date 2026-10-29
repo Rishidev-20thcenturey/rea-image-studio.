@@ -25,7 +25,10 @@ own evidence, written by its own workflows, and its own limitations:
 | It cross-compiles for `aarch64-linux-android` and `x86_64-linux-android` | NDK clang builds in `studio-core.yml` and `studio-smoke.yml` | ✅ verified |
 | The JNI surface is complete and exported | 56 `Java_com_rea_studio_NativeCore_*` symbols in the packaged library | ✅ verified |
 | The APK is ours and installable in shape | `package: name='com.rea.studio'`, label, `arm64-v8a`, `classes.dex` carries `MainActivity`/`NativeCore`/`EditorView` — see [`docs/ci/studio-build.md`](ci/studio-build.md) | ✅ verified |
-| The app launches, paints, and does not crash | four emulator smoke attempts (hand-rolled AVD; emulator action with acceleration; the same with software emulation) all timed out before a booted device — logs in [`docs/ci/studio-emulator/`](ci/studio-emulator/) | ❌ not verified |
+| The app installs, launches and draws | emulator (API 29, x86_64): `Displayed com.rea.studio/.MainActivity`, boot log complete, screenshots committed in [`docs/ci/studio-emulator/`](ci/studio-emulator/) | ✅ verified |
+| Touch input reaches the core and paints | the app dispatched synthesized MotionEvents into its own view: `[ok] touch -> paint -> pixels` | ✅ verified |
+| The image operations work on the device | the app's self-test on that device: brush 1439 px painted, render opaque, undo, selection, save/load, export — all ok | ✅ verified |
+| The arm64 build runs on real hardware | none — the emulator is x86_64, and the arm64 library is only built and inspected | ❌ not verified |
 
 ## Verification matrix
 

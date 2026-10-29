@@ -80,25 +80,43 @@ workflow listed at the bottom.
 
 `cargo test` in `studio/core` runs **56 tests**; all of them pass in CI.
 
-### What has not been verified, and one attempt to fix that
+### Verified on a real Android system
 
-**The app has never been launched.** The CI runner this project builds on has not produced a booted
-emulator in four attempts: a hand-rolled `avdmanager` + `adb` boot, the maintained
-`ReactiveCircus/android-emulator-runner` action with hardware acceleration at API 34 and again at API
-30 with a longer budget, and finally the same action at API 29 asking for software emulation
-explicitly. The first two timed out waiting for a booted device; the last failed before the device
-appeared. The machine that runs these jobs can build and inspect an APK but will not boot one. Each
-attempt's run is recorded in [`docs/ci/studio-emulator/`](ci/studio-emulator/). So the honest
-statement is:
+The app has been installed and run: an x86_64 emulator at **API 29**, launched from CI, evidence
+committed in [`docs/ci/studio-emulator/`](ci/studio-emulator/).
 
-- The engine's behaviour is covered by 56 host tests: it is the part I can prove.
-- The APK's **contents** are inspected byte for byte in CI (identity, ABI, library, JNI symbols,
-  classes in dex).
-- The **interface** — touch handling, view transforms, the panels — is the part with no test behind
-  it. It compiles, it is statically consistent with the core's 56 entry points, and it is the first
-  thing to look at on a device.
+| Fact | Evidence |
+|---|---|
+| It installs and starts | `adb install` → `Success`; `Displayed com.rea.studio/.MainActivity: +17s333ms` |
+| Every startup step lands | the app's own boot log: library loaded, immersive mode, canvas built, interface laid out, document created |
+| The interface draws | screenshots `01-launch.png`, `02-painted.png`, `04-layers.png` in that folder |
+| Touch → paint → pixels works | the app was asked to drive its own view with synthesized `MotionEvent`s; result `[ok] touch -> paint -> pixels` |
+| The core's image operations work on the device | app self-test on that device: `[ok] brush 1439 pixels painted`, `[ok] render 4800/4800 pixels opaque`, `[ok] undo 2878 -> 0`, `[ok] selection 50x30`, `[ok] save/load`, `[ok] export 6144 pixels` |
+| No crash, no ANR of the app itself | logcat over the session shows no `FATAL EXCEPTION` for `com.rea.studio`, and the process was alive at the end |
 
-If you install the APK and something is wrong, that failure is not a surprise this document hid.
+Two honest qualifications. The device is **x86_64, not arm64** — the arm64 library is built and
+inspected in CI but has not been run. And injected touches from `adb` could not reach the app on this
+emulator (the emulated System UI kept window focus and kept ANR-ing), which is why the touch proof
+comes from the app dispatching its own events: it covers the view's coordinate mapping, its touch
+handler and the JNI calls, but not the system's input routing.
+
+### The crash that "app-v0.1.2" produced on a real phone
+
+A user install and launch of `app-v0.1.2` on an arm64 phone produced Android's "keeps stopping"
+dialog with no further detail. Three causes were found and fixed, and the app can now report its own
+failure instead of dying silently:
+
+1. **Page-size alignment.** The library was linked for 4 KiB memory pages and packaged so that the
+   loader mapped it out of the APK at a 4 KiB-aligned offset. A device with 16 KiB pages (some
+   Android 15 devices) cannot load either. The ELF is now linked with `-z max-page-size=16384`, the
+   APK extracts the library at install (`extractNativeLibs=true`) instead of mapping it, and CI
+   asserts both.
+2. **Panics aborted the process.** `panic = "abort"` plus a panic anywhere in the core meant SIGABRT
+   with no message. Every JNI entry point now runs inside `catch_unwind`, the panic hook records the
+   source location into the core's error slot, and the release profile unwinds.
+3. **No trace was left behind.** Startup is now instrumented step by step, the next launch reports a
+   launch that did not finish, an exception handler writes the stack trace to internal storage, and
+   the Diagnostics panel shows all of it with a Copy button. If it still fails, the app says where.
 
 ## What it deliberately does not do
 

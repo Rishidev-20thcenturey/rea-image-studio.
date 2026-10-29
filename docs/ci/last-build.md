@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/android.yml. Do not edit by hand. -->
 # Last build evidence
 
-Commit `6c808cdb27c8fc985cdaf2717cff1d79e34b12c0`, run [40865238933](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40865238933), 2026-10-29T11:30:26Z.
+Commit `7af77dd0acdf31274d559b56c479249fa25eafc8`, run [40867109200](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40867109200), 2026-10-29T11:46:55Z.
 
 ```
 == badging ==
@@ -14,14 +14,14 @@ native-code: 'arm64-v8a'
 == archive ==
      1856  1981-01-01 01:01   classes.dex
     35828  1981-01-01 01:01   classes2.dex
-100981736  1981-01-01 01:01   lib/arm64-v8a/libphotocraft_android.so
+ 71580784  1981-01-01 01:01   lib/arm64-v8a/libphotocraft_android.so
      2840  1981-01-01 01:01   AndroidManifest.xml
      2264  1981-01-01 01:01   resources.arsc
 
 == native exports ==
    211: 00000000013ad5f8     4 FUNC    GLOBAL DEFAULT    13 android_main
    212: 0000000001f663fc    60 FUNC    GLOBAL DEFAULT    13 ANativeActivity_onCreate
-library size: 96 MiB
+library size: 68 MiB
 
 == dex ==
      1856  1981-01-01 01:01   classes.dex
@@ -51,6 +51,6 @@ class descriptors in classes2.dex:
 found com/rea/imagestudio/MainActivity in classes2.dex
 found photocraftCall in classes2.dex
 
-APK size: 96 MiB
-APK sha256: 63978ac14b782f3b115e62d2d57fc3a06e3ca1887a6a1f4fce1c7ffe81503833
+APK size: 68 MiB
+APK sha256: 33a915cef5f8ee4bef10f1a572cce4c7d13626383dea50f7b388dee8939a2b9c
 ```

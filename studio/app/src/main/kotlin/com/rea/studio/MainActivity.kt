@@ -322,7 +322,25 @@ class MainActivity : Activity() {
             val b = IconView(this, icon)
             b.contentDescription = tip
             b.setOnClickListener { action() }
-            buttons.addView(b, LinearLayout.LayoutParams(d(40f), d(40f)))
+            buttons.addView(b, LinearLayout.LayoutParams(d(36f), d(36f)))
+        }
+        // Index 0 is the bottom of the stack, so "up" on screen is a higher index in the core.
+        actionButton("up", "Move layer up") {
+            val count = layerCount()
+            val i = editorLayerIndex()
+            if (count > 0 && i < count - 1) {
+                NativeCore.moveLayer(handle, i, i + 1)
+                editor.invalidateDocument()
+                refreshAll()
+            }
+        }
+        actionButton("down", "Move layer down") {
+            val i = editorLayerIndex()
+            if (i > 0) {
+                NativeCore.moveLayer(handle, i, i - 1)
+                editor.invalidateDocument()
+                refreshAll()
+            }
         }
         actionButton("add", "Add layer") {
             NativeCore.addLayer(handle, "Layer")
@@ -571,6 +589,9 @@ class MainActivity : Activity() {
     }
 
     private fun editorLayerIndex(): Int = NativeCore.activeLayer(handle).coerceAtLeast(0)
+
+    private fun layerCount(): Int =
+        NativeCore.layers(handle).trim().split('\n').count { it.isNotBlank() }
 
     private fun toggleLayers() {
         toggleLayers(layersCard.visibility != View.VISIBLE)

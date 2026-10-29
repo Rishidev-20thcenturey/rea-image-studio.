@@ -64,7 +64,7 @@ workflow listed at the bottom.
 
 | Area | What it does | Evidence |
 |---|---|---|
-| Layers | add, add-from-pixels, delete, duplicate, merge down, reorder, rename, visibility, opacity, 16 blend modes | host tests (`merge_down_folds_the_upper_layer_in`, blend-mode tests) + CI |
+| Layers | add, add-from-pixels, delete, duplicate, merge down, move up/down, rename, visibility, opacity, 16 blend modes | host tests (`merge_down_folds_the_upper_layer_in`, blend-mode tests) + CI |
 | Layer masks | mask from the current selection; masks composite into the render | host tests |
 | Brush | size, hardness, flow, opacity, pressure-scaled radius, spacing-correct interpolation between touch samples | host tests |
 | Eraser | the same stroke path, removing alpha | `the_eraser_removes_alpha` |
@@ -94,8 +94,8 @@ Stated plainly, because the alternative is a product that looks more capable tha
   the maximum is 8192 px per side, and a full-canvas 60 px blur on a large document will feel slow.
 - **No pen tilt, no colour management, no CMYK, no non-destructive crop.**
 - **One ABI per build.** The released APK is `arm64-v8a`; the emulator build is `x86_64`.
-- **Layer panel has no drag-to-reorder gesture.** The core supports reordering and the panel does not
-  yet expose it; nothing pretends otherwise.
+- **The layer panel reorders with up/down buttons, not a drag gesture.** Dragging a row is not
+  implemented; the buttons are, and they move the active layer one place per tap.
 - **The legacy fork is still the feature-rich app.** This one is the app I can defend line by line.
 
 ## Building it

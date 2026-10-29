@@ -170,6 +170,16 @@ class IconView(context: Context, val kind: String) : View(context) {
                 tp.textAlign = Paint.Align.CENTER
                 canvas.drawText("T", cx, cy + s * 0.22f, tp)
             }
+            "up" -> {
+                canvas.drawLine(cx, cy - r * 0.6f, cx, cy + r * 0.7f, p)
+                canvas.drawLine(cx, cy - r * 0.6f, cx - r * 0.55f, cy - r * 0.05f, p)
+                canvas.drawLine(cx, cy - r * 0.6f, cx + r * 0.55f, cy - r * 0.05f, p)
+            }
+            "down" -> {
+                canvas.drawLine(cx, cy + r * 0.6f, cx, cy - r * 0.7f, p)
+                canvas.drawLine(cx, cy + r * 0.6f, cx - r * 0.55f, cy + r * 0.05f, p)
+                canvas.drawLine(cx, cy + r * 0.6f, cx + r * 0.55f, cy + r * 0.05f, p)
+            }
             "add" -> {
                 canvas.drawLine(cx - r * 0.7f, cy, cx + r * 0.7f, cy, p)
                 canvas.drawLine(cx, cy - r * 0.7f, cx, cy + r * 0.7f, p)

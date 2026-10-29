@@ -486,15 +486,6 @@ impl Document {
 
     // --- selection -----------------------------------------------------------------------
 
-    fn scale_selection_by(&mut self, name: &str, f: impl Fn(f32) -> f32) {
-        self.push_undo(name);
-        let mask = self.selection_mask_mut_public();
-        for v in mask.iter_mut() {
-            *v = f(*v as f32 / 255.0).mul_add(255.0, 0.0).round().clamp(0.0, 255.0) as u8;
-        }
-        self.invalidate_all();
-    }
-
     pub fn select_all(&mut self) {
         self.push_undo("Select All");
         self.sel = None;
@@ -1592,7 +1583,11 @@ mod tests {
         for (r, g, b) in [(255u8, 0u8, 0u8), (12, 200, 90), (128, 128, 128), (3, 4, 5)] {
             let (h, s, l) = rgb_to_hsl(r, g, b);
             let (r2, g2, b2) = hsl_to_rgb(h, s, l);
-            assert!((r as i32 - r2 as i32).abs() <= 2, "{} -> {} ({},{},{})", r, r2, g, b);
+            assert!(
+                (r as i32 - r2 as i32).abs() <= 2,
+                "red ({},{},{}) came back as ({},{},{})",
+                r, g, b, r2, g2, b2
+            );
             assert!((g as i32 - g2 as i32).abs() <= 2);
             assert!((b as i32 - b2 as i32).abs() <= 2);
         }

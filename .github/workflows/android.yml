@@ -12,6 +12,8 @@ on:
     branches:
       - main
       - 'arena/**'
+    tags:
+      - 'v*'
   workflow_dispatch:
 
 permissions:
@@ -114,6 +116,19 @@ jobs:
           set -eo pipefail
           cargo build -p photocraft-android --lib --target aarch64-linux-android \
             --profile android --keep-going --message-format=short
+
+      # The cdylib carries its own symbols; without this the APK is ~96 MiB. llvm-strip keeps the
+      # dynamic symbols the loader needs (android_main, ANativeActivity_onCreate, JNI entry points).
+      - name: Strip the library
+        shell: bash
+        run: |
+          set -eo pipefail
+          BIN="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          SO=target/aarch64-linux-android/android/libphotocraft_android.so
+          before=$(stat -c%s "$SO")
+          "$BIN/llvm-strip" --strip-unneeded "$SO"
+          after=$(stat -c%s "$SO")
+          echo "library: $((before / 1024 / 1024)) MiB -> $((after / 1024 / 1024)) MiB"
 
       - name: Put the library in the APK
         shell: bash

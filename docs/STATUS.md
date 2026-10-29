@@ -16,21 +16,36 @@ launching the app.
 
 ## Verification matrix
 
-| Claim | Evidence | Status |
-|---|---|---|
-| The workspace cross-compiles for `aarch64-linux-android` | CI job `apk`, `cargo build --profile android` | see [CI runs](#ci-runs) |
-| Host-side code passes its tests (save protocol, file naming, crash recovery, diagnostic log) | CI job `tests` | see [CI runs](#ci-runs) |
-| The APK carries `applicationId com.rea.imagestudio`, label "REA Image Studio", `minSdk 29`, `arm64-v8a` | CI `aapt2 dump badging` | see [CI runs](#ci-runs) |
-| The native library exports `android_main` and `ANativeActivity_onCreate` | CI `llvm-readelf --dyn-syms` | see [CI runs](#ci-runs) |
-| The Rust→Java entry point (`photocraftCall`) and `com/rea/imagestudio/MainActivity` are in the dex | CI `strings` over `classes.dex` | see [CI runs](#ci-runs) |
-| The app launches, renders, accepts touch, opens files, saves to Downloads | **no evidence — needs a device** | ✗ not verified |
-| Stylus pressure/tilt, soft keyboard, GPU path | **no evidence — needs a device** | ✗ not verified |
+First green build: [run 40865238933](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40865238933)
+(2026-10-29), commit `6c808cd`. The full report the build wrote about itself is in
+[`docs/ci/last-build.md`](ci/last-build.md) and is updated by every run.
 
-## CI runs
-
-| Run | Result | APK |
+| Claim | Evidence (verbatim from the build) | Status |
 |---|---|---|
-| [first build](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions) | pending | pending |
+| The workspace cross-compiles for `aarch64-linux-android` | `cargo build --profile android` succeeded | ✅ verified |
+| Host-side code passes its tests | CI job `Host tests` green: save protocol, file naming, crash recovery, diagnostic log | ✅ verified |
+| The APK carries our identity | `package: name='com.rea.imagestudio' versionCode='1' versionName='1.0.0'` | ✅ verified |
+| Our activity is the launcher | `launchable-activity: name='com.rea.imagestudio.MainActivity'` | ✅ verified |
+| The app is branded | `application-label:'REA Image Studio'` | ✅ verified |
+| The APK targets a real device | `minSdk 29` (Android 10), `targetSdkVersion:'35'`, `native-code: 'arm64-v8a'` | ✅ verified |
+| The native library is packaged and loadable | `lib/arm64-v8a/libphotocraft_android.so` with `android_main` and `ANativeActivity_onCreate` exported | ✅ verified |
+| The Rust→Java bridge survived the rebrand | `photocraftCall` found in `classes2.dex` | ✅ verified |
+| The Java shell compiled | `Lcom/rea/imagestudio/MainActivity;` in `classes2.dex` | ✅ verified |
+| **The app launches, renders, accepts touch, opens files, saves** | **no evidence — needs a device or emulator** | ❌ not verified |
+| Stylus pressure/tilt, soft keyboard, GPU path | no evidence | ❌ not verified |
+
+A note on the first two failed runs, since "it failed then passed" deserves an explanation: the
+first failure was a faulty check of mine — the app is **multidex** (`MainActivity` lands in
+`classes2.dex`), and the check only scanned `classes.dex`. The build itself was never broken. The
+check now enumerates every dex entry and runs `dexdump` over each, so a packaging regression cannot
+hide behind the same mistake.
+
+### How this was verified without a device
+
+The build inspects its own artifact with `aapt2 dump badging`, `unzip`, `llvm-readelf --dyn-syms`
+and `dexdump`, writes the result to `docs/ci/last-build.md`, and fails the job if any required fact
+is missing. That is strong evidence that the APK *is what it claims to be*. It is not evidence that
+the program behaves correctly when started — for that, see "How to verify on your own hardware".
 
 ## Known limitations
 

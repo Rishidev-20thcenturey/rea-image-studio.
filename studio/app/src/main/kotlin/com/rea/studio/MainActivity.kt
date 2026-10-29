@@ -95,8 +95,6 @@ class MainActivity : Activity() {
         buildStatus(root)
 
         setContentView(root)
-        // Start on the brush with its rail button lit, so the first stroke does what the screen says.
-        selectTool(Tool.BRUSH)
         newDocument(2048, 1536)
     }
 

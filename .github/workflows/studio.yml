@@ -200,7 +200,7 @@ jobs:
             [ -f "$f" ] && note "$(basename "$f"): $(stat -c%s "$f") bytes"
           done
           if [ "$count_dex" -gt 0 ]; then
-            for cls in MainActivity NativeCore EditorView WidgetsKt MainActivityKt; do
+            for cls in MainActivity NativeCore EditorView ColorPickerView SliderRow; do
               if grep -aq "Lcom/rea/studio/$cls;" "$RUNNER_TEMP"/dex/*.dex; then
                 note "found com/rea/studio/$cls"
               else

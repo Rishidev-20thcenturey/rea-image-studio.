@@ -1,0 +1,341 @@
+name: Studio app smoke test
+
+# The one question static inspection cannot answer: does the from-scratch app actually run?
+#
+# Builds an x86_64 build of rea-core (the shipped APK is arm64), boots an x86_64 emulator on the
+# runner's KVM device, installs, launches, draws a stroke with a real touch sequence, and records
+# the process state, logcat and a screenshot into docs/ci/studio-emulator/ so the evidence can be
+# read without the job log.
+#
+# Manual on purpose: it costs ~30-40 minutes and never gates anything.
+
+on:
+  push:
+    tags:
+      - 'studio-smoke-*'
+  workflow_dispatch:
+    inputs:
+      api_level:
+        description: 'Android API level of the system image'
+        required: false
+        default: '34'
+      boot_timeout:
+        description: 'Seconds to wait for the emulator to finish booting'
+        required: false
+        default: '720'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: studio-smoke
+  cancel-in-progress: true
+
+env:
+  NDK_VERSION: 27.2.12479018
+  CMDLINE_TOOLS_URL: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+
+jobs:
+  smoke:
+    name: Launch the app on an emulator
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Require a KVM device
+        shell: bash
+        run: |
+          if [ ! -e /dev/kvm ]; then
+            echo "::error title=No KVM::this runner cannot virtualise, so the emulator cannot boot"
+            exit 1
+          fi
+          ls -l /dev/kvm
+
+      - name: Install the Android SDK, emulator and system image
+        shell: bash
+        env:
+          API: ${{ inputs.api_level || '34' }}
+        run: |
+          set -eo pipefail
+          SDK="$HOME/android-sdk"
+          if [ ! -x "$SDK/cmdline-tools/latest/bin/sdkmanager" ]; then
+            mkdir -p "$SDK/cmdline-tools"
+            curl -fsSL -o "$RUNNER_TEMP/cmdline-tools.zip" "$CMDLINE_TOOLS_URL"
+            unzip -q "$RUNNER_TEMP/cmdline-tools.zip" -d "$RUNNER_TEMP/cmdline-tools"
+            mv "$RUNNER_TEMP/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+          fi
+          SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --sdk_root="$SDK" --licenses > /dev/null 2>&1 || true
+          "$SDKMANAGER" --sdk_root="$SDK" \
+            "platform-tools" "platforms;android-$API" "build-tools;35.0.0" \
+            "ndk;${NDK_VERSION}" "emulator" "system-images;android-$API;google_apis;x86_64"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+          echo "PATH=$SDK/cmdline-tools/latest/bin:$SDK/platform-tools:$SDK/emulator:$PATH" >> "$GITHUB_ENV"
+          # avdmanager and the emulator disagree on where an AVD lives on this runner; pin it.
+          mkdir -p "$HOME/.android/avd"
+          echo "ANDROID_AVD_HOME=$HOME/.android/avd" >> "$GITHUB_ENV"
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: x86_64-linux-android
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: studio/core -> target
+          key: studio-android-x86_64
+          cache-on-failure: true
+
+      - name: Build the x86_64 library
+        shell: bash
+        run: |
+          set -eo pipefail
+          BIN="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          export CARGO_TARGET_X86_64_LINUX_ANDROID_LINKER="$BIN/x86_64-linux-android29-clang"
+          export CC_x86_64_linux_android="$BIN/x86_64-linux-android29-clang"
+          export CXX_x86_64_linux_android="$BIN/x86_64-linux-android29-clang++"
+          export AR_x86_64_linux_android="$BIN/llvm-ar"
+          ( cd studio/core && cargo build --release --target x86_64-linux-android )
+          SO=studio/core/target/x86_64-linux-android/release/librea_core.so
+          "$BIN/llvm-strip" --strip-unneeded "$SO"
+          mkdir -p studio/app/src/main/jniLibs/x86_64
+          cp "$SO" studio/app/src/main/jniLibs/x86_64/
+          echo "library: $(( $(stat -c%s "$SO") / 1024 )) KiB"
+
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Build an x86_64 test APK
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle -p studio :app:assembleDebug --no-daemon --console=plain -PreaAbis=x86_64 2>&1 | tee "$RUNNER_TEMP/gradle-smoke.log"
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            msg=$(grep -E '^(e: |error:|FAILURE|\* What went wrong)' -A2 "$RUNNER_TEMP/gradle-smoke.log" | head -30 | tr '\n' ' ' | sed 's/%/%25/g')
+            echo "::error title=gradle build failed::$msg"
+            exit "$status"
+          fi
+          cp studio/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/rea-studio-x86_64.apk"
+          echo "APK: $(( $(stat -c%s "$RUNNER_TEMP/rea-studio-x86_64.apk") / 1024 / 1024 )) MiB"
+
+      - name: Boot the emulator
+        shell: bash
+        env:
+          API: ${{ inputs.api_level || '34' }}
+          BOOT_TIMEOUT: ${{ inputs.boot_timeout || '720' }}
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci/studio-emulator
+          LOG="$RUNNER_TEMP/smoke.txt"
+          : > "$LOG"
+          say() { echo "$*" | tee -a "$LOG"; }
+          try() { say "\$ $*"; "$@" >> "$LOG" 2>&1; local s=$?; say "(exit $s)"; return $s; }
+
+          say "== environment =="
+          say "java: $(java -version 2>&1 | head -1)"
+          say "emulator: $(command -v emulator || echo MISSING)"
+          say "adb: $(command -v adb || echo MISSING)"
+          say "kvm: $(ls -l /dev/kvm 2>&1)"
+
+          say ""
+          say "== create the AVD =="
+          echo "no" | avdmanager create avd -n rea-studio-smoke \
+            -k "system-images;android-$API;google_apis;x86_64" --abi x86_64 --force >> "$LOG" 2>&1
+          say "avdmanager exit: $?"
+          try avdmanager list avd
+
+          CFG="$(find "${ANDROID_AVD_HOME:-$HOME/.android/avd}" "$HOME/.config/.android/avd" -name config.ini -print -quit 2>/dev/null || true)"
+          say "avd config: ${CFG:-NOT FOUND}"
+          if [ -n "${CFG:-}" ]; then
+            say "== set a tablet-sized screen =="
+            sed -i 's/^hw\.lcd\.width=.*/hw.lcd.width=1600/; s/^hw\.lcd\.height=.*/hw.lcd.height=2560/; s/^hw\.lcd\.density=.*/hw.lcd.density=320/' "$CFG" 2>>"$LOG"
+            grep -q "^hw.lcd.width" "$CFG" || echo "hw.lcd.width=1600" >> "$CFG"
+            grep -q "^hw.lcd.height" "$CFG" || echo "hw.lcd.height=2560" >> "$CFG"
+            grep -q "^hw.lcd.density" "$CFG" || echo "hw.lcd.density=320" >> "$CFG"
+            grep -E "^hw\.lcd|^image\.sysdir|^abi\.type" "$CFG" | tee -a "$LOG"
+          fi
+
+          say ""
+          say "== start the emulator =="
+          emulator -avd rea-studio-smoke -no-window -no-audio -no-boot-anim -no-snapshot \
+            -gpu swiftshader_indirect -memory 4096 -partition-size 4096 -accel on \
+            > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          say "emulator pid: $!"
+
+          for i in $(seq 1 60); do
+            if adb devices 2>/dev/null | grep -q "emulator-.*device$"; then
+              say "device appeared after ${i} polls"
+              break
+            fi
+            sleep 2
+          done
+          try adb devices
+          if ! adb devices 2>/dev/null | grep -q "emulator-.*device$"; then
+            say "== the device never appeared: emulator log (tail) =="
+            tail -n 60 "$RUNNER_TEMP/emulator.log" >> "$LOG" 2>&1 || true
+            say "::error title=Emulator did not start::see docs/ci/studio-emulator/last-smoke.txt"
+            exit 1
+          fi
+
+          say ""
+          say "== wait for boot =="
+          deadline=$(( $(date +%s) + BOOT_TIMEOUT ))
+          booted=0
+          while [ "$(date +%s)" -lt "$deadline" ]; do
+            if [ "$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; then
+              booted=1
+              break
+            fi
+            sleep 5
+          done
+          say "boot_completed: $booted"
+          if [ "$booted" != "1" ]; then
+            say "== boot timed out: emulator log (tail) =="
+            tail -n 60 "$RUNNER_TEMP/emulator.log" >> "$LOG" 2>&1 || true
+            say "::error title=Emulator boot timed out::see docs/ci/studio-emulator/last-smoke.txt"
+            exit 1
+          fi
+          adb shell input keyevent 82 >> "$LOG" 2>&1 || true
+          {
+            echo "wm size: $(adb shell wm size 2>&1 | tr -d '\r')"
+            echo "wm density: $(adb shell wm density 2>&1 | tr -d '\r')"
+            echo "abi: $(adb shell getprop ro.product.cpu.abi 2>&1 | tr -d '\r')"
+            echo "sdk: $(adb shell getprop ro.build.version.sdk 2>&1 | tr -d '\r')"
+          } | tee -a "$LOG"
+
+      - name: Install, launch, and use the app
+        id: launch
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci/studio-emulator
+          OUT="$RUNNER_TEMP/smoke.txt"
+          touch "$OUT"
+          say() { echo "$*" | tee -a "$OUT"; }
+
+          say ""
+          say "== install =="
+          adb install -r "$RUNNER_TEMP/rea-studio-x86_64.apk" 2>&1 | tee -a "$OUT" || say "install failed"
+
+          say ""
+          say "== launch =="
+          adb logcat -c || true
+          adb shell am start -W -n com.rea.studio/.MainActivity 2>&1 | tee -a "$OUT" || true
+          sleep 15
+
+          say ""
+          say "== first screenshot (empty document) =="
+          adb exec-out screencap -p > docs/ci/studio-emulator/01-launch.png 2>/dev/null || say "screenshot failed"
+          say "bytes: $(stat -c%s docs/ci/studio-emulator/01-launch.png 2>/dev/null || echo 0)"
+
+          # A real touch sequence: press on the canvas and drag, the same events a finger makes.
+          # The canvas is the whole screen; the rail occupies the left edge, so keep clear of it.
+          say ""
+          say "== draw three strokes with the brush =="
+          adb shell input swipe 500 900 1300 1300 600 >> "$OUT" 2>&1 || say "swipe failed"
+          adb shell input swipe 1300 1300 700 1700 600 >> "$OUT" 2>&1 || true
+          adb shell input swipe 900 700 1100 1900 600 >> "$OUT" 2>&1 || true
+          sleep 3
+          adb exec-out screencap -p > docs/ci/studio-emulator/02-painted.png 2>/dev/null || true
+          say "bytes: $(stat -c%s docs/ci/studio-emulator/02-painted.png 2>/dev/null || echo 0)"
+
+          # Open the menu (the top-left icon) and screenshot the command list.
+          say ""
+          say "== open the menu =="
+          adb shell input tap 40 40 >> "$OUT" 2>&1 || true
+          sleep 4
+          adb exec-out screencap -p > docs/ci/studio-emulator/03-menu.png 2>/dev/null || true
+          say "bytes: $(stat -c%s docs/ci/studio-emulator/03-menu.png 2>/dev/null || echo 0)"
+          adb shell input keyevent 4 >> "$OUT" 2>&1 || true
+          sleep 2
+
+          say ""
+          say "== process =="
+          if adb shell ps -A 2>/dev/null | grep -qi "com.rea.studio"; then
+            adb shell ps -A | grep -i "com.rea.studio" | tee -a "$OUT"
+            echo "running=true" >> "$GITHUB_OUTPUT"
+          else
+            say "the app process is NOT running"
+            echo "running=false" >> "$GITHUB_OUTPUT"
+            say "::error title=The app is not running::the process died after launch"
+          fi
+
+          say ""
+          say "== crash / ANR / JNI errors in logcat =="
+          adb logcat -d 2>/dev/null \
+            | grep -iE "FATAL EXCEPTION|AndroidRuntime|ANR in|UnsatisfiedLink|com.rea.studio|reatudio" \
+            | head -80 | tee -a "$OUT" || say "(nothing matching)"
+
+          say ""
+          say "== activity state =="
+          adb shell dumpsys activity activities 2>/dev/null | grep -iE "com.rea.studio|mResumedActivity" | head -10 | tee -a "$OUT" || true
+
+          adb logcat -d 2>/dev/null | tail -n 400 > docs/ci/studio-emulator/logcat.txt || true
+          cp "$OUT" docs/ci/studio-emulator/last-smoke.txt
+
+      - name: Publish the smoke-test evidence
+        if: always() && (startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/'))
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci/studio-emulator
+          {
+            echo "<!-- Written by .github/workflows/studio-smoke.yml. Do not edit by hand. -->"
+            echo "# Studio app: emulator smoke test"
+            echo ""
+            echo "Run [$GITHUB_RUN_ID](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID), commit \`$GITHUB_SHA\`, $(date -u +%Y-%m-%dT%H:%M:%SZ)."
+            echo "x86_64 build of the same code the arm64 APK ships."
+            echo ""
+            echo '```'
+            cat docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || echo "(the smoke test did not reach the install step)"
+            echo '```'
+            for shot in 01-launch 02-painted 03-menu; do
+              [ -s "docs/ci/studio-emulator/$shot.png" ] && echo "" && echo "![$shot]($shot.png)"
+            done
+          } > docs/ci/studio-emulator/README.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="$GITHUB_REF_NAME"
+          case "$GITHUB_REF" in refs/tags/*) BRANCH="${GITHUB_EVENT_BRANCH:-main}";; esac
+          [ "$BRANCH" = "main" ] && BRANCH=main
+          git fetch -q origin "$BRANCH"
+          git reset -q --soft "origin/$BRANCH"
+          git add docs/ci/studio-emulator
+          if git diff --quiet --cached; then
+            echo "No new evidence to publish."
+            exit 0
+          fi
+          git commit -q -m "Record the studio emulator smoke test"
+          git push origin "HEAD:$BRANCH" || echo "::warning title=evidence::could not push the evidence commit"
+
+      - name: Summarise
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Studio app smoke test"
+            echo ""
+            echo "Process running after launch: **${{ steps.launch.outputs.running }}**"
+            echo ""
+            head -60 docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || echo "(no smoke report)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: studio-emulator-smoke
+          path: |
+            docs/ci/studio-emulator/
+            ${{ runner.temp }}/emulator.log
+          if-no-files-found: warn

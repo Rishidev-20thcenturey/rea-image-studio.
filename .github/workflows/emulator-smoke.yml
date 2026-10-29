@@ -222,7 +222,8 @@ jobs:
           cp "$OUT" docs/ci/emulator/last-smoke.txt
 
       - name: Publish the smoke-test evidence
-        if: always()
+        # main only, for the same reason as the build report.
+        if: always() && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         shell: bash
         run: |
           set -uo pipefail

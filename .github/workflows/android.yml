@@ -240,7 +240,8 @@ jobs:
           fi
 
       - name: Publish the inspection report into the repository
-        if: always() && github.event_name == 'push'
+        # main only: two branches writing the same generated file conflict on merge.
+        if: always() && github.event_name == 'push' && (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/'))
         shell: bash
         run: |
           set -uo pipefail

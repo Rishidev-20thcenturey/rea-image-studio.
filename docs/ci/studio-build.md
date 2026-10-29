@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `b7830c1c2b7e6009e7af9199de48313045244320`, run [40889326792](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40889326792), 2026-10-29T14:15:02Z.
+Commit `7706c183cf07cf271f961564102b91ec80883958`, run [40889745770](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40889745770), 2026-10-29T14:18:00Z.
 
 ```
 == badging ==
@@ -79,11 +79,16 @@ Java_com_rea_studio_NativeCore_undoName
 library size: 514 KiB
 
 == dex ==
+dex files: 3
 classes.dex: 2335104 bytes
-::error title=APK check failed::MainActivity is not in classes.dex
-::error title=APK check failed::NativeCore is not in classes.dex
-::error title=APK check failed::EditorView is not in classes.dex
+classes2.dex: 1812 bytes
+classes3.dex: 125484 bytes
+found com/rea/studio/MainActivity
+found com/rea/studio/NativeCore
+found com/rea/studio/EditorView
+::error title=APK check failed::com/rea/studio/WidgetsKt is not in any dex file
+::error title=APK check failed::com/rea/studio/MainActivityKt is not in any dex file
 
 APK size: 2 MiB
-APK sha256: fcf68a33e35f4c56a0de58bfc6824877ad6493c29372c4122779bb7ba89de682
+APK sha256: 17fdaac32f8b492554dc3ded1f5119c9ab7f740a55d799a4c89e7c7c8c755eb9
 ```

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The app name is a product name and is not translated. The licence notice stays in English
+         on purpose: a machine translation of a licence text would be worse than none. -->
+    <string name="app_name">REA Image Studio</string>
+    <string name="welcome_title">REA Image Studio</string>
+    <string name="welcome_message">REA Image Studio is a professional image editor for Android: layers and groups, masks, selections, brushes, adjustments and filters, with full PSD/PSB support.\n\nIt is built on the open-source PhotoCraft engine (storytold/photocraft) and the PhotoDroid Android shell (Idea-atmosphere/PhotoDroid), both MIT OR Apache-2.0. Their notices are kept in NOTICE, LICENSE-MIT, LICENSE-APACHE and ATTRIBUTION.md.</string>
+    <string name="welcome_source_card_title">Project source and licence (GitHub)</string>
+    <string name="welcome_thanks">Thank you to the PhotoCraft and PhotoDroid authors.</string>
+    <string name="welcome_close">Close</string>
+    <string name="welcome_dont_show_again">Don\'t show again</string>
+</resources>

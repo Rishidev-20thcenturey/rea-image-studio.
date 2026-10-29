@@ -1,0 +1,253 @@
+10-29 16:23:59.458  1732  1732 I RenderEngine: extensions: GL_EXT_debug_marker GL_EXT_robustness GL_OES_EGL_sync GL_OES_EGL_image GL_OES_EGL_image_external GL_OES_depth24 GL_OES_depth32 GL_OES_element_index_uint GL_OES_texture_float GL_OES_texture_float_linear GL_OES_compressed_paletted_texture GL_OES_compressed_ETC1_RGB8_texture GL_OES_depth_texture GL_OES_texture_half_float GL_OES_texture_half_float_linear GL_OES_packed_depth_stencil GL_OES_vertex_half_float GL_OES_standard_derivatives GL_OES_texture_npot GL_OES_rgb8_rgba8 GL_EXT_color_buffer_float GL_EXT_color_buffer_half_float GL_EXT_texture_format_BGRA8888 GL_APPLE_texture_format_BGRA8888 ANDROID_EMU_CHECKSUM_HELPER_v1 ANDROID_EMU_native_sync_v2 ANDROID_EMU_dma_v1 ANDROID_EMU_direct_mem ANDROID_EMU_host_composition_v1 ANDROID_EMU_host_composition_v2 ANDROID_EMU_vulkan ANDROID_EMU_deferred_vulkan_commands ANDROID_EMU_vulkan_null_optional_strings ANDROID_EMU_vulkan_create_resources_with_requirements ANDROID_EMU_YUV_Cache ANDROID_EMU_vulkan_ignored_handles ANDROID_EMU_vulkan_free_memory_sync ANDROID_EM
+10-29 16:24:01.987  1690  1690 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+10-29 16:24:02.540  1777  1777 I libc    : malloc_limit: Allocation limit enabled, max size 417913240 bytes
+10-29 16:24:03.797  1690  1690 I AndroidRuntime: Using default boot image
+10-29 16:24:03.797  1690  1690 I AndroidRuntime: Leaving lock profiling enabled
+10-29 16:24:04.122  1690  1690 I zygote64: option[43]=--generate-mini-debug-info
+10-29 16:24:04.122  1690  1690 I zygote64: option[45]=-Xfingerprint:google/sdk_gphone_x86_64/generic_x86_64:10/QSR1.211112.011/13135432:userdebug/dev-keys
+10-29 16:24:05.138  1691  1691 D AndroidRuntime: >>>>>> START com.android.internal.os.ZygoteInit uid 0 <<<<<<
+10-29 16:24:05.516  1691  1691 I AndroidRuntime: Using default boot image
+10-29 16:24:05.516  1691  1691 I AndroidRuntime: Leaving lock profiling enabled
+10-29 16:24:05.588  1691  1691 I zygote  : option[43]=--generate-mini-debug-info
+10-29 16:24:05.588  1691  1691 I zygote  : option[45]=-Xfingerprint:google/sdk_gphone_x86_64/generic_x86_64:10/QSR1.211112.011/13135432:userdebug/dev-keys
+10-29 16:24:08.252  1727  1727 I libc    : malloc_limit: Allocation limit enabled, max size 417913240 bytes
+10-29 16:24:18.688  1947  1947 E BatteryStatsImpl: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 16:24:18.688  1947  1947 E BatteryStatsImpl: 	at libcore.io.Linux.open(Native Method)
+10-29 16:24:18.688  1947  1947 E BatteryStatsImpl: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 16:24:18.688  1947  1947 E BatteryStatsImpl: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 16:24:18.688  1947  1947 E BatteryStatsImpl: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 16:24:18.702  1947  1947 E BatteryStatsImpl: 	at libcore.io.IoBridge.open(IoBridge.java:496)
+10-29 16:24:18.702  1947  1947 E BatteryStatsImpl: 	at libcore.io.Linux.open(Native Method)
+10-29 16:24:18.702  1947  1947 E BatteryStatsImpl: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
+10-29 16:24:18.702  1947  1947 E BatteryStatsImpl: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-29 16:24:18.702  1947  1947 E BatteryStatsImpl: 	at libcore.io.IoBridge.open(IoBridge.java:482)
+10-29 16:24:18.938  1947  1947 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:24:51.708  1947  1947 E SupplicantStaIfaceHal: Can't call setDebugParams, ISupplicant is null
+10-29 16:24:54.190  1947  1947 D AutofillManagerService: setLogLevelFromSettings(): level=2, debug=true, verbose=false
+10-29 16:24:56.626  1721  1721 W libc    : Unable to set property "vendor.wlan.firmware.version" to "1.0": error code: 0x18
+10-29 16:24:56.646  1721  1721 W libc    : Unable to set property "vendor.wlan.driver.version" to "1.0": error code: 0x18
+10-29 16:24:58.748  1721  1721 W libc    : Unable to set property "vendor.wlan.firmware.version" to "1.0": error code: 0x18
+10-29 16:24:58.750  1721  1721 W libc    : Unable to set property "vendor.wlan.driver.version" to "1.0": error code: 0x18
+10-29 16:25:09.271  1947  2080 E SupplicantStaIfaceHal: ISupplicantStaIface.setPowerSave failed: {.code = FAILURE_UNKNOWN, .debugMessage = }
+10-29 16:25:11.727  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:14.708  1707  1707 I GnssHAL_GnssInterface: getExtensionGnssDebug: GnssDebug interface not implemented by HAL
+10-29 16:25:17.757  2302  2302 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-29 16:25:17.998  2318  2318 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-29 16:25:21.925  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:21.967  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:26.784  2447  2475 W libc    : Unable to set property "qemu.gles" to "1": error code: 0x18
+10-29 16:25:30.323  2478  2501 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
+10-29 16:25:30.536  2142  2142 E libc    : Access denied finding property "ro.vendor.aware_available"
+10-29 16:25:32.285  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:34.489  1947  2239 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:35.527  2130  2130 I ChmraDebugLogger: [46] 
+10-29 16:25:36.150  1947  1973 I system_server: libdebuggerd_client: started dumping process 2142
+10-29 16:25:36.185  1796  1796 I /system/bin/tombstoned: registered intercept for pid 2142 and type kDebuggerdJavaBacktrace
+10-29 16:25:39.145  2558  2589 W libc    : Unable to set property "qemu.gles" to "1": error code: 0x18
+10-29 16:25:39.262  2130  2130 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 16:25:39.631  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 2142 and type kDebuggerdJavaBacktrace
+10-29 16:25:39.639  1947  1973 I system_server: libdebuggerd_client: done dumping process 2142
+10-29 16:25:39.706  1947  1973 I system_server: libdebuggerd_client: started dumping process 1947
+10-29 16:25:39.708  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1947 and type kDebuggerdJavaBacktrace
+10-29 16:25:39.965  2539  2539 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-29 16:25:42.827  2539  2595 I NativeLibraryUtils: Extraction to /data/user_de/0/com.google.android.gms/app_extracted_libs/x86/libconscrypt_gmscore_jni.so true
+10-29 16:25:42.974  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:43.327  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:45.110  2539  2595 I NativeLibraryUtils: Extraction to /data/user_de/0/com.google.android.gms/app_extracted_libs/x86_64/libconscrypt_gmscore_jni.so true
+10-29 16:25:45.331  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1947 and type kDebuggerdJavaBacktrace
+10-29 16:25:45.377  1947  1973 I system_server: libdebuggerd_client: done dumping process 1947
+10-29 16:25:45.547  1947  1973 I system_server: libdebuggerd_client: started dumping process 2430
+10-29 16:25:45.557  1796  1796 I /system/bin/tombstoned: registered intercept for pid 2430 and type kDebuggerdJavaBacktrace
+10-29 16:25:47.800  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 2430 and type kDebuggerdJavaBacktrace
+10-29 16:25:47.816  1947  1973 I system_server: libdebuggerd_client: done dumping process 2430
+10-29 16:25:47.863  1947  1973 I system_server: libdebuggerd_client: started dumping process 2340
+10-29 16:25:47.870  1796  1796 I /system/bin/tombstoned: registered intercept for pid 2340 and type kDebuggerdJavaBacktrace
+10-29 16:25:48.252  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:49.723  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:50.091  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 2340 and type kDebuggerdJavaBacktrace
+10-29 16:25:50.093  1947  1973 I system_server: libdebuggerd_client: done dumping process 2340
+10-29 16:25:50.135  1947  1973 I system_server: libdebuggerd_client: started dumping process 1575
+10-29 16:25:50.137  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1575 and type kDebuggerdNativeBacktrace
+10-29 16:25:50.166  1575  1575 I libc    : Requested dump for tid 1575 (Binder:1575_2)
+10-29 16:25:51.248  2655  2655 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:25:51.251  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1575 and type kDebuggerdNativeBacktrace
+10-29 16:25:51.377  2142  2417 W libc    : Unable to set property "qemu.gles" to "1": error code: 0x18
+10-29 16:25:52.140  1947  1973 E system_server: libdebuggerd_client: timeout expired
+10-29 16:25:52.385  1947  1973 I system_server: libdebuggerd_client: started dumping process 1727
+10-29 16:25:52.387  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1727 and type kDebuggerdNativeBacktrace
+10-29 16:25:52.395  1727  1727 I libc    : Requested dump for tid 1727 (audioserver)
+10-29 16:25:54.464  1947  1973 E system_server: libdebuggerd_client: failed to read status response from tombstoned: Try again
+10-29 16:25:54.469  1947  1973 I system_server: libdebuggerd_client: started dumping process 1732
+10-29 16:25:54.470  1796  1796 I /system/bin/tombstoned: intercept for pid 1727 and type kDebuggerdNativeBacktrace terminated: due to input
+10-29 16:25:54.471  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1732 and type kDebuggerdNativeBacktrace
+10-29 16:25:54.498  1732  1732 I libc    : Requested dump for tid 1732 (surfaceflinger)
+10-29 16:25:54.592  2665  2665 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:25:54.874  2675  2675 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:25:55.514  1947  1973 E system_server: libdebuggerd_client: failed to read status response from tombstoned: Try again
+10-29 16:25:55.520  1947  1973 I system_server: libdebuggerd_client: started dumping process 1760
+10-29 16:25:55.521  1796  1796 I /system/bin/tombstoned: intercept for pid 1732 and type kDebuggerdNativeBacktrace terminated: due to input
+10-29 16:25:55.522  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1760 and type kDebuggerdNativeBacktrace
+10-29 16:25:55.536  1760  1760 I libc    : Requested dump for tid 1760 (cameraserver)
+10-29 16:25:55.547  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:56.947  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:25:57.577  2692  2692 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:25:57.586  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1760 and type kDebuggerdNativeBacktrace
+10-29 16:25:58.426  1947  1973 I system_server: libdebuggerd_client: done dumping process 1760
+10-29 16:25:58.693  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:00.402  2684  2684 I GAv4    : Google Analytics 11.0.11 is starting up. To enable debug logging on a device run:
+10-29 16:26:00.402  2684  2684 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+10-29 16:26:01.272  2430  2430 D TelephonyDebugService: TelephonyDebugService()
+10-29 16:26:01.393  2430  2430 D CarrierConfigLoader: Build fingerprint changed. old: null new: google/sdk_gphone_x86_64/generic_x86_64:10/QSR1.211112.011/13135432:userdebug/dev-keys
+10-29 16:26:01.570  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:02.793  1947  1973 I system_server: libdebuggerd_client: started dumping process 2600
+10-29 16:26:02.815  1796  1796 I /system/bin/tombstoned: registered intercept for pid 2600 and type kDebuggerdJavaBacktrace
+10-29 16:26:03.078  1947  2720 W libc    : Unable to set property "qemu.gles" to "1": error code: 0x18
+10-29 16:26:04.830  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 2600 and type kDebuggerdJavaBacktrace
+10-29 16:26:04.838  1947  1973 I system_server: libdebuggerd_client: done dumping process 2600
+10-29 16:26:05.387  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:06.006  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:08.617  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:19.037  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:19.780  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:21.205  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:23.527  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:24.702  2753  2753 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-29 16:26:25.209  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:25.382  2753  2753 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-29 16:26:25.382  2753  2753 I AndroidRuntime: Using default boot image
+10-29 16:26:25.383  2753  2753 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-29 16:26:25.383  2753  2753 I AndroidRuntime: Leaving lock profiling enabled
+10-29 16:26:25.466  2753  2753 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-29 16:26:26.539  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:27.488  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:30.040  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:31.875  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:33.239  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:34.090  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:35.836  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:36.242  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:36.967  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:38.679  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:40.433  1947  2080 E SupplicantStaIfaceHal: ISupplicantStaIface.setPowerSave failed: {.code = FAILURE_UNKNOWN, .debugMessage = }
+10-29 16:26:43.723  2753  2753 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-29 16:26:43.769  1947  2080 E SupplicantStaIfaceHal: ISupplicantStaIface.setPowerSave failed: {.code = FAILURE_UNKNOWN, .debugMessage = }
+10-29 16:26:46.810  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.856  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.857  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.858  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.858  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.859  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.860  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.860  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.861  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.862  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.862  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:46.863  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:47.359  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:47.360  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:47.661  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:49.207  1947  1970 I system_server: libdebuggerd_client: started dumping process 1947
+10-29 16:26:49.299  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1947 and type kDebuggerdJavaBacktrace
+10-29 16:26:49.751  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:49.752  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:49.753  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:49.753  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:50.735  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.153  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1947 and type kDebuggerdJavaBacktrace
+10-29 16:26:53.170  1947  1970 I system_server: libdebuggerd_client: done dumping process 1947
+10-29 16:26:53.203  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.219  1947  1970 I system_server: libdebuggerd_client: started dumping process 1712
+10-29 16:26:53.231  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1712 and type kDebuggerdNativeBacktrace
+10-29 16:26:53.236  1712  1712 I libc    : Requested dump for tid 1712 (health@2.0-serv)
+10-29 16:26:53.241  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.242  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.243  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.243  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.476  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.477  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.478  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.478  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.479  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.480  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:53.862  2753  2753 D AndroidRuntime: Shutting down VM
+10-29 16:26:54.107  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.107  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.108  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.109  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.110  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.110  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.111  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.480  2934  2934 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:26:54.567  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1712 and type kDebuggerdNativeBacktrace
+10-29 16:26:54.758  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.759  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.760  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.762  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.762  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.763  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.763  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.905  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.906  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.907  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.908  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.909  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:54.910  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:55.225  1947  1970 E system_server: libdebuggerd_client: timeout expired
+10-29 16:26:55.252  1947  1970 I system_server: libdebuggerd_client: started dumping process 1697
+10-29 16:26:55.259  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1697 and type kDebuggerdNativeBacktrace
+10-29 16:26:55.262  1697  1697 I libc    : Requested dump for tid 1697 (healthd)
+10-29 16:26:54.911  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:55.671  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:56.297  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:56.298  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:56.300  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:56.301  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:56.302  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:56.303  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.085  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.086  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.088  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.243  2951  2951 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:26:57.317  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1697 and type kDebuggerdNativeBacktrace
+10-29 16:26:57.318  1947  1970 E system_server: libdebuggerd_client: timeout expired
+10-29 16:26:57.347  1947  1970 I system_server: libdebuggerd_client: started dumping process 1698
+10-29 16:26:57.349  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1698 and type kDebuggerdNativeBacktrace
+10-29 16:26:57.359  1698  1698 I libc    : Requested dump for tid 1698 (audio@2.0-servi)
+10-29 16:26:57.692  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.859  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.860  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.861  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.861  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.862  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.862  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.863  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:57.863  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:58.513  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:58.691  2959  2959 I crash_dump32: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:26:58.706  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1698 and type kDebuggerdNativeBacktrace
+10-29 16:26:58.787  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:58.788  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:58.789  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:58.789  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:58.793  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:26:59.356  1947  1970 E system_server: libdebuggerd_client: timeout expired
+10-29 16:26:59.399  1947  1970 I system_server: libdebuggerd_client: started dumping process 1700
+10-29 16:26:59.401  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1700 and type kDebuggerdNativeBacktrace
+10-29 16:26:59.403  1700  1700 I libc    : Requested dump for tid 1700 (provider@2.4-se)
+10-29 16:26:59.917  2969  2969 I crash_dump32: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:26:59.919  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1700 and type kDebuggerdNativeBacktrace
+10-29 16:27:00.405  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:27:00.752  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:27:01.047  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:27:01.225  1947  1970 I system_server: libdebuggerd_client: done dumping process 1700
+10-29 16:27:01.317  1947  1970 I system_server: libdebuggerd_client: started dumping process 1717
+10-29 16:27:01.478  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:27:01.488  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1717 and type kDebuggerdNativeBacktrace
+10-29 16:27:01.506  1717  1717 I libc    : Requested dump for tid 1717 (sensors@1.0-ser)
+10-29 16:27:02.955  1947  1972 W android.os.Debug: failed to get memory consumption info: -1
+10-29 16:27:03.119  2982  2982 I crash_dump64: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-29 16:27:03.200  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1717 and type kDebuggerdNativeBacktrace
+10-29 16:27:03.324  1947  1970 E system_server: libdebuggerd_client: timeout expired
+10-29 16:27:03.347  1947  1970 I system_server: libdebuggerd_client: started dumping process 1784
+10-29 16:27:03.349  1796  1796 I /system/bin/tombstoned: registered intercept for pid 1784 and type kDebuggerdNativeBacktrace
+10-29 16:27:04.276  1796  1796 I /system/bin/tombstoned: found intercept fd 512 for pid 1784 and type kDebuggerdNativeBacktrace

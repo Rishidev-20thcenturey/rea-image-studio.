@@ -167,95 +167,16 @@ jobs:
           arch: x86_64
           force-avd-creation: false
           disable-animations: true
-          # Two earlier attempts gave up after ten minutes without a booted device. Either the
-          # runner has no usable acceleration and the guest is running interpreted, or it is broken;
-          # half an hour distinguishes the two.
+          # A generous boot budget: the guest is emulated in software here and takes about two
+          # minutes to reach boot_completed, but a cold AVD on a busy runner can take much longer.
           emulator-boot-timeout: 1500
-          # Acceleration has failed twice on this runner, so this attempt asks for software
-          # emulation explicitly: slower, but it does not depend on KVM behaving.
+          # Software emulation, explicitly: it does not depend on KVM behaving, and it is what
+          # produced the one boot that has succeeded on this runner.
           emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -gpu swiftshader_indirect -accel off
-          script: |
-            # The action runs this with /bin/sh (dash). No `set -o pipefail`, no `set -u`, no
-            # bashisms, and every command is allowed to fail: a broken line must not stop the
-            # evidence from being collected.
-            TEMP="${RUNNER_TEMP:-/tmp}"
-            OUT="$TEMP/smoke.txt"
-            SHOTS="$TEMP/shots"
-            mkdir -p "$SHOTS"
-            : > "$OUT"
-            say() { echo "$*" >> "$OUT"; echo "$*"; }
-
-            say "== device =="
-            adb wait-for-device || true
-            sleep 25
-            adb devices >> "$OUT" 2>&1 || true
-            say "sdk: $(adb shell getprop ro.build.version.sdk 2>&1 | tr -d '\r')"
-            say "abi: $(adb shell getprop ro.product.cpu.abi 2>&1 | tr -d '\r')"
-            say "size: $(adb shell wm size 2>&1 | tr -d '\r')"
-
-            say ""
-            say "== install =="
-            adb install -r "$TEMP/rea-studio-x86_64.apk" >> "$OUT" 2>&1 || say "install failed"
-
-            say ""
-            say "== launch =="
-            adb logcat -c >> "$OUT" 2>&1 || true
-            adb shell am start -W -n com.rea.studio/.MainActivity >> "$OUT" 2>&1 || true
-            sleep 12
-
-            say ""
-            say "== screenshot: first frame =="
-            adb exec-out screencap -p > "$SHOTS/01-launch.png" 2>/dev/null || say "screenshot failed"
-            say "bytes: $(stat -c%s "$SHOTS/01-launch.png" 2>/dev/null || echo 0)"
-
-            # Real touch events on the canvas: press, drag, lift. The rail is on the left edge.
-            say ""
-            say "== draw three strokes with the brush =="
-            adb shell input swipe 500 900 1300 1300 600 >> "$OUT" 2>&1 || say "swipe failed"
-            adb shell input swipe 1300 1300 700 1700 600 >> "$OUT" 2>&1 || true
-            adb shell input swipe 900 700 1100 1900 600 >> "$OUT" 2>&1 || true
-            sleep 3
-            adb exec-out screencap -p > "$SHOTS/02-painted.png" 2>/dev/null || true
-            say "bytes: $(stat -c%s "$SHOTS/02-painted.png" 2>/dev/null || echo 0)"
-
-            say ""
-            say "== undo, then the menu =="
-            adb shell input tap 660 120 >> "$OUT" 2>&1 || true
-            sleep 2
-            adb shell input tap 40 40 >> "$OUT" 2>&1 || true
-            sleep 4
-            adb exec-out screencap -p > "$SHOTS/03-menu.png" 2>/dev/null || true
-            say "bytes: $(stat -c%s "$SHOTS/03-menu.png" 2>/dev/null || echo 0)"
-            adb shell input keyevent 4 >> "$OUT" 2>&1 || true
-            sleep 2
-
-            say ""
-            say "== the app's own boot log =="
-            adb shell run-as com.rea.studio cat files/diag/boot.log >> "$OUT" 2>&1 \
-              || say "no boot log (run-as refused, or nothing was written)"
-            adb shell run-as com.rea.studio cat files/diag/crash.txt >> "$OUT" 2>&1 || true
-
-            say ""
-            say "== process =="
-            if adb shell ps -A 2>/dev/null | grep -qi "com.rea.studio"; then
-              adb shell ps -A 2>/dev/null | grep -i "com.rea.studio" >> "$OUT" 2>&1 || true
-              say "the app process is running"
-            else
-              say "the app process is NOT running"
-            fi
-
-            say ""
-            say "== crash, ANR and JNI errors =="
-            adb logcat -d 2>/dev/null \
-              | grep -iE "FATAL EXCEPTION|AndroidRuntime|ANR in|UnsatisfiedLink|com.rea.studio" \
-              | head -80 >> "$OUT" || say "(nothing matching)"
-
-            adb logcat -d 2>/dev/null | tail -n 400 > "$TEMP/logcat-tail.txt" || true
-            cp "$OUT" "$TEMP/last-smoke.txt" || true
-            cp "$SHOTS/01-launch.png" "$TEMP/01-launch.png" 2>/dev/null || true
-            cp "$SHOTS/02-painted.png" "$TEMP/02-painted.png" 2>/dev/null || true
-            cp "$SHOTS/03-menu.png" "$TEMP/03-menu.png" 2>/dev/null || true
-            cp "$TEMP/logcat-tail.txt" "$TEMP/logcat.txt" 2>/dev/null || true
+          # The whole probe lives in a POSIX-sh script that `sh -n` checks in this repository,
+          # rather than in YAML: the action runs its script with dash, and an inline multi-line
+          # script there has cost three runs already.
+          script: sh studio/ci/device-smoke.sh
 
       - name: Publish the smoke-test evidence
         if: always() && (startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/'))
@@ -289,7 +210,7 @@ jobs:
               tail -80 docs/ci/studio-emulator/device-log.txt
               echo '```'
             fi
-            for shot in 01-launch 02-painted 03-menu 04-layers; do
+            for shot in 01-launch 02-painted 03-menu; do
               [ -s "docs/ci/studio-emulator/$shot.png" ] && echo "" && echo "![$shot]($shot.png)"
             done
           } > docs/ci/studio-emulator/README.md

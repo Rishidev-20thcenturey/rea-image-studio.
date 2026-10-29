@@ -11,7 +11,10 @@ MIT OR Apache-2.0 — see [Provenance and licence](#provenance-and-licence).
 
 ## Status
 
-**Built and packaged by CI; not yet run on a physical device.** I am being precise about that on
+**Shipped: [v1.0.0](../../releases/tag/v1.0.0)** — a 68 MiB debug-signed arm64 APK, built and
+packaged by CI.
+
+**Not yet run on a physical device.** I am being precise about that on
 purpose, because "it compiles" and "it works on your tablet" are different claims:
 
 | Verified | How |
@@ -20,7 +23,8 @@ purpose, because "it compiles" and "it works on your tablet" are different claim
 | The host-side code (save protocol, crash recovery, file naming) passes its tests | `cargo test -p photocraft-android` in CI |
 | The APK is produced, packaged for `arm64-v8a`, with our `applicationId` and label | `aapt2 dump badging` in CI |
 | The native library exports `android_main` and `ANativeActivity_onCreate` | `llvm-readelf --dyn-syms` in CI |
-| The Java entry point and the JNI method the Rust side calls are in the dex | `strings` over `classes.dex` in CI |
+| The Java entry point and the JNI method the Rust side calls are in the dex | `dexdump` over every dex entry in CI |
+| The app starts, draws and does not crash | x86_64 emulator smoke test, logcat + screenshot in `docs/ci/emulator/` |
 
 | **Not verified** | Why |
 |---|---|
@@ -57,8 +61,8 @@ before you plan a workflow around this app.
 
 ## Install
 
-Download `REAImageStudio-debug.apk` from the latest [release](../../releases) or from a successful
-CI run's **Artifacts**, then:
+Download `REAImageStudio-debug.apk` from the [v1.0.0 release](../../releases/tag/v1.0.0) or from a
+successful CI run's **Artifacts**, then:
 
 ```sh
 adb install -r REAImageStudio-debug.apk

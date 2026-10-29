@@ -168,6 +168,20 @@ pub extern "system" fn Java_com_rea_studio_NativeCore_documentSize(mut env: JNIE
 
 /// "x,y,w,h" of the selected area; the whole canvas when nothing is selected.
 #[no_mangle]
+pub extern "system" fn Java_com_rea_studio_NativeCore_hasSelection(_env: JNIEnv, _c: JClass, handle: jlong) -> jboolean {
+    let m = docs();
+    match m.get(&(handle as u64)) {
+        Some(doc) => {
+            if doc.has_selection() {
+                1
+            } else {
+                0
+            }
+        }
+        None => 0,
+    }
+}
+
 pub extern "system" fn Java_com_rea_studio_NativeCore_selectionBounds(mut env: JNIEnv, _c: JClass, handle: jlong) -> jstring {
     let m = docs();
     let s = m

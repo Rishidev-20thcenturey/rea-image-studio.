@@ -1,0 +1,6 @@
+// The original REA Image Studio app. Its engine is studio/core (Rust); this project only packages
+// the Android UI and the compiled library.
+plugins {
+    id 'com.android.application' version '8.7.3' apply false
+    id 'org.jetbrains.kotlin.android' version '2.0.21' apply false
+}

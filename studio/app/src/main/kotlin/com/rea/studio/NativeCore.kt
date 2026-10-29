@@ -22,6 +22,7 @@ object NativeCore {
     external fun closeDocument(handle: Long): Boolean
     external fun documentSize(handle: Long): String
     external fun selectionBounds(handle: Long): String
+    external fun hasSelection(handle: Long): Boolean
 
     // --- rendering ---
     external fun render(

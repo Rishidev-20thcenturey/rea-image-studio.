@@ -195,6 +195,12 @@ impl Document {
             bounds: Rect::empty(),
         };
         self.stroke_tool = tool;
+        if tool >= 2 {
+            let idx = self.active.min(self.layers.len().saturating_sub(1));
+            self.shape_base = Some((idx, self.layers[idx].px.clone()));
+        } else {
+            self.shape_base = None;
+        }
         if tool <= 1 {
             self.stamp_at(x, y, self.stroke.last_pressure);
         }
@@ -238,6 +244,7 @@ impl Document {
     pub fn stroke_end(&mut self) {
         self.stroke.active = false;
         self.stroke.residual = 0.0;
+        self.shape_base = None;
         let b = self.stroke.bounds;
         if !b.is_empty() {
             self.mark_dirty(b.expand_clamped(2, self.w, self.h));
@@ -333,6 +340,12 @@ impl Document {
             x0.max(x1).ceil(),
             y0.max(y1).ceil(),
         );
+        // Start from the pixels the drag began with, so the preview can shrink as well as grow.
+        if let Some((base_idx, base)) = self.shape_base.clone() {
+            if base_idx < self.layers.len() {
+                self.layers[base_idx].px = base;
+            }
+        }
         let mut touched = Rect::empty();
         {
             let layer = &mut self.layers[idx];

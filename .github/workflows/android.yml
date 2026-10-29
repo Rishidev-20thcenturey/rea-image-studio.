@@ -12,6 +12,11 @@ on:
     branches:
       - main
       - 'arena/**'
+    # The from-scratch app lives in studio/ and has its own workflow (studio.yml); a change there
+    # cannot break this build, so it does not pay for it. docs/ holds generated evidence commits.
+    paths-ignore:
+      - 'studio/**'
+      - 'docs/**'
     tags:
       - 'v*'
   workflow_dispatch:

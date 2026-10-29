@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- The editor's own dark theme: the canvas is the interface, so the window is black and the
+         system bars are transparent while the app is edge to edge. -->
+    <style name="ReaTheme" parent="@android:style/Theme.Material.NoActionBar">
+        <item name="android:windowBackground">#FF0E1014</item>
+        <item name="android:colorAccent">#FF6FA8FF</item>
+        <item name="android:statusBarColor">#00000000</item>
+        <item name="android:navigationBarColor">#00000000</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="p">shortEdges</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>

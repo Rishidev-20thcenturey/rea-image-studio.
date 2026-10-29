@@ -264,6 +264,9 @@ pub struct Document {
     pub stroke: StrokeState,
     /// The tool the current stroke belongs to: 0 brush, 1 eraser, 2 rectangle, 3 ellipse.
     pub stroke_tool: u8,
+    /// For a shape drag: the pixels the layer had when the drag started, so each preview can be
+    /// drawn from them instead of stacking on the previous preview.
+    pub shape_base: Option<(usize, Arc<Vec<u8>>)>,
 
     cache: Option<Arc<Vec<u8>>>,
     cache_dirty: Rect,
@@ -285,6 +288,7 @@ impl Document {
             name: "Untitled".to_string(),
             stroke: StrokeState::default(),
             stroke_tool: 0,
+            shape_base: None,
             cache: None,
             cache_dirty: Rect::new(0, 0, w, h),
         };
@@ -946,6 +950,7 @@ impl Document {
             name: "Untitled".to_string(),
             stroke: StrokeState::default(),
             stroke_tool: 0,
+            shape_base: None,
             cache: None,
             cache_dirty: Rect::new(0, 0, w, h),
         };

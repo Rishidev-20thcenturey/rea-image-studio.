@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `85e9353967f84a3bd85b312459a2cb2f0b308a6f`, run [40908995128](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40908995128), 2026-10-29T16:12:47Z.
+Commit `cfff7c54cf9f42fc03d44ed1471ac5cf45e34f28`, run [40909515985](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40909515985), 2026-10-29T16:16:30Z.
 
 ```
 == badging ==
@@ -79,6 +79,17 @@ Java_com_rea_studio_NativeCore_undo
 Java_com_rea_studio_NativeCore_undoName
 library size: 556 KiB
 
+== ELF LOAD alignment (must be 0x4000 for 16 KiB pages) ==
+  LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x0215e8 0x0215e8 R   0x4000
+  LOAD           0x0215e8 0x00000000000255e8 0x00000000000255e8 0x065138 0x065138 R E 0x4000
+  LOAD           0x086720 0x000000000008e720 0x000000000008e720 0x003680 0x0038e0 RW  0x4000
+  LOAD           0x089da0 0x0000000000095da0 0x0000000000095da0 0x000ae0 0x0013d0 RW  0x4000
+
+== shared objects required ==
+  0x0000000000000001 (NEEDED)       Shared library: [libdl.so]
+  0x0000000000000001 (NEEDED)       Shared library: [libm.so]
+  0x0000000000000001 (NEEDED)       Shared library: [libc.so]
+
 == dex ==
 dex files: 3
 classes.dex: 2335104 bytes
@@ -91,5 +102,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: ea622b8dd4aa5a438cb91c69d3c122218263ddffcbfece3bd9e3ddd692a79c83
+APK sha256: e466adeeed5babe30d031a34eaeb3b5e0550fdf3d69a42fc232b9a0d98519014
 ```

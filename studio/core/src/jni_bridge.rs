@@ -69,6 +69,15 @@ fn write_ints(env: &mut JNIEnv, arr: &JIntArray, data: &[jint]) {
     }
 }
 
+/// ARGB pixels are u32 in the core and jint (i32) on the Java side; convert on the way out.
+fn write_pixels(env: &mut JNIEnv, arr: &JIntArray, data: &[u32]) {
+    if data.is_empty() {
+        return;
+    }
+    let converted: Vec<jint> = data.iter().map(|v| *v as jint).collect();
+    let _ = env.set_int_array_region(arr, 0, &converted);
+}
+
 fn read_floats(env: &mut JNIEnv, arr: &JFloatArray) -> Vec<f32> {
     let len = env.get_array_length(arr).unwrap_or(0).max(0) as usize;
     let mut buf = vec![0f32; len];
@@ -220,7 +229,7 @@ fn render_impl(
     if outw <= 0 || outh <= 0 {
         return 0;
     }
-    let mut buf = vec![0i32; (outw as usize) * (outh as usize)];
+    let mut buf = vec![0u32; (outw as usize) * (outh as usize)];
     {
         let mut m = docs();
         match m.get_mut(&(handle as u64)) {
@@ -237,7 +246,7 @@ fn render_impl(
             }
         }
     }
-    write_ints(env, out, &buf);
+    write_pixels(env, out, &buf);
     1
 }
 
@@ -254,7 +263,7 @@ pub extern "system" fn Java_com_rea_studio_NativeCore_layerThumb(
     if outw <= 0 || outh <= 0 {
         return 0;
     }
-    let mut buf = vec![0i32; (outw as usize) * (outh as usize)];
+    let mut buf = vec![0u32; (outw as usize) * (outh as usize)];
     {
         let m = docs();
         match m.get(&(handle as u64)) {
@@ -262,7 +271,7 @@ pub extern "system" fn Java_com_rea_studio_NativeCore_layerThumb(
             None => return 0,
         }
     }
-    write_ints(&mut env, &out, &buf);
+    write_pixels(&mut env, &out, &buf);
     1
 }
 

@@ -489,7 +489,7 @@ impl Document {
             self.cache = Some(Arc::new(vec![0u8; full]));
             self.cache_dirty = Rect::new(0, 0, self.w, self.h);
         }
-        let dirty = self.cache_dirty.take();
+        let dirty = std::mem::replace(&mut self.cache_dirty, Rect::empty());
         if dirty.is_empty() {
             return;
         }

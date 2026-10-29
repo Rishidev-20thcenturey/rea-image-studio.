@@ -138,5 +138,5 @@ jobs:
             echo "--- tail ---"
             tail -n 40 "$LOG"
           } > "$RUNNER_TEMP/report.txt"
-          enc=$(tr '\n' '~' < "$RUNNER_TEMP/report.txt" | sed 's/~/%%0A/g; s/%%/%%25/g')
+          enc=$(tr '\n' '~' < "$RUNNER_TEMP/report.txt" | sed 's/~/%0A/g; s/%/%25/g; s/%25%0A/%0A/g')
           echo "::error title=arm64 build::$enc"

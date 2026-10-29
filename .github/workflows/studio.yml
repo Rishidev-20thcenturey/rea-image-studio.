@@ -218,20 +218,17 @@ jobs:
               OFFSET=$(grep -i "offset of local header" "$RUNNER_TEMP/entry.txt" | grep -o "[0-9]\+" | head -1 || true)
               note "compression: ${METHOD:-unknown}"
               note "offset of local header: ${OFFSET:-unknown}"
-              if [ -n "${METHOD:-}" ] && echo "$METHOD" | grep -qi deflat; then
-                note "deflated: the library is extracted at install, so archive alignment is irrelevant"
-              elif [ -n "${METHOD:-}" ] && echo "$METHOD" | grep -qi store; then
-                if [ -z "${OFFSET:-}" ] || [ $(( OFFSET % 16384 )) -ne 0 ]; then
-                  bad "the library is stored uncompressed at offset ${OFFSET:-unknown}, which is not 16 KiB aligned; it will fail to load on a 16 KiB-page device"
-                else
-                  note "stored, and 16 KiB aligned"
-                fi
-              else
-                note "(compression method not recognised; alignment not asserted)"
-              fi
-              # Independent of alignment: is extraction actually enabled in the manifest?
+              # The manifest flag decides which rule applies, so read it first.
               "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump xmltree --file AndroidManifest.xml "$APK" 2>/dev/null \
-                | grep -i "extractNativeLibs" | head -2 | tee -a "$REPORT" || true
+                > "$RUNNER_TEMP/manifest-tree.txt" || true
+              if grep -qi "extractNativeLibs.*=true" "$RUNNER_TEMP/manifest-tree.txt"; then
+                note "extractNativeLibs=true: the library is unpacked at install, so the archive offset does not matter"
+              elif [ -z "${OFFSET:-}" ] || [ $(( OFFSET % 16384 )) -ne 0 ]; then
+                bad "the library is mapped from the archive at offset ${OFFSET:-unknown}, which is not 16 KiB aligned; it will fail to load on a 16 KiB-page device"
+              else
+                note "mapped from the archive, and 16 KiB aligned"
+              fi
+              grep -i "extractNativeLibs" "$RUNNER_TEMP/manifest-tree.txt" | head -2 | tee -a "$REPORT" || true
             else
               note "(zipinfo not available; packaging not checked)"
             fi

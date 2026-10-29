@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `3a35b338cc9bf550960f9c91305ca5f6fa16d6b6`, run [40913234800](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40913234800), 2026-10-29T16:38:41Z.
+Commit `505e319be59ee9ddb3cb6c87ef1e61abc1a4c594`, run [40916759185](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40916759185), 2026-10-29T17:00:15Z.
 
 ```
 == badging ==
@@ -102,5 +102,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: de2f7c523ce1b67021f1477ae5409fa68c6b1e4314e0c8dea2aa3e843753086b
+APK sha256: 2fad55ef8cdc7de6739b490ff97fbb22d3098553e5ec1e2f7690b54937e4c4e8
 ```

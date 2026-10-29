@@ -1,11 +1,11 @@
-Build logs for commit b7830c1c2b7e6009e7af9199de48313045244320, run 40889326792.
+Build logs for commit 7706c183cf07cf271f961564102b91ec80883958, run 40889745770.
 
 ===== cargo =====
 [1m[92m    Updating[0m crates.io index
 [1m[92m     Locking[0m 30 packages to highest compatible versions
 [1m[92m      Adding[0m jni v0.21.1 [1m[33m(available: v0.22.4)[0m
 [1m[92m   Compiling[0m rea-core v0.1.0 (/home/runner/work/rea-image-studio./rea-image-studio./studio/core)
-[1m[92m    Finished[0m `release` profile [optimized] target(s) in 3.59s
+[1m[92m    Finished[0m `release` profile [optimized] target(s) in 3.48s
 
 ===== gradle =====
 To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/8.10.2/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
@@ -33,8 +33,8 @@ Installing Android SDK Platform-Tools in /home/runner/android-sdk/platform-tools
 > Task :app:mapDebugSourceSetPaths
 > Task :app:generateDebugResources
 > Task :app:packageDebugResources
-> Task :app:mergeDebugResources
 > Task :app:createDebugCompatibleScreenManifests
+> Task :app:mergeDebugResources
 > Task :app:extractDeepLinksDebug
 > Task :app:parseDebugLocalResources
 > Task :app:processDebugMainManifest
@@ -43,16 +43,16 @@ Installing Android SDK Platform-Tools in /home/runner/android-sdk/platform-tools
 > Task :app:mergeDebugShaders
 > Task :app:compileDebugShaders NO-SOURCE
 > Task :app:generateDebugAssets UP-TO-DATE
+> Task :app:processDebugManifestForPackage
 > Task :app:mergeDebugAssets
 > Task :app:compressDebugAssets
 > Task :app:desugarDebugFileDependencies
-> Task :app:processDebugManifestForPackage
-> Task :app:checkDebugDuplicateClasses
 > Task :app:processDebugResources
-> Task :app:mergeExtDexDebug
+> Task :app:checkDebugDuplicateClasses
 > Task :app:mergeLibDexDebug
 > Task :app:mergeDebugJniLibFolders
 > Task :app:mergeDebugNativeLibs
+> Task :app:mergeExtDexDebug
 > Task :app:validateSigningDebug
 > Task :app:writeDebugAppMetadata
 > Task :app:writeDebugSigningConfigVersions
@@ -70,7 +70,7 @@ Unable to strip the following libraries, packaging them as they are: librea_core
 > Task :app:packageDebug
 > Task :app:createDebugApkListingFileRedirect
 > Task :app:assembleDebug
-gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build_apk-1793283254700.json
+gradle/actions: Writing build results to /home/runner/work/_temp/.gradle-actions/build-results/build_apk-1793283428785.json
 
-BUILD SUCCESSFUL in 49s
+BUILD SUCCESSFUL in 55s
 35 actionable tasks: 35 executed

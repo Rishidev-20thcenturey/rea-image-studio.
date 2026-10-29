@@ -70,6 +70,11 @@ class EditorView(context: Context) : View(context) {
     private var docW = 0
     private var docH = 0
     private var hasSelection = false
+    // Cached selection rectangle: onDraw must not pay for a JNI call and a string parse per frame.
+    private var selX = 0
+    private var selY = 0
+    private var selW = 0
+    private var selH = 0
 
     // Touch state.
     private var strokeOn = false
@@ -137,6 +142,11 @@ class EditorView(context: Context) : View(context) {
             return
         }
         hasSelection = NativeCore.hasSelection(handle)
+        val b = NativeCore.selectionBounds(handle).split(',')
+        selX = b.getOrNull(0)?.toIntOrNull() ?: 0
+        selY = b.getOrNull(1)?.toIntOrNull() ?: 0
+        selW = b.getOrNull(2)?.toIntOrNull() ?: 0
+        selH = b.getOrNull(3)?.toIntOrNull() ?: 0
     }
 
     fun invalidateDocument() {
@@ -215,13 +225,13 @@ class EditorView(context: Context) : View(context) {
 
     private fun drawSelection(canvas: Canvas) {
         if (!hasSelection || handle == 0L) return
-        val b = NativeCore.selectionBounds(handle).split(',')
-        val x = b.getOrNull(0)?.toIntOrNull() ?: return
-        val y = b.getOrNull(1)?.toIntOrNull() ?: return
-        val w = b.getOrNull(2)?.toIntOrNull() ?: return
-        val h = b.getOrNull(3)?.toIntOrNull() ?: return
-        if (w <= 0 || h <= 0) return
-        val r = RectF(docToViewX(x.toFloat()), docToViewY(y.toFloat()), docToViewX((x + w).toFloat()), docToViewY((y + h).toFloat()))
+        if (selW <= 0 || selH <= 0) return
+        val r = RectF(
+            docToViewX(selX.toFloat()),
+            docToViewY(selY.toFloat()),
+            docToViewX((selX + selW).toFloat()),
+            docToViewY((selY + selH).toFloat())
+        )
         canvas.drawRect(r, dashShadow)
         canvas.drawRect(r, dash)
     }

@@ -1,25 +1,25 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `f08ce46b0fa30f78285726333b61f1ac5af2d461`, run [40898357097](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40898357097), 2026-10-29T15:10:02Z.
+Commit `85e9353967f84a3bd85b312459a2cb2f0b308a6f`, run [40908995128](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40908995128), 2026-10-29T16:12:47Z.
 
 ```
 == badging ==
 package: name='com.rea.studio' versionCode='1' versionName='0.1.0' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
 targetSdkVersion:'35'
-application-label:'REA Image Studio'
+application-label:'REA Studio'
 launchable-activity: name='com.rea.studio.MainActivity'  label='' icon=''
 native-code: 'arm64-v8a'
 
 == archive ==
   2335104  1981-01-01 01:01   classes.dex
      1812  1981-01-01 01:01   classes2.dex
-   128704  1981-01-01 01:01   classes3.dex
-   527472  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
-     1448  1981-01-01 01:01   resources.arsc
+   145944  1981-01-01 01:01   classes3.dex
+   569520  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
+     1440  1981-01-01 01:01   resources.arsc
 
 == native exports ==
-JNI entry points: 56
+JNI entry points: 57
 Java_com_rea_studio_NativeCore_activeLayer
 Java_com_rea_studio_NativeCore_addLayer
 Java_com_rea_studio_NativeCore_addLayerFromPixels
@@ -67,6 +67,7 @@ Java_com_rea_studio_NativeCore_selectPolygon
 Java_com_rea_studio_NativeCore_selectRect
 Java_com_rea_studio_NativeCore_selectionBounds
 Java_com_rea_studio_NativeCore_selectionToMask
+Java_com_rea_studio_NativeCore_selfTest
 Java_com_rea_studio_NativeCore_setLayerBlend
 Java_com_rea_studio_NativeCore_setLayerName
 Java_com_rea_studio_NativeCore_setLayerOpacity
@@ -76,13 +77,13 @@ Java_com_rea_studio_NativeCore_strokeEnd
 Java_com_rea_studio_NativeCore_strokeTo
 Java_com_rea_studio_NativeCore_undo
 Java_com_rea_studio_NativeCore_undoName
-library size: 515 KiB
+library size: 556 KiB
 
 == dex ==
 dex files: 3
 classes.dex: 2335104 bytes
 classes2.dex: 1812 bytes
-classes3.dex: 128704 bytes
+classes3.dex: 145944 bytes
 found com/rea/studio/MainActivity
 found com/rea/studio/NativeCore
 found com/rea/studio/EditorView
@@ -90,5 +91,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: 37a8a149abf38508edf1e2c18e6a74cd5a7a3dcfc015118fe1b7afcb01815a32
+APK sha256: ea622b8dd4aa5a438cb91c69d3c122218263ddffcbfece3bd9e3ddd692a79c83
 ```

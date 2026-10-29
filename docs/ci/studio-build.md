@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `7706c183cf07cf271f961564102b91ec80883958`, run [40889745770](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40889745770), 2026-10-29T14:18:00Z.
+Commit `050edf8ee8881d2626b6be6aee68727ff33d3868`, run [40890263170](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40890263170), 2026-10-29T14:20:59Z.
 
 ```
 == badging ==
@@ -86,9 +86,9 @@ classes3.dex: 125484 bytes
 found com/rea/studio/MainActivity
 found com/rea/studio/NativeCore
 found com/rea/studio/EditorView
-::error title=APK check failed::com/rea/studio/WidgetsKt is not in any dex file
-::error title=APK check failed::com/rea/studio/MainActivityKt is not in any dex file
+found com/rea/studio/ColorPickerView
+found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: 17fdaac32f8b492554dc3ded1f5119c9ab7f740a55d799a4c89e7c7c8c755eb9
+APK sha256: 8a130750fa16a183d90421b81ec4548da6f65f7db0750b5a42fcc94a366e3961
 ```

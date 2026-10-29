@@ -9,10 +9,25 @@ the egui interface are shared with the desktop editor; this fork supplies its ow
 identity, launcher icon, storage layout and documentation. Both upstream projects are
 MIT OR Apache-2.0 — see [Provenance and licence](#provenance-and-licence).
 
+## Two apps live in this repository
+
+1. **The fork, v1.0.0** — `android/`. The PhotoDroid/PhotoCraft engine with our identity on it: the
+   feature-rich app, and the honest description of *whose* engine it is is below.
+2. **The app written from scratch** — [`studio/`](docs/STUDIO.md). Kotlin UI over my own Rust image
+   core, called over JNI, 100% this repository's code: `com.rea.studio`, ~2 MiB, and a smaller but
+   fully defensible feature set.
+
+They are separate applications with separate package names and can be installed side by side. This
+document covers the fork; [docs/STUDIO.md](docs/STUDIO.md) covers the original app.
+
 ## Status
 
 **Shipped: [v1.0.0](../../releases/tag/v1.0.0)** — a 68 MiB debug-signed arm64 APK, built and
 packaged by CI.
+
+**The from-scratch app: [app-v0.1.1](../../releases/tag/app-v0.1.1)** — an arm64 debug-signed APK of
+`studio/`, built and inspected by CI. Its evidence, feature table and limitations are in
+[docs/STUDIO.md](docs/STUDIO.md).
 
 **Not yet run on a physical device.** I am being precise about that on
 purpose, because "it compiles" and "it works on your tablet" are different claims:

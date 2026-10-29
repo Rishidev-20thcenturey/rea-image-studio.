@@ -53,6 +53,9 @@ jobs:
     name: Build the arm64 APK
     runs-on: ubuntu-24.04
     timeout-minutes: 300
+    permissions:
+      # Publishing the inspection report back to the branch (see the last steps).
+      contents: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
@@ -189,15 +192,29 @@ jobs:
 
           note ""
           note "== dex =="
-          # The Java class is stored as a dex type descriptor ("Lcom/rea/...;"), so match unanchored.
-          if unzip -p "$APK" classes.dex > "$RUNNER_TEMP/classes.dex" 2>/dev/null; then
-            grep -a -o "Lcom/rea/imagestudio/MainActivity;" "$RUNNER_TEMP/classes.dex" | head -1 | tee -a "$REPORT" || true
-            grep -a -q "com/rea/imagestudio/MainActivity" "$RUNNER_TEMP/classes.dex" || bad "MainActivity is not in the dex"
-            grep -a -o "photocraftCall" "$RUNNER_TEMP/classes.dex" | head -1 | tee -a "$REPORT" || true
-            grep -a -q "photocraftCall" "$RUNNER_TEMP/classes.dex" || bad "the photocraftCall JNI method is not in the dex"
-          else
-            bad "the APK has no classes.dex"
-          fi
+          unzip -l "$APK" | grep -E "\.dex$" | tee -a "$REPORT" || true
+          DEXDUMP="$ANDROID_HOME/build-tools/35.0.0/dexdump"
+          for dex in classes.dex classes2.dex classes3.dex; do
+            if unzip -p "$APK" "$dex" > "$RUNNER_TEMP/$dex" 2>/dev/null && [ -s "$RUNNER_TEMP/$dex" ]; then
+              note "$dex: $(stat -c%s "$RUNNER_TEMP/$dex") bytes"
+              if [ -x "$DEXDUMP" ]; then
+                "$DEXDUMP" -f "$RUNNER_TEMP/$dex" > "$RUNNER_TEMP/$dex.dump" 2>&1 || true
+                note "class descriptors in $dex:"
+                grep -E "Class descriptor" "$RUNNER_TEMP/$dex.dump" | head -20 | tee -a "$REPORT" || true
+              fi
+              # dexdump is authoritative; the raw string scan is the fallback when it is absent.
+              if grep -aq "Lcom/rea/imagestudio/MainActivity;" "$RUNNER_TEMP/$dex"; then
+                note "found com/rea/imagestudio/MainActivity in $dex"
+                found_activity=1
+              fi
+              if grep -aq "photocraftCall" "$RUNNER_TEMP/$dex"; then
+                note "found photocraftCall in $dex"
+                found_call=1
+              fi
+            fi
+          done
+          [ "${found_activity:-0}" = "1" ] || bad "MainActivity is not in any dex file of the APK"
+          [ "${found_call:-0}" = "1" ] || bad "the photocraftCall JNI method is not in any dex file of the APK"
 
           note ""
           note "APK size: $(( $(stat -c%s "$APK") / 1024 / 1024 )) MiB"
@@ -206,6 +223,32 @@ jobs:
           if [ "$fail" -ne 0 ]; then
             exit 1
           fi
+
+      - name: Publish the inspection report into the repository
+        if: always() && github.event_name == 'push'
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci
+          {
+            echo "<!-- Written by .github/workflows/android.yml. Do not edit by hand. -->"
+            echo "# Last build evidence"
+            echo ""
+            echo "Commit \`$GITHUB_SHA\`, run [$GITHUB_RUN_ID](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID), $(date -u +%Y-%m-%dT%H:%M:%SZ)."
+            echo ""
+            echo '```'
+            cat "$RUNNER_TEMP/inspection-report.txt" 2>/dev/null || echo "(no report: the build failed before inspection)"
+            echo '```'
+          } > docs/ci/last-build.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/ci/last-build.md
+          if git diff --quiet --cached; then
+            echo "Report unchanged."
+            exit 0
+          fi
+          git commit -q -m "Record the build evidence for $GITHUB_SHA [skip ci]"
+          git push origin "HEAD:${GITHUB_REF_NAME}" || echo "::warning title=report::could not push the report"
 
       - name: Upload the inspection report
         if: always()

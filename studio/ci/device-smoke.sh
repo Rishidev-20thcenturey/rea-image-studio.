@@ -30,13 +30,31 @@ shot() {
 
 say "== device =="
 adb devices >> "$OUT" 2>&1
-for i in 1 2 3 4 5 6 7 8 9 10 11 12; do
-    if adb shell getprop sys.boot_completed 2>/dev/null | grep -q 1; then
-        say "booted after $i checks"
-        break
-    fi
-    sleep 5
-done
+# sys.boot_completed alone is not enough: on a device whose system server is still starting (or
+# restarting) the property can already read 1 while the package, activity and window services are
+# not published, and every later command fails with "Can't find service". Wait for the package
+# manager to actually answer before touching anything.
+wait_for_system() {
+    n=0
+    while [ "$n" -lt 90 ]; do
+        n=$((n + 1))
+        if adb shell getprop sys.boot_completed 2>/dev/null | grep -q 1; then
+            if adb shell cmd package list packages 2>/dev/null | grep -q "package:"; then
+                say "system services ready after $n checks"
+                return 0
+            fi
+            # Booted, but the system server is not publishing services yet.
+            if [ "$n" -gt 30 ]; then
+                say "boot_completed is set but the package service never answered"
+                return 1
+            fi
+        fi
+        sleep 5
+    done
+    say "timed out waiting for the system to be ready"
+    return 1
+}
+wait_for_system
 say "sdk: $(adb shell getprop ro.build.version.sdk 2>&1 | tr -d '\r')"
 say "abi: $(adb shell getprop ro.product.cpu.abi 2>&1 | tr -d '\r')"
 # The stock AVD is 320x640, which is not a screen anyone edits a photo on, and touch coordinates
@@ -59,7 +77,11 @@ adb shell settings put global hide_error_dialogs 1 >> "$OUT" 2>&1
 
 say ""
 say "== install =="
-adb install -r "$APK" >> "$OUT" 2>&1
+if ! adb install -r "$APK" >> "$OUT" 2>&1; then
+    say "first install attempt failed; waiting and retrying once"
+    wait_for_system
+    adb install -r "$APK" >> "$OUT" 2>&1
+fi
 if adb shell pm path "$PKG" >> "$OUT" 2>&1; then
     say "installed"
 else

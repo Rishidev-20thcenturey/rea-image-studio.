@@ -40,6 +40,8 @@ allow = [
     "Unicode-DFS-2016",
     "CC0-1.0",
     "Unlicense",
+    # The permissive data licence the TLS root-certificate lists use.
+    "CDLA-Permissive-2.0",
     "bzip2-1.0.6",
     # The JPEG encoders ship under the IJG licence: permissive, and it asks only for its notice.
     "IJG",

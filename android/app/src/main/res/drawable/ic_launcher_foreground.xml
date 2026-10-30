@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- REA Image Studio launcher icon: the foreground mark. Three stacked, tilted rounded squares
-     stand for layers, the core of the editor. 108x108 viewport; the mark stays inside the 66dp
-     safe zone so no launcher mask clips it. Original artwork for this project. -->
+<!-- REA Image Studio launcher icon: the foreground mark. Three stacked rounded squares stand for
+     layers, the core of the editor. This is the same construction the app draws at the left of its
+     own title bar (crates/ui-egui/src/brand.rs), so the icon on the home screen and the tile inside
+     the app are one mark. Original artwork for this project; no upstream brand asset is used.
+     108x108 viewport. The mark is sized to the 66 dp circle a launcher may mask to, not the wider
+     square safe zone, so a circular mask does not clip its corners. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
-    <group android:pivotX="57.0" android:pivotY="51.0" android:rotation="-16">
-        <path android:fillColor="#FF7C5CFF" android:fillAlpha="0.55"
-              android:pathData="M49.0,34.0 H65.0 A9.0,9.0 0 0 1 74.0,43.0 V59.0 A9.0,9.0 0 0 1 65.0,68.0 H49.0 A9.0,9.0 0 0 1 40.0,59.0 V43.0 A9.0,9.0 0 0 1 49.0,34.0 Z" />
-    </group>
-    <group android:pivotX="57.0" android:pivotY="57.0" android:rotation="-8">
-        <path android:fillColor="#FF22D3EE" android:fillAlpha="0.75"
-              android:pathData="M49.0,40.0 H65.0 A9.0,9.0 0 0 1 74.0,49.0 V65.0 A9.0,9.0 0 0 1 65.0,74.0 H49.0 A9.0,9.0 0 0 1 40.0,65.0 V49.0 A9.0,9.0 0 0 1 49.0,40.0 Z" />
-    </group>
-    <group android:pivotX="57.0" android:pivotY="63.0" android:rotation="0">
-        <path android:fillColor="#FFFFFFFF" android:fillAlpha="1.00"
-              android:pathData="M49.0,46.0 H65.0 A9.0,9.0 0 0 1 74.0,55.0 V71.0 A9.0,9.0 0 0 1 65.0,80.0 H49.0 A9.0,9.0 0 0 1 40.0,71.0 V55.0 A9.0,9.0 0 0 1 49.0,46.0 Z" />
-    </group>
+    <path android:fillColor="#FFFFFFFF" android:fillAlpha="0.38"
+          android:pathData="M33.87,33.87 H57.55 A6.68,6.68 0 0 1 64.23,40.55 V57.55 A6.68,6.68 0 0 1 57.55,64.23 H40.55 A6.68,6.68 0 0 1 33.87,57.55 V40.55 A6.68,6.68 0 0 1 40.55,33.87 Z" />
+    <path android:fillColor="#FFFFFFFF" android:fillAlpha="0.62"
+          android:pathData="M38.82,38.82 H62.50 A6.68,6.68 0 0 1 69.18,45.50 V62.50 A6.68,6.68 0 0 1 62.50,69.18 H45.50 A6.68,6.68 0 0 1 38.82,62.50 V45.50 A6.68,6.68 0 0 1 45.50,38.82 Z" />
+    <path android:fillColor="#FFFFFFFF" android:fillAlpha="1.00"
+          android:pathData="M43.77,43.77 H67.45 A6.68,6.68 0 0 1 74.13,50.45 V67.45 A6.68,6.68 0 0 1 67.45,74.13 H50.45 A6.68,6.68 0 0 1 43.77,67.45 V50.45 A6.68,6.68 0 0 1 50.45,43.77 Z" />
 </vector>

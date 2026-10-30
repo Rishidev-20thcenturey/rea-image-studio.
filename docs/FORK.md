@@ -67,9 +67,18 @@ would risk a runtime-only failure that no test here can catch.
 The **icon set is still Lucide** (ISC), listed on the Licences screen: swapping 169 SVGs is asset
 work that is deliberately deferred until the palette is settled on a real screen.
 
-## Third-party identity not yet replaced
+## The brand mark
 
-`assets/app-icon/` and `assets/brand/` still hold PhotoCraft's icon artwork, embedded at build time
-for the app-icon service. It is redistributed under MIT/Apache-2.0 with attribution as before, but it
-is **not** this app's launcher icon. Replacing it is follow-up work; it is listed here so the
-repository does not imply the artwork is original.
+The first revision of this fork painted **upstream's kitsune app icon** at the left of the title bar
+(`crates/ui-egui/src/brand.rs`). It is licensed MIT/Apache-2.0 by its own `LICENSE.txt`, so that was
+legal — but it is *their* mark, and this is not their app.
+
+It is now **drawn, not shipped**: `brand.rs` paints three stacked rounded squares on a tile in the
+theme's accent colour, with no bitmap and no upstream artwork compiled into the binary. The Android
+launcher icon (`ic_launcher_foreground.xml`, `ic_launcher_background.xml`) uses the same construction
+in the same colours, so the icon on the home screen and the tile inside the app are one mark, and it
+recolours with the theme (ink blue in REA Ink, lifted in REA Ink Dark).
+
+`assets/app-icon/` still holds upstream's desktop icon artwork. Nothing in the Android app reads it
+— the desktop application's build scripts do — so it is kept for the tree's sake, under the licence
+it came with, and it is **not** part of what this app ships.

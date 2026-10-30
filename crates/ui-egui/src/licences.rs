@@ -49,7 +49,6 @@ pub const TEXTS: &[(&str, &str)] = &[
     ("Symmetry axes icon", include_str!("../../../assets/icons/LICENSE-symmetry-axes.txt")),
     ("BSD 3-Clause — libfacedetection", include_str!("../../algo/data/LICENSE-libfacedetection.txt")),
     ("SCOWL dictionary", include_str!("../../../assets/dict/LICENSE-SCOWL.txt")),
-    ("Application icon", include_str!("../../../assets/app-icon/LICENSE.txt")),
     ("MIT — Solarized palette", include_str!("LICENSE-solarized.txt")),
     ("Translations", include_str!("i18n/LICENSE-translations.txt")),
 ];

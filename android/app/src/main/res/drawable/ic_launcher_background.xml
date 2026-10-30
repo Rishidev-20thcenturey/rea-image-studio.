@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- REA Image Studio launcher icon: the background plate. A deep indigo-to-black radial gradient,
-     warm at the centre so the light foreground squares keep their contrast on any wallpaper. -->
+<!-- REA Image Studio launcher icon: the background plate. REA Ink's accent, deepening towards the
+     edges so the white layer squares keep their contrast on any wallpaper. -->
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
@@ -13,10 +13,10 @@
                 android:type="radial"
                 android:centerX="54"
                 android:centerY="44"
-                android:gradientRadius="76"
-                android:startColor="#FF232042"
-                android:centerColor="#FF171528"
-                android:endColor="#FF0B0A12" />
+                android:gradientRadius="80"
+                android:startColor="#FF2A5BE8"
+                android:centerColor="#FF1F4FD8"
+                android:endColor="#FF12306E" />
         </aapt:attr>
     </path>
 </vector>

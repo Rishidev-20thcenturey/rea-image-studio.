@@ -62,7 +62,7 @@ jobs:
       - name: Install the Android SDK, emulator and system image
         shell: bash
         env:
-          API: ${{ inputs.api_level || '30' }}
+          API: ${{ inputs.api_level || '29' }}
         run: |
           set -eo pipefail
           SDK="$HOME/android-sdk"
@@ -159,10 +159,10 @@ jobs:
         id: launch
         uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2
         env:
-          API: ${{ inputs.api_level || '30' }}
+          API: ${{ inputs.api_level || '29' }}
           APK: ${{ runner.temp }}/rea-studio-x86_64.apk
         with:
-          api-level: ${{ inputs.api_level || '30' }}
+          api-level: ${{ inputs.api_level || '29' }}
           target: google_apis
           arch: x86_64
           force-avd-creation: false

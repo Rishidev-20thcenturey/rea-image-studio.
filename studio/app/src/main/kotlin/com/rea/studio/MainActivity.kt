@@ -212,7 +212,9 @@ class MainActivity : Activity() {
     private fun hideSystemBars() {
         runCatching {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                window.insetsController?.let {
+                // The *view's* controller returns null when the view is not attached; the window's
+                // getter throws instead. Use the one that fails softly.
+                window.decorView.windowInsetsController?.let {
                     it.hide(WindowInsets.Type.systemBars())
                     it.systemBarsBehavior =
                         WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE

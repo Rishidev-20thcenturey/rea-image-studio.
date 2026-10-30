@@ -14,10 +14,10 @@
 #
 # Run it locally with: cargo deny check licenses sources
 
-[graph]
-# Android is the product. Checking the arm64 target only is deliberate: a licence problem in a
-# crate that only a desktop or web build pulls in does not affect what is distributed.
-targets = [{ triple = "aarch64-linux-android" }]
+# No [graph] target filter on purpose. Filtering to aarch64-linux-android leaves workspace members
+# that only exist for other targets unresolved, which cargo-deny reports as a bug; and checking the
+# whole graph is the stricter reading anyway — a copyleft crate that only a desktop build pulls in
+# is still a crate in this repository.
 
 [licenses]
 version = 2
@@ -41,6 +41,8 @@ allow = [
     "CC0-1.0",
     "Unlicense",
     "bzip2-1.0.6",
+    # The JPEG encoders ship under the IJG licence: permissive, and it asks only for its notice.
+    "IJG",
     # Fonts shipped as crates (the UI's own typefaces are files, not crates, and are listed on the
     # app's Licences screen).
     "OFL-1.1",

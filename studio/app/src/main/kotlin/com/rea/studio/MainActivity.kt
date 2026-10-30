@@ -98,7 +98,13 @@ class MainActivity : Activity() {
         } else {
             Diag.step("native library loaded: ${runCatching { NativeCore.nativeVersion() }.getOrDefault("?")}")
         }
-        goImmersive()
+        // Cosmetic window setup must never be able to stop the editor from starting: on one device
+        // it already did, because a framework getter throws before the window is attached.
+        runCatching { goImmersive() }
+            .onFailure {
+                Diag.recordThrowable(it)
+                Diag.step("immersive mode failed: $it")
+            }
         Diag.step("immersive mode set")
         val root = FrameLayout(this)
         root.setBackgroundColor(0xFF0E1014.toInt())
@@ -150,11 +156,12 @@ class MainActivity : Activity() {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             window.setDecorFitsSystemWindows(false)
-            window.insetsController?.let {
-                it.hide(WindowInsets.Type.systemBars())
-                it.systemBarsBehavior =
-                    WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
+            // `PhoneWindow.getInsetsController()` dereferences its decor view, which does not exist
+            // yet in onCreate - it threw a NullPointerException from inside the framework, and a
+            // safe-call cannot catch that because the getter itself is what throws. Touching
+            // `decorView` creates it, and posting runs the rest once the window is attached.
+            val decor = window.decorView
+            decor.post { hideSystemBars() }
         } else {
             window.decorView.systemUiVisibility = (
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
@@ -199,6 +206,38 @@ class MainActivity : Activity() {
                 toast("Copied")
             }
             .show()
+    }
+
+    /** Hide the system bars. Safe to call repeatedly; every step tolerates a detached window. */
+    private fun hideSystemBars() {
+        runCatching {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                window.insetsController?.let {
+                    it.hide(WindowInsets.Type.systemBars())
+                    it.systemBarsBehavior =
+                        WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                window.decorView.systemUiVisibility = (
+                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        or View.SYSTEM_UI_FLAG_FULLSCREEN
+                        or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                    )
+            }
+        }
+    }
+
+    /**
+     * A swipe can reveal the system bars, and some dialogs bring them back. Re-hiding on focus
+     * returns the canvas to full bleed without the user having to do anything.
+     */
+    override fun onWindowFocusChanged(hasFocus: Boolean) {
+        super.onWindowFocusChanged(hasFocus)
+        if (hasFocus) hideSystemBars()
     }
 
     // --- chrome ------------------------------------------------------------------------------

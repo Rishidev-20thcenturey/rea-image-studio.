@@ -20,6 +20,10 @@ pub const COMPONENTS: &[(&str, &str, &str)] = &[
     ("JetBrains Mono", "The typeface for numbers, measurements and code.", "SIL Open Font License 1.1"),
     ("Lucide", "The icon set, derived from Feather.", "ISC (Feather: MIT)"),
     ("SCOWL", "The English spelling dictionary used by the spell checker.", "Public domain / permissive"),
+    ("Ubuntu font", "The display font egui's default text stack starts from.", "Ubuntu Font Licence 1.0"),
+    ("Hack", "The monospace fallback in that same stack.", "MIT"),
+    ("Noto Emoji", "Emoji in text.", "SIL Open Font License 1.1"),
+    ("Emoji Icon Font, egui-icons", "The icon glyphs egui ships as a fallback font.", "MIT"),
     ("libfacedetection", "Face detection for the Liquify and healing tools.", "BSD 3-Clause"),
     ("X11 rgb.txt", "The named-colour table.", "MIT"),
     ("Solarized", "Ethan Schoonover's colour palette, one of the built-in themes.", "MIT"),
@@ -35,6 +39,11 @@ pub const TEXTS: &[(&str, &str)] = &[
     ("Attribution (per-asset authors and licences)", include_str!("../../../ATTRIBUTION.md")),
     ("SIL Open Font License 1.1 — Inter", include_str!("../../../assets/fonts/OFL-Inter.txt")),
     ("SIL Open Font License 1.1 — JetBrains Mono", include_str!("../../../assets/fonts/OFL-JetBrainsMono.txt")),
+    ("Ubuntu Font Licence 1.0", include_str!("../../../assets/fonts/bundled/LICENSE-Ubuntu-font-1.0.txt")),
+    ("SIL Open Font License 1.1 — Noto Emoji", include_str!("../../../assets/fonts/bundled/LICENSE-OFL-1.1-NotoEmoji.txt")),
+    ("Hack font", include_str!("../../../assets/fonts/bundled/LICENSE-Hack.txt")),
+    ("Emoji Icon Font (MIT)", include_str!("../../../assets/fonts/bundled/LICENSE-emoji-icon-font.txt")),
+    ("egui-icons", include_str!("../../../assets/fonts/bundled/README-egui-icons.txt")),
     ("ISC License — Lucide icons", include_str!("../../../assets/icons/LICENSE-lucide.txt")),
     ("Magnetic lasso icon", include_str!("../../../assets/icons/LICENSE-noun-magnetic-lasso.txt")),
     ("Symmetry axes icon", include_str!("../../../assets/icons/LICENSE-symmetry-axes.txt")),
@@ -121,6 +130,10 @@ mod tests {
         assert!(notice.contains("ArtCraft") || notice.contains("photocraft"), "the upstream NOTICE names its owner");
         assert!(get("SIL Open Font License 1.1 — Inter").contains("SIL OPEN FONT LICENSE"), "OFL 1.1 for Inter");
         assert!(get("ISC License — Lucide icons").to_lowercase().contains("permission to use, copy"));
+        // The Ubuntu font is bundled inside the binary by epaint; its licence must travel with it.
+        assert!(get("Ubuntu Font Licence 1.0").contains("UBUNTU FONT LICENCE"));
+        assert!(get("SIL Open Font License 1.1 — Noto Emoji").contains("SIL Open Font License"));
+        assert!(get("Hack font").to_lowercase().contains("hack project"));
 
         // Nothing ships without a stated licence, and the two engine components say where they
         // came from: that is the attribution a store listing points at.

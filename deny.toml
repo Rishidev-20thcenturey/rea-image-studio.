@@ -43,6 +43,10 @@ allow = [
     "bzip2-1.0.6",
     # The JPEG encoders ship under the IJG licence: permissive, and it asks only for its notice.
     "IJG",
+    # epaint bundles Ubuntu-Light, Hack, Noto Emoji and an icon font. The Ubuntu Font Licence
+    # allows the font to be bundled and shipped inside an application; its notice is reproduced on
+    # the app's Licences screen (assets/fonts/bundled/).
+    "Ubuntu-font-1.0",
     # Fonts shipped as crates (the UI's own typefaces are files, not crates, and are listed on the
     # app's Licences screen).
     "OFL-1.1",
@@ -66,4 +70,6 @@ allow-git = [
     # The pinned egui/winit forks the UI is drawn with.
     "https://github.com/storytold/egui",
     "https://github.com/storytold/winit",
+    # Printing support (Windows GDI). In the graph on every platform, so it must be named.
+    "https://github.com/storytold/winprint.rs",
 ]

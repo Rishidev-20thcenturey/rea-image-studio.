@@ -122,7 +122,8 @@ work, so this table is the state of the branch, not a wish list.
 |---|---|---|
 | B0 | Verify the phone path on a real phone | **Needs the owner** — install `v1.0.1` and walk §2 |
 | B1 | Palette: REA Ink + REA Ink Dark | **Done** — host tests and the arm64 APK build pass |
-| B2 | Our own icon set | **Deferred** — Lucide (ISC) stays for now, see below |
+| B2 | Our own brand mark | **Done** — the title-bar tile and the launcher icon are ours, drawn from tokens |
+| B2b | Our own icon set (169 glyphs) | **Deferred** — Lucide (ISC) stays for now, see below |
 | B3 | Phone chrome | **Partly done** — the panels sheet is a card with rounded top, hairline and grab handle |
 | B4 | Licences screen | **Done** — About ▸ Licences, 19 texts baked in from the repository |
 | B5 | `cargo-deny` gate | **Done and passing** — it caught four real issues on the way in |
@@ -143,7 +144,20 @@ Android now writes them once, on first launch, guarded by a marker file
 forced a theme on again and a user's choice could not survive a restart; that is fixed as part of
 the branding work.
 
-### What B2 waits for
+### What B2 changed
+
+The title bar used to paint **upstream's kitsune app icon** (`crates/ui-egui/src/brand.rs`, from
+`assets/app-icon/`). Its own `LICENSE.txt` puts it under MIT/Apache-2.0, so it was legal — but it is
+their brand mark, and shipping it in a different paid product is exactly what §4 of the licence
+checklist says not to do.
+
+`brand.rs` now **draws** the mark: three stacked rounded squares on a tile in the theme accent, no
+bitmap and no upstream artwork in the binary. It recolours with the theme and stays crisp at any
+scale. The Android launcher icon uses the same construction and colours, sized to the 66 dp circular
+mask a launcher may apply, so the home-screen icon and the in-app tile are one mark. A test asserts
+that painting the title bar uploads **no texture**, which is what keeps artwork out of the build.
+
+### What B2b waits for
 
 Replacing 169 icons is asset work, not theming: each SVG is referenced by name from the UI, so a
 partial swap is worse than none. Lucide is ISC — it may be shipped in a paid app, and it is listed

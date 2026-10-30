@@ -148,6 +148,26 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
+      # The version tags carry into the APK. Without this every build was versionCode 1, so Play
+      # would reject the second upload and an update could not be told from the build it replaces.
+      # A tag `v1.2.3` becomes versionName 1.2.3 and versionCode 10203; a branch build stays 1.0.0.
+      - name: Work out the version
+        id: version
+        shell: bash
+        run: |
+          set -eo pipefail
+          if [[ "$GITHUB_REF" == refs/tags/v* ]]; then
+            ver="${GITHUB_REF#refs/tags/v}"
+            IFS=. read -r major minor patch <<< "$ver"
+            code=$(( 10#$major * 10000 + 10#$minor * 100 + 10#$patch ))
+          else
+            ver="1.0.0"
+            code=1
+          fi
+          echo "name=$ver" >> "$GITHUB_OUTPUT"
+          echo "code=$code" >> "$GITHUB_OUTPUT"
+          echo "building $ver (versionCode $code)"
+
       # No release keystore is configured yet, so this is a debug-signed APK with our applicationId.
       # That is installable and honest; a release key is a follow-up (see README, "Signing").
       - name: Build the APK
@@ -155,7 +175,9 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
-          gradle -p android :app:assembleDebug --no-daemon
+          gradle -p android :app:assembleDebug --no-daemon \
+            -PappVersionName="${{ steps.version.outputs.name }}" \
+            -PappVersionCode="${{ steps.version.outputs.code }}"
           SRC=android/app/build/outputs/apk/debug/app-debug.apk
           DEST=android/app/build/outputs/apk/REAImageStudio-debug.apk
           cp "$SRC" "$DEST"

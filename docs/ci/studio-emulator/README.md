@@ -1,7 +1,7 @@
 <!-- Written by .github/workflows/studio-smoke.yml. Do not edit by hand. -->
 # Studio app: emulator smoke test
 
-Run [40923833620](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/40923833620), commit `c8cf9626e047393d52ba963e11fcdcf5bb3f1f92`, 2026-10-29T18:05:19Z.
+Run [41001170164](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/41001170164), commit `66b24ecc8a49b6b6930ea4ca23e1cd47771d8aa8`, 2026-10-30T04:34:31Z.
 x86_64 build of the same code the arm64 APK ships.
 
 ```
@@ -10,264 +10,265 @@ List of devices attached
 emulator-5554	device
 
 booted after 1 checks
-sdk: 29
+sdk: 30
 abi: x86_64
-size: 640x800
+cmd: Failure calling service window: Broken pipe (32)
+cmd: Can't find service: window
+size: 1080x1920
 page size: 4096
-apk: 3139126 bytes
+apk: 2823558 bytes
+cmd: Can't find service: settings
 
 == install ==
 Performing Streamed Install
-Success
-package:/data/app/com.rea.studio-i3BIv43vgyBlXaCf0MIqHA==/base.apk
-installed
+adb: failed to install /home/runner/work/_temp/rea-studio-x86_64.apk: cmd: Can't find service: package
+
+cmd: Can't find service: package
+NOT installed
 
 == launch ==
-Starting: Intent { cmp=com.rea.studio/.MainActivity }
-Status: timeout
-LaunchState: UNKNOWN (-1)
-Activity: com.rea.studio/.MainActivity
-WaitTime: 15890
-Complete
+cmd: Can't find service: activity
 
 == first frame ==
-screenshot 01-launch: 46270 bytes
-Broadcasting: Intent { act=android.intent.action.CLOSE_SYSTEM_DIALOGS flg=0x400000 }
-Broadcast completed: result=0
-focus:   mCurrentFocus=Window{a6f05dd u0 Application Not Responding: com.android.systemui}
+screenshot 01-launch: 2195 bytes
+cmd: Can't find service: activity
+java.lang.IllegalStateException: android.os.ServiceManager$ServiceNotFoundException: No service published for: input
+	at android.hardware.input.InputManager.getInstance(InputManager.java:243)
+	at com.android.commands.input.Input.injectKeyEvent(Input.java:355)
+	at com.android.commands.input.Input.access$100(Input.java:41)
+	at com.android.commands.input.Input$InputKeyEvent.sendKeyEvent(Input.java:203)
+	at com.android.commands.input.Input$InputKeyEvent.run(Input.java:190)
+	at com.android.commands.input.Input.onRun(Input.java:107)
+	at com.android.internal.os.BaseCommand.run(BaseCommand.java:60)
+	at com.android.commands.input.Input.main(Input.java:71)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:399)
+Caused by: android.os.ServiceManager$ServiceNotFoundException: No service published for: input
+	at android.os.ServiceManager.getServiceOrThrow(ServiceManager.java:153)
+	at android.hardware.input.InputManager.getInstance(InputManager.java:241)
+	... 9 more
+focus: 
 the app did not have focus; dismissing dialogs and restarting it
+java.lang.IllegalStateException: android.os.ServiceManager$ServiceNotFoundException: No service published for: input
+	at android.hardware.input.InputManager.getInstance(InputManager.java:243)
+	at com.android.commands.input.Input.injectKeyEvent(Input.java:355)
+	at com.android.commands.input.Input.access$100(Input.java:41)
+	at com.android.commands.input.Input$InputKeyEvent.sendKeyEvent(Input.java:203)
+	at com.android.commands.input.Input$InputKeyEvent.run(Input.java:190)
+	at com.android.commands.input.Input.onRun(Input.java:107)
+	at com.android.internal.os.BaseCommand.run(BaseCommand.java:60)
+	at com.android.commands.input.Input.main(Input.java:71)
+	at com.android.internal.os.RuntimeInit.nativeFinishInit(Native Method)
+	at com.android.internal.os.RuntimeInit.main(RuntimeInit.java:399)
+Caused by: android.os.ServiceManager$ServiceNotFoundException: No service published for: input
+	at android.os.ServiceManager.getServiceOrThrow(ServiceManager.java:153)
+	at android.hardware.input.InputManager.getInstance(InputManager.java:241)
+	... 9 more
 Starting: Intent { cmp=com.rea.studio/.MainActivity }
-Warning: Activity not started, intent has been delivered to currently running top-most instance.
-focus now:   mCurrentFocus=Window{a6f05dd u0 Application Not Responding: com.android.systemui}
+Error type 3
+Error: Activity class {com.rea.studio/com.rea.studio.MainActivity} does not exist.
+focus now:   mCurrentFocus=null
 
 == draw three strokes ==
-screenshot 02-painted: 42878 bytes
+screenshot 02-painted: 2195 bytes
 
 == switch to the eraser from the rail, then undo ==
-screenshot 03-tool: 41175 bytes
+screenshot 03-tool: 5248 bytes
 
 == open the layer panel ==
-screenshot 04-layers: 53178 bytes
+screenshot 04-layers: 45334 bytes
 
 == open the menu ==
-screenshot 05-menu: 53548 bytes
+screenshot 05-menu: 70300 bytes
 
 == the interface's own end-to-end check ==
 Starting: Intent { cmp=com.rea.studio/.MainActivity (has extras) }
-[ok] touch -> paint -> pixels
-document: 320x320
-canvas: 640x800
-zoom: 1.925
-
---- core self-test ---
-[ok] document 96x64, 1 layer(s)
-[ok] brush 1439 pixels painted
-[ok] render 4800/4800 pixels opaque
-[ok] undo 2878 -> 0 non-zero bytes
-[ok] selection 50x30
-[ok] save/load Some((96, 64))
-[ok] export 6144 pixels
-all checks passed
-screenshot 06-selftest: 44992 bytes
+Error type 3
+Error: Activity class {com.rea.studio/com.rea.studio.MainActivity} does not exist.
+run-as: unknown package: com.rea.studio
+screenshot 06-selftest: 70360 bytes
 
 == the app's own boot log ===
-REA Image Studio 0.1.0
-onCreate
-native library loaded: REA Image Studio core 0.1.0 (original implementation)
-immersive mode set
-building the canvas
-interface laid out
-document created
-ui self-test finished
-cat: files/diag/crash.txt: No such file or directory
+run-as: unknown package: com.rea.studio
+run-as: unknown package: com.rea.studio
 
 == process ==
-u0_a146       6657  1690 4943520 147388 0                   0 S com.rea.studio
-the app process is running
+the app process is NOT running
 
 == activity state ==
-    * TaskRecord{ccd4ea0 #7 A=com.rea.studio U=0 StackId=2 sz=1}
-      affinity=com.rea.studio
-      intent={flg=0x10000000 cmp=com.rea.studio/.MainActivity}
-      mActivityComponent=com.rea.studio/.MainActivity
-      Activities=[ActivityRecord{968842b u0 com.rea.studio/.MainActivity t7}]
-      mRootProcess=ProcessRecord{11f6a59 6657:com.rea.studio/u0a146}
-      * Hist #0: ActivityRecord{968842b u0 com.rea.studio/.MainActivity t7}
-          packageName=com.rea.studio processName=com.rea.studio
-          app=ProcessRecord{11f6a59 6657:com.rea.studio/u0a146}
-          Intent { flg=0x10000000 cmp=com.rea.studio/.MainActivity (has extras) }
+    mResumedActivity: ActivityRecord{3ae28a9 u0 com.google.android.apps.nexuslauncher/.NexusLauncherActivity t6}
 
 == crash, ANR and JNI errors in logcat ==
-10-29 17:50:44.901  1949  3131 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity} from uid 2000
-10-29 17:50:46.018  1949  1978 E ActivityManager: ANR in com.google.android.ims
-10-29 17:50:48.211  1949  1979 I ActivityManager: Start proc 3829:com.rea.studio/u0a146 for activity {com.rea.studio/com.rea.studio.MainActivity}
-10-29 17:50:48.475  3829  3829 I com.rea.studio: Late-enabling -Xcheck:jni
-10-29 17:50:49.393  3829  3829 E com.rea.studio: Unknown bits set in runtime_flags: 0x8000
-10-29 17:50:49.586  3829  3829 W com.rea.studio: Unexpected CPU variant for X86 using defaults: x86_64
-10-29 17:50:53.680  3829  3829 W RenderThread: type=1400 audit(0.0:29): avc: denied { write } for name="property_service" dev="tmpfs" ino=845 scontext=u:r:untrusted_app:s0:c146,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=0 app=com.rea.studio
-10-29 17:50:53.798  3829  3829 W com.rea.studio: Verification of void com.rea.studio.MainActivity.buildLayersPanel(android.widget.FrameLayout) took 128.764ms
-10-29 17:50:54.481  3829  3829 W com.rea.studio: Verification of void com.rea.studio.MainActivity.showDiagnostics$lambda$132(com.rea.studio.MainActivity, android.widget.TextView, android.content.DialogInterface, int) took 385.491ms
-10-29 17:50:59.072  3829  3866 I com.rea.studio: Waiting for a blocking GC ProfileSaver
-10-29 17:51:00.479  1949  1978 E ActivityManager: ANR in com.google.android.googlequicksearchbox:search
-10-29 17:51:00.479  1949  1978 E ActivityManager:   42% 3829/com.rea.studio: 10% user + 32% kernel / faults: 8074 minor 7 major
-10-29 17:51:00.831  3829  3853 I com.rea.studio: NativeAlloc concurrent copying GC freed 1206(111KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 3330KB/6660KB, paused 75us total 2.043s
-10-29 17:51:00.833  3829  3866 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on HeapTrim for 1.760s
-10-29 17:51:14.444  1949  1978 E ActivityManager: ANR in android.process.media
-10-29 17:51:54.175  1949  1978 E ActivityManager: ANR in android.process.media
-10-29 17:52:15.660  1949  1978 E ActivityManager: ANR in com.google.android.googlequicksearchbox:search
-10-29 17:52:21.364  1949  1978 E ActivityManager: ANR in com.google.android.apps.docs
-10-29 17:52:28.415  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:52:32.036  1949  1978 E ActivityManager: ANR in android.process.media
-10-29 17:53:50.840  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:54:08.849  1949  1977 I ActivityTaskManager: Displayed com.rea.studio/.MainActivity: +17s562ms
-10-29 17:54:24.009  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:54:48.545  1949  3440 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.packageinstaller/com.android.packageinstaller.PackageInstalledReceiver
-10-29 17:54:48.865  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.android.musicfx/.Compatibility$Receiver
-10-29 17:54:48.873  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.apps.enterprise.dmagent/.AppUpdateReceiver
-10-29 17:54:48.874  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.gms/.games.chimera.GamesSystemBroadcastReceiverProxy
-10-29 17:54:48.875  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.gms/.gass.chimera.PackageChangeBroadcastReceiver
-10-29 17:54:48.875  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
-10-29 17:54:48.875  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.googlequicksearchbox/com.google.android.apps.gsa.googlequicksearchbox.GelStubAppWatcher
-10-29 17:54:48.875  1949  1978 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.PACKAGE_ADDED dat=package:com.rea.studio flg=0x4000010 (has extras) } to com.google.android.ims/.receivers.RcsAutoStartReceiver
-10-29 17:55:11.591  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:55:25.462  1949  1978 E ActivityManager: ANR in com.google.android.ims
-10-29 17:55:45.707  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:56:01.350  5239  5239 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:56:01.853  5239  5239 I AndroidRuntime: Using default boot image
-10-29 17:56:01.854  5239  5239 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:56:12.960  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:56:25.948  5239  5239 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:56:28.575  1949  1978 E ActivityManager: ANR in com.google.android.apps.messaging
-10-29 17:56:29.126  5239  5239 D AndroidRuntime: Shutting down VM
-10-29 17:56:59.005  5517  5517 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:57:00.644  5517  5517 I AndroidRuntime: Using default boot image
-10-29 17:57:00.645  5517  5517 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:57:08.282  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:57:19.163  1949  1978 E ActivityManager: ANR in com.google.android.gms
-10-29 17:57:20.578  5517  5517 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:57:21.397  5517  5517 D AndroidRuntime: Shutting down VM
-10-29 17:57:27.707  1949  3099 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity} from uid 2000
-10-29 17:57:58.518  5776  5776 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:57:58.790  5776  5776 I AndroidRuntime: Using default boot image
-10-29 17:57:58.790  5776  5776 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:58:09.157  5776  5776 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:58:10.159  5776  5776 D AndroidRuntime: Shutting down VM
-10-29 17:58:15.629  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:58:27.709  5906  5906 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:58:28.109  5906  5906 I AndroidRuntime: Using default boot image
-10-29 17:58:28.110  5906  5906 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:58:40.141  5906  5906 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:58:43.446  5906  5906 D AndroidRuntime: Shutting down VM
-10-29 17:59:08.357  6015  6015 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:59:08.754  6015  6015 I AndroidRuntime: Using default boot image
-10-29 17:59:08.755  6015  6015 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:59:18.124  6015  6015 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:59:20.927  6015  6015 D AndroidRuntime: Shutting down VM
-10-29 17:59:41.608  1949  1978 E ActivityManager: ANR in com.google.android.gms.persistent
-10-29 17:59:41.608  1949  1978 E ActivityManager:   0.3% 3829/com.rea.studio: 0% user + 0.2% kernel / faults: 2697 minor
-10-29 17:59:50.590  6094  6094 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:59:50.659  6094  6094 I AndroidRuntime: Using default boot image
-10-29 17:59:50.659  6094  6094 I AndroidRuntime: Leaving lock profiling enabled
-10-29 18:00:02.116  6094  6094 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:00:02.711  6094  6094 D AndroidRuntime: Shutting down VM
-10-29 18:00:32.778  6200  6200 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 18:00:32.990  6200  6200 I AndroidRuntime: Using default boot image
-10-29 18:00:32.991  6200  6200 I AndroidRuntime: Leaving lock profiling enabled
-10-29 18:00:43.200  6200  6200 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:00:43.784  6200  6200 D AndroidRuntime: Shutting down VM
-10-29 18:00:44.206  3829  3866 I com.rea.studio: Waiting for a blocking GC ProfileSaver
-10-29 18:00:46.445  3829  3853 I com.rea.studio: NativeAlloc concurrent copying GC freed 2261(177KB) AllocSpace objects, 2(32KB) LOS objects, 49% free, 3368KB/6736KB, paused 81us total 2.501s
-10-29 18:00:46.446  3829  3866 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ProfileSaver for 2.239s
+10-30 04:20:08.717  2509  2509 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:20:08.944  2509  2509 I AndroidRuntime: Using default boot image
+10-30 04:20:08.959  2509  2509 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:20:17.867  2509  2509 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:20:18.399  2509  2509 I AndroidRuntime: VM exiting with result code 1.
+10-30 04:20:25.291  2551  2551 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:20:25.581  2551  2551 I AndroidRuntime: Using default boot image
+10-30 04:20:25.588  2551  2551 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:20:31.747  2551  2551 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:20:31.939  2551  2551 I AndroidRuntime: VM exiting with result code 1.
+10-30 04:20:36.161  2395  2414 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity} from uid 2000
+10-30 04:20:49.791  2665  2665 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:20:49.889  2665  2665 I AndroidRuntime: Using default boot image
+10-30 04:20:49.904  2665  2665 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:20:54.113  2665  2665 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:20:54.750  2665  2665 D AndroidRuntime: Shutting down VM
+10-30 04:21:01.695  2789  2789 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:21:02.369  2814  2814 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:21:04.488  2744  2744 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:21:04.743  2744  2744 I AndroidRuntime: Using default boot image
+10-30 04:21:04.744  2744  2744 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:21:10.980  2744  2744 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:21:11.643  2744  2744 D AndroidRuntime: Shutting down VM
+10-30 04:21:23.435  2997  2997 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:21:23.553  2997  2997 I AndroidRuntime: Using default boot image
+10-30 04:21:23.562  2997  2997 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:21:26.467  2997  2997 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:21:27.133  2997  2997 D AndroidRuntime: Shutting down VM
+10-30 04:21:36.869  3210  3210 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:21:36.977  3210  3210 I AndroidRuntime: Using default boot image
+10-30 04:21:36.977  3210  3210 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:21:40.212  2395  3047 E ActivityManager: ANR in com.android.systemui
+10-30 04:21:47.430  3210  3210 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:21:47.852  3210  3210 D AndroidRuntime: Shutting down VM
+10-30 04:21:49.156  2707  2707 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:21:49.163  2707  2707 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:21:49.327  2707  2707 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:21:49.333  2707  2707 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:21:49.360  2707  2707 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:21:49.412  2707  2707 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:21:49.439  2707  2707 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:21:49.450  2707  2707 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:21:49.472  2707  2707 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:21:49.489  2707  2707 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:21:49.510  2707  2707 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:21:49.513  2707  2707 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:21:49.554  2707  2707 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:21:49.557  2707  2707 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:21:49.572  2707  2707 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:21:49.615  2707  2707 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:21:49.634  2707  2707 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:21:49.656  2707  2707 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:22:05.122  3385  3385 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:22:05.513  3385  3385 I AndroidRuntime: Using default boot image
+10-30 04:22:05.536  3385  3385 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:22:15.595  3385  3385 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:22:16.318  3385  3385 D AndroidRuntime: Shutting down VM
+10-30 04:22:34.127  3613  3613 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:22:34.652  3613  3613 I AndroidRuntime: Using default boot image
+10-30 04:22:34.655  3613  3613 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:22:44.227  3613  3613 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:22:45.612  3613  3613 D AndroidRuntime: Shutting down VM
+10-30 04:23:00.136  3810  3810 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:23:00.252  3810  3810 I AndroidRuntime: Using default boot image
+10-30 04:23:00.253  3810  3810 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:23:11.195  3810  3810 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:23:14.779  3810  3810 D AndroidRuntime: Shutting down VM
+10-30 04:23:28.388  2395  4176 E ActivityManager: ANR in com.google.android.gms.persistent
+10-30 04:23:30.581  4162  4162 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:23:30.648  4162  4162 I AndroidRuntime: Using default boot image
+10-30 04:23:30.649  4162  4162 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:23:49.395  4162  4162 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:23:50.355  4162  4162 D AndroidRuntime: Shutting down VM
+10-30 04:24:11.648  2395  4599 E ActivityManager: ANR in com.google.android.apps.youtube.music
+10-30 04:24:29.413  2395  4599 E ActivityManager: ANR in com.google.android.youtube
+10-30 04:24:46.452  2395  4599 E ActivityManager: ANR in com.google.android.googlequicksearchbox:search
+10-30 04:24:51.747  4871  4871 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:24:52.155  4871  4871 I AndroidRuntime: Using default boot image
+10-30 04:24:52.158  4871  4871 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:25:10.928  4871  4871 D AndroidRuntime: Calling main entry com.android.commands.input.Input
 
 == result ==
-ok 1793297002714
-RESULT: the app reached a drawn interface
+run-as: unknown package: com.rea.studio
+RESULT: no boot-complete marker - the app did not finish starting
 evidence: /home/runner/work/_temp/smoke.txt
 ```
 
 ## Device log (filtered)
 
 ```
-10-29 18:03:07.800  1949  3642 I ActivityManager: Force stopping com.rea.studio appid=10146 user=0: from pid 6615
-10-29 18:03:07.802  1949  3642 I ActivityManager: Killing 3829:com.rea.studio/u0a146 (adj 0): stop com.rea.studio
-10-29 18:03:07.806  1949  3642 W ActivityTaskManager: Force removing ActivityRecord{3be7844 u0 com.rea.studio/.MainActivity t6 f}: app died, no saved state
-10-29 18:03:12.872  1949  3451 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity (has extras)} from uid 2000
-10-29 18:03:15.208  6657  6657 I com.rea.studio: Late-enabling -Xcheck:jni
-10-29 18:03:15.664  6657  6657 E com.rea.studio: Unknown bits set in runtime_flags: 0x8000
-10-29 18:03:15.701  6657  6657 W com.rea.studio: Unexpected CPU variant for X86 using defaults: x86_64
-10-29 18:03:17.166  1949  1979 I ActivityManager: Start proc 6657:com.rea.studio/u0a146 for activity {com.rea.studio/com.rea.studio.MainActivity}
-10-29 18:03:17.214  1949  1978 I system_server: libdebuggerd_client: started dumping process 6474
-10-29 18:03:17.223  1784  1784 I /system/bin/tombstoned: registered intercept for pid 6474 and type kDebuggerdJavaBacktrace
-10-29 18:03:18.986  6657  6657 I com.rea.studio: Waiting for a blocking GC ClassLinker
-10-29 18:03:19.082  6657  6657 I com.rea.studio: WaitForGcToComplete blocked ClassLinker on HeapTrim for 95.908ms
-10-29 18:03:19.977  6657  6695 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 18:03:19.970  6657  6657 W RenderThread: type=1400 audit(0.0:76): avc: denied { write } for name="property_service" dev="tmpfs" ino=845 scontext=u:r:untrusted_app:s0:c146,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=0 app=com.rea.studio
-10-29 18:03:24.548  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:24.664  6657  6689 I com.rea.studio: Waiting for a blocking GC ProfileSaver
-10-29 18:03:24.941  6657  6670 I com.rea.studio: NativeAlloc concurrent copying GC freed 3555(368KB) AllocSpace objects, 0(0B) LOS objects, 54% free, 1299KB/2835KB, paused 216us total 1.471s
-10-29 18:03:24.941  6657  6689 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ClassLinker for 309.382ms
-10-29 18:03:24.958  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 6474 and type kDebuggerdJavaBacktrace
-10-29 18:03:24.975  1949  1978 I system_server: libdebuggerd_client: done dumping process 6474
-10-29 18:03:26.071  6657  6670 I com.rea.studio: Background young concurrent copying GC freed 3(30KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 3323KB/3323KB, paused 75us total 494.437ms
-10-29 18:03:26.143  1949  1978 E ActivityManager:  +0% 6657/com.rea.studio: 0% user + 0% kernel
-10-29 18:03:26.314  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:28.255  6657  6670 I com.rea.studio: Background concurrent copying GC freed 287(67KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 3336KB/6672KB, paused 77us total 1.898s
-10-29 18:03:29.471  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:30.171  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:31.897  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:32.943  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:33.182  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:34.489  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:35.628  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:37.244  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:37.954  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:38.595  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:39.492  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:40.289  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:42.543  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:43.436  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:51.290  6763  6763 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:14.165  1949  1978 I system_server: libdebuggerd_client: started dumping process 6763
-10-29 18:04:14.206  1784  1784 I /system/bin/tombstoned: registered intercept for pid 6763 and type kDebuggerdJavaBacktrace
-10-29 18:04:16.260  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 6763 and type kDebuggerdJavaBacktrace
-10-29 18:04:16.340  1949  1978 I system_server: libdebuggerd_client: done dumping process 6763
-10-29 18:04:16.411  1949  1978 E ActivityManager:   4.7% 6657/com.rea.studio: 1.2% user + 3.4% kernel / faults: 1824 minor
-10-29 18:04:22.765  4461  6979 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:22.887  4461  6979 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:26.776  1949  1949 V SettingsProvider: Notifying for 0: content://settings/global/angle_debug_package
-10-29 18:04:29.663  7001  7001 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:42.143  1949  1978 I system_server: libdebuggerd_client: started dumping process 7001
-10-29 18:04:42.155  1784  1784 I /system/bin/tombstoned: registered intercept for pid 7001 and type kDebuggerdJavaBacktrace
-10-29 18:04:44.194  7125  7184 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 18:04:44.381  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 7001 and type kDebuggerdJavaBacktrace
-10-29 18:04:44.401  1949  1978 I system_server: libdebuggerd_client: done dumping process 7001
-10-29 18:04:44.568  1949  1978 E ActivityManager:   0.1% 6657/com.rea.studio: 0% user + 0% kernel / faults: 24 minor
-10-29 18:04:49.057  1949  1977 I ActivityTaskManager: Displayed com.rea.studio/.MainActivity: +15s519ms
-10-29 18:04:50.159  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.275  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.546  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.595  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.691  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:51.211  7195  7195 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:51.213  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:51.536  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:51.830  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:52.253  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:52.535  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:53.134  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:54.206  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:54.331  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:54.351  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:55.203  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:55.454  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:55.723  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:58.704  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:15.091  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:15.568  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:16.617  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:17.013  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:17.728  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:18.477  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-30 04:30:10.292  6216  6237 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:30:11.849   277   277 I tombstoned: found intercept fd 512 for pid 6264 and type kDebuggerdJavaBacktrace
+10-30 04:30:11.905  2395  6418 I system_server: libdebuggerd_client: done dumping process 6264
+10-30 04:30:13.813  2395  6418 I system_server: libdebuggerd_client: started dumping process 6113
+10-30 04:30:13.852   277   277 I tombstoned: registered intercept for pid 6113 and type kDebuggerdJavaBacktrace
+10-30 04:30:14.643   277   277 I tombstoned: found intercept fd 512 for pid 6113 and type kDebuggerdJavaBacktrace
+10-30 04:30:14.661  2395  6418 I system_server: libdebuggerd_client: done dumping process 6113
+10-30 04:30:21.074  6453  6453 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:21.131  6453  6453 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:21.188  6433  6433 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:21.232  6433  6433 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:26.964  6512  6512 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:27.000  6512  6512 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:35.484  6453  6539 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:30:41.263  6216  6290 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:30:41.264  6216  6290 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:30:54.055  6512  6551 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:30:54.055  6512  6551 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:30:54.055  6512  6551 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:30:54.086  6512  6551 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:30:54.086  6512  6551 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:30:54.086  6512  6551 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:30:54.122  6512  6551 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:30:54.122  6512  6551 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:30:54.122  6512  6551 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:31:19.059  3419  6696 I PeopleInitIntentOp: Not initializing debuggability
+10-30 04:31:33.808  2395  6758 I system_server: libdebuggerd_client: started dumping process 6433
+10-30 04:31:33.840   277   277 I tombstoned: registered intercept for pid 6433 and type kDebuggerdJavaBacktrace
+10-30 04:31:34.558   277   277 I tombstoned: found intercept fd 512 for pid 6433 and type kDebuggerdJavaBacktrace
+10-30 04:31:34.655  2395  6758 I system_server: libdebuggerd_client: done dumping process 6433
+10-30 04:31:41.832  6773  6773 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:31:41.901  6773  6773 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:31:48.599  6815  6815 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:31:48.613  6815  6815 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:04.968  6815  6859 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:32:04.968  6815  6859 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:32:04.968  6815  6859 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:32:04.993  6815  6859 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:32:04.993  6815  6859 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:32:04.993  6815  6859 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:32:05.073  6815  6859 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:32:05.073  6815  6859 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:32:05.073  6815  6859 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:32:27.704  2395  6932 I system_server: libdebuggerd_client: started dumping process 6773
+10-30 04:32:27.801   277   277 I tombstoned: registered intercept for pid 6773 and type kDebuggerdJavaBacktrace
+10-30 04:32:28.667   277   277 I tombstoned: found intercept fd 512 for pid 6773 and type kDebuggerdJavaBacktrace
+10-30 04:32:28.723  2395  6932 I system_server: libdebuggerd_client: done dumping process 6773
+10-30 04:32:34.728  6946  6946 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:34.825  6946  6946 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:35.367  6453  6611 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 04:32:35.368  6453  6611 I FA      : To enable faster debug mode event logging run:
+10-30 04:32:35.368  6453  6611 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.youtube
+10-30 04:32:55.664  5021  7019 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:56.316  5021  7019 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:05.349  2395  7071 I system_server: libdebuggerd_client: started dumping process 6946
+10-30 04:33:05.397   277   277 I tombstoned: registered intercept for pid 6946 and type kDebuggerdJavaBacktrace
+10-30 04:33:07.054   277   277 I tombstoned: found intercept fd 512 for pid 6946 and type kDebuggerdJavaBacktrace
+10-30 04:33:07.184  2395  7071 I system_server: libdebuggerd_client: done dumping process 6946
+10-30 04:33:13.115  7116  7116 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:13.131  7116  7116 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:17.352  7150  7150 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:17.357  7150  7150 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:19.985  6216  7064 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:33:20.018  6216  7064 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:33:42.749  2395  7265 I system_server: libdebuggerd_client: started dumping process 7116
+10-30 04:33:42.759   277   277 I tombstoned: registered intercept for pid 7116 and type kDebuggerdJavaBacktrace
+10-30 04:33:43.999   277   277 I tombstoned: found intercept fd 512 for pid 7116 and type kDebuggerdJavaBacktrace
+10-30 04:33:44.158  2395  7265 I system_server: libdebuggerd_client: done dumping process 7116
+10-30 04:33:51.160  7278  7278 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:51.188  7278  7278 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:34:00.588  7150  7318 I ChmraDebugLogger: [39] null
+10-30 04:34:04.361  5021  7311 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:34:04.927  5021  7311 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:34:09.389  7150  7317 I PeopleInitIntentOp: Not initializing debuggability
+10-30 04:34:18.971  2395  7386 I system_server: libdebuggerd_client: started dumping process 7278
+10-30 04:34:19.028   277   277 I tombstoned: registered intercept for pid 7278 and type kDebuggerdJavaBacktrace
+10-30 04:34:19.931   277   277 I tombstoned: found intercept fd 512 for pid 7278 and type kDebuggerdJavaBacktrace
+10-30 04:34:19.983  2395  7386 I system_server: libdebuggerd_client: done dumping process 7278
+10-30 04:34:22.203  6216  6237 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:34:22.205  6216  6237 E libc    : Access denied finding property "service.adb.tls.port"
 ```
 
 ![01-launch](01-launch.png)

@@ -1,300 +1,300 @@
-10-29 17:57:48.898  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:57:49.015  5466  5487 E BugleRcsEngine: 	libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:49.459  5681  5827 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:57:49.966  5466  5487 I BugleRcsEngine: [86] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:50.261  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:50.858  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:57:50.975  5466  5487 E BugleRcsEngine: 	libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:51.525  5466  5487 I BugleRcsEngine: [86] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:53.983  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:55.216  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:57:56.316  5466  5487 I BugleRcsEngine: [86] omj.shouldUseCarrierServicesApkForV1Apis: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
-10-29 17:57:58.518  5776  5776 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:57:58.789  5776  5776 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:57:58.790  5776  5776 I AndroidRuntime: Using default boot image
-10-29 17:57:58.790  5776  5776 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:57:58.790  5776  5776 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:57:58.955  5776  5776 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:57:58.986  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:496)
-10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.Linux.open(Native Method)
-10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
-10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 17:58:00.820  5466  5487 W RcsProvisioning: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 17:58:06.563  5681  5784 W android.youtub: Long monitor contention with owner yt-background1-14 (5799) at int libcore.io.Linux.readBytes(java.io.FileDescriptor, java.lang.Object, int, int)(Linux.java:-2) waiters=0 in java.lang.Object dov.a() for 7.397s
-10-29 17:58:06.564  5681  5753 W android.youtub: Long monitor contention with owner yt-background1-14 (5799) at int libcore.io.Linux.readBytes(java.io.FileDescriptor, java.lang.Object, int, int)(Linux.java:-2) waiters=1 in java.lang.Object dov.a() for 7.340s
-10-29 17:58:06.567  5681  5725 W android.youtub: Long monitor contention with owner yt-background1-14 (5799) at int libcore.io.Linux.readBytes(java.io.FileDescriptor, java.lang.Object, int, int)(Linux.java:-2) waiters=2 in java.lang.Object dov.a() for 7.227s
-10-29 17:58:08.219  1949  1978 I system_server: libdebuggerd_client: started dumping process 5648
-10-29 17:58:08.228  1784  1784 I /system/bin/tombstoned: registered intercept for pid 5648 and type kDebuggerdJavaBacktrace
-10-29 17:58:09.157  5776  5776 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:58:10.159  5776  5776 D AndroidRuntime: Shutting down VM
-10-29 17:58:14.799  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 5648 and type kDebuggerdJavaBacktrace
-10-29 17:58:14.886  1949  1978 I system_server: libdebuggerd_client: done dumping process 5648
-10-29 17:58:18.030  4461  5892 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:58:19.183  4461  5892 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:58:27.709  5906  5906 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:58:28.108  5906  5906 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:58:28.109  5906  5906 I AndroidRuntime: Using default boot image
-10-29 17:58:28.109  5906  5906 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:58:28.110  5906  5906 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:58:28.111  5906  5906 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:58:32.324  5937  5937 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 17:58:38.048  5466  5553 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
-10-29 17:58:38.050  5466  5553 I FA      : To enable faster debug mode event logging run:
-10-29 17:58:38.050  5466  5553 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
-10-29 17:58:40.141  5906  5906 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:58:43.277  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:43.446  5906  5906 D AndroidRuntime: Shutting down VM
-10-29 17:58:45.423  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:46.346  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:47.363  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:47.986  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:48.018  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:48.036  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:48.139  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:48.157  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:50.682  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:53.298  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:56.195  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:57.425  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:58:57.596  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:02.748  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:04.730  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:07.623  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:08.357  6015  6015 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:59:08.753  6015  6015 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:59:08.754  6015  6015 I AndroidRuntime: Using default boot image
-10-29 17:59:08.755  6015  6015 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:59:08.755  6015  6015 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:59:08.756  6015  6015 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:59:09.073  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:09.773  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:10.275  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 17:59:18.124  6015  6015 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 17:59:20.927  6015  6015 D AndroidRuntime: Shutting down VM
-10-29 17:59:38.334  1949  1978 I system_server: libdebuggerd_client: started dumping process 5937
-10-29 17:59:38.339  1784  1784 I /system/bin/tombstoned: registered intercept for pid 5937 and type kDebuggerdJavaBacktrace
-10-29 17:59:41.429  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 5937 and type kDebuggerdJavaBacktrace
-10-29 17:59:41.435  1949  1978 I system_server: libdebuggerd_client: done dumping process 5937
-10-29 17:59:41.608  1949  1978 E ActivityManager:   0.3% 3829/com.rea.studio: 0% user + 0.2% kernel / faults: 2697 minor
-10-29 17:59:50.590  6094  6094 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 17:59:50.658  6094  6094 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 17:59:50.659  6094  6094 I AndroidRuntime: Using default boot image
-10-29 17:59:50.659  6094  6094 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 17:59:50.659  6094  6094 I AndroidRuntime: Leaving lock profiling enabled
-10-29 17:59:50.661  6094  6094 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 17:59:50.973  5727  6113 I ChmraDebugLogger: [39] null
-10-29 18:00:00.436  6096  6096 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:00:02.116  6094  6094 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:00:02.711  6094  6094 D AndroidRuntime: Shutting down VM
-10-29 18:00:32.778  6200  6200 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 18:00:32.990  6200  6200 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 18:00:32.990  6200  6200 I AndroidRuntime: Using default boot image
-10-29 18:00:32.991  6200  6200 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 18:00:32.991  6200  6200 I AndroidRuntime: Leaving lock profiling enabled
-10-29 18:00:33.075  6200  6200 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 18:00:43.200  6200  6200 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:00:43.784  6200  6200 D AndroidRuntime: Shutting down VM
-10-29 18:00:44.206  3829  3866 I com.rea.studio: Waiting for a blocking GC ProfileSaver
-10-29 18:00:46.445  3829  3853 I com.rea.studio: NativeAlloc concurrent copying GC freed 2261(177KB) AllocSpace objects, 2(32KB) LOS objects, 49% free, 3368KB/6736KB, paused 81us total 2.501s
-10-29 18:00:46.446  3829  3866 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ProfileSaver for 2.239s
-10-29 18:01:00.491  6234  6234 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 18:01:01.034  6234  6234 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 18:01:01.035  6234  6234 I AndroidRuntime: Using default boot image
-10-29 18:01:01.035  6234  6234 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 18:01:01.035  6234  6234 I AndroidRuntime: Leaving lock profiling enabled
-10-29 18:01:01.111  6234  6234 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 18:01:12.756  6234  6234 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:01:13.803  6234  6234 D AndroidRuntime: Shutting down VM
-10-29 18:01:20.155  5533  5636 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 18:01:46.687  6358  6358 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 18:01:47.055  4461  6364 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:01:47.067  6358  6358 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 18:01:47.068  6358  6358 I AndroidRuntime: Using default boot image
-10-29 18:01:47.068  6358  6358 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 18:01:47.068  6358  6358 I AndroidRuntime: Leaving lock profiling enabled
-10-29 18:01:47.070  6358  6358 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 18:01:47.381  4461  6364 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:01:56.201  6358  6358 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:01:57.377  6358  6358 D AndroidRuntime: Shutting down VM
-10-29 18:01:57.378  1949  2347 E InputDispatcher: Window handle Window{87b0e4c u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 18:01:57.399  1949  3199 E InputDispatcher: Window handle Window{87b0e4c u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 18:02:04.329  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:06.096  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:06.697  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:07.405  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:08.566  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:09.246  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:09.736  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:10.363  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:10.439  6393  6393 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 18:02:10.640  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:10.875  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:11.475  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:11.709  1949  1978 I system_server: libdebuggerd_client: started dumping process 5727
-10-29 18:02:11.825  1784  1784 I /system/bin/tombstoned: registered intercept for pid 5727 and type kDebuggerdJavaBacktrace
-10-29 18:02:12.345  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:12.519  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:13.535  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:14.716  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:15.585  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 5727 and type kDebuggerdJavaBacktrace
-10-29 18:02:15.668  1949  1978 I system_server: libdebuggerd_client: done dumping process 5727
-10-29 18:02:15.710  1949  1978 E ActivityManager:   3.1% 3829/com.rea.studio: 0.3% user + 2.8% kernel / faults: 9113 minor 4 major
-10-29 18:02:16.038  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:16.104  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:16.378  6393  6393 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:02:17.046  6393  6393 D AndroidRuntime: Shutting down VM
-10-29 18:02:18.128  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:19.206  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:20.702  3829  3847 I com.rea.studio: JIT allocated 71KB for compiled code of void android.view.View.<init>(android.content.Context, android.util.AttributeSet, int, int)
-10-29 18:02:21.654  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
-10-29 18:02:21.654  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
-10-29 18:02:21.655  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
-10-29 18:02:21.655  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
-10-29 18:02:21.693  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:69)
-10-29 18:02:21.693  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:73)
-10-29 18:02:21.728  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:247)
-10-29 18:02:21.728  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 18:02:21.728  3401  3401 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 18:02:21.730  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:250)
-10-29 18:02:21.730  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:167)
-10-29 18:02:21.730  3401  3401 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:482)
-10-29 18:02:21.731  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:172)
-10-29 18:02:21.731  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:108)
-10-29 18:02:21.731  3401  3401 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:485)
-10-29 18:02:21.732  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.write(BlockGuardOs.java:415)
-10-29 18:02:21.732  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.write(ForwardingOs.java:241)
-10-29 18:02:21.732  3401  3401 D StrictMode: 	at libcore.io.IoBridge.write(IoBridge.java:539)
-10-29 18:02:21.789  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:76)
-10-29 18:02:21.789  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:86)
-10-29 18:02:21.790  3401  3401 D StrictMode: 	at libcore.io.BlockGuardOs.stat(BlockGuardOs.java:387)
-10-29 18:02:21.790  3401  3401 D StrictMode: 	at libcore.io.ForwardingOs.stat(ForwardingOs.java:222)
-10-29 18:02:40.277  6474  6474 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:02:40.443  1949  3615 W system_server: Long monitor contention with owner Binder:1949_13 (3199) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, int)(ActivityManagerService.java:13909) waiters=3 in android.os.Debug$MemoryInfo[] com.android.server.am.ActivityManagerService.getProcessMemoryInfo(int[]) for 615ms
-10-29 18:02:42.669  1949  3615 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:02:45.711  1949  1978 I system_server: libdebuggerd_client: started dumping process 4356
-10-29 18:02:45.764  1784  1784 I /system/bin/tombstoned: registered intercept for pid 4356 and type kDebuggerdJavaBacktrace
-10-29 18:02:48.738  6500  6500 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
-10-29 18:02:48.780  6500  6500 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
-10-29 18:02:48.781  6500  6500 I AndroidRuntime: Using default boot image
-10-29 18:02:48.781  6500  6500 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
-10-29 18:02:48.781  6500  6500 I AndroidRuntime: Leaving lock profiling enabled
-10-29 18:02:48.824  6500  6500 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
-10-29 18:02:55.773  1784  1784 I /system/bin/tombstoned: intercept for pid 4356 and type kDebuggerdJavaBacktrace terminated: due to timeout
-10-29 18:02:55.774  1949  1978 E system_server: libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
-10-29 18:02:55.784  1949  1978 I system_server: libdebuggerd_client: started dumping process 4356
-10-29 18:02:55.785  1784  1784 I /system/bin/tombstoned: registered intercept for pid 4356 and type kDebuggerdNativeBacktrace
-10-29 18:02:56.904  4356  4356 I libc    : Requested dump for tid 4356 (earchbox:search)
-10-29 18:02:57.643  6500  6500 D AndroidRuntime: Calling main entry com.android.commands.input.Input
-10-29 18:02:57.850  1949  1978 E system_server: libdebuggerd_client: failed to read status response from tombstoned: Try again
-10-29 18:02:57.854  1784  1784 I /system/bin/tombstoned: intercept for pid 4356 and type kDebuggerdNativeBacktrace terminated: due to input
-10-29 18:02:58.188  6500  6500 D AndroidRuntime: Shutting down VM
-10-29 18:02:58.321  1949  2738 E InputDispatcher: Window handle Window{5e3ebce u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 18:02:58.474  1949  2738 E InputDispatcher: Window handle Window{5e3ebce u0 com.rea.studio/com.rea.studio.MainActivity} has no registered input channel
-10-29 18:02:59.058  1949  1978 E ActivityManager:   0.7% 3829/com.rea.studio: 0.5% user + 0.2% kernel / faults: 5 minor
-10-29 18:03:07.800  1949  3642 I ActivityManager: Force stopping com.rea.studio appid=10146 user=0: from pid 6615
-10-29 18:03:07.802  1949  3642 I ActivityManager: Killing 3829:com.rea.studio/u0a146 (adj 0): stop com.rea.studio
-10-29 18:03:07.806  1949  3642 W ActivityTaskManager: Force removing ActivityRecord{3be7844 u0 com.rea.studio/.MainActivity t6 f}: app died, no saved state
-10-29 18:03:12.872  1949  3451 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity (has extras)} from uid 2000
-10-29 18:03:15.208  6657  6657 I com.rea.studio: Late-enabling -Xcheck:jni
-10-29 18:03:15.664  6657  6657 E com.rea.studio: Unknown bits set in runtime_flags: 0x8000
-10-29 18:03:15.701  6657  6657 W com.rea.studio: Unexpected CPU variant for X86 using defaults: x86_64
-10-29 18:03:17.166  1949  1979 I ActivityManager: Start proc 6657:com.rea.studio/u0a146 for activity {com.rea.studio/com.rea.studio.MainActivity}
-10-29 18:03:17.214  1949  1978 I system_server: libdebuggerd_client: started dumping process 6474
-10-29 18:03:17.223  1784  1784 I /system/bin/tombstoned: registered intercept for pid 6474 and type kDebuggerdJavaBacktrace
-10-29 18:03:18.986  6657  6657 I com.rea.studio: Waiting for a blocking GC ClassLinker
-10-29 18:03:19.082  6657  6657 I com.rea.studio: WaitForGcToComplete blocked ClassLinker on HeapTrim for 95.908ms
-10-29 18:03:19.977  6657  6695 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 18:03:19.970  6657  6657 W RenderThread: type=1400 audit(0.0:76): avc: denied { write } for name="property_service" dev="tmpfs" ino=845 scontext=u:r:untrusted_app:s0:c146,c256,c512,c768 tcontext=u:object_r:property_socket:s0 tclass=sock_file permissive=0 app=com.rea.studio
-10-29 18:03:24.548  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:24.664  6657  6689 I com.rea.studio: Waiting for a blocking GC ProfileSaver
-10-29 18:03:24.941  6657  6670 I com.rea.studio: NativeAlloc concurrent copying GC freed 3555(368KB) AllocSpace objects, 0(0B) LOS objects, 54% free, 1299KB/2835KB, paused 216us total 1.471s
-10-29 18:03:24.941  6657  6689 I com.rea.studio: WaitForGcToComplete blocked ProfileSaver on ClassLinker for 309.382ms
-10-29 18:03:24.958  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 6474 and type kDebuggerdJavaBacktrace
-10-29 18:03:24.975  1949  1978 I system_server: libdebuggerd_client: done dumping process 6474
-10-29 18:03:26.071  6657  6670 I com.rea.studio: Background young concurrent copying GC freed 3(30KB) AllocSpace objects, 0(0B) LOS objects, 0% free, 3323KB/3323KB, paused 75us total 494.437ms
-10-29 18:03:26.143  1949  1978 E ActivityManager:  +0% 6657/com.rea.studio: 0% user + 0% kernel
-10-29 18:03:26.314  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:28.255  6657  6670 I com.rea.studio: Background concurrent copying GC freed 287(67KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 3336KB/6672KB, paused 77us total 1.898s
-10-29 18:03:29.471  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:30.171  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:31.897  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:32.943  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:33.182  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:34.489  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:35.628  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:37.244  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:37.954  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:38.595  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:39.492  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:40.289  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:42.543  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:43.436  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:03:51.290  6763  6763 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:14.165  1949  1978 I system_server: libdebuggerd_client: started dumping process 6763
-10-29 18:04:14.206  1784  1784 I /system/bin/tombstoned: registered intercept for pid 6763 and type kDebuggerdJavaBacktrace
-10-29 18:04:16.260  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 6763 and type kDebuggerdJavaBacktrace
-10-29 18:04:16.340  1949  1978 I system_server: libdebuggerd_client: done dumping process 6763
-10-29 18:04:16.411  1949  1978 E ActivityManager:   4.7% 6657/com.rea.studio: 1.2% user + 3.4% kernel / faults: 1824 minor
-10-29 18:04:22.765  4461  6979 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:22.887  4461  6979 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:26.776  1949  1949 V SettingsProvider: Notifying for 0: content://settings/global/angle_debug_package
-10-29 18:04:29.663  7001  7001 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:42.143  1949  1978 I system_server: libdebuggerd_client: started dumping process 7001
-10-29 18:04:42.155  1784  1784 I /system/bin/tombstoned: registered intercept for pid 7001 and type kDebuggerdJavaBacktrace
-10-29 18:04:44.194  7125  7184 W libc    : Unable to set property "qemu.gles" to "1": connection failed; errno=13 (Permission denied)
-10-29 18:04:44.381  1784  1784 I /system/bin/tombstoned: found intercept fd 512 for pid 7001 and type kDebuggerdJavaBacktrace
-10-29 18:04:44.401  1949  1978 I system_server: libdebuggerd_client: done dumping process 7001
-10-29 18:04:44.568  1949  1978 E ActivityManager:   0.1% 6657/com.rea.studio: 0% user + 0% kernel / faults: 24 minor
-10-29 18:04:49.057  1949  1977 I ActivityTaskManager: Displayed com.rea.studio/.MainActivity: +15s519ms
-10-29 18:04:50.159  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.275  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.546  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.595  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:50.691  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:51.211  7195  7195 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
-10-29 18:04:51.213  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:51.536  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:51.830  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:52.253  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:52.535  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:53.134  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:54.206  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:54.331  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:54.351  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:55.203  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:55.454  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:55.723  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:04:58.704  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:15.091  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:15.568  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:16.617  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:17.013  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:17.728  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
-10-29 18:05:18.477  1949  1977 W android.os.Debug: failed to get memory consumption info: -1
+10-30 04:22:34.678  3613  3613 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-30 04:22:44.227  3613  3613 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:22:45.612  3613  3613 D AndroidRuntime: Shutting down VM
+10-30 04:22:51.970  3753  3787 I GAv4    : Google Analytics 18.5.89 is starting up. To enable debug logging on a device run:
+10-30 04:22:51.970  3753  3787 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+10-30 04:23:00.136  3810  3810 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:23:00.236  3810  3810 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+10-30 04:23:00.237  3810  3810 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-30 04:23:00.252  3810  3810 I AndroidRuntime: Using default boot image
+10-30 04:23:00.252  3810  3810 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-30 04:23:00.253  3810  3810 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:23:00.257  3810  3810 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-30 04:23:02.383  2395  2639 W FileUtils: 	at libcore.io.Linux.chmod(Native Method)
+10-30 04:23:02.383  2395  2639 W FileUtils: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:85)
+10-30 04:23:02.383  2395  2639 W FileUtils: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:80)
+10-30 04:23:04.133  2395  2441 V ActivityManager: Installing ContentProviderInfo{name=com.android.contacts.dumpfile className=com.android.providers.contacts.debug.DumpFileProvider}
+10-30 04:23:04.396  3586  3586 D StrictMode: 	at libcore.io.BlockGuardOs.mkdir(BlockGuardOs.java:235)
+10-30 04:23:04.396  3586  3586 D StrictMode: 	at libcore.io.ForwardingOs.mkdir(ForwardingOs.java:156)
+10-30 04:23:04.436  3586  3586 D StrictMode: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:78)
+10-30 04:23:04.436  3586  3586 D StrictMode: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:85)
+10-30 04:23:07.639  3825  3825 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:07.894  3825  3825 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:08.778  3615  3957 W DataFileManager: 	at libcore.io.IoBridge.open(IoBridge.java:492)
+10-30 04:23:08.778  3615  3957 W DataFileManager: 	at libcore.io.Linux.open(Native Method)
+10-30 04:23:08.778  3615  3957 W DataFileManager: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:23:08.778  3615  3957 W DataFileManager: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:254)
+10-30 04:23:08.778  3615  3957 W DataFileManager: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:23:08.778  3615  3957 W DataFileManager: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:23:11.195  3810  3810 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:23:12.335   402   402 E libc    : The property "ro.build.fingerprint" has a value with length 92 that is too large for __system_property_get()/__system_property_read(); use __system_property_read_callback() instead.
+10-30 04:23:14.779  3810  3810 D AndroidRuntime: Shutting down VM
+10-30 04:23:25.113     0     0 I apexd   : Found "/apex/com.android.art@1" backed by file /system/apex/com.android.art.debug.apex
+10-30 04:23:26.483  2395  4176 I system_server: libdebuggerd_client: started dumping process 3387
+10-30 04:23:26.549   277   277 I tombstoned: registered intercept for pid 3387 and type kDebuggerdJavaBacktrace
+10-30 04:23:27.199   277   277 I tombstoned: found intercept fd 512 for pid 3387 and type kDebuggerdJavaBacktrace
+10-30 04:23:27.208  2395  4176 I system_server: libdebuggerd_client: done dumping process 3387
+10-30 04:23:30.581  4162  4162 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:23:30.646  4162  4162 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+10-30 04:23:30.647  4162  4162 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-30 04:23:30.648  4162  4162 I AndroidRuntime: Using default boot image
+10-30 04:23:30.649  4162  4162 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-30 04:23:30.649  4162  4162 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:23:30.657  4162  4162 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-30 04:23:32.852  4212  4212 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:33.111  4212  4212 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:33.804  4235  4235 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:33.908  4235  4235 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:38.011  4262  4262 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:38.142  4262  4262 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:42.159  4322  4322 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:42.200  4322  4322 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:49.395  4162  4162 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:23:50.355  4162  4162 D AndroidRuntime: Shutting down VM
+10-30 04:23:51.372  4477  4477 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:51.810  4477  4477 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:53.002  4212  4559 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:23:54.144  4544  4544 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:23:54.223  4544  4544 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:03.500  4262  4471 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:24:04.327   277   277 I tombstoned: registered intercept for pid 4212 and type kDebuggerdJavaBacktrace
+10-30 04:24:06.704  4621  4621 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:06.767   277   277 I tombstoned: found intercept fd 512 for pid 4212 and type kDebuggerdJavaBacktrace
+10-30 04:24:06.934  4621  4621 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:08.180  2395  4599 I system_server: libdebuggerd_client: done dumping process 4212
+10-30 04:24:11.408  4662  4662 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:11.452  4662  4662 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:14.284   277   277 I tombstoned: registered intercept for pid 4262 and type kDebuggerdJavaBacktrace
+10-30 04:24:21.498  4757  4757 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:21.511  4757  4757 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:24.294   277   277 I tombstoned: intercept for pid 4262 and type kDebuggerdJavaBacktrace terminated: due to timeout
+10-30 04:24:24.296  2395  4599 E system_server: libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
+10-30 04:24:26.322   277   277 I tombstoned: registered intercept for pid 4262 and type kDebuggerdNativeBacktrace
+10-30 04:24:26.326  4262  4262 I libc    : Requested dump for tid 4262 (android.youtube)
+10-30 04:24:27.729   277   277 I tombstoned: intercept for pid 4262 and type kDebuggerdNativeBacktrace terminated: due to input
+10-30 04:24:30.823   277   277 I tombstoned: registered intercept for pid 4235 and type kDebuggerdJavaBacktrace
+10-30 04:24:34.566  4822  4822 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:34.620  4822  4822 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:40.785  3642  4365 W ChimeraDebugLogger: Singleton logger instance not set.
+10-30 04:24:40.838   277   277 I tombstoned: intercept for pid 4235 and type kDebuggerdJavaBacktrace terminated: due to timeout
+10-30 04:24:40.842  2395  4599 E system_server: libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
+10-30 04:24:41.115  2395  4599 I system_server: libdebuggerd_client: started dumping process 4235
+10-30 04:24:41.118   277   277 I tombstoned: registered intercept for pid 4235 and type kDebuggerdNativeBacktrace
+10-30 04:24:41.120  4235  4235 I libc    : Requested dump for tid 4235 (earchbox:search)
+10-30 04:24:42.049  4889  4889 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:42.089  4889  4889 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:24:42.697  4920  4920 I crash_dump32: obtaining output fd from tombstoned, type: kDebuggerdNativeBacktrace
+10-30 04:24:42.750   277   277 I tombstoned: found intercept fd 512 for pid 4235 and type kDebuggerdNativeBacktrace
+10-30 04:24:43.115  2395  4599 E system_server: libdebuggerd_client: timeout expired
+10-30 04:24:51.747  4871  4871 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:24:52.153  4871  4871 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+10-30 04:24:52.155  4871  4871 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-30 04:24:52.155  4871  4871 I AndroidRuntime: Using default boot image
+10-30 04:24:52.158  4871  4871 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-30 04:24:52.158  4871  4871 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:24:52.160  4871  4871 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-30 04:24:52.184  4822  4936 I NativeLibraryUtils: Extraction to /data/user_de/0/com.google.android.gms/app_extracted_libs/x86/libconscrypt_gmscore_jni.so true
+10-30 04:25:03.867  4995  4995 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:25:03.899  4995  4995 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:25:10.928  4871  4871 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:25:11.679  4871  4871 D AndroidRuntime: Shutting down VM
+10-30 04:25:20.246  2395  5077 I system_server: libdebuggerd_client: started dumping process 4822
+10-30 04:25:20.473   277   277 I tombstoned: registered intercept for pid 4822 and type kDebuggerdJavaBacktrace
+10-30 04:25:21.141   277   277 I tombstoned: found intercept fd 512 for pid 4822 and type kDebuggerdJavaBacktrace
+10-30 04:25:21.317  2395  5077 I system_server: libdebuggerd_client: done dumping process 4822
+10-30 04:25:24.534  2395  2906 W ActivityManager: Invalid packageName: com.rea.studio
+10-30 04:25:26.747  4995  5059 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:25:26.747  4995  5059 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:25:26.747  4995  5059 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:25:26.818  4995  5059 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:25:26.818  4995  5059 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:25:26.818  4995  5059 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:25:26.966  4995  5059 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:25:26.966  4995  5059 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:25:26.966  4995  5059 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:25:29.586  2395  4425 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity (has extras)} from uid 2000
+10-30 04:25:29.726  5115  5115 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:25:29.766  5115  5115 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:25:40.880  2395  5168 I system_server: libdebuggerd_client: started dumping process 4995
+10-30 04:25:40.887   277   277 I tombstoned: registered intercept for pid 4995 and type kDebuggerdJavaBacktrace
+10-30 04:25:43.202   277   277 I tombstoned: found intercept fd 512 for pid 4995 and type kDebuggerdJavaBacktrace
+10-30 04:25:43.220  2395  5168 I system_server: libdebuggerd_client: done dumping process 4995
+10-30 04:25:53.626  5218  5218 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:25:53.872  5218  5218 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:00.558  2395  5270 I system_server: libdebuggerd_client: started dumping process 5218
+10-30 04:26:00.568   277   277 I tombstoned: registered intercept for pid 5218 and type kDebuggerdJavaBacktrace
+10-30 04:26:02.062   277   277 I tombstoned: found intercept fd 512 for pid 5218 and type kDebuggerdJavaBacktrace
+10-30 04:26:02.091  2395  5270 I system_server: libdebuggerd_client: done dumping process 5218
+10-30 04:26:05.299  5293  5293 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:05.304  5293  5293 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:08.920  5181  5330 W DataFileManager: 	at libcore.io.IoBridge.open(IoBridge.java:492)
+10-30 04:26:08.920  5181  5330 W DataFileManager: 	at libcore.io.Linux.open(Native Method)
+10-30 04:26:08.920  5181  5330 W DataFileManager: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:26:08.920  5181  5330 W DataFileManager: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:254)
+10-30 04:26:08.920  5181  5330 W DataFileManager: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:26:08.920  5181  5330 W DataFileManager: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:26:08.984  2395  5315 I system_server: libdebuggerd_client: started dumping process 5115
+10-30 04:26:09.046   277   277 I tombstoned: registered intercept for pid 5115 and type kDebuggerdJavaBacktrace
+10-30 04:26:10.206   277   277 I tombstoned: found intercept fd 512 for pid 5115 and type kDebuggerdJavaBacktrace
+10-30 04:26:10.230  2395  5315 I system_server: libdebuggerd_client: done dumping process 5115
+10-30 04:26:16.206  5364  5364 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:16.213  5364  5364 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:19.782  3419  5054 I PeopleInitIntentOp: Not initializing debuggability
+10-30 04:26:23.075  5397  5397 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:23.212  5397  5397 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:26:35.815  5364  5415 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:26:35.815  5364  5415 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:26:35.815  5364  5415 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:26:35.856  5364  5415 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:26:35.856  5364  5415 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:26:35.856  5364  5415 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:26:35.937  5364  5415 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:26:35.937  5364  5415 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:26:35.937  5364  5415 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:26:51.768  3914  4755 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 04:26:52.289  3914  4755 I FA      : To enable faster debug mode event logging run:
+10-30 04:26:52.289  3914  4755 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
+10-30 04:27:17.788  2395  5623 I system_server: libdebuggerd_client: started dumping process 5397
+10-30 04:27:17.940   277   277 I tombstoned: registered intercept for pid 5397 and type kDebuggerdJavaBacktrace
+10-30 04:27:19.298   277   277 I tombstoned: found intercept fd 512 for pid 5397 and type kDebuggerdJavaBacktrace
+10-30 04:27:19.318  2395  5623 I system_server: libdebuggerd_client: done dumping process 5397
+10-30 04:27:23.916  5639  5639 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:27:23.935  5639  5639 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:27:30.415  5681  5681 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:27:30.436  5681  5681 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:27:48.089  5681  5726 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:27:48.089  5681  5726 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:27:48.089  5681  5726 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:27:48.180  5681  5726 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:27:48.180  5681  5726 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:27:48.180  5681  5726 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:27:48.252  5681  5726 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:27:48.252  5681  5726 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:27:48.252  5681  5726 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:28:22.372  5863  5863 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:28:22.426  5863  5863 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:28:25.236  2395  5893 I system_server: libdebuggerd_client: started dumping process 5639
+10-30 04:28:25.301   277   277 I tombstoned: registered intercept for pid 5639 and type kDebuggerdJavaBacktrace
+10-30 04:28:27.182   277   277 I tombstoned: found intercept fd 512 for pid 5639 and type kDebuggerdJavaBacktrace
+10-30 04:28:27.258  2395  5893 I system_server: libdebuggerd_client: done dumping process 5639
+10-30 04:28:28.871  2395  5893 I system_server: libdebuggerd_client: started dumping process 5681
+10-30 04:28:28.880   277   277 I tombstoned: registered intercept for pid 5681 and type kDebuggerdJavaBacktrace
+10-30 04:28:32.995  5906  5906 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:28:33.080  5906  5906 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:28:38.902   277   277 I tombstoned: intercept for pid 5681 and type kDebuggerdJavaBacktrace terminated: due to timeout
+10-30 04:28:38.903  2395  5893 E system_server: libdebuggerd_client: failed to read status response from tombstoned: timeout reached?
+10-30 04:28:38.980  2395  5893 W system_server: libdebuggerd_client: Failed to get process tids
+10-30 04:28:38.980  2395  5893 I system_server: libdebuggerd_client: started dumping process 5681
+10-30 04:28:39.056   277   277 I tombstoned: registered intercept for pid 5681 and type kDebuggerdNativeBacktrace
+10-30 04:28:39.062  2395  5893 E system_server: libdebuggerd_client: failed to send signal to pid 5681: No such process
+10-30 04:28:39.063   277   277 I tombstoned: intercept for pid 5681 and type kDebuggerdNativeBacktrace terminated: due to input
+10-30 04:28:41.891  5951  5951 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:28:41.907  5951  5951 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:28:56.680  5951  5993 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:28:56.680  5951  5993 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:28:56.680  5951  5993 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:28:56.758  5951  5993 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:28:56.758  5951  5993 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:28:56.758  5951  5993 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:28:56.807  5951  5993 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:28:56.807  5951  5993 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:28:56.807  5951  5993 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:29:09.873  2395  6081 I system_server: libdebuggerd_client: started dumping process 5906
+10-30 04:29:09.881   277   277 I tombstoned: registered intercept for pid 5906 and type kDebuggerdJavaBacktrace
+10-30 04:29:11.091   277   277 I tombstoned: found intercept fd 512 for pid 5906 and type kDebuggerdJavaBacktrace
+10-30 04:29:11.101  2395  6081 I system_server: libdebuggerd_client: done dumping process 5906
+10-30 04:29:20.475  6113  6113 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:29:20.556  6113  6113 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:29:20.627  6050  6143 W DataFileManager: 	at libcore.io.IoBridge.open(IoBridge.java:492)
+10-30 04:29:20.627  6050  6143 W DataFileManager: 	at libcore.io.Linux.open(Native Method)
+10-30 04:29:20.627  6050  6143 W DataFileManager: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:29:20.627  6050  6143 W DataFileManager: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:254)
+10-30 04:29:20.627  6050  6143 W DataFileManager: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:29:20.627  6050  6143 W DataFileManager: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:29:41.361  6216  6216 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:29:41.371  6216  6216 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:29:47.963  6264  6264 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:29:47.976  6264  6264 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:08.999  2395  6418 I system_server: libdebuggerd_client: started dumping process 6264
+10-30 04:30:09.014   277   277 I tombstoned: registered intercept for pid 6264 and type kDebuggerdJavaBacktrace
+10-30 04:30:10.291  6216  6237 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:30:10.292  6216  6237 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:30:11.849   277   277 I tombstoned: found intercept fd 512 for pid 6264 and type kDebuggerdJavaBacktrace
+10-30 04:30:11.905  2395  6418 I system_server: libdebuggerd_client: done dumping process 6264
+10-30 04:30:13.813  2395  6418 I system_server: libdebuggerd_client: started dumping process 6113
+10-30 04:30:13.852   277   277 I tombstoned: registered intercept for pid 6113 and type kDebuggerdJavaBacktrace
+10-30 04:30:14.643   277   277 I tombstoned: found intercept fd 512 for pid 6113 and type kDebuggerdJavaBacktrace
+10-30 04:30:14.661  2395  6418 I system_server: libdebuggerd_client: done dumping process 6113
+10-30 04:30:21.074  6453  6453 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:21.131  6453  6453 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:21.188  6433  6433 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:21.232  6433  6433 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:26.964  6512  6512 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:27.000  6512  6512 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:30:35.484  6453  6539 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:30:41.263  6216  6290 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:30:41.264  6216  6290 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:30:54.055  6512  6551 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:30:54.055  6512  6551 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:30:54.055  6512  6551 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:30:54.086  6512  6551 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:30:54.086  6512  6551 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:30:54.086  6512  6551 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:30:54.122  6512  6551 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:30:54.122  6512  6551 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:30:54.122  6512  6551 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:31:19.059  3419  6696 I PeopleInitIntentOp: Not initializing debuggability
+10-30 04:31:33.808  2395  6758 I system_server: libdebuggerd_client: started dumping process 6433
+10-30 04:31:33.840   277   277 I tombstoned: registered intercept for pid 6433 and type kDebuggerdJavaBacktrace
+10-30 04:31:34.558   277   277 I tombstoned: found intercept fd 512 for pid 6433 and type kDebuggerdJavaBacktrace
+10-30 04:31:34.655  2395  6758 I system_server: libdebuggerd_client: done dumping process 6433
+10-30 04:31:41.832  6773  6773 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:31:41.901  6773  6773 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:31:48.599  6815  6815 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:31:48.613  6815  6815 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:04.968  6815  6859 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:32:04.968  6815  6859 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:32:04.968  6815  6859 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:32:04.993  6815  6859 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:32:04.993  6815  6859 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:32:04.993  6815  6859 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:32:05.073  6815  6859 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:32:05.073  6815  6859 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:32:05.073  6815  6859 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:32:27.704  2395  6932 I system_server: libdebuggerd_client: started dumping process 6773
+10-30 04:32:27.801   277   277 I tombstoned: registered intercept for pid 6773 and type kDebuggerdJavaBacktrace
+10-30 04:32:28.667   277   277 I tombstoned: found intercept fd 512 for pid 6773 and type kDebuggerdJavaBacktrace
+10-30 04:32:28.723  2395  6932 I system_server: libdebuggerd_client: done dumping process 6773
+10-30 04:32:34.728  6946  6946 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:34.825  6946  6946 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:35.367  6453  6611 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 04:32:35.368  6453  6611 I FA      : To enable faster debug mode event logging run:
+10-30 04:32:35.368  6453  6611 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.youtube
+10-30 04:32:55.664  5021  7019 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:32:56.316  5021  7019 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:05.349  2395  7071 I system_server: libdebuggerd_client: started dumping process 6946
+10-30 04:33:05.397   277   277 I tombstoned: registered intercept for pid 6946 and type kDebuggerdJavaBacktrace
+10-30 04:33:07.054   277   277 I tombstoned: found intercept fd 512 for pid 6946 and type kDebuggerdJavaBacktrace
+10-30 04:33:07.184  2395  7071 I system_server: libdebuggerd_client: done dumping process 6946
+10-30 04:33:13.115  7116  7116 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:13.131  7116  7116 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:17.352  7150  7150 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:17.357  7150  7150 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:19.985  6216  7064 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:33:20.018  6216  7064 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:33:42.749  2395  7265 I system_server: libdebuggerd_client: started dumping process 7116
+10-30 04:33:42.759   277   277 I tombstoned: registered intercept for pid 7116 and type kDebuggerdJavaBacktrace
+10-30 04:33:43.999   277   277 I tombstoned: found intercept fd 512 for pid 7116 and type kDebuggerdJavaBacktrace
+10-30 04:33:44.158  2395  7265 I system_server: libdebuggerd_client: done dumping process 7116
+10-30 04:33:51.160  7278  7278 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:33:51.188  7278  7278 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:34:00.588  7150  7318 I ChmraDebugLogger: [39] null
+10-30 04:34:04.361  5021  7311 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:34:04.927  5021  7311 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:34:09.389  7150  7317 I PeopleInitIntentOp: Not initializing debuggability
+10-30 04:34:18.971  2395  7386 I system_server: libdebuggerd_client: started dumping process 7278
+10-30 04:34:19.028   277   277 I tombstoned: registered intercept for pid 7278 and type kDebuggerdJavaBacktrace
+10-30 04:34:19.931   277   277 I tombstoned: found intercept fd 512 for pid 7278 and type kDebuggerdJavaBacktrace
+10-30 04:34:19.983  2395  7386 I system_server: libdebuggerd_client: done dumping process 7278
+10-30 04:34:22.203  6216  6237 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:34:22.205  6216  6237 E libc    : Access denied finding property "service.adb.tls.port"

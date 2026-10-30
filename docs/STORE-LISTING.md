@@ -103,15 +103,25 @@ device frame that imitates a competitor, and no text claiming a feature that is 
 Also needed: a 1024 × 500 feature graphic, a 512 × 512 icon, and a 30 s video (optional; a screen
 recording of a stroke plus an export is enough).
 
-## Pricing and monetisation
+## Pricing — paid download, decided
 
-- **Free download** with the editor usable without an account. A paid app is a harder sell and
-  fewer installs to reach the closed-test threshold with.
-- **One purchase, not a subscription**, for the pro tier: PSD/PSB export, batch export, and the
-  larger brush preset packs. One-time purchases are what this audience asks for, and a subscription
-  for a local editor invites one-star reviews.
-- No ads, ever. The audience that pays for an image editor is exactly the audience ads make leave.
-- Price anchors: the paid tier sits below a desktop editor's one-month subscription.
+The owner's decision: **paid download from day one, no in-app purchase.** That is also the simplest
+and cleanest option for this app:
+
+- Play handles the payment; the app needs no billing library, no entitlement check and no server.
+- The manifest requests **no permissions at all** — not even `INTERNET`. Nothing to buy inside the
+  app is consistent with that, and the data-safety form is a truthful "collects nothing".
+- No ads, ever, and no subscription. For a local editor a subscription invites one-star reviews,
+  and ads make exactly the audience that pays for an image editor leave.
+- The trade-off to accept knowingly: a paid download gets far fewer installs than a free one, and
+  refunds inside Google's two-hour window are automatic. The first screen has to earn the sale,
+  which is why the store listing's screenshots carry more weight than usual.
+- No trial is possible without IAP or a second app. If a trial is ever wanted, the route is a free
+  "lite" listing alongside, not billing inside this one.
+
+Price guidance: pick a price the local market will pay without thinking — the cost of one coffee
+rather than the cost of a desktop editor — and raise it after the first hundred sales if refunds are
+low. Changing the price later is free and instant.
 
 ## The gate that actually decides the launch date
 
@@ -121,11 +131,26 @@ starts when the first person installs, and it cannot be shortened.
 
 ## Still missing before submission
 
-- A **release-signed AAB** (every build so far is debug-signed) and an upload key that is backed up.
-- A **release** build profile: debug symbols stripped, LTO on, and the APK/AAB size measured.
-  The debug APK is ~68 MiB, which is too big to ship without work.
-- **64-bit arm only** today. Play accepts that, but a phone with a 32-bit-only install path will
-  not run it; decide whether to add `armeabi-v7a` or state the requirement.
-- **Privacy policy URL** — mandatory even for an app that collects nothing; it must say the app
-  keeps files on the device.
+- **The upload key.** The CI now builds a release-signed bundle when four repository secrets exist
+  (`ANDROID_KEYSTORE_BASE64`, `ANDROID_STORE_PASSWORD`, `ANDROID_KEY_ALIAS`,
+  `ANDROID_KEY_PASSWORD`); without them the bundle is built unsigned and the job says so. Generate
+  the key once, back it up somewhere you will still have in five years, and never regenerate it —
+  losing it means losing the ability to update the app.
+- A **release build profile**: debug symbols are already stripped, but LTO is off
+  (`[profile.android]` in `Cargo.toml`) and the debug APK is ~68 MiB. Measure the AAB before
+  deciding whether that is worth a slower build.
+- **64-bit arm only** today. Play accepts that, and Android has required 64-bit support since 2019,
+  so this is fine. A 32-bit-only device simply will not be offered the app.
+- **Privacy policy URL** — written (`docs/store/PRIVACY.md`), needs a monitored contact address and
+  a public URL before it can be pasted into the console.
 - The accessibility and colour-profile gaps in the description above must match the build.
+
+## Done on this branch, for the upload
+
+- `targetSdk` / `compileSdk` **36** — required for new apps since 2026-08-31; the CI SDK install was
+  moved from 35 to 36 with it.
+- A **release App Bundle** is built on every run (`bundleRelease`) and attached to tagged releases
+  next to the APK: Play has accepted only AABs for new apps since 2021.
+- The APK's **versionCode/versionName** now come from the git tag, so a second upload is possible.
+- **512 × 512 store icon** drawn from the same mark as the launcher icon:
+  `docs/store/icon-512.png`.

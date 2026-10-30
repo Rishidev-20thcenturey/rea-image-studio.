@@ -26,13 +26,16 @@ def propVersionName = project.hasProperty("appVersionName")
 
 android {
     namespace 'com.rea.imagestudio'
-    compileSdk 35
+    compileSdk 36
 
     defaultConfig {
         applicationId 'com.rea.imagestudio'
         // Storage Access Framework and MediaStore Downloads (no storage permissions) need 29.
         minSdk 29
-        targetSdk 35
+        // Play requires API 36 (Android 16) for new apps and updates since 2026-08-31. The app is
+        // already edge-to-edge at 35 (it draws its own top bar and handles the system-bar insets
+        // itself), so 36's enforced edge-to-edge is behaviour this build already lives with.
+        targetSdk 36
         versionCode propVersionCode
         versionName propVersionName
         // The Rust library is built for one ABI at a time (see README.md). The shipped APK is

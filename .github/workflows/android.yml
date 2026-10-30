@@ -85,7 +85,7 @@ jobs:
           fi
           SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
           yes | "$SDKMANAGER" --sdk_root="$SDK" --licenses > "$RUNNER_TEMP/licenses.log" 2>&1 || true
-          "$SDKMANAGER" --sdk_root="$SDK" "platforms;android-35" "build-tools;35.0.0" "ndk;${NDK_VERSION}"
+          "$SDKMANAGER" --sdk_root="$SDK" "platforms;android-36" "build-tools;36.0.0" "ndk;${NDK_VERSION}"
           echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
           echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
 
@@ -148,6 +148,32 @@ jobs:
         with:
           gradle-version: '8.10.2'
 
+      # The upload key, when the repository has one. Play needs a release-signed bundle; without
+      # these secrets the build still runs and produces an unsigned bundle, which the job says out
+      # loud rather than pretending the artefact is uploadable. The passwords go to the environment
+      # through a file and are never echoed.
+      - name: Unpack the upload key
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_STORE_PASSWORD: ${{ secrets.ANDROID_STORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        shell: bash
+        run: |
+          set -eo pipefail
+          if [ -z "${ANDROID_KEYSTORE_BASE64:-}" ]; then
+            echo "No upload key in this repository's secrets: the bundle will be built unsigned."
+            exit 0
+          fi
+          printf '%s' "$ANDROID_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+          {
+            echo "KEYSTORE_PATH=$RUNNER_TEMP/upload.jks"
+            echo "STORE_PASSWORD=$ANDROID_STORE_PASSWORD"
+            echo "KEY_ALIAS=$ANDROID_KEY_ALIAS"
+            echo "KEY_PASSWORD=$ANDROID_KEY_PASSWORD"
+          } >> "$GITHUB_ENV"
+          echo "Upload key unpacked."
+
       # The version tags carry into the APK. Without this every build was versionCode 1, so Play
       # would reject the second upload and an update could not be told from the build it replaces.
       # A tag `v1.2.3` becomes versionName 1.2.3 and versionCode 10203; a branch build stays 1.0.0.
@@ -192,7 +218,7 @@ jobs:
         shell: bash
         run: |
           set -uo pipefail
-          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt2"
+          AAPT="$ANDROID_HOME/build-tools/36.0.0/aapt2"
           READELF="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf"
           REPORT="$RUNNER_TEMP/inspection-report.txt"
           : > "$REPORT"
@@ -236,7 +262,7 @@ jobs:
           note ""
           note "== dex =="
           unzip -l "$APK" | grep -E "\.dex$" | tee -a "$REPORT" || true
-          DEXDUMP="$ANDROID_HOME/build-tools/35.0.0/dexdump"
+          DEXDUMP="$ANDROID_HOME/build-tools/36.0.0/dexdump"
           for dex in classes.dex classes2.dex classes3.dex; do
             if unzip -p "$APK" "$dex" > "$RUNNER_TEMP/$dex" 2>/dev/null && [ -s "$RUNNER_TEMP/$dex" ]; then
               note "$dex: $(stat -c%s "$RUNNER_TEMP/$dex") bytes"
@@ -315,6 +341,38 @@ jobs:
           path: ${{ steps.build_apk.outputs.apk_path }}
           if-no-files-found: error
 
+      # Play has accepted only App Bundles for new apps since 2021, so the APK above is for testers
+      # and this is the artefact that would be uploaded. An AAB needs a signing key: with the four
+      # signing secrets present it is release-signed; without them it is built unsigned and the job
+      # says so, because a signed bundle that cannot be produced is worse than a clear failure.
+      - name: Build the App Bundle
+        id: build_aab
+        shell: bash
+        run: |
+          set -eo pipefail
+          gradle -p android :app:bundleRelease --no-daemon \
+            -PappVersionName="${{ steps.version.outputs.name }}" \
+            -PappVersionCode="${{ steps.version.outputs.code }}"
+          SRC=android/app/build/outputs/bundle/release/app-release.aab
+          DEST=android/app/build/outputs/bundle/REAImageStudio.aab
+          cp "$SRC" "$DEST"
+          echo "aab_path=$DEST" >> "$GITHUB_OUTPUT"
+          size=$(stat -c%s "$DEST")
+          echo "bundle: $(( size / 1024 / 1024 )) MiB (sha256 $(sha256sum "$DEST" | cut -d' ' -f1))" | tee -a "$GITHUB_STEP_SUMMARY"
+          if [ -n "${KEYSTORE_PATH:-}" ] && [ -f "${KEYSTORE_PATH}" ]; then
+            echo "signed with the configured upload key" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "::warning title=unsigned bundle::built without ANDROID_KEYSTORE_BASE64, so this bundle cannot be uploaded to Play as-is" | tee -a "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Upload the App Bundle
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: REAImageStudio-aab
+          path: ${{ steps.build_aab.outputs.aab_path }}
+          if-no-files-found: warn
+
   # A tag of the form v1.2.3 publishes the APK as a downloadable release asset.
   release:
     name: Publish the release
@@ -329,6 +387,13 @@ jobs:
         with:
           name: REAImageStudio-apk
           path: dist
+      # The bundle is the file Play accepts, so it is published too: the APK is for testers on a
+      # phone, the AAB is what goes into the console.
+      - uses: actions/download-artifact@v4
+        with:
+          name: REAImageStudio-aab
+          path: dist
+          if-no-files-found: warn
       - name: Create the release
         env:
           GH_TOKEN: ${{ github.token }}
@@ -336,6 +401,8 @@ jobs:
         shell: bash
         run: |
           set -eo pipefail
-          gh release create "$TAG" dist/REAImageStudio-debug.apk \
+          files=(dist/REAImageStudio-debug.apk)
+          [ -f dist/REAImageStudio.aab ] && files+=(dist/REAImageStudio.aab)
+          gh release create "$TAG" "${files[@]}" \
             --title "REA Image Studio $TAG" \
-            --notes "Debug-signed arm64 APK, built by GitHub Actions from $GITHUB_SHA. See README \"Status\" for what is verified and what is not."
+            --notes "Built by GitHub Actions from $GITHUB_SHA. The APK is for installing on a phone; the AAB is the file Google Play accepts (bundle:release). See README \"Status\" for what is verified and what is not."

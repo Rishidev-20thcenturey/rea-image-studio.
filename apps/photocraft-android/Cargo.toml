@@ -26,6 +26,8 @@ log = { workspace = true }
 ron = "0.12"
 
 [target.'cfg(target_os = "android")'.dependencies]
+# The first-run appearance (see `shell::brand_defaults`) goes through the `prefs.set` command.
+serde_json = { workspace = true }
 photocraft-codecs = { workspace = true }
 photocraft-doc = { workspace = true }
 photocraft-engine = { workspace = true }

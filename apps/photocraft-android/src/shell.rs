@@ -48,7 +48,9 @@ pub fn run(app: AndroidApp) {
         Box::new(move |cc| {
             let link = Link::new(cc.egui_ctx.clone());
             let svc = services::services(&dirs, &link);
-            PhotocraftApp::setup_context(&cc.egui_ctx, ThemeKind::Pro);
+            // The first frame paints in our own palette before the saved preferences arrive, so a
+            // launch never flashes upstream's grey.
+            PhotocraftApp::setup_context(&cc.egui_ctx, ThemeKind::Ink);
             let mut photo = PhotocraftApp::new(Session::new(), svc);
             // No window decorations on Android: the app's own top bar is the only bar.
             photo.custom_titlebar = false;
@@ -56,7 +58,9 @@ pub fn run(app: AndroidApp) {
             photo.background_jobs = true;
             // Phones get the phone layout (`photocraft_ui_egui::mobile`) when the window is narrow.
             photo.phone_layout = true;
-            photo.set_theme(&cc.egui_ctx, ThemeKind::Pro);
+            // Our look, written once (see `brand_defaults`). After that the preferences the user
+            // chose win: `prefs_ui::tick` re-applies them every frame.
+            brand_defaults(&mut photo, &dirs);
             // Brush presets load in the background and attach when they arrive.
             photo.services.preset_store = Some(photocraft_engine::preset_store::open_dir_async(dirs.presets()));
             if let Some(render_state) = cc.wgpu_render_state.clone() {
@@ -106,6 +110,30 @@ pub fn run(app: AndroidApp) {
     );
     if let Err(e) = result {
         log::error!("PhotoCraft stopped: {e}");
+    }
+}
+
+/// The product's own appearance, written to the preferences the first time the app runs on a
+/// device: REA Ink on light surfaces and its dark counterpart at night, instead of upstream's
+/// Photoshop greys. A marker file records that this has happened, so a theme the user picks later
+/// is never overwritten — before this, every launch forced a theme back on.
+fn brand_defaults(photo: &mut PhotocraftApp, dirs: &Dirs) {
+    let marker = dirs.root().join("rea-brand-appearance");
+    if marker.exists() {
+        return;
+    }
+    let values = serde_json::json!({
+        "interface.appearanceMode": "light",
+        "interface.lightTheme": "ink",
+        "interface.darkTheme": "inkDark",
+    });
+    match photo.run("prefs.set", serde_json::json!({ "values": values })) {
+        Ok(_) => {
+            if let Err(e) = std::fs::write(&marker, b"1\n") {
+                log::warn!("REA Image Studio: the brand appearance marker was not saved: {e}");
+            }
+        }
+        Err(e) => log::warn!("REA Image Studio: the brand appearance was not saved: {e}"),
     }
 }
 

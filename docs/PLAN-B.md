@@ -115,7 +115,49 @@ local-only filesystem access; and the app must not request permissions it does n
 
 ## 5. Work packages
 
-Each is independently shippable and reviewable.
+Each is independently shippable and reviewable. `PLAN-B.md` is updated in the same commit as the
+work, so this table is the state of the branch, not a wish list.
+
+| # | Work package | State |
+|---|---|---|
+| B0 | Verify the phone path on a real phone | **Needs the owner** — install `v1.0.1` and walk §2 |
+| B1 | Palette: REA Ink + REA Ink Dark | **Done** — host tests and the arm64 APK build pass |
+| B2 | Our own icon set | **Deferred** — Lucide (ISC) stays for now, see below |
+| B3 | Phone chrome | **Partly done** — the panels sheet is a card with rounded top, hairline and grab handle |
+| B4 | Licences screen | **Done** — About ▸ Licences, 19 texts baked in from the repository |
+| B5 | `cargo-deny` gate | **Done and passing** — it caught four real issues on the way in |
+| B6 | Store assets and listing | Not started (needs the palette on a real screen first) |
+
+### What B1 actually changed
+
+`ThemeKind::Ink` and `ThemeKind::InkDark` are first-class themes, not a paint-over: they have
+preference variants (`Theme`, `DarkTheme`, `LightTheme` in `crates/engine/src/prefs.rs`), entries in
+`ThemeKind::ALL`/`label`/`id`/`from_name`, the `prefs.set` appearance mapping, and the top of the
+theme picker in both appearance families. Tests: `rea_ink_is_the_brand_palette_and_meets_text_contrast`
+(contrast on every surface the tokens paint, one accent, the flat rounded layout) and
+`rea_ink_is_chosen_by_preference_and_fixes_the_matching_mode` (picking it by saved id selects it and
+pins the appearance mode).
+
+Android now writes them once, on first launch, guarded by a marker file
+(`crates/ui-egui`-side code in `apps/photocraft-android/src/shell.rs`). Before this, every launch
+forced a theme on again and a user's choice could not survive a restart; that is fixed as part of
+the branding work.
+
+### What B2 waits for
+
+Replacing 169 icons is asset work, not theming: each SVG is referenced by name from the UI, so a
+partial swap is worse than none. Lucide is ISC — it may be shipped in a paid app, and it is listed
+on the Licences screen. The honest position for v1 is that the *palette, shape language, sheet,
+Licences screen and identity* are ours while the *glyphs* are still Lucide's; a full icon set is a
+design-decision-per-icon job best done after the palette is settled on a real screen.
+
+### What B5 found
+
+The gate paid for itself immediately. In order: a JS-source-not-allowed (a fourth pinned git
+repository, `storytold/winprint.rs`), an **Ubuntu Font Licence** font compiled into the binary by
+`epaint` that nobody had noticed, an IJG-licensed JPEG encoder, and a CDLA-Permissive-2.0
+certificate list. All four are permissive and all four now have their notices reproduced or their
+source named in `deny.toml`; the run is green.
 
 - **B0 — verify the phone path** (no code): install `v1.0.0`, walk the checklist in §2, file what
   breaks.

@@ -1,11 +1,11 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `6151e31697e0165150ed7295b9d910fd65d0dea1`, run [41006519649](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/41006519649), 2026-10-30T05:07:50Z.
+Commit `cd4033436bbc6ca129a68aa32bda6053768d8764`, run [41048767496](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/41048767496), 2026-10-30T11:34:00Z.
 
 ```
 == badging ==
-package: name='com.rea.studio' versionCode='6' versionName='0.1.6' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+package: name='com.rea.studio' versionCode='7' versionName='0.1.7' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
 targetSdkVersion:'35'
 application-label:'REA Studio'
 launchable-activity: name='com.rea.studio.MainActivity'  label='' icon=''
@@ -14,8 +14,8 @@ native-code: 'arm64-v8a'
 == archive ==
   2335104  1981-01-01 01:01   classes.dex
      1812  1981-01-01 01:01   classes2.dex
-   150488  1981-01-01 01:01   classes3.dex
-   569520  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
+   152320  1981-01-01 01:01   classes3.dex
+   569504  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
      1440  1981-01-01 01:01   resources.arsc
 
 == native exports ==
@@ -81,9 +81,9 @@ library size: 556 KiB
 
 == ELF LOAD alignment (must be 0x4000 for 16 KiB pages) ==
   LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x0215e8 0x0215e8 R   0x4000
-  LOAD           0x0215e8 0x00000000000255e8 0x00000000000255e8 0x065138 0x065138 R E 0x4000
-  LOAD           0x086720 0x000000000008e720 0x000000000008e720 0x003680 0x0038e0 RW  0x4000
-  LOAD           0x089da0 0x0000000000095da0 0x0000000000095da0 0x000ae0 0x0013d0 RW  0x4000
+  LOAD           0x0215e8 0x00000000000255e8 0x00000000000255e8 0x065128 0x065128 R E 0x4000
+  LOAD           0x086710 0x000000000008e710 0x000000000008e710 0x003680 0x0038f0 RW  0x4000
+  LOAD           0x089d90 0x0000000000095d90 0x0000000000095d90 0x000ae0 0x0013d0 RW  0x4000
 
 == shared objects required ==
   0x0000000000000001 (NEEDED)       Shared library: [libdl.so]
@@ -92,14 +92,14 @@ library size: 556 KiB
 
 == how the library is packaged ==
 compression: unknown
-offset of local header: 2487672
+offset of local header: 2489504
 extractNativeLibs=true: the library is unpacked at install, so the archive offset does not matter
         A: http://schemas.android.com/apk/res/android:extractNativeLibs(0x010104ea)=true
 == dex ==
 dex files: 3
 classes.dex: 2335104 bytes
 classes2.dex: 1812 bytes
-classes3.dex: 150488 bytes
+classes3.dex: 152320 bytes
 found com/rea/studio/MainActivity
 found com/rea/studio/NativeCore
 found com/rea/studio/EditorView
@@ -107,5 +107,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: a16ef42828161120e65d36084f2968ef6641c644b3ee8cefa3b9f324eef410c9
+APK sha256: aaae5a4ca5981ee33237f5480b070ccacdb156de845d95e828cc532e773995a3
 ```

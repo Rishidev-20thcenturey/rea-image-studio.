@@ -7,6 +7,10 @@ name: Licence gate
 # licence outside `deny.toml`'s allow-list, on a dependency from an unexpected git source, and on a
 # wildcard version requirement. It runs on its own wheel so a licence problem is reported in a
 # couple of minutes, not after a forty-minute APK build.
+#
+# cargo-deny is installed and run by hand rather than through its action so that a failure is
+# reported as annotations. This repository's job logs are frequently not retrievable, and a gate
+# nobody can read is not a gate: the first findings go out as `::error::` annotations, which are.
 
 on:
   push:
@@ -42,6 +46,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-      - uses: EmbarkStudios/cargo-deny-action@3c6349835b2b7b196a839186cb8b78e02f7b5f25 # v2.1.1
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
         with:
-          command: check licenses sources bans
+          # The tool's own build artefacts, kept apart from the app's.
+          workspaces: '. -> target'
+      - name: Install cargo-deny
+        run: cargo install cargo-deny --locked
+      - name: Check licences, sources and bans
+        run: |
+          set +e
+          cargo deny --version
+          cargo deny check licenses sources bans > "${RUNNER_TEMP}/deny.txt" 2>&1
+          status=$?
+          if [ "$status" -ne 0 ]; then
+            # Annotations are capped per step, so the first findings go out; the report follows.
+            grep -iE "error|not allowed|unlicensed|banned|denied|failed" "${RUNNER_TEMP}/deny.txt" \
+              | head -n 8 \
+              | while IFS= read -r line; do
+                  clean=$(printf '%s' "$line" | tr -d '\r' | tr '"' "'" | cut -c1-400)
+                  echo "::error title=cargo-deny::${clean}"
+                done
+            echo "----- cargo-deny report -----"
+            cat "${RUNNER_TEMP}/deny.txt"
+            exit 1
+          fi
+          echo "----- cargo-deny report -----"
+          cat "${RUNNER_TEMP}/deny.txt"

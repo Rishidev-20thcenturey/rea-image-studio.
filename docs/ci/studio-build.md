@@ -1,11 +1,11 @@
 <!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->
 # Studio app: last build evidence
 
-Commit `8538b38ce84c7a8ffaeb610a4cee65d795737d77`, run [41003760815](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/41003760815), 2026-10-30T04:37:35Z.
+Commit `6151e31697e0165150ed7295b9d910fd65d0dea1`, run [41006519649](https://github.com/Rishidev-20thcenturey/rea-image-studio./actions/runs/41006519649), 2026-10-30T05:07:50Z.
 
 ```
 == badging ==
-package: name='com.rea.studio' versionCode='5' versionName='0.1.5' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
+package: name='com.rea.studio' versionCode='6' versionName='0.1.6' platformBuildVersionName='15' platformBuildVersionCode='35' compileSdkVersion='35' compileSdkVersionCodename='15'
 targetSdkVersion:'35'
 application-label:'REA Studio'
 launchable-activity: name='com.rea.studio.MainActivity'  label='' icon=''
@@ -14,7 +14,7 @@ native-code: 'arm64-v8a'
 == archive ==
   2335104  1981-01-01 01:01   classes.dex
      1812  1981-01-01 01:01   classes2.dex
-   150476  1981-01-01 01:01   classes3.dex
+   150488  1981-01-01 01:01   classes3.dex
    569520  1981-01-01 01:01   lib/arm64-v8a/librea_core.so
      1440  1981-01-01 01:01   resources.arsc
 
@@ -92,14 +92,14 @@ library size: 556 KiB
 
 == how the library is packaged ==
 compression: unknown
-offset of local header: 2487660
+offset of local header: 2487672
 extractNativeLibs=true: the library is unpacked at install, so the archive offset does not matter
         A: http://schemas.android.com/apk/res/android:extractNativeLibs(0x010104ea)=true
 == dex ==
 dex files: 3
 classes.dex: 2335104 bytes
 classes2.dex: 1812 bytes
-classes3.dex: 150476 bytes
+classes3.dex: 150488 bytes
 found com/rea/studio/MainActivity
 found com/rea/studio/NativeCore
 found com/rea/studio/EditorView
@@ -107,5 +107,5 @@ found com/rea/studio/ColorPickerView
 found com/rea/studio/SliderRow
 
 APK size: 2 MiB
-APK sha256: 32a016b1ceb26c53ba59fcdecc022a0f8d2682405f700239de3d2d3d1c3e7005
+APK sha256: a16ef42828161120e65d36084f2968ef6641c644b3ee8cefa3b9f324eef410c9
 ```

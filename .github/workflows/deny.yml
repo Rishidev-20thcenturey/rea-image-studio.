@@ -1,0 +1,47 @@
+name: Licence gate
+
+# cargo-deny over the dependency graph the Android build actually uses.
+#
+# The product is sold closed-source on Google Play, which MIT and Apache-2.0 permit and a copyleft
+# crate would not. This job is what makes that a checked fact rather than a hope: it fails on a
+# licence outside `deny.toml`'s allow-list, on a dependency from an unexpected git source, and on a
+# wildcard version requirement. It runs on its own wheel so a licence problem is reported in a
+# couple of minutes, not after a forty-minute APK build.
+
+on:
+  push:
+    branches:
+      - main
+      - 'arena/**'
+    paths:
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'deny.toml'
+      - 'crates/**/Cargo.toml'
+      - 'apps/**/Cargo.toml'
+      - '.github/workflows/deny.yml'
+  pull_request:
+    paths:
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'deny.toml'
+      - 'crates/**/Cargo.toml'
+      - 'apps/**/Cargo.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deny-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  licences:
+    name: Licences, sources and bans
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: EmbarkStudios/cargo-deny-action@3c6349835b2b7b196a839186cb8b78e02f7b5f25 # v2.1.1
+        with:
+          command: check licenses sources bans

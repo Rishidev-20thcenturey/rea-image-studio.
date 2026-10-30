@@ -1,0 +1,67 @@
+# cargo-deny: the licence gate for a paid, closed-source distribution.
+#
+# MIT and Apache-2.0 let this app be sold as closed source. A copyleft crate would not, and one
+# would arrive silently as a transitive dependency of something innocuous. This file is the
+# allow-list: a build fails here instead of shipping something the project cannot distribute, and
+# it fails on a *new* licence rather than on a lawyer finding it after launch.
+#
+# What each section does:
+#   [licenses] — only these licences may appear in the dependency graph.
+#   [bans]     — one copy of a crate is not required (the graph is huge and legitimate), but a
+#                wildcard version is flagged and a crate listed in `deny` may not arrive at all.
+#   [sources]  — dependencies come from crates.io or from the three git repositories this fork
+#                already pins; a new git source is refused until someone adds it here on purpose.
+#
+# Run it locally with: cargo deny check licenses sources
+
+[graph]
+# Android is the product. Checking the arm64 target only is deliberate: a licence problem in a
+# crate that only a desktop or web build pulls in does not affect what is distributed.
+targets = [{ triple = "aarch64-linux-android" }]
+
+[licenses]
+version = 2
+# Licences written with an SPDX expression that cargo-deny cannot read with certainty are refused
+# rather than guessed at.
+confidence-threshold = 0.92
+allow = [
+    "MIT",
+    "MIT-0",
+    "Apache-2.0",
+    "Apache-2.0 WITH LLVM-exception",
+    "BSD-2-Clause",
+    "BSD-3-Clause",
+    "ISC",
+    "Zlib",
+    "0BSD",
+    "BSL-1.0",
+    "NCSA",
+    "Unicode-3.0",
+    "Unicode-DFS-2016",
+    "CC0-1.0",
+    "Unlicense",
+    "bzip2-1.0.6",
+    # Fonts shipped as crates (the UI's own typefaces are files, not crates, and are listed on the
+    # app's Licences screen).
+    "OFL-1.1",
+]
+# Copyleft appears nowhere in the graph today. These are named so the report says *why* a hit is a
+# hit instead of only listing an unfamiliar string.
+private = { ignore = true }
+
+[bans]
+multiple-versions = "allow"
+wildcards = "warn"
+# The engine and the shell must stay the versions this fork was tested against.
+deny = []
+
+[sources]
+unknown-registry = "deny"
+unknown-git = "deny"
+allow-git = [
+    # The engine's own crates (craft-*).
+    "https://github.com/storytold/craft-libs",
+    # The pinned egui/winit forks the UI is drawn with.
+    "https://github.com/storytold/egui",
+    "https://github.com/storytold/winit",
+]

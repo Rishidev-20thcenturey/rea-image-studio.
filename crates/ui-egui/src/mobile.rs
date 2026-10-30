@@ -21,7 +21,7 @@
 //! the shell asks for it ([`PhotocraftApp::phone_layout`], set on Android) and the window's shorter
 //! side is under [`PHONE_MAX_SIDE`]. Desktop and web windows keep their chrome and their mouse.
 
-use egui::{Align, Frame, Layout, Margin, RichText, Sense, Stroke, Vec2, vec2};
+use egui::{Align, CornerRadius, Frame, Layout, Margin, RichText, Sense, Stroke, Vec2, vec2};
 use serde_json::json;
 
 use crate::dock::Group;
@@ -997,7 +997,8 @@ fn sheet(app: &mut PhotocraftApp, ui: &mut egui::Ui) {
     let group = ctx.data(|d| d.get_temp::<Group>(sheet_group_id())).unwrap_or(Group::Layers);
     let screen = ctx.content_rect().size();
     let (mut pick, mut close) = (None, false);
-    let panel = if side_sheet(screen) {
+    let beside = side_sheet(screen);
+    let panel = if beside {
         egui::Panel::right("phone-sheet-side")
             .resizable(true)
             // Room at least for the row of group icons and the hide button.
@@ -1009,9 +1010,26 @@ fn sheet(app: &mut PhotocraftApp, ui: &mut egui::Ui) {
             .default_size((screen.y * 0.4).max(220.0))
             .size_range(220.0..=(screen.y * 0.85).max(260.0))
     };
+    // A sheet that rises from the bottom is a card laid over the picture, not a flat band bolted to
+    // it: rounded top corners, a hairline edge and a grab handle. Beside the picture it stays square,
+    // where rounding would only clip the panel's own content.
+    let frame = if beside {
+        Frame::NONE.fill(t.dock).inner_margin(Margin::same(6))
+    } else {
+        Frame::NONE
+            .fill(t.dock)
+            .corner_radius(CornerRadius { nw: t.radius_lg as u8, ne: t.radius_lg as u8, sw: 0, se: 0 })
+            .stroke(Stroke::new(1.0, t.card_border))
+            .inner_margin(Margin { left: 6, right: 6, top: 10, bottom: 6 })
+    };
     panel
-        .frame(Frame::NONE.fill(t.dock).inner_margin(Margin::same(6)))
+        .frame(frame)
         .show(ui, |ui| {
+            if !beside {
+                let r = ui.max_rect();
+                let handle = egui::Rect::from_center_size(egui::pos2(r.center().x, r.top() + 3.0), vec2(40.0, 4.0));
+                ui.painter().rect_filled(handle, 2.0, t.separator);
+            }
             ui.horizontal(|ui| {
                 ui.spacing_mut().item_spacing.x = 2.0;
                 for (g, icon, name) in SHEET_GROUPS {

@@ -54,22 +54,26 @@ jobs:
       - name: Install cargo-deny
         run: cargo install cargo-deny --locked
       - name: Check licences, sources and bans
+        env:
+          # Plain text, so a finding can be read in an annotation instead of as escape codes.
+          NO_COLOR: '1'
+          TERM: dumb
         run: |
           set +e
           cargo deny --version
           cargo deny check licenses sources bans > "${RUNNER_TEMP}/deny.txt" 2>&1
           status=$?
+          cat "${RUNNER_TEMP}/deny.txt"
           if [ "$status" -ne 0 ]; then
-            # Annotations are capped per step, so the first findings go out; the report follows.
-            grep -iE "error|not allowed|unlicensed|banned|denied|failed" "${RUNNER_TEMP}/deny.txt" \
-              | head -n 8 \
+            # Annotations are capped per step and this repository's job logs are often not
+            # retrievable, so the findings go out as annotations: each error with the crate,
+            # licence and source lines cargo-deny prints beneath it.
+            sed -e 's/\x1b\[[0-9;]*m//g' "${RUNNER_TEMP}/deny.txt" \
+              | grep -aiE "error\[|crate:|license:|source:|dependency|allowed|resolv" \
+              | head -n 9 \
               | while IFS= read -r line; do
-                  clean=$(printf '%s' "$line" | tr -d '\r' | tr '"' "'" | cut -c1-400)
+                  clean=$(printf '%s' "$line" | tr -d '\r' | cut -c1-350)
                   echo "::error title=cargo-deny::${clean}"
                 done
-            echo "----- cargo-deny report -----"
-            cat "${RUNNER_TEMP}/deny.txt"
             exit 1
           fi
-          echo "----- cargo-deny report -----"
-          cat "${RUNNER_TEMP}/deny.txt"

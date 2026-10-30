@@ -85,6 +85,7 @@ class EditorView(context: Context) : View(context) {
     private var curX = 0f
     private var curY = 0f
     private var panning = false
+    private var suppressPinchUntilUp = false
     private var pinchStartSpan = 0f
     private var pinchStartZoom = 1f
     private var pinchFocusX = 0f
@@ -154,8 +155,15 @@ class EditorView(context: Context) : View(context) {
         invalidate()
     }
 
-    fun fitToWindow() {
-        if (docW <= 0 || docH <= 0 || width == 0 || height == 0) return
+    /**
+     * Fit the whole document on screen, centred.
+     *
+     * If the view has not been measured yet this does nothing and keeps `needsFit` set, so the
+     * first draw retries: that ordering is what made "fit" silently do nothing on a freshly opened
+     * image and leave it at 100%.
+     */
+    fun fitToWindow(): Boolean {
+        if (docW <= 0 || docH <= 0 || width == 0 || height == 0) return false
         val margin = 24f
         val z = min((width - margin) / docW, (height - margin) / docH)
         zoom = z.coerceIn(0.02f, 16f)
@@ -163,6 +171,19 @@ class EditorView(context: Context) : View(context) {
         viewY = (docH - height / zoom) / 2f
         needsFit = false
         invalidateDocument()
+        onEdit?.invoke()
+        return true
+    }
+
+    /** Fit once the view has a size, whenever that turns out to be. */
+    fun fitWhenMeasure() {
+        needsFit = true
+        post {
+            if (!fitToWindow()) {
+                // Still not measured: try again on the next frame.
+                postDelayed({ fitToWindow() }, 64)
+            }
+        }
     }
 
     fun zoomTo(z: Float, focusX: Float = width / 2f, focusY: Float = height / 2f) {
@@ -294,17 +315,21 @@ class EditorView(context: Context) : View(context) {
                 lastY = event.y
                 panning = false
                 lasso.clear()
-                beginTool(downX, downY, event.getPressure(0))
+                beginTool(downX, downY, effectivePressure(event))
                 return true
             }
 
             MotionEvent.ACTION_POINTER_DOWN -> {
                 if (event.pointerCount >= 2) {
-                    // A second finger means pan and zoom, not paint.
+                    // A second finger landing *during* a stroke is almost always an accident — the
+                    // hand holding the tablet — so the stroke finishes and nothing else happens.
+                    // Pinch only starts from a two-finger touch that began with two fingers.
                     if (strokeOn) {
                         NativeCore.strokeEnd(handle)
                         strokeOn = false
                         commitEdit()
+                        suppressPinchUntilUp = true
+                        return true
                     }
                     panning = true
                     pinchStartSpan = span(event)
@@ -316,6 +341,7 @@ class EditorView(context: Context) : View(context) {
             }
 
             MotionEvent.ACTION_MOVE -> {
+                if (suppressPinchUntilUp) return true
                 if (panning && event.pointerCount >= 2) {
                     val midX = (event.getX(0) + event.getX(1)) / 2f
                     val midY = (event.getY(0) + event.getY(1)) / 2f
@@ -337,11 +363,12 @@ class EditorView(context: Context) : View(context) {
                 }
                 curX = viewToDocX(event.x)
                 curY = viewToDocY(event.y)
-                moveTool(curX, curY, event.getPressure(0))
+                moveTool(curX, curY, effectivePressure(event))
                 return true
             }
 
             MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
+                suppressPinchUntilUp = false
                 if (!panning) {
                     endTool(viewToDocX(event.x), viewToDocY(event.y))
                 }
@@ -364,6 +391,20 @@ class EditorView(context: Context) : View(context) {
     private fun span(e: MotionEvent): Float =
         if (e.pointerCount < 2) 0f
         else hypot(e.getX(1) - e.getX(0), e.getY(1) - e.getY(0))
+
+    /**
+     * A capacitive screen reports pressure inconsistently — often 1.0 on the first touch and 0.0 or
+     * random fractions during a drag — which made every dab a different size and turned a stroke
+     * into a string of blobs. Pressure is only honoured when it comes from a stylus.
+     */
+    private fun effectivePressure(event: MotionEvent): Float =
+        if (event.getToolType(0) == MotionEvent.TOOL_TYPE_STYLUS ||
+            event.getToolType(0) == MotionEvent.TOOL_TYPE_ERASER
+        ) {
+            event.getPressure(0).coerceIn(0.05f, 1f)
+        } else {
+            1f
+        }
 
     private fun beginTool(x: Float, y: Float, pressure: Float) {
         strokeOn = true

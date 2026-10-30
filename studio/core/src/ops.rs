@@ -261,7 +261,9 @@ impl Document {
         let sel = self.sel.clone();
         let (dw, dh) = (self.w, self.h);
         let s = self.stroke.clone();
-        let radius = (s.size * 0.5 * (0.35 + 0.65 * pressure)).max(0.6);
+        // Gentle modulation: 60% of the radius at minimum pressure, 100% at full. A wild swing in
+        // the input must not turn one dab into a speck and the next into a blob.
+        let radius = (s.size * 0.5 * (0.6 + 0.4 * pressure)).max(0.6);
         let hard = s.hardness;
         let (color, flow, erase) = (s.color, s.flow, s.erase);
         let mut touched = Rect::empty();
@@ -1351,6 +1353,44 @@ mod tests {
         d.stroke_to(30.0, 20.0, 1.0);
         d.stroke_end();
         assert_eq!(d.undo.len(), before + 1, "a whole stroke is a single step");
+    }
+
+    #[test]
+    fn a_sparse_drag_paints_a_continuous_line() {
+        // A fast swipe produces only a handful of touch samples. The stroke has to be interpolated
+        // between them, or the result is a row of separate dabs instead of a line.
+        let mut d = Document::new(200, 200);
+        d.stroke_begin(20.0, 100.0, 1.0, 0, [0, 0, 0, 255], 12.0, 1.0, 1.0, 1.0);
+        d.stroke_to(80.0, 100.0, 1.0);
+        d.stroke_to(180.0, 100.0, 1.0);
+        d.stroke_end();
+        for x in 20..180 {
+            let i = (100 * 200 + x) * 4 + 3;
+            assert!(d.layers[0].px[i] > 0, "gap in the stroke at x={x}");
+        }
+    }
+
+    #[test]
+    fn erratic_pressure_does_not_change_the_dab_size_wildly() {
+        // A capacitive screen reports nonsense pressure: consecutive samples can be 0.02 and 1.0.
+        // The stamped radius must stay within a narrow band, or a stroke becomes a string of blobs.
+        let mut a = Document::new(64, 64);
+        a.stroke_begin(32.0, 32.0, 0.02, 0, [0, 0, 0, 255], 40.0, 1.0, 1.0, 1.0);
+        a.stroke_end();
+        let mut b = Document::new(64, 64);
+        b.stroke_begin(32.0, 32.0, 1.0, 0, [0, 0, 0, 255], 40.0, 1.0, 1.0, 1.0);
+        b.stroke_end();
+
+        let width = |d: &Document| -> usize {
+            let row = 32 * 64;
+            (0..64).filter(|x| d.layers[0].px[(row + x) * 4 + 3] > 0).count()
+        };
+        let (small, large) = (width(&a), width(&b));
+        assert!(small > 0 && large > 0);
+        assert!(
+            large as f32 <= small as f32 * 1.8,
+            "the same brush drew {small} px at low pressure and {large} px at high pressure"
+        );
     }
 
     #[test]

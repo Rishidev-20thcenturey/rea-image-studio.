@@ -684,7 +684,7 @@ class MainActivity : Activity() {
         documentUri = null
         editor.handle = handle
         editor.syncDocument()
-        editor.fitToWindow()
+        editor.fitWhenMeasure()
         refreshAll()
     }
 
@@ -722,7 +722,16 @@ class MainActivity : Activity() {
     private fun toggleLayers(show: Boolean) {
         layersCard.visibility = if (show) View.VISIBLE else View.GONE
         layersBtn.active = show
-        if (show) refreshLayers()
+        if (!show) return
+        // Draw over the canvas explicitly, and never let a failure in the rebuild leave the panel
+        // visible but empty - which is what the phone screenshot showed.
+        layersCard.bringToFront()
+        runCatching { refreshLayers() }.onFailure {
+            Diag.recordThrowable(it)
+            toast("The layer panel could not be built: ${it.message}")
+            layersCard.visibility = View.GONE
+            layersBtn.active = false
+        }
     }
 
     private fun refreshLayers() {
@@ -1403,7 +1412,7 @@ class MainActivity : Activity() {
             docName = (uri.lastPathSegment ?: "Image").substringBeforeLast('.').ifBlank { "Image" }
             bmp.recycle()
             editor.syncDocument()
-            editor.fitToWindow()
+            editor.fitWhenMeasure()
             refreshAll()
         } catch (e: Exception) {
             toast("Could not open the image: ${e.message}")
@@ -1427,7 +1436,7 @@ class MainActivity : Activity() {
             docName = (uri.lastPathSegment ?: "Untitled").substringBeforeLast('.')
             editor.handle = handle
             editor.syncDocument()
-            editor.fitToWindow()
+            editor.fitWhenMeasure()
             refreshAll()
         } catch (e: Exception) {
             toast("Could not open the project: ${e.message}")

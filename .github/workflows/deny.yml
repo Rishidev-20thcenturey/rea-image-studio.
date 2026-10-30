@@ -1,0 +1,80 @@
+name: Licence gate
+
+# cargo-deny over the dependency graph the Android build actually uses.
+#
+# The product is sold closed-source on Google Play, which MIT and Apache-2.0 permit and a copyleft
+# crate would not. This job is what makes that a checked fact rather than a hope: it fails on a
+# licence outside `deny.toml`'s allow-list, on a dependency from an unexpected git source, and on a
+# wildcard version requirement. It runs on its own wheel so a licence problem is reported in a
+# couple of minutes, not after a forty-minute APK build.
+#
+# cargo-deny is installed and run by hand rather than through its action so that a failure is
+# reported as annotations. This repository's job logs are frequently not retrievable, and a gate
+# nobody can read is not a gate: the first findings go out as `::error::` annotations, which are.
+
+on:
+  push:
+    branches:
+      - main
+      - 'arena/**'
+    paths:
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'deny.toml'
+      - 'crates/**/Cargo.toml'
+      - 'apps/**/Cargo.toml'
+      - '.github/workflows/deny.yml'
+  pull_request:
+    paths:
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'deny.toml'
+      - 'crates/**/Cargo.toml'
+      - 'apps/**/Cargo.toml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deny-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  licences:
+    name: Licences, sources and bans
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          # The tool's own build artefacts, kept apart from the app's.
+          workspaces: '. -> target'
+      - name: Install cargo-deny
+        run: cargo install cargo-deny --locked
+      - name: Check licences, sources and bans
+        env:
+          # Plain text, so a finding can be read in an annotation instead of as escape codes.
+          NO_COLOR: '1'
+          TERM: dumb
+        run: |
+          set +e
+          cargo deny --version
+          cargo deny check licenses sources bans > "${RUNNER_TEMP}/deny.txt" 2>&1
+          status=$?
+          cat "${RUNNER_TEMP}/deny.txt"
+          if [ "$status" -ne 0 ]; then
+            # This repository's job logs are frequently not retrievable, and a gate nobody can read
+            # is not a gate: the report's findings go out as one multi-line annotation, which the
+            # API does return. Newlines are `%0A` because that is what an annotation uses.
+            findings=$(sed -e 's/\x1b\[[0-9;]*m//g' "${RUNNER_TEMP}/deny.txt" \
+              | tr -d '\r' \
+              | grep -v '^[[:space:]]*$' \
+              | grep -v '^[[:space:]]*[┌└├│┏┗]\{0,1\}[─━┄]*[[:space:]]*$' \
+              | head -n 60 \
+              | tr '\n' '~')
+            clean=$(printf '%s' "$findings" | sed -e 's/%/%25/g' -e 's/~/%0A/g' | cut -c1-3800)
+            echo "::error title=cargo-deny::${clean}"
+            exit 1
+          fi

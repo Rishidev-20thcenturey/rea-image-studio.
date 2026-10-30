@@ -52,10 +52,16 @@ pub enum ThemeKind {
     SoftDark,
     /// A low-contrast light theme: pale violet-grey surfaces, softened dark text and a periwinkle accent.
     SoftLight,
+    /// REA Ink: the product's own light-first style, paper-white surfaces, near-black type and one
+    /// saturated ink-blue accent, with generously rounded cards and no bevels.
+    Ink,
+    /// REA Ink's dark counterpart for editing in the dark: near-black paper, warm off-white type and
+    /// the same ink-blue accent lifted for contrast.
+    InkDark,
 }
 
 impl ThemeKind {
-    pub const ALL: [ThemeKind; 14] = [
+    pub const ALL: [ThemeKind; 16] = [
         ThemeKind::Pro,
         ThemeKind::ProMedium,
         ThemeKind::ProLightGray,
@@ -70,6 +76,8 @@ impl ThemeKind {
         ThemeKind::BreezeDark,
         ThemeKind::SoftDark,
         ThemeKind::SoftLight,
+        ThemeKind::Ink,
+        ThemeKind::InkDark,
     ];
     pub fn label(self) -> &'static str {
         match self {
@@ -87,6 +95,8 @@ impl ThemeKind {
             ThemeKind::BreezeDark => "Breeze Dark",
             ThemeKind::SoftDark => "Soft Dark",
             ThemeKind::SoftLight => "Soft Light",
+            ThemeKind::Ink => "REA Ink",
+            ThemeKind::InkDark => "REA Ink Dark",
         }
     }
     /// The canonical name: `ui.set {theme}` accepts it and the Window › Theme commands are
@@ -107,6 +117,8 @@ impl ThemeKind {
             ThemeKind::BreezeDark => "breezeDark",
             ThemeKind::SoftDark => "softDark",
             ThemeKind::SoftLight => "softLight",
+            ThemeKind::Ink => "ink",
+            ThemeKind::InkDark => "inkDark",
         }
     }
     /// Photoshop-grammar layout (tab strips, flat panels): the four Pro brightness levels.
@@ -124,6 +136,7 @@ impl ThemeKind {
                 | ThemeKind::AdwaitaDark
                 | ThemeKind::BreezeDark
                 | ThemeKind::SoftDark
+                | ThemeKind::InkDark
         )
     }
     /// Whether this theme belongs to the light appearance family.
@@ -150,6 +163,8 @@ impl ThemeKind {
             "breezedark" | "kdedark" | "plasmadark" => Some(ThemeKind::BreezeDark),
             "softdark" => Some(ThemeKind::SoftDark),
             "softlight" => Some(ThemeKind::SoftLight),
+            "ink" | "reaink" | "brand" | "default" => Some(ThemeKind::Ink),
+            "inkdark" | "reainkdark" | "branddark" => Some(ThemeKind::InkDark),
             _ => None,
         }
     }
@@ -221,6 +236,91 @@ impl Tokens {
 
     pub fn for_kind(kind: ThemeKind) -> Self {
         match kind {
+            // REA Ink: the product's own light-first style. Warm paper-white surfaces so document
+            // white still reads as white on the canvas, near-black type, one saturated ink-blue
+            // accent, generous radii and no bevels anywhere.
+            ThemeKind::Ink => Tokens {
+                kind,
+                chrome: Color32::from_rgb(247, 246, 243),
+                canvas: Color32::from_rgb(226, 223, 216),
+                canvas_dot: Color32::from_rgb(214, 210, 201),
+                dock: Color32::from_rgb(240, 238, 233),
+                card: Color32::from_rgb(255, 255, 255),
+                card_border: Color32::from_rgb(221, 217, 208),
+                field: Color32::from_rgb(255, 255, 255),
+                field_border: Color32::from_rgb(201, 196, 184),
+                hover: Color32::from_rgb(237, 234, 227),
+                pressed: Color32::from_rgb(225, 221, 212),
+                text: Color32::from_rgb(20, 18, 15),
+                text_dim: Color32::from_rgb(58, 54, 47),
+                text_faint: Color32::from_rgb(107, 100, 89),
+                icon: Color32::from_rgb(30, 27, 23),
+                accent: Color32::from_rgb(31, 79, 216),
+                accent_soft: Color32::from_rgba_unmultiplied(31, 79, 216, 26),
+                accent_border: Color32::from_rgba_unmultiplied(31, 79, 216, 140),
+                accent_text: Color32::from_rgb(22, 54, 154),
+                separator: Color32::from_rgb(227, 223, 214),
+                shadow: Color32::from_black_alpha(28),
+                primary_bg: Color32::from_rgb(31, 79, 216),
+                primary_text: Color32::WHITE,
+                danger: Color32::from_rgb(180, 35, 47),
+                warning: Color32::from_rgb(138, 90, 0),
+                radius_sm: 8.0,
+                radius: 12.0,
+                radius_lg: 18.0,
+                bevel: false,
+                pro: false,
+                round_chips: true,
+                tab_strip: Color32::TRANSPARENT,
+                row_selected: Color32::from_rgba_unmultiplied(31, 79, 216, 22),
+                histogram_bg: Color32::from_rgb(20, 18, 15),
+                histogram_level: 235,
+                caption_close: Color32::from_rgb(209, 67, 78),
+                caption_close_text: Color32::WHITE,
+                scrim: Color32::from_black_alpha(80),
+            },
+            // REA Ink Dark: the same shape and accent on near-black paper, for editing in a dark
+            // room. The accent lifts so it keeps its contrast against the surfaces.
+            ThemeKind::InkDark => Tokens {
+                kind,
+                chrome: Color32::from_rgb(18, 17, 16),
+                canvas: Color32::from_rgb(12, 11, 10),
+                canvas_dot: Color32::from_rgb(28, 27, 25),
+                dock: Color32::from_rgb(25, 24, 22),
+                card: Color32::from_rgb(32, 31, 28),
+                card_border: Color32::from_rgb(48, 46, 42),
+                field: Color32::from_rgb(38, 36, 32),
+                field_border: Color32::from_rgb(70, 67, 60),
+                hover: Color32::from_rgb(42, 40, 36),
+                pressed: Color32::from_rgb(51, 48, 43),
+                text: Color32::from_rgb(244, 242, 237),
+                text_dim: Color32::from_rgb(217, 213, 204),
+                text_faint: Color32::from_rgb(162, 156, 144),
+                icon: Color32::from_rgb(232, 228, 220),
+                accent: Color32::from_rgb(110, 147, 255),
+                accent_soft: Color32::from_rgba_unmultiplied(110, 147, 255, 38),
+                accent_border: Color32::from_rgba_unmultiplied(110, 147, 255, 170),
+                accent_text: Color32::from_rgb(169, 190, 255),
+                separator: Color32::from_rgb(43, 41, 37),
+                shadow: Color32::from_black_alpha(120),
+                primary_bg: Color32::from_rgb(59, 103, 232),
+                primary_text: Color32::WHITE,
+                danger: Color32::from_rgb(255, 107, 117),
+                warning: Color32::from_rgb(255, 180, 84),
+                radius_sm: 8.0,
+                radius: 12.0,
+                radius_lg: 18.0,
+                bevel: false,
+                pro: false,
+                round_chips: true,
+                tab_strip: Color32::TRANSPARENT,
+                row_selected: Color32::from_rgba_unmultiplied(110, 147, 255, 32),
+                histogram_bg: Color32::from_rgb(12, 11, 10),
+                histogram_level: 240,
+                caption_close: Color32::from_rgb(209, 67, 78),
+                caption_close_text: Color32::WHITE,
+                scrim: Color32::from_black_alpha(150),
+            },
             // Sampled from Photoshop 2026's default brightness (raw display values).
             ThemeKind::ProMedium => Tokens {
                 kind,
@@ -1357,6 +1457,37 @@ mod tests {
         for kind in [ThemeKind::StudioLight, ThemeKind::Adwaita, ThemeKind::BreezeLight, ThemeKind::SoftLight] {
             assert!(Tokens::for_kind(kind).knob_outline().is_some(), "{kind:?}");
         }
+    }
+
+    /// REA Ink is the product's own palette: the layout the cards were drawn for (flat, rounded),
+    /// one accent, and text that stays readable on every surface it paints. Its dark counterpart
+    /// must be the same shape under the dark family, not a second design.
+    #[test]
+    fn rea_ink_is_the_brand_palette_and_meets_text_contrast() {
+        for kind in [ThemeKind::Ink, ThemeKind::InkDark] {
+            let t = Tokens::for_kind(kind);
+            assert_eq!(t.kind, kind);
+            assert_eq!(ThemeKind::from_name(kind.id()), Some(kind));
+            assert_eq!(ThemeKind::from_name(kind.label()), Some(kind));
+            assert!(ThemeKind::ALL.contains(&kind));
+            assert_eq!(t.dark(), kind == ThemeKind::InkDark);
+            assert!(!t.pro && !t.bevel, "{kind:?} uses the flat card layout");
+            assert_eq!((t.radius_sm, t.radius, t.radius_lg), (8.0, 12.0, 18.0), "{kind:?}");
+            for bg in [t.card, t.chrome, t.dock] {
+                assert!(contrast(t.text, bg) >= 4.5, "{kind:?} text on {bg:?}: {}", contrast(t.text, bg));
+                assert!(contrast(t.icon, bg) >= 3.0, "{kind:?} icon on {bg:?}");
+                assert!(contrast(t.text_dim, bg) >= 3.0, "{kind:?} dim text on {bg:?}");
+            }
+            assert!(contrast(t.accent_text, t.card) >= 3.0, "{kind:?} accent text");
+            assert!(contrast(t.text_faint, t.card) >= 2.0, "{kind:?} faint text");
+            // One accent, not a gradient: the soft and border variants are the accent itself.
+            let (a, soft, border) = (t.accent, t.accent_soft, t.accent_border);
+            assert_eq!((soft.r(), soft.g(), soft.b()), (a.r(), a.g(), a.b()), "{kind:?} soft accent");
+            assert_eq!((border.r(), border.g(), border.b()), (a.r(), a.g(), a.b()), "{kind:?} accent border");
+        }
+        // A fresh install lands on ours, and the picker lists it first in its appearance family.
+        assert_eq!(crate::prefs_ui::FIRST_LIGHT_THEME, ThemeKind::Ink);
+        assert_eq!(crate::prefs_ui::FIRST_DARK_THEME, ThemeKind::InkDark);
     }
 
     #[test]

@@ -1,0 +1,54 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'com.rea.studio'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId 'com.rea.studio'
+        minSdk 29
+        targetSdk 35
+        versionCode 7
+        versionName '0.1.7'
+        // The Rust core is built for the shipped ABI; the emulator build passes -PreaAbis=x86_64.
+        ndk {
+            abiFilters(*(project.findProperty('reaAbis') ?: 'arm64-v8a').toString().split(','))
+        }
+    }
+
+    sourceSets {
+        main {
+            java.srcDirs += 'src/main/kotlin'
+        }
+    }
+
+    packaging {
+        jniLibs {
+            // Extract the library at install instead of mapping it straight out of the APK. When it
+            // is mapped, the loader checks both the ELF's page alignment and the entry's offset in
+            // the archive; AGP aligned that entry to 4 KiB, so on a device with 16 KiB memory pages
+            // (Android 15+ on some SoCs) the load failed and the app died before drawing a frame.
+            // Extracting sidesteps the constraint entirely and works on every device and API level.
+            useLegacyPackaging = true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+}
+
+kotlin {
+    jvmToolchain(17)
+}

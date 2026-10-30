@@ -101,6 +101,7 @@ fn selected_theme(interface: &prefs::Interface, system: Option<egui::Theme>) -> 
             LightTheme::Adwaita => ThemeKind::Adwaita,
             LightTheme::BreezeLight => ThemeKind::BreezeLight,
             LightTheme::SoftLight => ThemeKind::SoftLight,
+            LightTheme::Ink => ThemeKind::Ink,
         }
     } else {
         match interface.dark_theme {
@@ -111,6 +112,7 @@ fn selected_theme(interface: &prefs::Interface, system: Option<egui::Theme>) -> 
             DarkTheme::AdwaitaDark => ThemeKind::AdwaitaDark,
             DarkTheme::BreezeDark => ThemeKind::BreezeDark,
             DarkTheme::SoftDark => ThemeKind::SoftDark,
+            DarkTheme::InkDark => ThemeKind::InkDark,
         }
     }
 }
@@ -151,7 +153,12 @@ pub(crate) fn step_brightness(app: &mut PhotocraftApp, ctx: &egui::Context, ligh
     Ok(())
 }
 
+/// The theme a fresh install opens on: ours, in both appearance families.
+pub(crate) const FIRST_LIGHT_THEME: ThemeKind = ThemeKind::Ink;
+pub(crate) const FIRST_DARK_THEME: ThemeKind = ThemeKind::InkDark;
+
 const LIGHT_THEME_OPTIONS: &[(&str, ThemeKind)] = &[
+    ("ink", ThemeKind::Ink),
     ("proLight", ThemeKind::ProLight),
     ("proLightGray", ThemeKind::ProLightGray),
     ("studioLight", ThemeKind::StudioLight),
@@ -161,6 +168,7 @@ const LIGHT_THEME_OPTIONS: &[(&str, ThemeKind)] = &[
     ("softLight", ThemeKind::SoftLight),
 ];
 const DARK_THEME_OPTIONS: &[(&str, ThemeKind)] = &[
+    ("inkDark", ThemeKind::InkDark),
     ("proMedium", ThemeKind::ProMedium),
     ("pro", ThemeKind::Pro),
     ("studio", ThemeKind::Studio),
@@ -2963,6 +2971,27 @@ mod tests {
         // The two slots are independent: choosing the dark one left the light choice alone.
         assert_eq!(app.session.prefs().interface.light_theme, LightTheme::SoftLight);
         assert_eq!(app.session.prefs().interface.dark_theme, DarkTheme::SoftDark);
+    }
+
+    /// Picking our theme by its saved id selects it and pins the matching appearance mode, the way
+    /// every other theme does, and the two slots stay independent.
+    #[test]
+    fn rea_ink_is_chosen_by_preference_and_fixes_the_matching_mode() {
+        let ctx = egui::Context::default();
+        let mut app = PhotocraftApp::new(photocraft_engine::Session::new(), crate::Services::default());
+        for (id, kind, mode) in [
+            ("ink", ThemeKind::Ink, AppearanceMode::Light),
+            ("inkDark", ThemeKind::InkDark, AppearanceMode::Dark),
+        ] {
+            app.run("prefs.set", json!({"path": "interface.theme", "value": id})).unwrap();
+            tick(&mut app, &ctx);
+            let interface = app.session.prefs().interface.clone();
+            assert_eq!(interface.appearance_mode, mode, "{id}");
+            assert_eq!(selected_theme(&interface, None), kind, "{id}");
+            assert_eq!(app.ui.theme, kind, "{id}");
+        }
+        assert_eq!(app.session.prefs().interface.light_theme, LightTheme::Ink);
+        assert_eq!(app.session.prefs().interface.dark_theme, DarkTheme::InkDark);
     }
 
     #[test]

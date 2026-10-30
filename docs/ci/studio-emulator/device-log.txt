@@ -1,0 +1,300 @@
+10-30 04:54:02.844  6198  6198 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:54:02.864  6198  6198 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-30 04:54:04.182   276   276 I tombstoned: found intercept fd 512 for pid 5839 and type kDebuggerdJavaBacktrace
+10-30 04:54:04.196  2355  6281 I system_server: libdebuggerd_client: done dumping process 5839
+10-30 04:54:04.220  6229  6229 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:54:07.964  6229  6229 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:54:08.160  2355  2373 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 104878ms for start-requested
+10-30 04:54:10.147  6229  6229 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:54:12.135  6317  6317 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:12.218  6317  6317 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:16.884  6198  6198 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:54:17.857  6198  6198 D AndroidRuntime: Shutting down VM
+10-30 04:54:20.194  6433  6433 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:20.203  6433  6433 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:23.612  6464  6464 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:23.839  6464  6464 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:26.641  6365  6365 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:54:30.206  6365  6365 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:54:32.419  6365  6365 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:54:39.962  6433  6541 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:54:39.962  6433  6541 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:54:39.962  6433  6541 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:54:39.965  6433  6541 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:54:39.965  6433  6541 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:54:39.965  6433  6541 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:54:40.110  6433  6541 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:54:40.110  6433  6541 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:54:40.110  6433  6541 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:54:43.964  6585  6585 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:54:46.930  6675  6675 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:47.031  6675  6675 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:54:48.256  6585  6585 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:54:48.436  6585  6585 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:54:48.794  6585  6585 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:54:48.843  6585  6585 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:54:48.931  6585  6585 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:54:48.983  6585  6585 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:54:49.191  6585  6585 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:54:49.275  6585  6585 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:54:49.314  6585  6585 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:54:49.345  6585  6585 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:54:49.348  6585  6585 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:54:49.431  6585  6585 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:54:49.460  6585  6585 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:54:49.554  6585  6585 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:54:49.647  6585  6585 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:54:49.651  6585  6585 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:54:49.659  6585  6585 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:54:49.666  6585  6585 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:54:56.429  6585  6585 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:54:58.886  6585  6585 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:55:01.779  2355  6769 I system_server: libdebuggerd_client: started dumping process 6317
+10-30 04:55:01.864   276   276 I tombstoned: registered intercept for pid 6317 and type kDebuggerdJavaBacktrace
+10-30 04:55:02.144  6703  6703 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-30 04:55:02.397  6703  6703 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.profilebootclasspath"
+10-30 04:55:02.439  6703  6703 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_apex_image"
+10-30 04:55:02.440  6703  6703 I AndroidRuntime: Using default boot image
+10-30 04:55:02.440  6703  6703 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.disable_lock_profiling"
+10-30 04:55:02.440  6703  6703 I AndroidRuntime: Leaving lock profiling enabled
+10-30 04:55:02.499  6703  6703 E libc    : Access denied finding property "persist.device_config.runtime_native_boot.enable_generational_cc"
+10-30 04:55:06.062   276   276 I tombstoned: found intercept fd 512 for pid 6317 and type kDebuggerdJavaBacktrace
+10-30 04:55:06.289  2355  6769 I system_server: libdebuggerd_client: done dumping process 6317
+10-30 04:55:06.879  6675  6780 I GAv4    : Google Analytics 202.3.00 is starting up. To enable debug logging on a device run:
+10-30 04:55:06.879  6675  6780 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+10-30 04:55:12.464  2355  3782 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 60937ms for start-requested
+10-30 04:55:13.817  6703  6703 D AndroidRuntime: Calling main entry com.android.commands.input.Input
+10-30 04:55:13.867  6791  6791 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:55:14.389  6703  6703 D AndroidRuntime: Shutting down VM
+10-30 04:55:15.604  6892  6892 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:15.641  6892  6892 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:16.371  6791  6791 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:16.398  6791  6791 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:16.511  6791  6791 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:16.593  6791  6791 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:16.607  6791  6791 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:16.611  6791  6791 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:16.650  6791  6791 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:16.668  6791  6791 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:16.699  6791  6791 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:16.784  6791  6791 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:16.789  6791  6791 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:16.793  6791  6791 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:16.825  6791  6791 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:16.880  6791  6791 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:16.927  6791  6791 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:16.933  6791  6791 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:16.992  6791  6791 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:21.302  6945  6945 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:21.538  6945  6945 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:21.840  6969  6969 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:21.855  6969  6969 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:22.399  2355  3529 W ActivityManager: Invalid packageName: com.rea.studio
+10-30 04:55:24.960  6791  6791 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:55:27.304  6791  6791 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:55:28.433  2355  4557 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.rea.studio/.MainActivity (has extras)} from uid 2000
+10-30 04:55:38.093  2355  7143 W system_server: libdebuggerd_client: Failed to read "/proc/6892/task/7068/wchan": No such file or directory
+10-30 04:55:38.269  2355  7143 I system_server: libdebuggerd_client: started dumping process 6892
+10-30 04:55:38.473   276   276 I tombstoned: registered intercept for pid 6892 and type kDebuggerdJavaBacktrace
+10-30 04:55:38.923   276   276 I tombstoned: found intercept fd 512 for pid 6892 and type kDebuggerdJavaBacktrace
+10-30 04:55:39.072  2355  7143 I system_server: libdebuggerd_client: done dumping process 6892
+10-30 04:55:40.986  2355  3301 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 243748ms for start-requested
+10-30 04:55:41.399  7083  7083 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:55:41.992  5884  5947 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 04:55:41.993  5884  5947 I FA      : To enable faster debug mode event logging run:
+10-30 04:55:41.993  5884  5947 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
+10-30 04:55:43.299  6969  7065 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 04:55:43.299  6969  7065 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 04:55:43.299  6969  7065 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 04:55:43.314  6969  7065 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 04:55:43.314  6969  7065 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 04:55:43.314  6969  7065 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 04:55:43.400  6969  7065 D StrictMode: 	at libcore.io.BlockGuardOs.read(BlockGuardOs.java:304)
+10-30 04:55:43.400  6969  7065 D StrictMode: 	at libcore.io.ForwardingOs.read(ForwardingOs.java:176)
+10-30 04:55:43.400  6969  7065 D StrictMode: 	at libcore.io.IoBridge.read(IoBridge.java:509)
+10-30 04:55:44.734  7083  7083 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:44.737  7083  7083 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:44.840  7192  7192 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:44.938  7192  7192 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:44.979  7083  7083 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:44.987  7083  7083 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:45.086  7083  7083 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:45.134  7083  7083 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:45.139  7083  7083 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:45.141  7083  7083 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:45.249  7083  7083 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:45.366  7083  7083 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:45.369  7083  7083 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:45.441  7083  7083 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:45.526  7083  7083 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:55:45.528  7083  7083 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:55:45.656  7083  7083 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:55:52.678  7276  7276 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:52.693  7276  7276 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:55:57.307  7083  7083 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:56:13.065  7452  7452 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:13.153  7276  7448 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:56:13.308  7452  7452 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:14.832   276   276 I tombstoned: registered intercept for pid 7276 and type kDebuggerdJavaBacktrace
+10-30 04:56:15.101  7422  7422 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:56:18.101  7422  7422 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:56:19.165   276   276 I tombstoned: found intercept fd 512 for pid 7276 and type kDebuggerdJavaBacktrace
+10-30 04:56:19.196  2355  7508 I system_server: libdebuggerd_client: done dumping process 7276
+10-30 04:56:20.842  7422  7422 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-30 04:56:23.632  2355  7570 I system_server: libdebuggerd_client: started dumping process 7192
+10-30 04:56:23.707   276   276 I tombstoned: registered intercept for pid 7192 and type kDebuggerdJavaBacktrace
+10-30 04:56:24.190   276   276 I tombstoned: found intercept fd 512 for pid 7192 and type kDebuggerdJavaBacktrace
+10-30 04:56:24.233  2355  7570 I system_server: libdebuggerd_client: done dumping process 7192
+10-30 04:56:29.446  7605  7605 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:29.449  7605  7605 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:30.302  2355  7631 I system_server: libdebuggerd_client: started dumping process 7452
+10-30 04:56:30.307   276   276 I tombstoned: registered intercept for pid 7452 and type kDebuggerdJavaBacktrace
+10-30 04:56:30.686   276   276 I tombstoned: found intercept fd 512 for pid 7452 and type kDebuggerdJavaBacktrace
+10-30 04:56:30.723  2355  7631 I system_server: libdebuggerd_client: done dumping process 7452
+10-30 04:56:31.211  7573  7573 D BtGatt.DebugUtils: handleDebugAction() action=null
+10-30 04:56:32.881  7573  7573 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:56:32.900  7573  7573 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:56:32.922  7573  7573 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:56:32.928  7573  7573 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:56:32.931  7573  7573 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:56:32.934  7573  7573 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:56:32.939  7573  7573 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:56:32.941  7573  7573 E a2dp_vendor_aptx_hd_encoder: A2DP_VendorLoadEncoderAptxHd: cannot open aptX-HD encoder library libaptXHD_encoder.so: dlopen failed: library "libaptXHD_encoder.so" not found
+10-30 04:56:32.951  7573  7573 E a2dp_vendor_ldac_decoder: A2DP_VendorLoadDecoderLdac: cannot open LDAC decoder library libldacBT_bco.so: dlopen failed: library "libldacBT_bco.so" not found
+10-30 04:56:32.958  7573  7573 E a2dp_vendor_aptx_encoder: A2DP_VendorLoadEncoderAptx: cannot open aptX encoder library libaptX_encoder.so: dlopen failed: library "libaptX_encoder.so" not found
+10-30 04:56:38.394  7698  7698 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:38.432  7698  7698 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:40.435  7718  7718 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:40.438  7718  7718 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:56:47.466  7698  7819 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:56:50.424  7718  7811 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-30 04:57:00.440  6083  7067 I PeopleInitIntentOp: Not initializing debuggability
+10-30 04:57:06.084  2355  7957 I system_server: libdebuggerd_client: started dumping process 7698
+10-30 04:57:06.099   276   276 I tombstoned: registered intercept for pid 7698 and type kDebuggerdJavaBacktrace
+10-30 04:57:07.051   276   276 I tombstoned: found intercept fd 512 for pid 7698 and type kDebuggerdJavaBacktrace
+10-30 04:57:07.069  2355  7957 I system_server: libdebuggerd_client: done dumping process 7698
+10-30 04:57:24.021  8032  8032 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:57:24.162  8032  8032 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:57:30.324  2355  8099 I system_server: libdebuggerd_client: started dumping process 7605
+10-30 04:57:30.361   276   276 I tombstoned: registered intercept for pid 7605 and type kDebuggerdJavaBacktrace
+10-30 04:57:36.008   276   276 I tombstoned: found intercept fd 512 for pid 7605 and type kDebuggerdJavaBacktrace
+10-30 04:57:36.019  2355  8099 I system_server: libdebuggerd_client: done dumping process 7605
+10-30 04:57:42.832  8145  8145 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:57:42.884  8145  8145 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:57:55.523  7980  8236 I BugleRcsEngine: [145] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 04:58:14.562  7718  7889 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 04:58:14.562  7718  7889 I FA      : To enable faster debug mode event logging run:
+10-30 04:58:14.562  7718  7889 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.youtube
+10-30 04:58:34.473  6385  8352 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:58:35.280  6385  8352 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:58:42.225  8368  8368 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:58:42.347  8368  8368 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:59:15.464  8368  8418 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 04:59:15.524  8368  8418 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 04:59:35.819  6083  8498 I ChmraDebugLogger: [39] null
+10-30 04:59:37.439  2355  8503 I system_server: libdebuggerd_client: started dumping process 8145
+10-30 04:59:37.485   276   276 I tombstoned: registered intercept for pid 8145 and type kDebuggerdJavaBacktrace
+10-30 04:59:41.071   276   276 I tombstoned: found intercept fd 512 for pid 8145 and type kDebuggerdJavaBacktrace
+10-30 04:59:41.107  2355  8503 I system_server: libdebuggerd_client: done dumping process 8145
+10-30 04:59:41.951  6385  8505 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:59:43.210  6385  8505 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:59:45.740  7980  8530 I BugleRcsEngine: [155] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 04:59:46.380  7980  8530 I BugleRcsEngine: [155] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 04:59:47.797  2355  3639 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 84445ms for start-requested
+10-30 04:59:51.235  8535  8535 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:59:51.278  8535  8535 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 04:59:52.404  7980  8115 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 04:59:52.479  7980  8115 I FA      : To enable faster debug mode event logging run:
+10-30 04:59:52.479  7980  8115 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
+10-30 05:00:01.060  8184  8220 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 05:00:01.061  8184  8220 I FA      : To enable faster debug mode event logging run:
+10-30 05:00:01.061  8184  8220 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
+10-30 05:00:17.030  7980  8621 I BugleRcsEngine: [161] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 05:00:17.039  7980  8621 I BugleRcsEngine: [161] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 05:00:17.341  8368  8602 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:00:17.491  8368  8602 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:00:20.463  8368  8494 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:00:20.467  8368  8494 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:00:27.379  2355  8645 I system_server: libdebuggerd_client: started dumping process 8535
+10-30 05:00:27.383   276   276 I tombstoned: registered intercept for pid 8535 and type kDebuggerdJavaBacktrace
+10-30 05:00:29.193   276   276 I tombstoned: found intercept fd 512 for pid 8535 and type kDebuggerdJavaBacktrace
+10-30 05:00:29.301  2355  8645 I system_server: libdebuggerd_client: done dumping process 8535
+10-30 05:00:32.216  2355  2753 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 337780ms for start-requested
+10-30 05:00:34.147  8659  8659 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:00:34.176  8659  8659 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:00:39.847  8368  8602 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:00:39.849  8368  8602 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:00:43.121  2355  2390 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 1351120ms for start-requested
+10-30 05:00:45.339  8704  8704 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:00:45.373  8704  8704 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:00:59.899  8368  8494 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:00:59.900  8368  8494 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:01:17.999  8368  8494 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:01:18.000  8368  8494 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:01:26.568  2355  8890 I system_server: libdebuggerd_client: started dumping process 8816
+10-30 05:01:26.664   276   276 I tombstoned: registered intercept for pid 8816 and type kDebuggerdJavaBacktrace
+10-30 05:01:27.334   276   276 I tombstoned: found intercept fd 512 for pid 8816 and type kDebuggerdJavaBacktrace
+10-30 05:01:27.368  2355  8890 I system_server: libdebuggerd_client: done dumping process 8816
+10-30 05:01:34.849  2355  8939 I system_server: libdebuggerd_client: started dumping process 8704
+10-30 05:01:34.862   276   276 I tombstoned: registered intercept for pid 8704 and type kDebuggerdJavaBacktrace
+10-30 05:01:39.382   276   276 I tombstoned: found intercept fd 512 for pid 8704 and type kDebuggerdJavaBacktrace
+10-30 05:01:39.439  2355  8939 I system_server: libdebuggerd_client: done dumping process 8704
+10-30 05:01:42.890  2355  4287 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 5404480ms for start-requested
+10-30 05:01:44.994  8974  8974 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:01:45.094  8974  8974 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:01:59.995  8184  8221 I BugleRcsEngine: [127] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 05:02:02.234  8184  8221 E BugleRcsEngine: 	at libcore.io.IoBridge.open(IoBridge.java:492)
+10-30 05:02:02.234  8184  8221 E BugleRcsEngine: 	at libcore.io.Linux.open(Native Method)
+10-30 05:02:02.234  8184  8221 E BugleRcsEngine: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 05:02:02.234  8184  8221 E BugleRcsEngine: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:254)
+10-30 05:02:02.234  8184  8221 E BugleRcsEngine: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 05:02:02.234  8184  8221 E BugleRcsEngine: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 05:02:07.334  8184  9077 I BugleRcsEngine: [190] xly.c: Checking if using CarrierServices.apk is possible. Enabled: true, isAtLeastM: true, runningInsideBugle: true
+10-30 05:02:20.445  8368  9010 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:02:20.455  8368  9010 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:02:20.973  2355  9130 I system_server: libdebuggerd_client: started dumping process 8974
+10-30 05:02:20.979   276   276 I tombstoned: registered intercept for pid 8974 and type kDebuggerdJavaBacktrace
+10-30 05:02:21.940   276   276 I tombstoned: found intercept fd 512 for pid 8974 and type kDebuggerdJavaBacktrace
+10-30 05:02:22.019  2355  9130 I system_server: libdebuggerd_client: done dumping process 8974
+10-30 05:02:23.975  6083  9120 I PeopleInitIntentOp: Not initializing debuggability
+10-30 05:02:24.686  2355  4557 W ActivityManager: Scheduling restart of crashed service com.google.android.gms/.clearcut.debug.ClearcutDebugDumpService in 21617920ms for start-requested
+10-30 05:02:24.771  9138  9138 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:02:24.786  9138  9138 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:02:49.973  8368  8494 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:02:50.039  8368  8494 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:03:23.323  8790  8924 I FA      : To enable debug logging run: adb shell setprop log.tag.FA VERBOSE
+10-30 05:03:23.323  8790  8924 I FA      : To enable faster debug mode event logging run:
+10-30 05:03:23.323  8790  8924 I FA      :   adb shell setprop debug.firebase.analytics.app com.google.android.apps.messaging
+10-30 05:03:52.565  8368  8494 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:03:52.593  8368  8494 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:04:07.107  2355  2482 W FileUtils: 	at libcore.io.Linux.chmod(Native Method)
+10-30 05:04:07.107  2355  2482 W FileUtils: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:85)
+10-30 05:04:07.107  2355  2482 W FileUtils: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:80)
+10-30 05:04:11.021  6385  9418 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:04:11.237  6385  9418 D NetworkSecurityConfig: Using Network Security Config from resource network_security_config debugBuild: false
+10-30 05:04:11.340  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:71)
+10-30 05:04:11.340  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:72)
+10-30 05:04:11.400  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:71)
+10-30 05:04:11.400  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:72)
+10-30 05:04:11.473  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:71)
+10-30 05:04:11.473  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:72)
+10-30 05:04:11.476  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:249)
+10-30 05:04:11.476  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 05:04:11.476  4386  4386 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 05:04:11.477  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:252)
+10-30 05:04:11.477  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:166)
+10-30 05:04:11.477  4386  4386 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:478)
+10-30 05:04:11.529  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.fstat(BlockGuardOs.java:174)
+10-30 05:04:11.529  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.fstat(ForwardingOs.java:106)
+10-30 05:04:11.529  4386  4386 D StrictMode: 	at libcore.io.IoBridge.open(IoBridge.java:481)
+10-30 05:04:11.531  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.write(BlockGuardOs.java:417)
+10-30 05:04:11.531  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.write(ForwardingOs.java:240)
+10-30 05:04:11.531  4386  4386 D StrictMode: 	at libcore.io.IoBridge.write(IoBridge.java:535)
+10-30 05:04:11.532  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:78)
+10-30 05:04:11.532  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:85)
+10-30 05:04:11.549  4386  4386 D StrictMode: 	at libcore.io.BlockGuardOs.stat(BlockGuardOs.java:389)
+10-30 05:04:11.549  4386  4386 D StrictMode: 	at libcore.io.ForwardingOs.stat(ForwardingOs.java:221)
+10-30 05:04:16.613  8368  8385 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:04:16.620  8368  8385 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:04:35.018  8368  8385 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:04:35.020  8368  8385 E libc    : Access denied finding property "service.adb.tls.port"

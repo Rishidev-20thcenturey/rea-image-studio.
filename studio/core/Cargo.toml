@@ -1,0 +1,32 @@
+[package]
+name = "rea-core"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+license = "MIT OR Apache-2.0"
+description = "REA Image Studio: the original raster editing core (document, layers, brush, selection, adjustments, filters, history)"
+
+[lib]
+name = "rea_core"
+# cdylib for the Android app, rlib so the host unit tests and any Rust consumer can link it.
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+
+# The JNI bridge is compiled only for Android; the host tests build the core with no dependencies
+# at all, which keeps them fast and keeps this crate's logic portable.
+[target.'cfg(target_os = "android")'.dependencies]
+jni = "0.21"
+
+[profile.release]
+opt-level = 3
+lto = false
+codegen-units = 16
+# Unwinding, not abort, because the JNI bridge wraps every entry point in `catch_unwind`: a panic in
+# the core then becomes a failed call the UI can report, instead of a SIGABRT that kills the app
+# with no trace on a device the developer cannot attach a debugger to. The cost is a few KiB.
+panic = "unwind"
+
+# Standalone workspace: this crate is deliberately outside the workspace at the repository root,
+# which holds the upstream PhotoCraft fork.
+[workspace]

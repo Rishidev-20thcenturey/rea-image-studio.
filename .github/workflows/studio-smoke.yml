@@ -1,0 +1,276 @@
+name: Studio app smoke test
+
+# The one question static inspection cannot answer: does the from-scratch app actually run?
+#
+# Builds an x86_64 build of rea-core (the shipped APK is arm64), boots an x86_64 emulator on the
+# runner's KVM device, installs, launches, draws a stroke with a real touch sequence, and records
+# the process state, logcat and a screenshot into docs/ci/studio-emulator/ so the evidence can be
+# read without the job log.
+#
+# Manual on purpose: it costs ~30-40 minutes and never gates anything.
+
+on:
+  push:
+    tags:
+      - 'studio-smoke-*'
+  workflow_dispatch:
+    inputs:
+      api_level:
+        description: 'Android API level of the system image'
+        required: false
+        default: '34'
+      boot_timeout:
+        description: 'Seconds to wait for the emulator to finish booting'
+        required: false
+        default: '720'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: studio-smoke
+  cancel-in-progress: true
+
+env:
+  NDK_VERSION: 27.2.12479018
+  CMDLINE_TOOLS_URL: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+
+jobs:
+  smoke:
+    name: Launch the app on an emulator
+    runs-on: ubuntu-24.04
+    timeout-minutes: 150
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Require a KVM device
+        shell: bash
+        run: |
+          if [ ! -e /dev/kvm ]; then
+            echo "::error title=No KVM::this runner cannot virtualise, so the emulator cannot boot"
+            exit 1
+          fi
+          ls -l /dev/kvm
+
+      - name: Install the Android SDK, emulator and system image
+        shell: bash
+        env:
+          API: ${{ inputs.api_level || '29' }}
+        run: |
+          set -eo pipefail
+          SDK="$HOME/android-sdk"
+          if [ ! -x "$SDK/cmdline-tools/latest/bin/sdkmanager" ]; then
+            mkdir -p "$SDK/cmdline-tools"
+            curl -fsSL -o "$RUNNER_TEMP/cmdline-tools.zip" "$CMDLINE_TOOLS_URL"
+            unzip -q "$RUNNER_TEMP/cmdline-tools.zip" -d "$RUNNER_TEMP/cmdline-tools"
+            mv "$RUNNER_TEMP/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+          fi
+          SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --sdk_root="$SDK" --licenses > /dev/null 2>&1 || true
+          "$SDKMANAGER" --sdk_root="$SDK" \
+            "platform-tools" "platforms;android-$API" "build-tools;35.0.0" \
+            "ndk;${NDK_VERSION}" "emulator" "system-images;android-$API;google_apis;x86_64"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+          echo "PATH=$SDK/cmdline-tools/latest/bin:$SDK/platform-tools:$SDK/emulator:$PATH" >> "$GITHUB_ENV"
+          # avdmanager and the emulator disagree on where an AVD lives on this runner; pin it.
+          mkdir -p "$HOME/.android/avd"
+          echo "ANDROID_AVD_HOME=$HOME/.android/avd" >> "$GITHUB_ENV"
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: x86_64-linux-android
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: studio/core -> target
+          key: studio-android-x86_64
+          cache-on-failure: true
+
+      - name: Build the x86_64 library
+        shell: bash
+        run: |
+          set -eo pipefail
+          BIN="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          export CARGO_TARGET_X86_64_LINUX_ANDROID_LINKER="$BIN/x86_64-linux-android29-clang"
+          export CC_x86_64_linux_android="$BIN/x86_64-linux-android29-clang"
+          export CXX_x86_64_linux_android="$BIN/x86_64-linux-android29-clang++"
+          export AR_x86_64_linux_android="$BIN/llvm-ar"
+          ( cd studio/core && cargo build --release --target x86_64-linux-android )
+          SO=studio/core/target/x86_64-linux-android/release/librea_core.so
+          "$BIN/llvm-strip" --strip-unneeded "$SO"
+          mkdir -p studio/app/src/main/jniLibs/x86_64
+          cp "$SO" studio/app/src/main/jniLibs/x86_64/
+          echo "library: $(( $(stat -c%s "$SO") / 1024 )) KiB"
+
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          gradle-version: '8.10.2'
+
+      - name: Build an x86_64 test APK
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle -p studio :app:assembleDebug --no-daemon --console=plain -PreaAbis=x86_64 2>&1 | tee "$RUNNER_TEMP/gradle-smoke.log"
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            msg=$(grep -E '^(e: |error:|FAILURE|\* What went wrong)' -A2 "$RUNNER_TEMP/gradle-smoke.log" | head -30 | tr '\n' ' ' | sed 's/%/%25/g')
+            echo "::error title=gradle build failed::$msg"
+            exit "$status"
+          fi
+          cp studio/app/build/outputs/apk/debug/app-debug.apk "$RUNNER_TEMP/rea-studio-x86_64.apk"
+          echo "APK: $(( $(stat -c%s "$RUNNER_TEMP/rea-studio-x86_64.apk") / 1024 / 1024 )) MiB"
+
+      # The boot used to be hand-rolled (avdmanager + emulator + adb polling), which failed to
+      # reach a booted device twice in a row. This action does the same work with the boot
+      # detection the ecosystem has already hardened, and runs the touch sequence inside it.
+      # Start collecting the device log in the background *before* the emulator action runs, so that
+      # a failure inside it (boot timeout, launch crash) still leaves the reason in the repository.
+      - name: Collect the device log in the background
+        shell: bash
+        run: |
+          set -uo pipefail
+          MK="$RUNNER_TEMP/studio-emulator"
+          mkdir -p "$MK"
+          cat > "$MK/logcat.sh" <<'SH'
+          #!/bin/bash
+          # Wait for a device, then stream logcat until the job is killed.
+          for i in $(seq 1 240); do
+            if adb devices 2>/dev/null | grep -q 'emulator-.*device$'; then
+              adb logcat -c 2>/dev/null || true
+              exec adb logcat -v threadtime
+            fi
+            sleep 5
+          done
+          echo "no device appeared for logcat"
+          SH
+          chmod +x "$MK/logcat.sh"
+          nohup "$MK/logcat.sh" > "$MK/full-logcat.txt" 2>&1 &
+          echo "logcat collector pid $!"
+
+      - name: Run the app on an emulator
+        id: launch
+        uses: ReactiveCircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d # v2
+        env:
+          API: ${{ inputs.api_level || '29' }}
+          APK: ${{ runner.temp }}/rea-studio-x86_64.apk
+        with:
+          api-level: ${{ inputs.api_level || '29' }}
+          target: google_apis
+          arch: x86_64
+          force-avd-creation: false
+          disable-animations: true
+          # A generous boot budget: the guest is emulated in software here and takes about two
+          # minutes to reach boot_completed, but a cold AVD on a busy runner can take much longer.
+          emulator-boot-timeout: 1500
+          # Software emulation, explicitly: it does not depend on KVM behaving, and it is what
+          # produced the one boot that has succeeded on this runner.
+          emulator-options: -no-window -no-audio -no-boot-anim -no-snapshot -no-metrics -gpu swiftshader_indirect -accel off
+          # The whole probe lives in a POSIX-sh script that `sh -n` checks in this repository,
+          # rather than in YAML: the action runs its script with dash, and an inline multi-line
+          # script there has cost three runs already.
+          # Absolute path and an explicit cd: the action does not run its script from the
+          # repository root, which is why the previous two attempts died before writing anything.
+          script: cd "$GITHUB_WORKSPACE" && sh "$GITHUB_WORKSPACE/studio/ci/device-smoke.sh"
+
+      - name: Publish the smoke-test evidence
+        if: always() && (startsWith(github.ref, 'refs/heads/') || startsWith(github.ref, 'refs/tags/'))
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci/studio-emulator
+          cp "$RUNNER_TEMP/smoke.txt" docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || true
+          cp "$RUNNER_TEMP/emulator.log" docs/ci/studio-emulator/emulator.log 2>/dev/null || true
+          for shot in 01-launch 02-painted 03-menu 04-layers; do
+            cp "$RUNNER_TEMP/$shot.png" "docs/ci/studio-emulator/$shot.png" 2>/dev/null || true
+          done
+          cp "$RUNNER_TEMP/logcat.txt" docs/ci/studio-emulator/logcat.txt 2>/dev/null || true
+          # The reason, if the device log caught one.
+          if [ -s "$RUNNER_TEMP/studio-emulator/full-logcat.txt" ]; then
+            grep -iE "FATAL|AndroidRuntime|UnsatisfiedLink|dlopen|cannot locate|com.rea.studio|DEBUG|libc" \
+              "$RUNNER_TEMP/studio-emulator/full-logcat.txt" | tail -300 \
+              > docs/ci/studio-emulator/device-log.txt || true
+          fi
+          {
+            echo "<!-- Written by .github/workflows/studio-smoke.yml. Do not edit by hand. -->"
+            echo "# Studio app: emulator smoke test"
+            echo ""
+            echo "Run [$GITHUB_RUN_ID](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID), commit \`$GITHUB_SHA\`, $(date -u +%Y-%m-%dT%H:%M:%SZ)."
+            echo "x86_64 build of the same code the arm64 APK ships."
+            echo ""
+            echo '```'
+            cat docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || echo "(the smoke test did not reach the install step)"
+            echo '```'
+            if [ -s docs/ci/studio-emulator/device-log.txt ]; then
+              echo ""
+              echo "## Device log (filtered)"
+              echo ""
+              echo '```'
+              tail -80 docs/ci/studio-emulator/device-log.txt
+              echo '```'
+            fi
+            for shot in 01-launch 02-painted 03-menu 04-layers; do
+              [ -s "docs/ci/studio-emulator/$shot.png" ] && echo "" && echo "![$shot]($shot.png)"
+            done
+          } > docs/ci/studio-emulator/README.md
+          # Keep the generated evidence, then move to the branch tip with a hard reset. A soft
+          # reset leaves the checkout's stale index in place, and committing that reverts files the
+          # run never touched.
+          mkdir -p "$RUNNER_TEMP/evidence"
+          cp -r docs/ci/studio-emulator/. "$RUNNER_TEMP/evidence/" 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # A tag run has a detached HEAD, so commit the evidence on the branch that carries the
+          # tag. Never move main from here.
+          BRANCH="$GITHUB_REF_NAME"
+          if [ "${GITHUB_REF#refs/tags/}" != "$GITHUB_REF" ]; then
+            git fetch -q origin --tags '+refs/heads/*:refs/remotes/origin/*'
+            BRANCH=$(git for-each-ref --contains "$GITHUB_SHA" --format='%(refname:short)' refs/remotes/origin \
+              | sed 's#^origin/##' | grep -v '^main$' | head -1)
+            if [ -z "$BRANCH" ]; then
+              echo "::warning title=evidence::no branch carries this commit; the evidence stays in the artifact"
+              exit 0
+            fi
+          fi
+          git fetch -q origin "$BRANCH"
+          git reset -q --hard "origin/$BRANCH"
+          mkdir -p docs/ci/studio-emulator
+          cp -r "$RUNNER_TEMP/evidence/." docs/ci/studio-emulator/ 2>/dev/null || true
+          cp "$RUNNER_TEMP/smoke.txt" docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || true
+          cp "$RUNNER_TEMP/emulator.log" docs/ci/studio-emulator/emulator.log 2>/dev/null || true
+          git add docs/ci/studio-emulator
+          if git diff --quiet --cached; then
+            echo "No new evidence to publish."
+            exit 0
+          fi
+          git commit -q -m "Record the studio emulator smoke test"
+          git push origin "HEAD:$BRANCH" || echo "::warning title=evidence::could not push the evidence commit"
+
+      - name: Summarise
+        if: always()
+        shell: bash
+        run: |
+          {
+            echo "## Studio app smoke test"
+            echo ""
+            echo "Process running after launch: **${{ steps.launch.outputs.running }}**"
+            echo ""
+            head -60 docs/ci/studio-emulator/last-smoke.txt 2>/dev/null || echo "(no smoke report)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload the evidence
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: studio-emulator-smoke
+          path: |
+            docs/ci/studio-emulator/
+            ${{ runner.temp }}/emulator.log
+          if-no-files-found: warn

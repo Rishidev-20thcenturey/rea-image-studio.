@@ -138,6 +138,7 @@ mod layer_transfer;
 pub mod layer_tree_ui;
 pub mod layers_panel_ui;
 mod layout_keys;
+pub mod licences;
 pub mod links;
 pub mod liquify_ui;
 pub mod magnetic_lasso_ui;

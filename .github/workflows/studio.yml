@@ -1,0 +1,369 @@
+name: Studio app
+
+# The from-scratch editor: studio/core (Rust, JNI) + studio/app (Kotlin). This builds the arm64
+# APK, inspects it with the Android build tools, and publishes the evidence as a commit so the
+# result is readable without the job log (the log is not always retrievable from the container the
+# project is edited in).
+#
+# Actions are pinned to commit SHAs, matching the rest of the repository.
+
+on:
+  push:
+    branches:
+      - main
+      - 'arena/**'
+    paths:
+      - 'studio/**'
+      - '.github/workflows/studio.yml'
+    tags:
+      - 'app-v*'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: studio-app-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NDK_VERSION: 27.2.12479018
+  CMDLINE_TOOLS_URL: https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+
+jobs:
+  apk:
+    name: Build the arm64 APK
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-java@b843ebf9b913146b38da2eaa7aeddf76074ae1ad # v6.1.0
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Install the Android SDK packages
+        shell: bash
+        run: |
+          set -eo pipefail
+          SDK="$HOME/android-sdk"
+          if [ ! -x "$SDK/cmdline-tools/latest/bin/sdkmanager" ]; then
+            mkdir -p "$SDK/cmdline-tools"
+            curl -fsSL -o "$RUNNER_TEMP/cmdline-tools.zip" "$CMDLINE_TOOLS_URL"
+            unzip -q "$RUNNER_TEMP/cmdline-tools.zip" -d "$RUNNER_TEMP/cmdline-tools"
+            mv "$RUNNER_TEMP/cmdline-tools/cmdline-tools" "$SDK/cmdline-tools/latest"
+          fi
+          SDKMANAGER="$SDK/cmdline-tools/latest/bin/sdkmanager"
+          yes | "$SDKMANAGER" --sdk_root="$SDK" --licenses > "$RUNNER_TEMP/licenses.log" 2>&1 || true
+          "$SDKMANAGER" --sdk_root="$SDK" "platforms;android-35" "build-tools;35.0.0" "ndk;${NDK_VERSION}"
+          echo "ANDROID_HOME=$SDK" >> "$GITHUB_ENV"
+          echo "ANDROID_SDK_ROOT=$SDK" >> "$GITHUB_ENV"
+
+      - uses: dtolnay/rust-toolchain@b725eda525362e7cf34af9a7243cac1e3f01a7ec # stable
+        with:
+          targets: aarch64-linux-android
+
+      - uses: Swatinem/rust-cache@d1527c8f67ef9af357290475d4af4b0fab8f12e0 # v2.9.3
+        with:
+          workspaces: studio/core -> target
+          key: studio-android-arm64
+          cache-on-failure: true
+
+      - name: Point Cargo at the NDK's clang
+        shell: bash
+        run: |
+          set -eo pipefail
+          BIN="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          if [ ! -x "$BIN/aarch64-linux-android29-clang" ]; then
+            echo "::error title=NDK missing::no clang at $BIN"
+            ls "$ANDROID_HOME/ndk" || true
+            exit 1
+          fi
+          {
+            echo "CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=$BIN/aarch64-linux-android29-clang"
+            echo "CC_aarch64_linux_android=$BIN/aarch64-linux-android29-clang"
+            echo "CXX_aarch64_linux_android=$BIN/aarch64-linux-android29-clang++"
+            echo "AR_aarch64_linux_android=$BIN/llvm-ar"
+          } >> "$GITHUB_ENV"
+
+      - name: Build librea_core.so
+        shell: bash
+        run: |
+          set -o pipefail
+          cd studio/core
+          cargo build --release --target aarch64-linux-android 2>&1 | tee "$RUNNER_TEMP/cargo.log"
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            msg=$(sed 's/\x1b\[[0-9;]*m//g' "$RUNNER_TEMP/cargo.log" | grep -E '^(error|warning: unused)' | head -20 | tr '\n' ' ' | sed 's/%/%25/g')
+            echo "::error title=core build failed::$msg"
+            tail -40 "$RUNNER_TEMP/cargo.log"
+            exit "$status"
+          fi
+
+      - name: Put the library in the app
+        shell: bash
+        run: |
+          set -eo pipefail
+          BIN="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin"
+          SO=studio/core/target/aarch64-linux-android/release/librea_core.so
+          test -f "$SO" || { echo "::error title=missing library::$SO was not produced"; exit 1; }
+          "$BIN/llvm-strip" --strip-unneeded "$SO"
+          mkdir -p studio/app/src/main/jniLibs/arm64-v8a
+          cp "$SO" studio/app/src/main/jniLibs/arm64-v8a/
+          echo "library: $(( $(stat -c%s "$SO") / 1024 )) KiB"
+          "$BIN/llvm-readelf" --dyn-syms "$SO" | grep -c 'Java_com_rea_studio_NativeCore_' \
+            | xargs -I{} echo "exported JNI symbols: {}"
+
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4
+        with:
+          gradle-version: '8.10.2'
+
+      # Debug-signed on purpose: no release keystore exists for this app yet. Debug signing keeps the
+      # artifact installable and the workflow honest about it.
+      - name: Build the APK
+        id: build_apk
+        shell: bash
+        run: |
+          set -o pipefail
+          gradle -p studio :app:assembleDebug --no-daemon --console=plain 2>&1 | tee "$RUNNER_TEMP/gradle.log"
+          status=${PIPESTATUS[0]}
+          if [ "$status" -ne 0 ]; then
+            msg=$(grep -E '^(e: |error:|FAILURE|\* What went wrong|Caused by)' -A2 "$RUNNER_TEMP/gradle.log" | head -40 | tr '\n' ' ' | sed 's/%/%25/g')
+            echo "::error title=gradle build failed::$msg"
+            tail -60 "$RUNNER_TEMP/gradle.log"
+            exit "$status"
+          fi
+          SRC=studio/app/build/outputs/apk/debug/app-debug.apk
+          DEST=studio/app/build/outputs/apk/REAImageStudioNative-debug.apk
+          cp "$SRC" "$DEST"
+          echo "apk_path=$DEST" >> "$GITHUB_OUTPUT"
+
+      - name: Inspect the APK (static evidence, no device needed)
+        env:
+          APK: ${{ steps.build_apk.outputs.apk_path }}
+        shell: bash
+        run: |
+          set -uo pipefail
+          AAPT="$ANDROID_HOME/build-tools/35.0.0/aapt2"
+          READELF="$ANDROID_HOME/ndk/$NDK_VERSION/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf"
+          REPORT="$RUNNER_TEMP/inspection-report.txt"
+          : > "$REPORT"
+          note() { echo "$*" | tee -a "$REPORT"; }
+          fail=0
+          bad() { echo "::error title=APK check failed::$*" | tee -a "$REPORT"; fail=1; }
+
+          "$AAPT" dump badging "$APK" > "$RUNNER_TEMP/badging.txt" 2>&1 || true
+          note "== badging =="
+          grep -E "^(package|application-label|sdkVersion|targetSdkVersion|native-code|launchable-activity):" \
+            "$RUNNER_TEMP/badging.txt" | tee -a "$REPORT" || true
+
+          grep -q "package: name='com.rea.studio'" "$RUNNER_TEMP/badging.txt" \
+            || bad "applicationId is not com.rea.studio"
+          grep -q "launchable-activity: name='com.rea.studio.MainActivity'" "$RUNNER_TEMP/badging.txt" \
+            || bad "the launcher activity is not com.rea.studio.MainActivity"
+          grep -q "application-label:'REA Studio'" "$RUNNER_TEMP/badging.txt" \
+            || bad "the application label is not REA Studio"
+          grep -q "native-code: 'arm64-v8a'" "$RUNNER_TEMP/badging.txt" \
+            || bad "the APK does not declare arm64-v8a"
+
+          note ""
+          note "== archive =="
+          unzip -l "$APK" | grep -E "lib/|\.dex$|resources\.arsc" | tee -a "$REPORT" || true
+          unzip -l "$APK" | grep -q "lib/arm64-v8a/librea_core.so" \
+            || bad "librea_core.so is not packaged for arm64-v8a"
+
+          note ""
+          note "== native exports =="
+          mkdir -p "$RUNNER_TEMP/apkx"
+          unzip -o -q "$APK" "lib/arm64-v8a/librea_core.so" -d "$RUNNER_TEMP/apkx" || true
+          SO="$RUNNER_TEMP/apkx/lib/arm64-v8a/librea_core.so"
+          if [ -f "$SO" ]; then
+            "$READELF" --dyn-syms "$SO" > "$RUNNER_TEMP/syms.txt" 2>&1 || true
+            count=$(grep -c 'Java_com_rea_studio_NativeCore_' "$RUNNER_TEMP/syms.txt" || true)
+            note "JNI entry points: $count"
+            grep -o 'Java_com_rea_studio_NativeCore_[A-Za-z]*' "$RUNNER_TEMP/syms.txt" | sort -u | head -80 | tee -a "$REPORT" || true
+            [ "${count:-0}" -ge 55 ] || bad "expected at least 55 JNI entry points, found ${count:-0}"
+            note "library size: $(( $(stat -c%s "$SO") / 1024 )) KiB"
+
+            # A 16 KiB-page device refuses a library whose LOAD segments assume 4 KiB pages, and the
+            # app dies before its first frame. Assert the alignment instead of trusting the flags.
+            "$READELF" -l "$SO" > "$RUNNER_TEMP/loads.txt" 2>&1 || true
+            note ""
+            note "== ELF LOAD alignment (must be 0x4000 for 16 KiB pages) =="
+            grep -E "^  LOAD" "$RUNNER_TEMP/loads.txt" | tee -a "$REPORT" || true
+            if grep -qE "^  LOAD" "$RUNNER_TEMP/loads.txt"; then
+              grep -E "^  LOAD" "$RUNNER_TEMP/loads.txt" | grep -qv "0x4000" \
+                && bad "a LOAD segment is not aligned to 16 KiB; the library will not load on 16 KiB-page devices"
+            fi
+            note ""
+            note "== shared objects required =="
+            "$READELF" -d "$SO" | grep -E "NEEDED" | tee -a "$REPORT" || true
+
+            note ""
+            note "== how the library is packaged =="
+            # Two ways it can be loaded, with different requirements:
+            #  * stored and mapped out of the APK: the entry offset must match the page size;
+            #  * deflated and extracted at install: no offset constraint at all.
+            # The build asks for the second, which is the one that works on 16 KiB-page devices.
+            # Every command here tolerates failure: this step runs under `bash -e`, so a grep that
+            # finds nothing would otherwise end the inspection half-way through.
+            ZIPINFO=$(command -v zipinfo 2>/dev/null || true)
+            if [ -n "${ZIPINFO:-}" ]; then
+              "$ZIPINFO" -v "$APK" 2>/dev/null | grep -A6 "lib/arm64-v8a/librea_core.so" \
+                > "$RUNNER_TEMP/entry.txt" || true
+              METHOD=$(grep -i "compression method" "$RUNNER_TEMP/entry.txt" | head -1 || true)
+              OFFSET=$(grep -i "offset of local header" "$RUNNER_TEMP/entry.txt" | grep -o "[0-9]\+" | head -1 || true)
+              note "compression: ${METHOD:-unknown}"
+              note "offset of local header: ${OFFSET:-unknown}"
+              # The manifest flag decides which rule applies, so read it first.
+              "$ANDROID_HOME/build-tools/35.0.0/aapt2" dump xmltree --file AndroidManifest.xml "$APK" 2>/dev/null \
+                > "$RUNNER_TEMP/manifest-tree.txt" || true
+              if grep -qi "extractNativeLibs.*=true" "$RUNNER_TEMP/manifest-tree.txt"; then
+                note "extractNativeLibs=true: the library is unpacked at install, so the archive offset does not matter"
+              elif [ -z "${OFFSET:-}" ] || [ $(( OFFSET % 16384 )) -ne 0 ]; then
+                bad "the library is mapped from the archive at offset ${OFFSET:-unknown}, which is not 16 KiB aligned; it will fail to load on a 16 KiB-page device"
+              else
+                note "mapped from the archive, and 16 KiB aligned"
+              fi
+              grep -i "extractNativeLibs" "$RUNNER_TEMP/manifest-tree.txt" | head -2 | tee -a "$REPORT" || true
+            else
+              note "(zipinfo not available; packaging not checked)"
+            fi
+          fi
+
+          note "== dex =="
+          # A debug APK of this app splits into several dex files, so look in all of them.
+          mkdir -p "$RUNNER_TEMP/dex"
+          unzip -o -q "$APK" '*.dex' -d "$RUNNER_TEMP/dex" || true
+          count_dex=$(ls "$RUNNER_TEMP"/dex/*.dex 2>/dev/null | wc -l)
+          note "dex files: $count_dex"
+          for f in "$RUNNER_TEMP"/dex/*.dex; do
+            [ -f "$f" ] && note "$(basename "$f"): $(stat -c%s "$f") bytes"
+          done
+          if [ "$count_dex" -gt 0 ]; then
+            for cls in MainActivity NativeCore EditorView ColorPickerView SliderRow; do
+              if grep -aq "Lcom/rea/studio/$cls;" "$RUNNER_TEMP"/dex/*.dex; then
+                note "found com/rea/studio/$cls"
+              else
+                bad "com/rea/studio/$cls is not in any dex file"
+              fi
+            done
+          else
+            bad "the APK has no dex file"
+          fi
+
+          note ""
+          note "APK size: $(( $(stat -c%s "$APK") / 1024 / 1024 )) MiB"
+          note "APK sha256: $(sha256sum "$APK" | cut -d' ' -f1)"
+          cp "$REPORT" "$GITHUB_STEP_SUMMARY"
+          if [ "$fail" -ne 0 ]; then
+            exit 1
+          fi
+
+      - name: Publish the report into the repository
+        # Branch pushes only: a release tag should not move a branch.
+        if: always() && github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci
+          {
+            echo "<!-- Written by .github/workflows/studio.yml. Do not edit by hand. -->"
+            echo "# Studio app: last build evidence"
+            echo ""
+            echo "Commit \`$GITHUB_SHA\`, run [$GITHUB_RUN_ID](https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID), $(date -u +%Y-%m-%dT%H:%M:%SZ)."
+            echo ""
+            echo '```'
+            cat "$RUNNER_TEMP/inspection-report.txt" 2>/dev/null || echo "(no report: the build failed before inspection)"
+            echo '```'
+          } > docs/ci/studio-build.md
+          # Keep the generated evidence, then move to the branch tip with a hard reset. A soft
+          # reset leaves whatever the checkout held in the index, and committing that reverts files
+          # the run never touched.
+          mkdir -p "$RUNNER_TEMP/evidence"
+          cp -r "docs/ci/." "$RUNNER_TEMP/evidence/" 2>/dev/null || true
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="$GITHUB_REF_NAME"
+          git fetch -q origin "$BRANCH"
+          git reset -q --hard "origin/$BRANCH"
+          mkdir -p "docs/ci"
+          cp -r "$RUNNER_TEMP/evidence/." "docs/ci/" 2>/dev/null || true
+          git add docs/ci/studio-build.md
+          if git diff --quiet --cached; then
+            echo "Report unchanged."
+            exit 0
+          fi
+          git commit -q -m "Record the studio build evidence for $GITHUB_SHA"
+          git push origin "HEAD:$BRANCH" || echo "::warning title=report::could not push the report"
+
+      - name: Publish the build log when something failed
+        # Same reasoning as the report: a file in the repository is readable from anywhere.
+        if: failure() && github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
+        shell: bash
+        run: |
+          set -uo pipefail
+          mkdir -p docs/ci
+          {
+            echo "Build logs for commit $GITHUB_SHA, run $GITHUB_RUN_ID."
+            echo ""
+            echo "===== cargo ====="
+            tail -120 "$RUNNER_TEMP/cargo.log" 2>/dev/null || echo "(no cargo log)"
+            echo ""
+            echo "===== gradle ====="
+            tail -400 "$RUNNER_TEMP/gradle.log" 2>/dev/null || echo "(no gradle log)"
+          } > docs/ci/studio-build-log.txt
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          BRANCH="$GITHUB_REF_NAME"
+          git fetch -q origin "$BRANCH"
+          git reset -q --soft "origin/$BRANCH"
+          git add docs/ci/studio-build-log.txt
+          if git diff --quiet --cached; then
+            echo "Log unchanged."
+            exit 0
+          fi
+          git commit -q -m "Record the studio build log for $GITHUB_SHA"
+          git push origin "HEAD:$BRANCH" || echo "::warning title=log::could not push the build log"
+
+      - name: Upload the report
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: studio-inspection-report
+          path: ${{ runner.temp }}/inspection-report.txt
+          if-no-files-found: warn
+
+      - name: Upload the APK
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: REAImageStudioNative-apk
+          path: ${{ steps.build_apk.outputs.apk_path }}
+          if-no-files-found: error
+
+  release:
+    name: Publish the release
+    if: startsWith(github.ref, 'refs/tags/app-v')
+    needs: apk
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/download-artifact@v4
+        with:
+          name: REAImageStudioNative-apk
+          path: dist
+      - name: Create the release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ github.ref_name }}
+        shell: bash
+        run: |
+          set -eo pipefail
+          gh release create "$TAG" dist/REAImageStudioNative-debug.apk \
+            --title "REA Image Studio (from-scratch app) $TAG" \
+            --notes "Debug-signed arm64 APK built by GitHub Actions from $GITHUB_SHA. This is the original REA Image Studio app: Kotlin UI over its own Rust core (rea-core). It is statically inspected in CI; it has not been run on a physical device."

@@ -1,0 +1,500 @@
+10-30 05:04:16.614  8368  8368 W Binder:8368_2: type=1400 audit(0.0:87): avc: denied { read } for name="u:object_r:adbd_prop:s0" dev="tmpfs" ino=1460 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+10-30 05:04:16.771  2355  3535 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.stats.service.DropBoxEntryAddedReceiver
+10-30 05:04:16.774  2355  2390 W BroadcastQueue: Background execution not allowed: receiving Intent { act=android.intent.action.DROPBOX_ENTRY_ADDED flg=0x10 (has extras) } to com.google.android.gms/.chimera.GmsIntentOperationService$PersistentTrustedReceiver
+10-30 05:04:16.838  9138  9178 I BeaconBle: Resetting - new scanner available: true [CONTEXT service_id=111 ]
+10-30 05:04:16.838  9138  9178 I BeaconBle: ZERO_POWER is disabled. [CONTEXT service_id=111 ]
+10-30 05:04:16.839  9138  9178 I BeaconBle: 'L' hardware scan: scan stopped, no powered clients [CONTEXT service_id=111 ]
+10-30 05:04:17.444  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Update provisioning status
+10-30 05:04:17.563  6083  6165 I Icing   : updateResources: need to parse abvr{com.google.android.gms} [CONTEXT service_id=21 ]
+10-30 05:04:17.612  2355  5177 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.ProviderInfo com.android.server.pm.ComponentResolver.queryProvider(java.lang.String, int, int)(ComponentResolver.java:375) waiters=1 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 105ms
+10-30 05:04:18.228  2355  5177 W system_server: Long monitor contention with owner Binder:2355_16 (3616) at void com.android.server.am.ActivityManagerService.finishReceiver(android.os.IBinder, int, java.lang.String, android.os.Bundle, boolean, int)(ActivityManagerService.java:16858) waiters=1 in boolean com.android.server.am.ActivityManagerService.refContentProvider(android.os.IBinder, int, int) for 134ms
+10-30 05:04:18.361  9138  9178 I BeaconBle: Client requested scan, settings=BleSettings [scanMode=LOW_LATENCY, callbackType=ALL_MATCHES, reportDelayMillis=0, 5 filters, 1 clients, callingClientName=Nearby] [CONTEXT service_id=111 ]
+10-30 05:04:18.565  9138  9178 I BeaconBle: 'L' hardware scan: 5 filters, scanMode=2, reportdelay=0, callback type=1, #clients=1, workSource=WorkSource{10123 com.google.android.gms} [CONTEXT service_id=111 ]
+10-30 05:04:18.676  8726  8726 I Dialer  : VvmTaskReceiver - task received
+10-30 05:04:18.679  8726  8726 I Dialer  : VvmTaskReceiver - scheduling new job
+10-30 05:04:18.690  8726  8726 I Dialer  : TaskSchedulerJobService - scheduling job with 1 tasks
+10-30 05:04:18.694  8726  8726 I Dialer  : TaskSchedulerJobService - running job instantly.
+10-30 05:04:18.752  9138  9178 I BeaconBle: Starting scan on OS scanner. BT state: 12 [CONTEXT service_id=111 ]
+10-30 05:04:18.752  9138  9178 D BluetoothAdapter: isLeEnabled(): ON
+10-30 05:04:18.905  2355  3535 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=1 in int com.android.server.pm.PackageManagerService.getPackageUidInternal(java.lang.String, int, int, int) for 184ms
+10-30 05:04:18.909  2355  4557 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=3 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 144ms
+10-30 05:04:18.914  2355  2374 W Looper  : Slow dispatch took 211ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=31
+10-30 05:04:18.930  7573  7661 I bt_stack: [INFO:gatt_api.cc(947)] GATT_Register 6e39575d-b0f4-0529-8e8a-395772dfb792
+10-30 05:04:18.930  7573  7661 I bt_stack: [INFO:gatt_api.cc(967)] allocated gatt_if=5
+10-30 05:04:18.931  9138  9175 D BluetoothLeScanner: onScannerRegistered() - status=0 scannerId=5 mScannerId=0
+10-30 05:04:19.016  8726  8726 I Dialer  : TaskSchedulerJobService - job 1 scheduled
+10-30 05:04:19.091  8726  8726 I Dialer  : TaskSchedulerJobService - starting 1
+10-30 05:04:19.115  9138  9335 W NearbyMessages: Runnable[NearbyMessagesService.stopServiceIfIdle] was delayed for 00:20.019 [CONTEXT service_id=62 ]
+10-30 05:04:19.155  8726  8726 I Dialer  : VvmTaskExecutor - onStartJob
+10-30 05:04:19.156  8726  8726 I Dialer  : Task.createTask - create task:com.android.voicemail.impl.ActivationTask
+10-30 05:04:19.157  8726  8726 I Dialer  : RetryPolicy - retry #1 for com.android.voicemail.impl.ActivationTask@5d7e5bd queued, executing in 5000
+10-30 05:04:19.162  8726  8726 I Dialer  : VvmTaskExecutor - minimal wait time:5000
+10-30 05:04:19.163  8726  8726 I Dialer  : VvmTaskExecutor - sleep for 5000 millis
+10-30 05:04:19.422  9138  9335 W NearbyMessages: Runnable[SendReportRpc] was delayed for 00:18.984 [CONTEXT service_id=62 ]
+10-30 05:04:19.597  2355  3535 W system_server: Long monitor contention with owner android.bg (2388) at java.util.List com.android.server.pm.ComponentResolver.queryActivities(android.content.Intent, java.lang.String, int, java.util.List, int)(ComponentResolver.java:273) waiters=0 in void com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.grantImplicitAccess(int, android.content.Intent, int, int, boolean) for 105ms
+10-30 05:04:19.611  2355  4366 W system_server: Long monitor contention with owner android.bg (2388) at java.util.List com.android.server.pm.ComponentResolver.queryActivities(android.content.Intent, java.lang.String, int, java.util.List, int)(ComponentResolver.java:273) waiters=1 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 105ms
+10-30 05:04:20.185   428   428 I keystore: del USRPKEY_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.188   428   428 I keystore: del USRSKEY_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.189   428   428 I keystore: del USRCERT_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.230   428   428 I keystore: del CACERT_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.733   428   428 I keystore: del USRPKEY_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.782   428   428 I keystore: del USRCERT_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.798   428   428 I keystore: del CACERT_unstable.c7202ece89390c490b1b94d5b71225e1.A-1963427288647568479 10123
+10-30 05:04:20.800   428   428 I keystore: del USRPKEY_unstable.c7202ece89390c490b1b94d5b71225e1.B-1963427288647568479 10123
+10-30 05:04:20.804   428   428 I keystore: del USRSKEY_unstable.c7202ece89390c490b1b94d5b71225e1.B-1963427288647568479 10123
+10-30 05:04:20.805   428   428 I keystore: del USRCERT_unstable.c7202ece89390c490b1b94d5b71225e1.B-1963427288647568479 10123
+10-30 05:04:20.838   428   428 I keystore: del CACERT_unstable.c7202ece89390c490b1b94d5b71225e1.B-1963427288647568479 10123
+10-30 05:04:21.378  6385  8425 W d.process.medi: Long monitor contention with owner Thread-3 (8505) at void com.android.okhttp.okio.AsyncTimeout.scheduleTimeout(com.android.okhttp.okio.AsyncTimeout, long, boolean)(AsyncTimeout.java:107) waiters=1 in void java.lang.Object.wait(long, int) for 267ms
+10-30 05:04:21.892  5130  5142 I m.android.phon: Background concurrent copying GC freed 94246(6477KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 2674KB/5348KB, paused 96us total 533.078ms
+10-30 05:04:21.933  8368  8385 W SystemServiceRegistry: No service published for: persistent_data_block
+10-30 05:04:22.699  9138  9335 I NearbyMessages: ReportRpcManager:  Skipping some call, returning cached messages for beacon IDs and URLs: {} [CONTEXT service_id=62 ]
+10-30 05:04:23.084  9138  9335 W NearbyMessages: Runnable[NearbyMessagesService.stopServiceIfIdle] was delayed for 00:20.853 [CONTEXT service_id=62 ]
+10-30 05:04:23.343  9138  9335 W NearbyMessages: Runnable[ScanComplete] was delayed for 00:20.789 [CONTEXT service_id=62 ]
+10-30 05:04:23.363  9138  9438 I Herrevad: [761] abjt.a: updateListenState
+10-30 05:04:23.368  2355  2355 W system_server: Long monitor contention with owner android.bg (2388) at java.lang.String android.provider.Settings$NameValueCache.getStringForUser(android.content.ContentResolver, java.lang.String, int)(Settings.java:2712) waiters=0 in java.lang.String android.provider.Settings$NameValueCache.getStringForUser(android.content.ContentResolver, java.lang.String, int) for 101ms
+10-30 05:04:23.388  2355  2355 W Looper  : Slow dispatch took 121ms main h=android.app.ActivityThread$H c=android.app.LoadedApk$ServiceDispatcher$RunConnection@421a5b4 m=0
+10-30 05:04:23.392  6969  6969 I BgTaskExecutorImpl: Starting NONEXCLUSIVE background task UPDATE_GSERVICES_CONFIG.
+10-30 05:04:23.497  9138  9438 I NetRec  : [761] akje.a: onConfigChanged()
+10-30 05:04:23.547  9138  9216 W .gms.persisten: Long monitor contention with owner lowpool[8] (9364) at void apkp.a(boolean, aeah)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):89) waiters=0 in int apkp.a(apki, aamz) for 4.294s
+10-30 05:04:23.608  6083  6165 D SharedPreferencesImpl: Time required to fsync /data/user/0/com.google.android.gms/shared_prefs/AppDataSearch-main-icing-settings.xml: [<1: 0, <2: 0, <4: 0, <8: 0, <16: 0, <32: 1, <64: 4, <128: 5, <256: 5, <512: 5, <1024: 0, <2048: 0, <4096: 0, <8192: 0, <16384: 0, >=16384: 0]
+10-30 05:04:23.684  6969  9440 I GservicesUpdateTask: Updating Gservices keys
+10-30 05:04:24.078  9138  9335 W NearbyMessages: Runnable[NearbyMessagesService.stopServiceIfIdle] was delayed for 00:19.453 [CONTEXT service_id=62 ]
+10-30 05:04:24.081  9138  9335 W NearbyMessages: Runnable[ScanComplete] was delayed for 00:19.767 [CONTEXT service_id=62 ]
+10-30 05:04:24.168  8726  9430 I Dialer  : VvmTaskExecutor - executing task com.android.voicemail.impl.ActivationTask@5d7e5bd
+10-30 05:04:24.181  8726  9430 I Dialer  : PreOMigrationHandler - ComponentInfo{com.android.phone/com.android.services.telephony.TelephonyConnectionService}, ***, UserHandle{0} already migrated
+10-30 05:04:24.195  9138  9335 W NearbyMessages: Runnable[NearbyMessagesService.stopServiceIfIdle] was delayed for 00:13.869 [CONTEXT service_id=62 ]
+10-30 05:04:24.273  9138  9335 W NearbyMessages: Runnable[ScanComplete] was delayed for 00:11.817 [CONTEXT service_id=62 ]
+10-30 05:04:24.362  9138  9178 I BeaconBle: Client requested scan, settings=BleSettings [scanMode=ZERO_POWER, callbackType=ALL_MATCHES, reportDelayMillis=0, 5 filters, 1 clients, callingClientName=Nearby] [CONTEXT service_id=111 ]
+10-30 05:04:24.391  9138  9335 W NearbyMessages: Runnable[ScanComplete] was delayed for 00:08.872 [CONTEXT service_id=62 ]
+10-30 05:04:24.393  9138  9335 W NearbyMessages: Runnable[NearbyMessagesService.stopServiceIfIdle] was delayed for 00:08.691 [CONTEXT service_id=62 ]
+10-30 05:04:24.532  9138  9178 I BeaconBle: Stopping scan on delegate scanner. BT state: 12 [CONTEXT service_id=111 ]
+10-30 05:04:24.532  9138  9178 D BluetoothAdapter: isLeEnabled(): ON
+10-30 05:04:24.563  2355  2370 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=1 in void com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.writeSettings(boolean) for 859ms
+10-30 05:04:24.571  2355  4366 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=2 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 834ms
+10-30 05:04:24.575  2355  2440 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=3 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 832ms
+10-30 05:04:24.577  2355  5177 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=4 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 823ms
+10-30 05:04:24.581  2355  3112 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=6 in android.content.pm.ProviderInfo com.android.server.pm.ComponentResolver.queryProvider(java.lang.String, int, int) for 800ms
+10-30 05:04:24.582  2355  2761 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=9 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 522ms
+10-30 05:04:24.584  2355  3535 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=0 in android.content.pm.ProviderInfo com.android.server.pm.ComponentResolver.queryProvider(java.lang.String, int, int) for 894ms
+10-30 05:04:24.585  2355  3535 W ActivityManager: Slow operation: 895ms so far, now at getContentProviderImpl: before checkContentProviderPermission
+10-30 05:04:24.585  2355  3614 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=7 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 790ms
+10-30 05:04:24.587  2355  3529 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=8 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 561ms
+10-30 05:04:24.589  2355  2844 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=10 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 398ms
+10-30 05:04:24.592  2355  4557 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=5 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 815ms
+10-30 05:04:24.594  2355  3535 W ActivityManager: Slow operation: 905ms so far, now at getContentProviderImpl: after checkContentProviderPermission
+10-30 05:04:24.595  2355  3535 W ActivityManager: Slow operation: 905ms so far, now at getContentProviderImpl: incProviderCountLocked
+10-30 05:04:24.595  2355  3535 W ActivityManager: Slow operation: 905ms so far, now at getContentProviderImpl: before updateLruProcess
+10-30 05:04:24.595  2355  3535 W ActivityManager: Slow operation: 905ms so far, now at getContentProviderImpl: after updateLruProcess
+10-30 05:04:24.595  2355  3535 W ActivityManager: Slow operation: 906ms so far, now at getContentProviderImpl: before updateOomAdj
+10-30 05:04:24.596  2355  3535 W ActivityManager: Slow operation: 906ms so far, now at getContentProviderImpl: after updateOomAdj
+10-30 05:04:24.596  2355  3535 W ActivityManager: Slow operation: 906ms so far, now at getContentProviderImpl: done!
+10-30 05:04:24.629  2355  3616 W system_server: Long monitor contention with owner Binder:2355_13 (3535) at android.app.ContentProviderHolder com.android.server.am.ActivityManagerService.getContentProviderImpl(android.app.IApplicationThread, java.lang.String, android.os.IBinder, int, java.lang.String, java.lang.String, boolean, int)(ActivityManagerService.java:7435) waiters=0 in void com.android.server.am.ActivityManagerService.serviceDoneExecuting(android.os.IBinder, int, int, int) for 894ms
+10-30 05:04:24.695  2562  2562 I Choreographer: Skipped 40 frames!  The application may be doing too much work on its main thread.
+10-30 05:04:24.884  9138  9438 I NetRec  : [761] akje.a: Cancelling all NetRec GCM tasks
+10-30 05:04:24.927  2562  3042 I OpenGLRenderer: Davey! duration=893ms; Flags=0, IntendedVsync=1555555251206, Vsync=1556221917846, OldestInputEvent=9223372036854775807, NewestInputEvent=0, HandleInputStart=1556230481648, AnimationStart=1556230490662, PerformTraversalsStart=1556230493987, DrawStart=1556392553953, SyncQueued=1556393327353, SyncStart=1556406777629, IssueDrawCommandsStart=1556407019075, SwapBuffers=1556413959378, FrameCompleted=1556462206848, DequeueBufferDuration=31189513, QueueBufferDuration=7078192, GpuCompleted=0, 
+10-30 05:04:24.952  6083  9316 I GmsModuleFndr: Beginning GMS chimera module scan
+10-30 05:04:25.039  9138  9443 I NetRec  : [765] ClearDatabaseService.onHandleIntent: Clearing score cache
+10-30 05:04:25.080  6083  9316 I ModuleSetMgr: Computing pending module set with APKs: [[AdsFdrDynamite.integ:21460000000], [Cronetdynamite:201817040800], [Dynamiteloader:201817040000], [Dynamitemodulesa:201817040000], [Dynamitemodulesc:201817040000], [Googlecertificates:201817040000], [Mapsdynamite:201817040000], [Measurementdynamite:201817040000]]
+10-30 05:04:25.201  9138  9439 I Auth    : [AuthManaged,PasswordComplexityHelperImpl] Updating password complexity components state.
+10-30 05:04:25.324  6083  9316 I ModuleSetMgr: Pending container module APKs: []
+10-30 05:04:25.324  6083  9316 I ModuleSetMgr: Pending non-container module APKs: []
+10-30 05:04:25.400  9138  9178 I BeaconBle: Resetting - new scanner available: true [CONTEXT service_id=111 ]
+10-30 05:04:25.400  9138  9178 I BeaconBle: ZERO_POWER is disabled. [CONTEXT service_id=111 ]
+10-30 05:04:25.401  9138  9178 I BeaconBle: 'L' hardware scan: scan stopped, no powered clients [CONTEXT service_id=111 ]
+10-30 05:04:25.559  6083  6165 I Icing   : updateResources: need to parse abvr{com.google.android.gms} [CONTEXT service_id=21 ]
+10-30 05:04:25.585  9138  9335 W NearbyMessages: Runnable[NearbyMessagesService.stopServiceIfIdle] was delayed for 00:05.965 [CONTEXT service_id=62 ]
+10-30 05:04:25.778  2355  4612 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=0 in void com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.grantImplicitAccess(int, android.content.Intent, int, int, boolean) for 293ms
+10-30 05:04:25.795  9138  9335 W NearbyMessages: Runnable[ScanComplete] was delayed for 00:06.348 [CONTEXT service_id=62 ]
+10-30 05:04:25.832  2355  3112 D CompatibilityChangeReporter: Compat change id reported: 135634846; UID 10115; state: DISABLED
+10-30 05:04:25.834  2355  2391 D CompatibilityChangeReporter: Compat change id reported: 143937733; UID 10115; state: ENABLED
+10-30 05:04:25.905  9138  9441 W .gms.persisten: Long monitor contention with owner [com.google.android.gms.chimera.PersistentIntentOperationService$ChimeraService-Executor] processing qgf for action com.google.gservices.intent.action.GSERVICES_CHANGED (9439) at android.content.IContentProvider android.app.ActivityThread.acquireExistingProvider(android.content.Context, java.lang.String, int, boolean)(ActivityThread.java:6942) waiters=0 in boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean) for 537ms
+10-30 05:04:25.934  4386  4407 I VoicemailNotifier: receivers for android.intent.action.PROVIDER_CHANGED :[]
+10-30 05:04:26.018  8726  9430 I Dialer  : VvmActivationTask - VVM content provider configured - vvm_type_cvvm
+10-30 05:04:26.019  8726  9430 I Dialer  : OmtpVvmCarrierCfgHlpr - OmtpEvent:CONFIG_ACTIVATING
+10-30 05:04:26.026  9138  9439 I Auth    : [AuthManaged,PasswordComplexityHelperImpl] Disabling com.google.android.gms.auth.managed.admin.DeviceAdminReceiver
+10-30 05:04:26.030  9138  9439 I Auth    : [AuthManaged,PasswordComplexityHelperImpl] Disabling com.google.android.gms.auth.managed.ui.SetNewPasswordActivity
+10-30 05:04:26.175  2261  2261 D Zygote  : Forked child process 9446
+10-30 05:04:26.249  9446  9446 W id.partnersetu: Unexpected CPU variant for X86 using defaults: x86_64
+10-30 05:04:26.292   399   433 I adbd    : jdwp connection from 9446
+10-30 05:04:26.389  2355  3112 W ActivityManager: Slow operation: 545ms so far, now at startProcess: done updating battery stats
+10-30 05:04:26.390  2355  3112 W ActivityManager: Slow operation: 566ms so far, now at startProcess: building log message
+10-30 05:04:26.390  2355  3112 I ActivityManager: Start proc 9446:com.google.android.partnersetup/u0a115 for broadcast {com.google.android.partnersetup/com.google.android.partnersetup.RlzPingBroadcastReceiver}
+10-30 05:04:26.390  2355  3112 W ActivityManager: Slow operation: 567ms so far, now at startProcess: starting to update pids map
+10-30 05:04:26.397  2355  3112 W ActivityManager: Slow operation: 573ms so far, now at startProcess: done updating pids map
+10-30 05:04:26.401  9138  9441 W .gms.persisten: Long monitor contention with owner CMEventHandler (9426) at bdzd bdzd.a(android.content.ContentResolver, android.net.Uri)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):3) waiters=0 in bdzd bdzd.a(android.content.ContentResolver, android.net.Uri) for 241ms
+10-30 05:04:26.448  2355  3112 W ActivityManager: Slow operation: 79ms so far, now at attachApplicationLocked: before bindApplication
+10-30 05:04:26.449  2355  2391 W ActivityManager: Slow operation: 626ms so far, now at startProcess: returned from zygote!
+10-30 05:04:26.453  2355  3112 W ActivityManager: Slow operation: 85ms so far, now at attachApplicationLocked: immediately before bindApplication
+10-30 05:04:26.502  2355  3112 W ActivityManager: Slow operation: 133ms so far, now at attachApplicationLocked: immediately after bindApplication
+10-30 05:04:26.502  2355  3112 W ActivityManager: Slow operation: 134ms so far, now at attachApplicationLocked: after updateLruProcessLocked
+10-30 05:04:26.504  2355  3112 W ActivityManager: Slow operation: 135ms so far, now at attachApplicationLocked: after mServices.attachApplicationLocked
+10-30 05:04:26.524  2355  3112 W ActivityManager: Slow operation: 156ms so far, now at attachApplicationLocked: after sendPendingBroadcastsLocked
+10-30 05:04:26.597  4386  4407 I VoicemailNotifier: receivers for android.intent.action.PROVIDER_CHANGED :[]
+10-30 05:04:27.212  9446  9446 I id.partnersetu: The ClassLoaderContext is a special shared library.
+10-30 05:04:27.229  9138  9177 I GCoreUlr: WorldUpdater received intent Intent { act=com.google.android.location.reporting.ACTION_UPDATE_WORLD cmp=com.google.android.gms/com.google.android.location.reporting.service.DispatchingService (has extras) } with receiverAction com.google.gservices.intent.action.GSERVICES_CHANGED
+10-30 05:04:27.246  5130  5147 D SmsNumberUtils: enter filterDestAddr. destAddr="[BajqU4K5_YhSYbs-7QUn0dOwcmI]"
+10-30 05:04:27.335  5130  5147 D SmsNumberUtils: destAddr is not formatted.
+10-30 05:04:27.336  5130  5147 D SmsNumberUtils: leave filterDestAddr, new destAddr="[BajqU4K5_YhSYbs-7QUn0dOwcmI]"
+10-30 05:04:27.382  9446  9446 I id.partnersetu: The ClassLoaderContext is a special shared library.
+10-30 05:04:27.384  9446  9446 D nativeloader: classloader namespace configured for unbundled product apk. library_path=/product/priv-app/PartnerSetupPrebuilt/lib/x86_64:/product/lib64:/system/product/lib64
+10-30 05:04:27.558  2355  3616 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.UserInfo com.android.server.pm.UserManagerService.getUserInfoNoChecks(int)(UserManagerService.java:1606) waiters=0 in android.content.pm.UserInfo com.android.server.pm.UserManagerService.getUserInfoNoChecks(int) for 190ms
+10-30 05:04:27.560  2355  3534 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.UserInfo com.android.server.pm.UserManagerService.getUserInfoNoChecks(int)(UserManagerService.java:1606) waiters=1 in android.content.pm.UserInfo com.android.server.pm.UserManagerService.getUserInfoNoChecks(int) for 189ms
+10-30 05:04:27.628  9446  9446 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+10-30 05:04:27.671  9446  9446 D NetworkSecurityConfig: No Network Security Config specified, using platform default
+10-30 05:04:27.793  9138  9216 W .gms.persisten: Long monitor contention with owner lowpool[8] (9364) at void apkp.a(aphr, aphr, int)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):199) waiters=0 in int apkp.a(apki, aamz) for 1.748s
+10-30 05:04:27.896  2355  2374 W Looper  : Slow dispatch took 104ms android.ui h=com.android.server.am.ActivityManagerService$UiHandler c=null m=53
+10-30 05:04:28.122  9138  9426 W .gms.persisten: Long monitor contention with owner lowpool[3] (9188) at android.database.sqlite.SQLiteDatabase android.database.sqlite.SQLiteOpenHelper.getWritableDatabase()(SQLiteOpenHelper.java:316) waiters=0 in void anfj.close() for 102ms
+10-30 05:04:28.217  8368  8380 I id.gms.unstabl: Background concurrent copying GC freed 41845(1981KB) AllocSpace objects, 8(432KB) LOS objects, 49% free, 2769KB/5538KB, paused 81us total 1.939s
+10-30 05:04:28.235  2355  3534 W system_server: Long monitor contention with owner Binder:2355_16 (3616) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=0 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 137ms
+10-30 05:04:28.236  2355  2355 W system_server: Long monitor contention with owner Binder:2355_16 (3616) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=1 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 137ms
+10-30 05:04:28.240  2355  3637 W system_server: Long monitor contention with owner Binder:2355_16 (3616) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=2 in boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.isPermissionsReviewRequired(java.lang.String, int) for 139ms
+10-30 05:04:28.280  9138  9426 W ctxmgr  : [WorkManager] Long workInfo: pkg=com.google.android.gms, lbl=ListenerInvokerRunner, start=2026-10-30 05:04:25.744+0000, stop=2026-10-30 05:04:28.277+0000, durtn=2533ms [CONTEXT service_id=47 ]
+10-30 05:04:28.304  2355  2355 W Looper  : Slow dispatch took 445ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=1
+10-30 05:04:28.306  2355  2355 W Looper  : Slow delivery took 434ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=6
+10-30 05:04:28.574  2355  2355 W Looper  : Drained
+10-30 05:04:29.014  9138  9364 W .gms.persisten: Long monitor contention with owner netscheduler-queue-handler (9216) at int apkp.a(apki, aamz)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):128) waiters=0 in void apkp.a(aphr, int) for 699ms
+10-30 05:04:29.915  9138  9177 I GCoreUlr: WorldUpdater:com.google.gservices.intent.action.GSERVICES_CHANGED: Ensuring that reporting is stopped because of reasons: (no Google accounts)
+10-30 05:04:29.960  2355  4366 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-30 05:04:29.961  2355  4366 D PackageManager: Clear ephemeral installer activity
+10-30 05:04:30.011  2355  2388 E system_server: No package ID 7f found for ID 0x7f080160.
+10-30 05:04:30.012  2355  2388 E system_server: No package ID 7f found for ID 0x7f130365.
+10-30 05:04:30.012  2355  2388 E system_server: No package ID 7f found for ID 0x7f130366.
+10-30 05:04:30.012  2355  2388 E system_server: No package ID 7f found for ID 0x7f080161.
+10-30 05:04:30.013  2355  2388 E system_server: No package ID 7f found for ID 0x7f130367.
+10-30 05:04:30.013  2355  2388 E system_server: No package ID 7f found for ID 0x7f130368.
+10-30 05:04:30.033  9138  9177 I GCoreUlr: Unbound from all signal providers.
+10-30 05:04:30.064  2355  3637 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-30 05:04:30.064  2355  3637 D PackageManager: Clear ephemeral installer activity
+10-30 05:04:30.084  2355  2370 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-30 05:04:30.084  2355  2370 D PackageManager: Clear ephemeral installer activity
+10-30 05:04:30.286   348   348 W Binder:348_1: type=1400 audit(0.0:88): avc: denied { search } for name="301" dev="proc" ino=219300 scontext=u:r:surfaceflinger:s0 tcontext=u:r:hal_graphics_composer_default:s0 tclass=dir permissive=0
+10-30 05:04:30.172  2355  4366 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-30 05:04:30.173  2355  4366 D PackageManager: Clear ephemeral installer activity
+10-30 05:04:30.393  9138  9216 W .gms.persisten: Long monitor contention with owner lowpool[8] (9364) at int apkp.c(aphr)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):5) waiters=0 in int apkp.a(apki, aamz) for 354ms
+10-30 05:04:30.664  2355  3535 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.isEnabledAndMatches(android.content.pm.parsing.component.ParsedMainComponent, int, int)(PackageManagerService.java:24567) waiters=3 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 128ms
+10-30 05:04:30.697  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:30.946  9138  9138 I GCoreUlr: Unbound from all signal providers.
+10-30 05:04:30.947  9138  9138 I GCoreUlr: Stopping handler for UlrDispSvcFast
+10-30 05:04:31.099  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:31.163  9138  9177 I GCoreUlr: DispatchingService ignoring Intent { act=android.net.wifi.WIFI_STATE_CHANGED flg=0x44000010 (has extras) } because ULR inactive
+10-30 05:04:31.242  8368  8385 D EGL_emulation: eglCreateContext: 0x766ba74be440: maj 3 min 0 rcv 3
+10-30 05:04:31.419  7573  7573 V AvrcpMediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-30 05:04:31.419  7573  7573 D AvrcpMediaPlayerList: Name of package changed: com.google.android.youtube
+10-30 05:04:31.502  2355  2464 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-30 05:04:31.542  2355  2355 W system_server: Long monitor contention with owner ActivityManager (2390) at void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean)(BroadcastQueue.java:948) waiters=2 in boolean com.android.server.am.ActivityManagerService.isAppBad(android.content.pm.ApplicationInfo) for 141ms
+10-30 05:04:31.640  5130  5130 D CarrierSvcBindHelper: No carrier app for: 0
+10-30 05:04:31.662  6385  6393 W d.process.medi: Suspending all threads took: 84.461ms
+10-30 05:04:31.731  7573  7573 V AvrcpMediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-30 05:04:31.731  7573  7573 D AvrcpMediaPlayerList: Name of package changed: com.android.vending
+10-30 05:04:31.762  2355  2464 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-30 05:04:31.775  2355  2373 W Looper  : Slow dispatch took 259ms android.fg h=android.os.Handler c=<recycled PooledLambda@e2e0232> m=0
+10-30 05:04:31.836  2355  2464 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-30 05:04:31.869  7573  7573 V AvrcpMediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-30 05:04:31.870  7573  7573 D AvrcpMediaPlayerList: Name of package changed: com.google.android.apps.maps
+10-30 05:04:31.882  2355  4366 W system_server: Long monitor contention with owner ActivityManager (2390) at void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean)(BroadcastQueue.java:948) waiters=1 in android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int) for 492ms
+10-30 05:04:31.895  2355  3535 W system_server: Long monitor contention with owner ActivityManager (2390) at void com.android.server.am.BroadcastQueue.processNextBroadcast(boolean)(BroadcastQueue.java:948) waiters=2 in int com.android.server.am.ActivityManagerService.getUidState(int) for 204ms
+10-30 05:04:31.896  2355  2355 W Looper  : Slow dispatch took 673ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=3
+10-30 05:04:31.896  2355  2355 W Looper  : Slow delivery took 517ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@8963d2c m=0
+10-30 05:04:31.897  2355  3534 W system_server: Long monitor contention with owner main (2355) at long com.android.server.job.JobSchedulerService.getMaxJobExecutionTimeMs(com.android.server.job.controllers.JobStatus)(JobSchedulerService.java:2342) waiters=0 in void com.android.server.job.JobServiceContext.doCallback(com.android.server.job.JobServiceContext$JobCallback, boolean, java.lang.String) for 672ms
+10-30 05:04:32.048  2355  2373 W Looper  : Slow delivery took 244ms android.fg h=android.os.Handler c=<recycled PooledLambda@975f865> m=0
+10-30 05:04:32.049  2355  2373 W Looper  : Slow dispatch took 273ms android.fg h=android.os.Handler c=<recycled PooledLambda@975f865> m=0
+10-30 05:04:32.131  7573  7573 V AvrcpMediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-30 05:04:32.131  7573  7573 D AvrcpMediaPlayerList: Name of package changed: com.google.android.videos
+10-30 05:04:32.517  2355  3616 W system_server: Long monitor contention with owner Binder:2355_17 (3637) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15036) waiters=1 in android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int) for 262ms
+10-30 05:04:32.659  2355  2464 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-30 05:04:32.708  5130  5130 D CarrierSvcBindHelper: No carrier app for: 0
+10-30 05:04:32.723  2355  2373 W Looper  : Slow dispatch took 675ms android.fg h=android.os.Handler c=<recycled PooledLambda@101f1c> m=0
+10-30 05:04:32.727  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:32.764  9138  9441 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:com.google.android.youtube flg=0x5000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-30 05:04:33.074  2355  2355 W Looper  : Slow dispatch took 1099ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@767cb1d m=0
+10-30 05:04:33.112  2355  2373 W Looper  : Slow dispatch took 388ms android.fg h=android.os.Handler c=<recycled PooledLambda@54cfde4> m=0
+10-30 05:04:33.259  9138  9441 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-30 05:04:33.465  5130  5130 D CarrierSvcBindHelper: No carrier app for: 0
+10-30 05:04:33.539  9138  9441 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:com.android.vending flg=0x5000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-30 05:04:33.633  2355  2373 W Looper  : Slow dispatch took 521ms android.fg h=android.os.Handler c=<recycled PooledLambda@464eec2> m=0
+10-30 05:04:33.879  2355  2373 W Looper  : Slow dispatch took 203ms android.fg h=android.os.Handler c=<recycled PooledLambda@ea5a1f8> m=0
+10-30 05:04:33.892  9138  9138 W .gms.persisten: Verification of int com.google.android.gms.phenotype.sync.HeterodyneSyncTaskChimeraService.a(int, java.lang.String, caon, java.lang.String) took 147.324ms (8477.90 bytecodes/s) (28256B approximate peak alloc)
+10-30 05:04:33.983  2355  2355 W Looper  : Slow dispatch took 857ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@7541684 m=0
+10-30 05:04:33.985  2355  2355 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AOg
+10-30 05:04:34.166  2355  2373 W Looper  : Slow dispatch took 246ms android.fg h=android.os.Handler c=<recycled PooledLambda@3a829cc> m=0
+10-30 05:04:34.189  9138  9364 W .gms.persisten: Long monitor contention with owner netscheduler-queue-handler (9216) at void apkp.b(int)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):7) waiters=0 in void apkp.a(aphr, int) for 3.745s
+10-30 05:04:34.191  2355  2355 W Looper  : Slow dispatch took 121ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@f8efbfa m=0
+10-30 05:04:34.202  5130  5130 D CarrierSvcBindHelper: No carrier app for: 0
+10-30 05:04:34.449  6385  6385 W d.process.medi: Long monitor contention with owner Thread-4 (9418) at boolean android.os.MessageQueue.enqueueMessage(android.os.Message, long)(MessageQueue.java:600) waiters=0 in android.os.Message android.os.MessageQueue.next() for 139ms
+10-30 05:04:34.502  2355  4366 W ActivityManager: Slow operation: 51ms so far, now at getContentProviderImpl: after updateOomAdj
+10-30 05:04:34.502  2355  4366 W ActivityManager: Slow operation: 51ms so far, now at getContentProviderImpl: done!
+10-30 05:04:34.520  2355  2355 W Looper  : Slow dispatch took 315ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@4ac28b4 m=0
+10-30 05:04:34.585  2355  2373 W Looper  : Slow dispatch took 419ms android.fg h=android.os.Handler c=<recycled PooledLambda@ec5cdd> m=0
+10-30 05:04:34.820  2355  2365 I system_server: Background young concurrent copying GC freed 239194(11MB) AllocSpace objects, 22(824KB) LOS objects, 26% free, 31MB/42MB, paused 5.600ms total 2.726s
+10-30 05:04:34.869  2355  2373 W Looper  : Slow dispatch took 284ms android.fg h=android.os.Handler c=<recycled PooledLambda@21e4f38> m=0
+10-30 05:04:35.018  8368  8385 E libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-30 05:04:35.020  8368  8385 E libc    : Access denied finding property "service.adb.tls.port"
+10-30 05:04:35.002  8368  8368 W Binder:8368_2: type=1400 audit(0.0:89): avc: denied { read } for name="u:object_r:system_adbd_prop:s0" dev="tmpfs" ino=1600 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:system_adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+10-30 05:04:35.010  8368  8368 W Binder:8368_2: type=1400 audit(0.0:90): avc: denied { read } for name="u:object_r:adbd_prop:s0" dev="tmpfs" ino=1460 scontext=u:r:gmscore_app:s0:c512,c768 tcontext=u:object_r:adbd_prop:s0 tclass=file permissive=0 app=com.google.android.gms
+10-30 05:04:35.105  6385  8425 W d.process.medi: Long monitor contention with owner Thread-3 (8505) at void com.android.okhttp.okio.AsyncTimeout.scheduleTimeout(com.android.okhttp.okio.AsyncTimeout, long, boolean)(AsyncTimeout.java:107) waiters=1 in void java.lang.Object.wait(long, int) for 255ms
+10-30 05:04:35.113  6385  9418 W d.process.medi: Long monitor contention with owner Thread-3 (8505) at void com.android.okhttp.okio.AsyncTimeout.scheduleTimeout(com.android.okhttp.okio.AsyncTimeout, long, boolean)(AsyncTimeout.java:107) waiters=2 in void com.android.okhttp.okio.AsyncTimeout.scheduleTimeout(com.android.okhttp.okio.AsyncTimeout, long, boolean) for 255ms
+10-30 05:04:35.196  8907  8920 W JavaBinder: BinderProxy is being destroyed but the application did not call unlinkToDeath to unlink all of its death recipients beforehand.  Releasing leaked death recipient: cvg
+10-30 05:04:35.197  8907  8920 I BpBinder: onLastStrongRef automatically unlinking death recipients: <uncached descriptor>
+10-30 05:04:35.378  2355  2355 W system_server: Long monitor contention with owner android.bg (2388) at android.view.Display android.app.ResourcesManager.getAdjustedDisplay(int, android.view.DisplayAdjustments)(ResourcesManager.java:303) waiters=0 in android.content.res.Resources android.app.ResourcesManager.createResources(android.os.IBinder, android.content.res.ResourcesKey, java.lang.ClassLoader) for 844ms
+10-30 05:04:35.499  2355  2355 W Looper  : Slow dispatch took 976ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@d74e8c6 m=0
+10-30 05:04:35.500  2355  2355 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AOk
+10-30 05:04:35.572  6385  9418 D DownloadManager: [2] Finished with status SUCCESS
+10-30 05:04:35.586  2355  4612 W system_server: Long monitor contention with owner PackageManager (2408) at void com.android.server.pm.PackageManagerService$PackageHandler.doHandleMessage(android.os.Message)(PackageManagerService.java:1797) waiters=0 in boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.isPermissionsReviewRequired(java.lang.String, int) for 653ms
+10-30 05:04:35.587  2355  2373 W system_server: Long monitor contention with owner PackageManager (2408) at void com.android.server.pm.PackageManagerService$PackageHandler.doHandleMessage(android.os.Message)(PackageManagerService.java:1797) waiters=1 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 645ms
+10-30 05:04:35.591  2355  2370 W system_server: Long monitor contention with owner PackageManager (2408) at void com.android.server.pm.PackageManagerService$PackageHandler.doHandleMessage(android.os.Message)(PackageManagerService.java:1797) waiters=3 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 455ms
+10-30 05:04:35.592  2355  4366 W system_server: Long monitor contention with owner Binder:2355_1E (4612) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15036) waiters=0 in android.content.Intent com.android.server.am.ActivityManagerService.registerReceiverWithFeature(android.app.IApplicationThread, java.lang.String, java.lang.String, android.content.IIntentReceiver, android.content.IntentFilter, java.lang.String, int, int) for 660ms
+10-30 05:04:35.594  2355  3535 W system_server: Long monitor contention with owner PackageManager (2408) at void com.android.server.pm.PackageManagerService$PackageHandler.doHandleMessage(android.os.Message)(PackageManagerService.java:1797) waiters=4 in android.content.pm.ProviderInfo com.android.server.pm.ComponentResolver.queryProvider(java.lang.String, int, int) for 413ms
+10-30 05:04:35.602  2355  3534 W system_server: Long monitor contention with owner PackageManager (2408) at void com.android.server.pm.PackageManagerService$PackageHandler.doHandleMessage(android.os.Message)(PackageManagerService.java:1797) waiters=2 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 561ms
+10-30 05:04:35.608  2355  2373 W Looper  : Slow dispatch took 667ms android.fg h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@622abb4 m=0
+10-30 05:04:35.630  9138  9364 W .gms.persisten: Long monitor contention with owner GoogleLocationService (9270) at android.content.IContentProvider android.app.ActivityThread.acquireExistingProvider(android.content.Context, java.lang.String, int, boolean)(ActivityThread.java:6942) waiters=0 in boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean) for 664ms
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: Failed to apply ContentProviderOperation(type=insert uri=content://media/internal/file values={instance_id=null, compilation=null, disc_number=null, duration=1000, is_ringtone=0, album_artist=null, resolution=null, orientation=null, artist=pdx, author=null, height=null, is_drm=0, is_audiobook=0, date_modified=1721854889, writer=null, composer=null, datetaken=null, mime_type=audio/ogg, is_notification=1, bitrate=80000, cd_track_number=2dB214a, xmp=[], year=null, _data=/product/media/audio/notifications/arcturus.ogg, _size=7908, album=notifications, genre=null, is_alarm=0, title=Arcturus, width=null, is_music=0, document_id=null, is_podcast=0, capture_framerate=null, num_tracks=1, original_document_id=null, media_type=2} exceptionAllowed)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: android.database.sqlite.SQLiteConstraintException: UNIQUE constraint failed: files._data (code 2067 SQLITE_CONSTRAINT_UNIQUE)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.database.sqlite.SQLiteConnection.nativeExecuteForLastInsertedRowId(Native Method)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.database.sqlite.SQLiteConnection.executeForLastInsertedRowId(SQLiteConnection.java:938)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.database.sqlite.SQLiteSession.executeForLastInsertedRowId(SQLiteSession.java:790)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.database.sqlite.SQLiteStatement.executeInsert(SQLiteStatement.java:88)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.util.DatabaseUtils.executeInsert(DatabaseUtils.java:457)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.util.SQLiteQueryBuilder.insert(SQLiteQueryBuilder.java:597)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.util.SQLiteQueryBuilder.lambda$insert$1(SQLiteQueryBuilder.java:561)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.util.SQLiteQueryBuilder.lambda$insert$1$SQLiteQueryBuilder(Unknown Source:0)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.util.-$$Lambda$SQLiteQueryBuilder$YklJ51_aF7j8568p4VYgJs-CWNI.apply(Unknown Source:6)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.DatabaseHelper.runWithTransaction(DatabaseHelper.java:564)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.util.SQLiteQueryBuilder.insert(SQLiteQueryBuilder.java:560)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.lambda$insertAllowingUpsert$14(MediaProvider.java:3076)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.lambda$insertAllowingUpsert$14$MediaProvider(Unknown Source:0)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.-$$Lambda$MediaProvider$FjHWs2-fjgG761OzVFzdTX4EWZg.apply(Unknown Source:13)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.DatabaseHelper.runWithTransaction(DatabaseHelper.java:564)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.insertAllowingUpsert(MediaProvider.java:3066)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.insertFile(MediaProvider.java:3048)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.insertInternal(MediaProvider.java:3486)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.insert(MediaProvider.java:3208)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.content.ContentProviderOperation.applyInternal(ContentProviderOperation.java:375)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.content.ContentProviderOperation.apply(ContentProviderOperation.java:347)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.content.ContentProvider.applyBatch(ContentProvider.java:2422)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.applyBatch(MediaProvider.java:3538)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.content.ContentProvider.applyBatch(ContentProvider.java:2413)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at android.content.ContentResolver.applyBatch(ContentResolver.java:2186)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.scan.ModernMediaScanner$Scan.applyPending(ModernMediaScanner.java:700)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.scan.ModernMediaScanner$Scan.postVisitDirectory(ModernMediaScanner.java:667)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.scan.ModernMediaScanner$Scan.postVisitDirectory(ModernMediaScanner.java:273)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at java.nio.file.Files.walkFileTree(Files.java:2688)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at java.nio.file.Files.walkFileTree(Files.java:2742)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.scan.ModernMediaScanner$Scan.walkFileTree(ModernMediaScanner.java:367)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.scan.ModernMediaScanner$Scan.run(ModernMediaScanner.java:330)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.scan.ModernMediaScanner.scanDirectory(ModernMediaScanner.java:227)
+10-30 05:04:35.691  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaProvider.scanDirectory(MediaProvider.java:1111)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaService.onScanVolume(MediaService.java:148)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaService.onScanVolume(MediaService.java:117)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaService.onScanVolume(MediaService.java:108)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at com.android.providers.media.MediaService.onHandleWork(MediaService.java:71)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at androidx.core.app.JobIntentService$CommandProcessor.doInBackground(JobIntentService.java:391)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at androidx.core.app.JobIntentService$CommandProcessor.doInBackground(JobIntentService.java:382)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at android.os.AsyncTask$3.call(AsyncTask.java:394)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+10-30 05:04:35.692  3959  6655 W ModernMediaScanner: 	at java.lang.Thread.run(Thread.java:923)
+10-30 05:04:35.759  2355  2355 W Looper  : Slow dispatch took 108ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@b5d6238 m=0
+10-30 05:04:35.776  2355  2373 I RoleManagerService: Granting default roles...
+10-30 05:04:35.777  2355  2373 W Looper  : Slow dispatch took 148ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@2aa112c m=0
+10-30 05:04:35.827  6083  6165 I Icing   : updateResources: need to parse abvr{com.google.android.gms} [CONTEXT service_id=21 ]
+10-30 05:04:35.952  9138  9475 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-30 05:04:36.030  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:36.058  2355  2355 W Looper  : Slow dispatch took 297ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@6f8a181 m=0
+10-30 05:04:36.125  2355  2373 W Looper  : Slow dispatch took 256ms android.fg h=android.os.Handler c=<recycled PooledLambda@6b30a03> m=0
+10-30 05:04:36.103  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:36.171  9138  9477 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:com.google.android.apps.maps flg=0x5000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-30 05:04:36.376  2355  2373 W Looper  : Slow dispatch took 154ms android.fg h=android.os.Handler c=<recycled PooledLambda@838c24f> m=0
+10-30 05:04:36.382  2355  2355 W Looper  : Slow dispatch took 318ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@378fddc m=0
+10-30 05:04:36.383  2355  2355 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AOo
+10-30 05:04:36.400  9138  9441 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-30 05:04:36.539  9138  9477 I Fitness : OnPackageChangedOperation got intent: Intent { act=android.intent.action.PACKAGE_CHANGED dat=package:com.google.android.videos flg=0x5000010 cmp=com.google.android.gms/.chimera.PersistentIntentOperationService (has extras) } [CONTEXT service_id=17 ]
+10-30 05:04:36.560  2355  2355 W Looper  : Slow dispatch took 112ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@61d96a m=0
+10-30 05:04:36.563  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:36.568  2355  2373 W Looper  : Slow dispatch took 191ms android.fg h=android.os.Handler c=<recycled PooledLambda@be40e5b> m=0
+10-30 05:04:36.670  2355  3534 W system_server: Long monitor contention with owner Binder:2355_D (3112) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15036) waiters=2 in void com.android.server.am.ActivityManagerService.serviceDoneExecuting(android.os.IBinder, int, int, int) for 108ms
+10-30 05:04:36.699  2355  4557 W system_server: Long monitor contention with owner Binder:2355_D (3112) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15036) waiters=4 in boolean com.android.server.am.ActivityManagerService.refContentProvider(android.os.IBinder, int, int) for 113ms
+10-30 05:04:36.759  2355  2373 W Looper  : Slow dispatch took 114ms android.fg h=android.os.Handler c=<recycled PooledLambda@3cb3537> m=0
+10-30 05:04:36.800  9138  9477 I Fitness : FitCleanupIntentOperation received Intent android.intent.action.PACKAGE_CHANGED [CONTEXT service_id=17 ]
+10-30 05:04:36.797  2765  4244 I PermissionControllerServiceImpl: Updating user sensitive for uid 10147
+10-30 05:04:36.816  2765  2783 I PermissionControllerServiceImpl: Updating user sensitive for uid 10129
+10-30 05:04:36.817  2765  2783 I PermissionControllerServiceImpl: Updating user sensitive for uid 10134
+10-30 05:04:36.852  9138  9426 W .gms.persisten: Long monitor contention with owner GoogleLocationService (9270) at boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean)(ActivityThread.java:7029) waiters=0 in android.content.IContentProvider android.app.ActivityThread.acquireExistingProvider(android.content.Context, java.lang.String, int, boolean) for 229ms
+10-30 05:04:36.916  2355  2844 W system_server: Long monitor contention with owner android.fg (2373) at int com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.getApplicationEnabledState(java.lang.String, int)(PackageManagerService.java:24933) waiters=0 in boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.isPermissionsReviewRequired(java.lang.String, int) for 110ms
+10-30 05:04:36.921  2355  2355 W Looper  : Slow dispatch took 360ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@725942f m=0
+10-30 05:04:36.937  2355  4557 W system_server: Long monitor contention with owner Binder:2355_9 (2844) at android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15036) waiters=1 in android.content.Intent com.android.server.am.ActivityManagerService.registerReceiverWithFeature(android.app.IApplicationThread, java.lang.String, java.lang.String, android.content.IIntentReceiver, android.content.IntentFilter, java.lang.String, int, int) for 127ms
+10-30 05:04:36.979  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:37.293  2355  2355 W Looper  : Slow dispatch took 372ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@8fd63b m=0
+10-30 05:04:37.383  2355  2373 I RoleManagerService: Granting default roles...
+10-30 05:04:37.383  2355  2373 W Looper  : Slow dispatch took 581ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@2aa112c m=0
+10-30 05:04:37.395  2765  4244 I PermissionControllerServiceImpl: Updating user sensitive for uid 10142
+10-30 05:04:37.421  2355  2373 W Looper  : Drained
+10-30 05:04:37.471  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:37.710  2355  2355 W Looper  : Slow dispatch took 341ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@84101cd m=0
+10-30 05:04:37.711  2355  2355 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AOs
+10-30 05:04:37.840  9138  9364 W .gms.persisten: Long monitor contention with owner netscheduler-queue-handler (9216) at void apkp.b(int)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):7) waiters=0 in void apkp.a(aphr, int) for 2.005s
+10-30 05:04:37.877  2355  2355 W Looper  : Drained
+10-30 05:04:37.887  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:38.070  6083  9481 I ChromeSync: [Sync,SyncIntentOperation] Handling the intent: Intent { act=com.google.gservices.intent.action.GSERVICES_CHANGED flg=0x1000010 cmp=com.google.android.gms/.chimera.GmsIntentOperationService$PersistentInternalReceiver }.
+10-30 05:04:38.302  2355  4366 W system_server: Long monitor contention with owner Binder:2355_21 (5182) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=0 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 184ms
+10-30 05:04:38.336  2355  4557 W system_server: Long monitor contention with owner Binder:2355_21 (5182) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=4 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 176ms
+10-30 05:04:38.587  2355  3637 W system_server: Long monitor contention with owner Binder:2355_1C (4366) at java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int)(PackageManagerService.java:7137) waiters=4 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 133ms
+10-30 05:04:38.606  2355  3616 W system_server: Long monitor contention with owner Binder:2355_17 (3637) at int com.android.server.am.ActivityManagerService.bindIsolatedService(android.app.IApplicationThread, android.os.IBinder, android.content.Intent, java.lang.String, android.app.IServiceConnection, int, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15183) waiters=0 in void com.android.server.am.ActivityManagerService.serviceDoneExecuting(android.os.IBinder, int, int, int) for 162ms
+10-30 05:04:38.745  6083  6302 I CheckinUtil: Classify the device as Phone. [CONTEXT service_id=130 ]
+10-30 05:04:38.971  9138  9188 W .gms.persisten: Long monitor contention with owner highpool[3] (9232) at android.database.sqlite.SQLiteConnection android.database.sqlite.SQLiteConnectionPool.waitForConnection(java.lang.String, int, android.os.CancellationSignal)(SQLiteConnectionPool.java:702) waiters=0 in android.database.sqlite.SQLiteConnection android.database.sqlite.SQLiteConnectionPool.waitForConnection(java.lang.String, int, android.os.CancellationSignal) for 954ms
+10-30 05:04:39.026  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:39.471  6083  9480 I MobileDataHub: Scheduling periodic tasks
+10-30 05:04:39.641  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:40.050  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: Received Provisioning Event: [Bugle information (100)]
+10-30 05:04:40.052  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: JibeService is not running
+10-30 05:04:40.052  8790  8846 W BugleRcsEngine: [131] ProvisioningEventReceiver.a: Event is not a valid user action. Discarding it.
+10-30 05:04:40.096  9138  9426 E anft    : Phenotype registration failed [CONTEXT service_id=51 ]
+10-30 05:04:40.096  9138  9426 E anft    : java.util.concurrent.TimeoutException: Timed out waiting for Task
+10-30 05:04:40.096  9138  9426 E anft    : 	at auct.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):22)
+10-30 05:04:40.096  9138  9426 E anft    : 	at anft.b(:com.google.android.gms@201817023@20.18.17 (040800-311416286):6)
+10-30 05:04:40.096  9138  9426 E anft    : 	at com.google.android.gms.phenotype.sync.HeterodyneSyncTaskChimeraService.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):9)
+10-30 05:04:40.096  9138  9426 E anft    : 	at com.google.android.gms.phenotype.sync.HeterodyneSyncTaskChimeraService.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):74)
+10-30 05:04:40.096  9138  9426 E anft    : 	at adyp.call(Unknown Source:4)
+10-30 05:04:40.096  9138  9426 E anft    : 	at java.util.concurrent.FutureTask.run(FutureTask.java:266)
+10-30 05:04:40.096  9138  9426 E anft    : 	at sji.b(:com.google.android.gms@201817023@20.18.17 (040800-311416286):12)
+10-30 05:04:40.096  9138  9426 E anft    : 	at sji.run(:com.google.android.gms@201817023@20.18.17 (040800-311416286):7)
+10-30 05:04:40.096  9138  9426 E anft    : 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+10-30 05:04:40.096  9138  9426 E anft    : 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+10-30 05:04:40.096  9138  9426 E anft    : 	at spj.run(:com.google.android.gms@201817023@20.18.17 (040800-311416286):0)
+10-30 05:04:40.096  9138  9426 E anft    : 	at java.lang.Thread.run(Thread.java:923)
+10-30 05:04:40.171  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: Received Provisioning Event: [Bugle information (100)]
+10-30 05:04:40.172  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: JibeService is not running
+10-30 05:04:40.172  8790  8846 W BugleRcsEngine: [131] ProvisioningEventReceiver.a: Event is not a valid user action. Discarding it.
+10-30 05:04:40.225  5130  5142 I m.android.phon: Background young concurrent copying GC freed 29911(1776KB) AllocSpace objects, 0(0B) LOS objects, 27% free, 3858KB/5348KB, paused 358us total 526.205ms
+10-30 05:04:40.314  2355  4366 W system_server: Long monitor contention with owner Binder:2355_14 (3614) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=0 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 179ms
+10-30 05:04:40.431  6083  9480 W MobileDataHub: [Service] appsupload-periodic periodic task disabled
+10-30 05:04:40.464  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Request Bugle information
+10-30 05:04:40.524  6083  6250 I GmsModuleFndr: Beginning GMS chimera module scan
+10-30 05:04:40.553  9138  9232 I anhw    : Scheduling Phenotype for a PhenotypeSyncImmediately(6, com.google.android.gms.phenotype) one off with window [1, 2] in seconds [CONTEXT service_id=51 ]
+10-30 05:04:40.750  2355  2388 W system_server: Long monitor contention with owner Binder:2355_21 (5182) at boolean com.android.server.usage.AppStandbyController.isCarrierApp(java.lang.String)(AppStandbyController.java:1571) waiters=0 in java.util.List com.android.server.usage.AppStandbyController.getCrossProfileTargets(java.lang.String, int) for 2.408s
+10-30 05:04:40.753  2355  3529 W system_server: Long monitor contention with owner Binder:2355_14 (3614) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=0 in int com.android.server.pm.permission.PermissionManagerService.checkPermission(java.lang.String, java.lang.String, int) for 259ms
+10-30 05:04:40.755  2355  2440 W system_server: Long monitor contention with owner Binder:2355_21 (5182) at boolean com.android.server.usage.AppStandbyController.isCarrierApp(java.lang.String)(AppStandbyController.java:1571) waiters=1 in int com.android.server.usage.AppStandbyController.getAppStandbyBucket(java.lang.String, int, long, boolean) for 2.119s
+10-30 05:04:40.755  2355  3535 W system_server: Long monitor contention with owner Binder:2355_14 (3614) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=1 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 240ms
+10-30 05:04:40.761  2355  2370 W system_server: Long monitor contention with owner Binder:2355_14 (3614) at com.android.server.pm.PackageSetting com.android.server.pm.PackageManagerService.getPackageSettingInternal(java.lang.String, int)(PackageManagerService.java:25244) waiters=2 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 236ms
+10-30 05:04:40.876  2355  3637 W system_server: Long monitor contention with owner Binder:2355_5 (2440) at void com.android.server.AlarmManagerService.setImpl(int, long, long, long, android.app.PendingIntent, android.app.IAlarmListener, java.lang.String, int, android.os.WorkSource, android.app.AlarmManager$AlarmClockInfo, int, java.lang.String)(AlarmManagerService.java:1784) waiters=0 in void com.android.server.AlarmManagerService$4.remove(android.app.PendingIntent, android.app.IAlarmListener) for 2.187s
+10-30 05:04:40.878  2355  2460 W system_server: Long monitor contention with owner Binder:2355_5 (2440) at void com.android.server.AlarmManagerService.setImpl(int, long, long, long, android.app.PendingIntent, android.app.IAlarmListener, java.lang.String, int, android.os.WorkSource, android.app.AlarmManager$AlarmClockInfo, int, java.lang.String)(AlarmManagerService.java:1784) waiters=1 in void com.android.server.AlarmManagerService$AlarmThread.run() for 410ms
+10-30 05:04:40.892  8907  9403 I CarrierServices: [189] eav.a: Received Provisioning Event: [Bugle information (100)]
+10-30 05:04:40.892  8907  9403 I CarrierServices: [189] eav.a: JibeService is running, passing event to provisioning engine.
+10-30 05:04:40.893  8907  9403 I CarrierServices: [189] dqc.a: Handling Provisioning Event: [Bugle information (100)]
+10-30 05:04:40.999  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Update provisioning status
+10-30 05:04:40.729  9138  9216 W .gms.persisten: Long monitor contention with owner lowpool[8] (9364) at void apkp.a(boolean, aeah)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):89) waiters=0 in int apkp.a(apki, aamz) for 763ms
+10-30 05:04:41.233  2355  5182 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.appwidget.AppWidgetServiceImpl.isBoundWidgetPackage(java.lang.String, int)(AppWidgetServiceImpl.java:3012) waiters=0 in boolean com.android.server.appwidget.AppWidgetServiceImpl.isBoundWidgetPackage(java.lang.String, int) for 420ms
+10-30 05:04:41.235  2355  2355 W system_server: Long monitor contention with owner Binder:2355_21 (5182) at void com.android.server.job.controllers.QuotaController$Timer.stopTrackingJob(com.android.server.job.controllers.JobStatus)(QuotaController.java:1519) waiters=0 in void com.android.server.job.JobSchedulerService$JobHandler.handleMessage(android.os.Message) for 1.485s
+10-30 05:04:41.240  2355  2355 W Looper  : Slow dispatch took 1491ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=4
+10-30 05:04:41.240  2355  2355 W Looper  : Slow delivery took 1496ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=4
+10-30 05:04:41.250  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Update provisioning status
+10-30 05:04:41.330  6083  6250 I ModuleSetMgr: Computing pending module set with APKs: [[AdsFdrDynamite.integ:21460000000], [Cronetdynamite:201817040800], [Dynamiteloader:201817040000], [Dynamitemodulesa:201817040000], [Dynamitemodulesc:201817040000], [Googlecertificates:201817040000], [Mapsdynamite:201817040000], [Measurementdynamite:201817040000]]
+10-30 05:04:41.439  2355  5182 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=0 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 177ms
+10-30 05:04:41.447  2355  3534 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=1 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 174ms
+10-30 05:04:41.449  2355  2355 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=2 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 176ms
+10-30 05:04:41.468  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: Received Provisioning Event: [Bugle information (100)]
+10-30 05:04:41.468  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: JibeService is not running
+10-30 05:04:41.469  8790  8846 W BugleRcsEngine: [131] ProvisioningEventReceiver.a: Event is not a valid user action. Discarding it.
+10-30 05:04:41.484  2355  3112 D PackageManager: Instant App installer not found with android.intent.action.INSTALL_INSTANT_APP_PACKAGE
+10-30 05:04:41.484  2355  3112 D PackageManager: Clear ephemeral installer activity
+10-30 05:04:41.495  2355  2844 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int)(PackageManagerService.java:4564) waiters=4 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 128ms
+10-30 05:04:41.804  8907  9403 I CarrierServices: [189] dsd.a: RcsAvailabilityManager: Calculating Rcs Availability
+10-30 05:04:41.838  2355  2355 W Looper  : Drained
+10-30 05:04:41.860  2355  2355 W Looper  : Slow dispatch took 596ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=3
+10-30 05:04:41.939  6083  6250 I ModuleSetMgr: Pending container module APKs: []
+10-30 05:04:41.939  6083  6250 I ModuleSetMgr: Pending non-container module APKs: []
+10-30 05:04:41.961  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: Received Provisioning Event: [Bugle information (100)]
+10-30 05:04:42.060  8790  8846 I BugleRcsEngine: [131] ProvisioningEventReceiver.a: JibeService is not running
+10-30 05:04:42.064  8907  9403 I CarrierServices: [189] dtf.b: Bugle ContentProvider is disabled by p/h flag, using ProvisioningEngineStateCacheUtil.getBugleHasRequiredPermission()
+10-30 05:04:42.080  2765  2778 I ssioncontrolle: Background young concurrent copying GC freed 8410(529KB) AllocSpace objects, 0(0B) LOS objects, 49% free, 2054KB/4046KB, paused 93us total 147.057ms
+10-30 05:04:42.065  8907  9403 I CarrierServices: [189] dtf.b: Bugle has minimum required RCS permissions: true
+10-30 05:04:42.098  8790  8846 W BugleRcsEngine: [131] ProvisioningEventReceiver.a: Event is not a valid user action. Discarding it.
+10-30 05:04:42.106  8907  9403 W CarrierServices: [189] dvk.a: No config URL. RCS will be disabled!
+10-30 05:04:42.150  8907  9403 I CarrierServices: [189] chn.h: BindingManager: binding and reset P/H Flag stay same
+10-30 05:04:42.152  8907  9403 I CarrierServices: [189] dsd.a: RcsAvailabilityManager: Rcs Availability still DISABLED_VIA_GSERVICES (RCS is disabled for this carrier by Google)
+10-30 05:04:42.614  2355  2355 I JobServiceContext: Client timed out while executing (no jobFinished received), sending onStop: e65d416 #u0a163/-300 com.google.android.providers.media.module/com.android.providers.media.MediaService
+10-30 05:04:42.634  2355  2440 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=3 in android.content.pm.PackageInfo com.android.server.pm.PackageManagerService.getPackageInfoInternal(java.lang.String, long, int, int, int) for 505ms
+10-30 05:04:42.637  2355  2370 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=4 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 496ms
+10-30 05:04:42.638  2355  4612 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=5 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 473ms
+10-30 05:04:42.645  2355  3614 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=2 in android.content.pm.ProviderInfo com.android.server.pm.ComponentResolver.queryProvider(java.lang.String, int, int) for 522ms
+10-30 05:04:42.646  2355  5182 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=1 in int com.android.server.pm.permission.PermissionManagerService.checkPermission(java.lang.String, java.lang.String, int) for 628ms
+10-30 05:04:42.647  2355  3534 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=0 in int com.android.server.pm.permission.PermissionManagerService.checkUidPermission(java.lang.String, int) for 636ms
+10-30 05:04:42.648  2355  3616 W system_server: Long monitor contention with owner android.bg (2388) at boolean com.android.server.pm.PackageManagerService$PackageManagerInternalImpl.userNeedsBadging(int)(PackageManagerService.java:24574) waiters=7 in android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int) for 325ms
+10-30 05:04:42.652  2355  3112 W system_server: Long monitor contention with owner Binder:2355_12 (3534) at int com.android.server.am.ActivityManagerService.bindIsolatedService(android.app.IApplicationThread, android.os.IBinder, android.content.Intent, java.lang.String, android.app.IServiceConnection, int, java.lang.String, java.lang.String, int)(ActivityManagerService.java:15183) waiters=1 in android.content.ComponentName com.android.server.am.ActivityManagerService.startService(android.app.IApplicationThread, android.content.Intent, java.lang.String, boolean, java.lang.String, java.lang.String, int) for 646ms
+10-30 05:04:42.665  9138  9175 W .gms.persisten: Long monitor contention with owner GoogleLocationService (9270) at boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean)(ActivityThread.java:7029) waiters=0 in boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean) for 655ms
+10-30 05:04:42.864  7573  7573 V AvrcpMediaPlayerList: mPackageChangedBroadcastReceiver: action: android.intent.action.PACKAGE_CHANGED
+10-30 05:04:42.864  7573  7573 D AvrcpMediaPlayerList: Name of package changed: com.google.android.gms
+10-30 05:04:42.874  2355  2464 I InputReader: Reconfiguring input devices, changes=KEYBOARD_LAYOUTS | 
+10-30 05:04:43.079  2355  2355 W Looper  : Slow dispatch took 401ms main h=com.android.server.job.JobSchedulerService$JobHandler c=null m=3
+10-30 05:04:43.080  2355  2355 W Looper  : Slow delivery took 266ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@f220518 m=0
+10-30 05:04:43.091  6083  9480 W gle.android.gm: Long monitor contention with owner [com.google.android.gms.chimera.GmsIntentOperationService$ChimeraService-Executor] processing qgf for action com.google.gservices.intent.action.GSERVICES_CHANGED (9445) at boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean)(ActivityThread.java:7029) waiters=1 in boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean) for 287ms
+10-30 05:04:43.112  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Request Bugle information
+10-30 05:04:43.116  6083  9481 W gle.android.gm: Long monitor contention with owner [com.google.android.gms.chimera.GmsIntentOperationService$ChimeraService-Executor] processing qgf for action com.google.gservices.intent.action.GSERVICES_CHANGED (9480) at void cui.run()(:com.google.android.gms@201817023@20.18.17 (040800-311416286):5) waiters=0 in void cui.run() for 2.991s
+10-30 05:04:43.118  2355  2373 W Looper  : Slow dispatch took 271ms android.fg h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@28761d7 m=0
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: Timeout on service connection
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: java.lang.Throwable
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at ablt.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):4)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at ablu.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):4)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at ablu.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):1)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at pyo.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):7)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at pyx.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):1)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at pyo.b(:com.google.android.gms@201817023@20.18.17 (040800-311416286):2)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at pyj.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):158)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at com.google.android.gms.checkin.CheckinChimeraService.a(:com.google.android.gms@201817023@20.18.17 (040800-311416286):205)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at pxy.run(:com.google.android.gms@201817023@20.18.17 (040800-311416286):0)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at sji.b(:com.google.android.gms@201817023@20.18.17 (040800-311416286):12)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at sji.run(:com.google.android.gms@201817023@20.18.17 (040800-311416286):7)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1167)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:641)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at spj.run(:com.google.android.gms@201817023@20.18.17 (040800-311416286):0)
+10-30 05:04:43.170  6083  6302 W GoogleHttpServiceClient: 	at java.lang.Thread.run(Thread.java:923)
+10-30 05:04:43.278  2355  2373 W Looper  : Slow delivery took 303ms android.fg h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@dc3ceeb m=0
+10-30 05:04:43.278  2355  2373 W Looper  : Slow dispatch took 159ms android.fg h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@dc3ceeb m=0
+10-30 05:04:43.303  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Update provisioning status
+10-30 05:04:43.348  9138  9232 W .gms.persisten: Long monitor contention with owner lowpool[3] (9188) at java.lang.String android.provider.Settings$NameValueCache.getStringForUser(android.content.ContentResolver, java.lang.String, int)(Settings.java:2718) waiters=0 in java.lang.String android.provider.Settings$NameValueCache.getStringForUser(android.content.ContentResolver, java.lang.String, int) for 275ms
+10-30 05:04:43.362  2355  2355 W Looper  : Slow dispatch took 281ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@f3d9e92 m=0
+10-30 05:04:43.364  8907  9403 I CarrierServices: [189] eav.a: Received Provisioning Event: [Bugle information (100)]
+10-30 05:04:43.365  8907  9403 I CarrierServices: [189] eav.a: JibeService is running, passing event to provisioning engine.
+10-30 05:04:43.417  2355  2373 W Looper  : Slow dispatch took 140ms android.fg h=android.os.Handler c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@3c46fbf m=0
+10-30 05:04:43.460  8907  9403 I CarrierServices: [189] dqc.a: Handling Provisioning Event: [Bugle information (100)]
+10-30 05:04:43.492  2355  2355 W Looper  : Slow dispatch took 116ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@9497eb6 m=0
+10-30 05:04:43.516  8907  9403 I CarrierServices: [189] dsd.a: RcsAvailabilityManager: Calculating Rcs Availability
+10-30 05:04:43.595  5130  5130 D CarrierSvcBindHelper: No carrier app for: 0
+10-30 05:04:43.653  2355  2373 I RoleManagerService: Granting default roles...
+10-30 05:04:43.660  2355  2373 W Looper  : Slow dispatch took 173ms android.fg h=android.os.Handler c=com.android.server.role.-$$Lambda$RoleManagerService$p0uu3WH3gz96-kAWnyu6IUHMtCg@2aa112c m=0
+10-30 05:04:43.663  8907  9403 I CarrierServices: [189] dtf.b: Bugle ContentProvider is disabled by p/h flag, using ProvisioningEngineStateCacheUtil.getBugleHasRequiredPermission()
+10-30 05:04:43.664  8907  9403 I CarrierServices: [189] dtf.b: Bugle has minimum required RCS permissions: true
+10-30 05:04:43.686  8184  8184 I BugleRcsProvisioning: RcsProvisioningEventReceiver: Received ProvisioningEvent: Update provisioning status
+10-30 05:04:43.718  2355  2355 W system_server: Long monitor contention with owner android.bg (2388) at android.content.res.Resources android.app.ResourcesManager.createResources(android.os.IBinder, android.content.res.ResourcesKey, java.lang.ClassLoader)(ResourcesManager.java:842) waiters=0 in android.content.res.Resources android.app.ResourcesManager.createResources(android.os.IBinder, android.content.res.ResourcesKey, java.lang.ClassLoader) for 157ms
+10-30 05:04:43.727  9138  9138 W .gms.persisten: Long monitor contention with owner lowpool[9] (9426) at android.view.Display android.app.ResourcesManager.getAdjustedDisplay(int, android.view.DisplayAdjustments)(ResourcesManager.java:315) waiters=0 in android.app.LoadedApk android.app.ActivityThread.getPackageInfo(android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean) for 1.008s
+10-30 05:04:43.912  2355  2373 W Looper  : Slow dispatch took 252ms android.fg h=android.os.Handler c=<recycled PooledLambda@b6722c0> m=0
+10-30 05:04:43.996  6083  6165 I Icing   : updateResources: need to parse abvr{com.google.android.gms} [CONTEXT service_id=21 ]
+10-30 05:04:44.007  2355  2355 W Looper  : Slow dispatch took 467ms main h=android.app.ActivityThread$H c=android.app.-$$Lambda$LoadedApk$ReceiverDispatcher$Args$_BumDX2UKsnxLVrE6UJsJZkotuA@cde3d97 m=0
+10-30 05:04:44.008  2355  2355 I Telecom : DefaultDialerCache: Refreshing default dialer for user 0: now com.android.dialer: DDC.oR@AOw
+10-30 05:04:44.021  2355  2373 W Looper  : Slow dispatch took 108ms android.fg h=android.os.Handler c=<recycled PooledLambda@954e8f> m=0
+10-30 05:04:44.109  2355  2355 V ConditionProviders: enabling condition provider for 0: ComponentInfo{com.google.android.gms/com.google.android.location.settings.DrivingConditionProvider}
+10-30 05:04:44.157  2355  2355 V ConditionProviders: Not registering ComponentInfo{com.google.android.gms/com.google.android.location.settings.DrivingConditionProvider} is already bound
+10-30 05:04:44.170  6083  9445 W gle.android.gm: Long monitor contention with owner highpool[0] (6171) at android.content.IContentProvider android.app.ActivityThread.acquireExistingProvider(android.content.Context, java.lang.String, int, boolean)(ActivityThread.java:6942) waiters=0 in android.content.IContentProvider android.app.ActivityThread.acquireExistingProvider(android.content.Context, java.lang.String, int, boolean) for 232ms
+10-30 05:04:44.245  8907  9403 W CarrierServices: [189] dvk.a: No config URL. RCS will be disabled!
+10-30 05:04:44.292  2355  2373 W Looper  : Slow dispatch took 268ms android.fg h=android.os.Handler c=<recycled PooledLambda@ea5a1f8> m=0
+10-30 05:04:44.386  6083  9445 W gle.android.gm: Long monitor contention with owner highpool[0] (6171) at boolean android.app.ActivityThread.releaseProvider(android.content.IContentProvider, boolean)(ActivityThread.java:7029) waiters=0 in android.content.IContentProvider android.app.ActivityThread.acquireExistingProvider(android.content.Context, java.lang.String, int, boolean) for 143ms
+10-30 05:04:44.561  2355  2373 W Looper  : Slow dispatch took 268ms android.fg h=android.os.Handler c=<recycled PooledLambda@8b00787> m=0
+10-30 05:04:44.607  9138  9138 I GeofencerStateMachine: sendQueryLocationOptIn
+10-30 05:04:44.656  9138  9235 I GeofencerStateMachine: Network location disabled.
+10-30 05:04:44.806  2355  2373 W Looper  : Slow dispatch took 207ms android.fg h=android.os.Handler c=<recycled PooledLambda@68ed827> m=0
+10-30 05:04:44.649  8907  9403 I CarrierServices: [189] chn.h: BindingManager: binding and reset P/H Flag stay same
+10-30 05:04:44.819  8907  9403 I CarrierServices: [189] dsd.a: RcsAvailabilityManager: Rcs Availability still DISABLED_VIA_GSERVICES (RCS is disabled for this carrier by Google)
+10-30 05:04:45.002  2355  2373 W Looper  : Slow dispatch took 195ms android.fg h=android.os.Handler c=<recycled PooledLambda@3cb3537> m=0
+10-30 05:04:45.089  6083  6302 W Conscrypt: Could not set socket write timeout: java.net.SocketException: Socket closed
+10-30 05:04:45.090  6083  6302 W Conscrypt: 	at com.google.android.gms.org.conscrypt.Platform.setSocketWriteTimeout(:com.google.android.gms@201817023@20.18.17 (040800-311416286):2)
+10-30 05:04:45.090  6083  6302 W Conscrypt: 	at com.google.android.gms.org.conscrypt.ConscryptFileDescriptorSocket.setSoWriteTimeout(:com.google.android.gms@201817023@20.18.17 (040800-311416286):0)
+10-30 05:04:45.158  2355  2373 W Looper  : Slow dispatch took 155ms android.fg h=android.os.Handler c=<recycled PooledLambda@ec5cdd> m=0
+10-30 05:04:45.283  2355  2373 W Looper  : Slow dispatch took 125ms android.fg h=android.os.Handler c=<recycled PooledLambda@be40e5b> m=0
+10-30 05:04:45.287  2765  4257 I PermissionControllerServiceImpl: Updating user sensitive for uid 10123
+10-30 05:04:45.463  2355  2355 W Looper  : Drained
+10-30 05:04:45.463  2355  2355 W Looper  : Slow dispatch took 126ms main h=com.android.providers.settings.SettingsProvider$SettingsRegistry$MyHandler c=null m=1
+10-30 05:04:45.648  9138  9216 W .gms.persisten: Long monitor contention with owner lowpool[8] (9364) at void apkp.a(aphr, aphr, int)(:com.google.android.gms@201817023@20.18.17 (040800-311416286):199) waiters=0 in int apkp.a(apki, aamz) for 1.599s
+10-30 05:04:45.686  9138  9138 W .gms.persisten: Long monitor contention with owner lowpool[9] (9426) at android.view.Display android.app.ResourcesManager.getAdjustedDisplay(int, android.view.DisplayAdjustments)(ResourcesManager.java:303) waiters=0 in android.app.LoadedApk android.app.ActivityThread.getPackageInfo(android.content.pm.ApplicationInfo, android.content.res.CompatibilityInfo, java.lang.ClassLoader, boolean, boolean, boolean) for 817ms
+10-30 05:04:45.763  2355  3616 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int)(PackageManagerService.java:4971) waiters=0 in int com.android.server.pm.permission.PermissionManagerService.checkPermission(java.lang.String, java.lang.String, int) for 197ms
+10-30 05:04:45.769  2355  3614 W system_server: Long monitor contention with owner android.bg (2388) at android.content.pm.ApplicationInfo com.android.server.pm.PackageManagerService.getApplicationInfoInternal(java.lang.String, int, int, int)(PackageManagerService.java:4971) waiters=1 in java.lang.String com.android.server.pm.PackageManagerService.getInstantAppPackageName(int) for 199ms
+10-30 05:04:45.782  2355  3637 W system_server: Long monitor contention with owner Binder:2355_14 (3614) at int com.android.server.am.ActivityManagerService.broadcastIntentWithFeature(android.app.IApplicationThread, java.lang.String, android.content.Intent, java.lang.String, android.content.IIntentReceiver, int, java.lang.String, android.os.Bundle, java.lang.String[], int, android.os.Bundle, boolean, boolean, int)(ActivityManagerService.java:16749) waiters=0 in java.lang.String com.android.server.am.ActivityManagerService.checkContentProviderAccess(java.lang.String, int) for 227ms

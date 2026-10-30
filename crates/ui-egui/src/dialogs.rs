@@ -428,7 +428,12 @@ pub fn show(app: &mut PhotocraftApp, ctx: &egui::Context) {
                     let tab = about_tab(&fields);
                     let mut chosen = tab;
                     ui.horizontal(|ui| {
-                        for (key, label) in [("about", tl!("About")), ("contributors", tl!("Contributors")), ("models", tl!("Models"))] {
+                        for (key, label) in [
+                            ("about", tl!("About")),
+                            ("contributors", tl!("Contributors")),
+                            ("models", tl!("Models")),
+                            ("licences", tl!("Licences")),
+                        ] {
                             if crate::widgets::pill_tab(ui, label, tab == key).clicked() {
                                 chosen = key;
                             }
@@ -705,7 +710,7 @@ pub fn show(app: &mut PhotocraftApp, ctx: &egui::Context) {
 }
 
 /// The About window's tabs, as stored in its `tab` field.
-pub const ABOUT_TABS: [&str; 3] = ["about", "contributors", "models"];
+pub const ABOUT_TABS: [&str; 4] = ["about", "contributors", "models", "licences"];
 
 /// The About tab to show: the `tab` field when it names one, otherwise "about".
 fn about_tab(fields: &serde_json::Map<String, Value>) -> &'static str {
@@ -718,6 +723,7 @@ fn about_tab_body(app: &mut PhotocraftApp, ui: &mut egui::Ui, tab: &str) {
     match tab {
         "contributors" => crate::credits::contributors_ui(app, ui),
         "models" => crate::credits::models_ui(ui),
+        "licences" => crate::licences::ui(ui),
         _ => {
             ui.label(tl!("REA Image Studio — a professional image editor for Android."));
             ui.label(crate::i18n::fmt(tl!("Version {version}"), &[("version", &photocraft_engine::build_info::long_version())]));

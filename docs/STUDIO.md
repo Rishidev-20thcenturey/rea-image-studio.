@@ -94,7 +94,11 @@ committed in [`docs/ci/studio-emulator/`](ci/studio-emulator/).
 | The core's image operations work on the device | app self-test on that device: `[ok] brush 1439 pixels painted`, `[ok] render 4800/4800 pixels opaque`, `[ok] undo 2878 -> 0`, `[ok] selection 50x30`, `[ok] save/load`, `[ok] export 6144 pixels` |
 | No crash, no ANR of the app itself | logcat over the session shows no `FATAL EXCEPTION` for `com.rea.studio`, and the process was alive at the end |
 
-Two honest qualifications. The device is **x86_64, not arm64** — the arm64 library is built and
+Two honest qualifications — and one more that this list taught the hard way. The emulator runs
+**API 29**, and the API 30 image on that runner never finishes initialising, so the Android 11+
+code path (`WindowInsetsController`) is **not exercised in CI**. That gap is exactly how a
+`NullPointerException` in `goImmersive()` reached a real phone; the fix came from the phone's own
+stack trace, not from CI. The device is **x86_64, not arm64** — the arm64 library is built and
 inspected in CI but has not been run. And injected touches from `adb` could not reach the app on this
 emulator (the emulated System UI kept window focus and kept ANR-ing), which is why the touch proof
 comes from the app dispatching its own events: it covers the view's coordinate mapping, its touch
